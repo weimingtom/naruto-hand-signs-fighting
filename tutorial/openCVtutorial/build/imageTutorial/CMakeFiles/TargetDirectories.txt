@@ -1,0 +1,2 @@
+/home/michele/workspace/openCVtutorial/build/imageTutorial/CMakeFiles/imageTutorial.dir
+/home/michele/workspace/openCVtutorial/build/imageTutorial/CMakeFiles/myfourier.dir
