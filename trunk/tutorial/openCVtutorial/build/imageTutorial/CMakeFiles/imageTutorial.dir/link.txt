@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/imageTutorial.dir/imageTutorial.cxx.o  -o imageTutorial -rdynamic -L/usr/local/lib -lcxcore -lcv -lml -lhighgui -lcvaux libmyfourier.so -Wl,-rpath,/usr/local/lib:/home/michele/workspace/openCVtutorial/build/imageTutorial 

@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/michele/workspace/openCVtutorial/src/imageTutorial/MyFourier.cxx
+iostream
+-
+math.h
+-
+MyFourier.h
+/home/michele/workspace/openCVtutorial/src/imageTutorial/MyFourier.h
+
+/home/michele/workspace/openCVtutorial/src/imageTutorial/MyFourier.h
+opencv/cv.h
+-
+

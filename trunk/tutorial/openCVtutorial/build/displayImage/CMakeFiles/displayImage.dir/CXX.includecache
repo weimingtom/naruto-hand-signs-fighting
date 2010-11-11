@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/michele/workspace/openCVtutorial/src/displayImage/displayImage.cpp
+opencv/cv.h
+-
+opencv/cvaux.h
+-
+opencv/highgui.h
+-
+opencv/cxtypes.h
+-
+opencv/cxcore.h
+-
+iostream
+-
+stdlib.h
+-
+stdio.h
+-
+math.h
+-
+
