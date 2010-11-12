@@ -10,6 +10,9 @@
 
 #include <opencv/cv.h>
 
+#define FILTER_TYPE_LOWPASS 0
+#define FILTER_TYPE_HIGHPASS 1
+
 class MyFourier{
 
 public:

@@ -5,6 +5,7 @@
  *      Author: michele
  */
 #include <iostream>
+#include <stdlib.h>
 #include <math.h>
 
 #include "MyFourier.h"
@@ -71,23 +72,42 @@ void MyFourier::speedyConvolution(const CvMat* A, const CvMat* B, CvMat* C){
 int MyFourier::buildFilter(int rows, int columns, int type,
 		int filterType, int order, double fc, CvMat* outputFilter ){
 
-	// function transferece filter matrix
-	for(int i=0; i<img->width; i++){
-		for(int j=0; j<img->height; j++)
-		{
-			double dxy = sqrt(pow(Xmin+i,2)+pow(Ymin+j,2));
-			double H;
-			if(tipo < 0)
-			{ H = (1/(1 + pow(dxy/fc,2*n)));}    //low pass
+	//the image should be square
 
-			if(tipo >= 0)
+//	CvMat *mask = cvCreateMat(rows, columns , type );
+
+	int Xmin = -rows/2;
+	int Ymin = -columns/2;
+
+	try{
+		// transfer function filter matrix
+		for(int i=0; i<rows; i++){
+			for(int j=0; j<columns; j++)
 			{
-				if(dxy==0){ H=0;}
-				else
-					H = (1/(1 + pow(fc/dxy,2*n)));   //high pass
-			}
+				double dxy = sqrt( pow(Xmin+i, 2) + pow(Ymin+j,2) );
+				double H;
 
-			cvSetReal2D(mask, j, i, H);
+				if(filterType == FILTER_TYPE_LOWPASS){
+					H = (1/(1 + pow(dxy/fc, 2*order))); //low pass function
+				}
+				if(filterType == FILTER_TYPE_HIGHPASS){
+					if(dxy==0){
+						H=0;
+					}else
+						H = (1/(1 + pow(fc/dxy, 2*order)));   //high pass function
+				}
+//				cout <<"i: " << i <<" j: " << j << " H: " << H << "\n";
+
+				cvSetReal2D(outputFilter, j, i, H);
+			}
 		}
+
+//		outputFilter = mask;
+//		cvCopy(mask, outputFilter);
+		return 1;
+	}catch(cv::Exception e){
+		outputFilter = NULL;
+		cout << e.err <<"\n";
+		return e.code;
 	}
 }
