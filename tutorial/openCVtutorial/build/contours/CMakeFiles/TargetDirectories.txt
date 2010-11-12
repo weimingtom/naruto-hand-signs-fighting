@@ -1,0 +1,2 @@
+/home/michele/workspace/openCVtutorial/build/contours/CMakeFiles/contours.dir
+/home/michele/workspace/openCVtutorial/build/contours/CMakeFiles/histLib.dir
