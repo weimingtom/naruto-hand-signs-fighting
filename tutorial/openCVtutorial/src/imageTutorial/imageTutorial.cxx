@@ -27,6 +27,11 @@
 
 #define MAIN_WIN "mainWin"
 #define RES_WIN "resWin"
+#define FILTER_WIN "filtWin"
+
+#define TYPE_IMAGES CV_32FC1
+
+using namespace std;
 
 //int main(int argc, char* argv[]){
 //
@@ -47,12 +52,14 @@ int main(int argc, char *argv[])
 {
   IplImage* img = NULL;
   IplImage* temp2;
+
   CvImage *temp, *res;
   int height,width,step,channels;
   uchar *data;
-  CvMat *filter = cvCreateMat(3, 3, CV_32FC1);
-  CvMat *cvMatImg, *cvMatTemp;
   int i,j,k;
+
+  CvMat *filter = NULL;
+  CvMat *cvMatImg, *cvMatTemp;
   double mean;
 
   if(argc<2){
@@ -64,12 +71,21 @@ int main(int argc, char *argv[])
 //	  load an image
 //	  img=cvLoadImage(argv[1], CV_LOAD_IMAGE_UNCHANGED);
 	  img=cvLoadImage(argv[1], CV_LOAD_IMAGE_GRAYSCALE);
+
 //	  img = cvLoadImage(argv[1]);
 	  temp2 = cvCreateImage(cvSize(img->width, img->height), IPL_DEPTH_8U, 1);
 //	  temp = new CvImage(img);
 
-	  cvMatTemp = cvCreateMat(img->width, img->height, CV_32FC1);
-	  cvMatImg = cvGetMat(img, cvMatTemp, NULL, 0 );
+	  cvMatTemp = cvCreateMat(img->width, img->height, TYPE_IMAGES);
+	  filter = cvCreateMat(img->width, img->height, TYPE_IMAGES);
+	  cvMatImg = cvCreateMat(img->width, img->height, TYPE_IMAGES);
+	  cvMatImg = cvGetMat(img, cvMatImg, NULL, 0 );
+//	  cvCopy(cvMatTemp, cvMatImg);
+
+	  if ( myFourier.buildFilter(img->width, img->height, TYPE_IMAGES,
+			  FILTER_TYPE_HIGHPASS, 2, 50.3, filter ) < 0){
+		  cout<<"ERROR: problem building the filter\n";
+	  }
 
 	  cvNormalize(img, temp2);
 	  mean = cvAvg(img).val[0];
@@ -82,7 +98,6 @@ int main(int argc, char *argv[])
 	  printf("%s\n", e.what());
   }
 
-
   // get the image data
   height    = img->height;
   width     = img->width;
@@ -93,12 +108,15 @@ int main(int argc, char *argv[])
 
   // create a window
   cvNamedWindow(MAIN_WIN, CV_WINDOW_AUTOSIZE);
-  cvMoveWindow(MAIN_WIN, 50, 100);
+  cvMoveWindow(MAIN_WIN, 50, 50);
 //  cvCreateTrackbar("myTrackBar", MAIN_WIN, /)
 
   // create a second window
   cvNamedWindow(RES_WIN, CV_WINDOW_AUTOSIZE);
-  cvMoveWindow(RES_WIN, 700, 100);
+  cvMoveWindow(RES_WIN, 700, 50);
+
+  cvNamedWindow(FILTER_WIN, CV_WINDOW_AUTOSIZE);
+  cvMoveWindow(FILTER_WIN, 50, 600);
 
   // simple identity to avoid run-time errors
 //  res = temp;
@@ -115,11 +133,16 @@ int main(int argc, char *argv[])
 //  cvSobel(img, temp2,  )
   cvSmooth(img, temp2, CV_GAUSSIAN, 5, 0, 0, 0);
 
-  myFourier.speedyConvolution( cvMatImg, filter, cvMatTemp);
+  if(filter == NULL){
+	  cout << "couldn't apply the convolution!\n";
+  }else{
+	  myFourier.speedyConvolution( cvMatImg, filter, cvMatTemp);
+//	  cvShowImage(FILTER_WIN, filter);
+  }
 
   // show the image
   cvShowImage(MAIN_WIN, img );
-  cvShowImage(RES_WIN, temp2);
+  cvShowImage(RES_WIN, cvMatTemp);
 //  res->show(RES_WIN);
 
   // wait for a key

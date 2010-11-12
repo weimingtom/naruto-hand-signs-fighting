@@ -9,6 +9,8 @@
 /home/michele/workspace/openCVtutorial/src/imageTutorial/MyFourier.cxx
 iostream
 -
+stdlib.h
+-
 math.h
 -
 MyFourier.h
