@@ -1,0 +1,2 @@
+/home/michele/workspace/openCVtutorial/build/camera/CMakeFiles/camLib.dir
+/home/michele/workspace/openCVtutorial/build/camera/CMakeFiles/camera.dir

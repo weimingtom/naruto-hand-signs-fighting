@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC   -shared -Wl,-soname,libhistLib.so -o libhistLib.so CMakeFiles/histLib.dir/Camera.cxx.o -L/usr/local/lib 

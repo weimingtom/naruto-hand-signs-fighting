@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC   -shared -Wl,-soname,libcamLib.so -o libcamLib.so CMakeFiles/camLib.dir/Camera.cxx.o -L/usr/local/lib 
