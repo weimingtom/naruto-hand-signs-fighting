@@ -1,0 +1,3 @@
+/home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/engLib.dir
+/home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/enginePrototype.dir
+/home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/sobel.dir

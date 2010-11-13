@@ -64,8 +64,8 @@ int main(int argc, char* argv[]) {
 	cvCvtColor(img, res, CV_BGR2GRAY);
 	cvShowImage( "mainWin", res );
 	cvWaitKey(0);
+
+	cam.activateAndShow();
+
 	cvDestroyAllWindows();
-
-//	cam.activateAndShow();
-
 }

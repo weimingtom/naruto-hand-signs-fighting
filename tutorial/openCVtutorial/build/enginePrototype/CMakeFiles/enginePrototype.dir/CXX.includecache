@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/michele/workspace/openCVtutorial/src/enginePrototype/EngineModule.h
+opencv/cv.h
+-
+
+/home/michele/workspace/openCVtutorial/src/enginePrototype/Move.h
+
+/home/michele/workspace/openCVtutorial/src/enginePrototype/RecognitionEngine.h
+vector
+-
+opencv/cv.h
+-
+EngineModule.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/EngineModule.h
+Move.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/Move.h
+
+/home/michele/workspace/openCVtutorial/src/enginePrototype/SobelEM.h
+EngineModule.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/EngineModule.h
+
+/home/michele/workspace/openCVtutorial/src/enginePrototype/mainEngine.cxx
+opencv/cv.h
+-
+opencv/highgui.h
+-
+opencv/cvaux.h
+-
+opencv/cxtypes.h
+-
+opencv/cxcore.h
+-
+RecognitionEngine.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/RecognitionEngine.h
+EngineModule.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/EngineModule.h
+SobelEM.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/SobelEM.h
+
