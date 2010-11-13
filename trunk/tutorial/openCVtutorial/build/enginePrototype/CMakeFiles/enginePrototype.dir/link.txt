@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/enginePrototype.dir/mainEngine.cxx.o  -o enginePrototype -rdynamic -L/usr/local/lib -lcxcore -lcv -lml -lhighgui -lcvaux libengLib.so libsobel.so -Wl,-rpath,/usr/local/lib:/home/michele/workspace/openCVtutorial/build/enginePrototype 
