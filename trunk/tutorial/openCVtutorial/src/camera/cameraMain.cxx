@@ -57,9 +57,12 @@ int main(int argc, char* argv[]) {
 	/////////////////////////////////////
 //	Camera* cam;
 	IplImage* img = cam.captureImage();
+	IplImage* res;
 
 	cvNamedWindow( "mainWin", CV_WINDOW_AUTOSIZE );
-	cvShowImage( "mainWin", img );
+	res = cvCreateImage(cvSize(img->width, img->height), img->depth, 1);
+	cvCvtColor(img, res, CV_BGR2GRAY);
+	cvShowImage( "mainWin", res );
 	cvWaitKey(0);
 	cvDestroyAllWindows();
 
