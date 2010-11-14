@@ -13,11 +13,11 @@
 class SobelEM : public EngineModule{
 public:
 	SobelEM(){
-
+		moduleName = "sobelModule";
 	}
 	int compute( const IplImage* src, IplImage* dst);
-}sobel;
+};
 
-extern SobelEM sobel;
+extern EngineModule *sobel;
 
 #endif /* SOBELEM_H_ */

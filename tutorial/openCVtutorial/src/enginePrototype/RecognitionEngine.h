@@ -28,10 +28,13 @@ using namespace std;
  */
 class RecognitionEngine{
 	std::vector<EngineModule*> modulesArray;
+	IplImage* temp;
 
 	int findModuleByID(EngineModule* m);
 
 public:
+
+	RecognitionEngine();
 
 	void addModule(EngineModule* m);
 
