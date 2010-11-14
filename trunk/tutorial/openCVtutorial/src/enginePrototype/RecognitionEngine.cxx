@@ -5,16 +5,31 @@
  *      Author: michele
  */
 
+#include <iostream>
 #include "RecognitionEngine.h"
 
-//RecognitionEngine recognitionEngine;
+#define OUTPUT_IMAGE_DEPTH IPL_DEPTH_32F
+
+using namespace std;
+
+RecognitionEngine::RecognitionEngine(){
+	temp == NULL;
+}
 
 int RecognitionEngine::process(IplImage* src, IplImage* res){
-	IplImage* temp = cvCreateImage(cvSize(src->width, src->height),
-			src->depth, src->nChannels);
-	for( int i=0; i<modulesArray.size(); i++){
-		modulesArray.at(i)->compute(src, temp);
+//	IplImage* temp = cvCreateImage(cvSize(src->width, src->height),
+//			src->depth, src->nChannels);
+	if(temp == NULL)
+		temp = cvCreateImage(cvSize(src->width, src->height), OUTPUT_IMAGE_DEPTH, src->nChannels);
 
+	for(int i=0; i<modulesArray.size(); i++){
+		try{
+			modulesArray.at(i)->compute(src, temp);
+		}catch(cv::Exception e){
+			cout<<"EXCEPTION in " << modulesArray.at(i)->getModuleName() << "\n";
+			cout<<e.err<<"\n";
+		}
+		cvAdd(res, temp, res);
 	}
 }
 

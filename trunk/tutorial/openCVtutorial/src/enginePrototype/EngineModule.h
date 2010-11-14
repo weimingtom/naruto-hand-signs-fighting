@@ -12,7 +12,9 @@
 static long int globalID;
 
 class EngineModule{
+protected:
 	long int moduleID;
+	const char* moduleName;
 
 public:
 	EngineModule(){
@@ -21,6 +23,10 @@ public:
 
 	long int getModuleID(){
 		return moduleID;
+	}
+
+	const char* getModuleName(){
+		return moduleName;
 	}
 
 	virtual int compute( const IplImage* src, IplImage* dst) = 0;

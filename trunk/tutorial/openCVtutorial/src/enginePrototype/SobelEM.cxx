@@ -8,6 +8,8 @@
 #include <opencv/cv.h>
 #include "SobelEM.h"
 
-int compute( const IplImage* src, IplImage* dst){
+EngineModule *sobel = new SobelEM();
+
+int SobelEM::compute( const IplImage* src, IplImage* dst){
 	cvSobel(src, dst, 1, 1, 3);
 }

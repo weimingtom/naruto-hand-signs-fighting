@@ -11,9 +11,17 @@
 #include <opencv/cxtypes.h>
 #include <opencv/cxcore.h>   // unnecessary - included in cv.h
 
+#include <iostream>
+#include <stdio.h>
+
 #include "RecognitionEngine.h"
 #include "EngineModule.h"
+//////////////////
+//My built modules
+//////////////////
 #include "SobelEM.h"
+#include "LaplacianEM.h"
+//////////////////
 
 #define MAIN_WIN "mainWin"
 #define RES_WIN "resWin"
@@ -27,10 +35,13 @@ int main(int argc, char* argv[] ){
 		exit(0);
 	}
 	img = cvLoadImage(argv[1], CV_LOAD_IMAGE_GRAYSCALE);
-	res = cvCreateImage(cvSize(img->width, img->height), img->depth, img->nChannels);
+	res = cvCreateImage(cvSize(img->width, img->height), IPL_DEPTH_32F, img->nChannels);
 
 	//The first step is to add different modules to our engine
+//	recognitionEngine.addModule(laplacian);
+	recognitionEngine.addModule(sobel);
 
+	cout<<"starting process\n"; fflush(stdout);
 	//Then we launch the processing phase
 	recognitionEngine.process(img, res);
 
@@ -40,6 +51,9 @@ int main(int argc, char* argv[] ){
 	// create a second window
 	cvNamedWindow(RES_WIN, CV_WINDOW_AUTOSIZE);
 	cvMoveWindow(RES_WIN, 700, 50);
+
+	cvShowImage(MAIN_WIN, img);
+	cvShowImage(RES_WIN, res);
 
 	cvWaitKey(0);
 	cvReleaseImage(&img);
