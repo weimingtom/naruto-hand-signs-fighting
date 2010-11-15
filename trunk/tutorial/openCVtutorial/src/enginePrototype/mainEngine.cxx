@@ -44,8 +44,8 @@ int main(int argc, char* argv[] ){
 	//The first step is to add different modules to our engine
 //	recognitionEngine.addModule(laplacian);
 //	recognitionEngine.addModule(sobel);
-//	recognitionEngine.addModule(histogram);
-	recognitionEngine.addModule(canny);
+	recognitionEngine.addModule(histogram);
+//	recognitionEngine.addModule(canny);
 
 	cout<<"starting process\n"; fflush(stdout);
 	//Then we launch the processing phase

@@ -1,8 +1,19 @@
 /*
+ ******************************************************
+ * NAME:
  * LaplacianEM.h
+ ******************************************************
+ * DESCRIPTION:
+ * Class that simply applies a Laplacian filtering.
+ * One can set the kernel size of the filter, or keep the
+ * default one set to DEFAULT_KERNEL_SIZE.
  *
- *  Created on: Nov 14, 2010
- *      Author: michele
+ ******************************************************
+ *	Created on: Nov 14, 2010
+ ******************************************************
+ *  Author: Michele Tamburini
+ *******************************************************
+ *
  */
 
 #ifndef LAPLACIANEM_H_
@@ -17,9 +28,18 @@ class LaplacianEM : public EngineModule{
 public:
 
 	LaplacianEM(){
-		moduleName = "sobelModule";
+		moduleName = "LaplacianModule";
 		kernelSize = DEFAULT_KERNEL_SIZE;
 	}
+
+	void setKernelSize(int kerSize){
+		kernelSize = kerSize;
+	}
+
+	int getKernelSize(){
+		return kernelSize;
+	}
+
 	int compute( const IplImage* src, IplImage* dst);
 };
 
