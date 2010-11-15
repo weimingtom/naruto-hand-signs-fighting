@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/michele/workspace/openCVtutorial/src/contours2/contours2Main.cxx
+opencv/cv.h
+-
+opencv/cxcore.h
+-
+opencv/highgui.h
+-
+stdio.h
+-
+stdlib.h
+-
+
