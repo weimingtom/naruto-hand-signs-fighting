@@ -4,6 +4,7 @@
 CMakeFiles/enginePrototype.dir/mainEngine.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/Move.h
 CMakeFiles/enginePrototype.dir/mainEngine.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/RecognitionEngine.h
 CMakeFiles/enginePrototype.dir/mainEngine.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/CannyEM.h
+CMakeFiles/enginePrototype.dir/mainEngine.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/ContoursFinderEM.h
 CMakeFiles/enginePrototype.dir/mainEngine.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/EngineModule.h
 CMakeFiles/enginePrototype.dir/mainEngine.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/HistogramEM.h
 CMakeFiles/enginePrototype.dir/mainEngine.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/LaplacianEM.h

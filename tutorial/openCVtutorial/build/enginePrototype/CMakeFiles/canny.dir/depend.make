@@ -3,4 +3,5 @@
 
 CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/CannyEM.cxx
 CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/CannyEM.h
+CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/EngineModule.h
 

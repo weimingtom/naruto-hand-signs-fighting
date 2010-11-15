@@ -155,6 +155,9 @@ OpenCV_DIR:PATH=/usr/local/share/opencv
 canny_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
+contours_LIB_DEPENDS:STATIC=
+
+//Dependencies for target
 engLib_LIB_DEPENDS:STATIC=
 
 //Value Computed by CMake

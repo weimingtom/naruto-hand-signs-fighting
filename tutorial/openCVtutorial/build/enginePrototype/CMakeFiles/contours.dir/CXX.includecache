@@ -6,16 +6,12 @@
 
 #IncludeRegexTransform: 
 
-/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/CannyEM.cxx
-CannyEM.h
-/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/CannyEM.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/ContoursFinderEM.cxx
+ContoursFinderEM.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/ContoursFinderEM.h
 
-/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/CannyEM.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/ContoursFinderEM.h
 opencv/cv.h
--
-opencv/cxcore.h
--
-opencv/highgui.h
 -
 EngineModule.h
 /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/EngineModule.h

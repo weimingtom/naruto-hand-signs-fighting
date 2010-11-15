@@ -13,7 +13,8 @@ cmake_minimum_required(VERSION 2.6)
 PROJECT( enginePrototype_proj )
 FIND_PACKAGE( OpenCV REQUIRED )
 ADD_EXECUTABLE( enginePrototype mainEngine.cxx)
-TARGET_LINK_LIBRARIES( enginePrototype ${OpenCV_LIBS} engLib sobel laplacian histo canny)
+TARGET_LINK_LIBRARIES( enginePrototype ${OpenCV_LIBS} engLib sobel laplacian histo canny
+contours)
 ADD_DEPENDENCIES(enginePrototype EngineModule.h)
 
 ADD_DEPENDENCIES(enginePrototype engLib)
@@ -35,6 +36,10 @@ ADD_DEPENDENCIES(histo engineModules/EngineModule.h)
 ADD_DEPENDENCIES(enginePrototype canny)
 ADD_LIBRARY(canny SHARED engineModules/CannyEM.h engineModules/CannyEM.cxx)
 ADD_DEPENDENCIES(canny engineModules/EngineModule.h)
+
+ADD_DEPENDENCIES(enginePrototype contours)
+ADD_LIBRARY(contours SHARED engineModules/ContoursFinderEM.h engineModules/ContoursFinderEM.cxx)
+ADD_DEPENDENCIES(contours engineModules/EngineModule.h)
 
 #ADD_DEPENDENCIES(enginePrototype fourier)
 #ADD_LIBRARY(fourier SHARED FourierEM.h FourierEM.cxx)
