@@ -4,7 +4,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/home/michele/workspace/openCVtutorial/src/enginePrototype/HistogramEM.cxx" "/home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/histo.dir/HistogramEM.cxx.o"
+  "/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/HistogramEM.cxx" "/home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 

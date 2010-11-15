@@ -164,6 +164,9 @@ enginePrototype_proj_BINARY_DIR:STATIC=/home/michele/workspace/openCVtutorial/bu
 enginePrototype_proj_SOURCE_DIR:STATIC=/home/michele/workspace/openCVtutorial/src/enginePrototype
 
 //Dependencies for target
+fourier_LIB_DEPENDS:STATIC=
+
+//Dependencies for target
 histo_LIB_DEPENDS:STATIC=
 
 //Dependencies for target

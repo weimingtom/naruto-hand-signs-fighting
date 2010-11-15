@@ -49,38 +49,38 @@ include CMakeFiles/laplacian.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/laplacian.dir/flags.make
 
-CMakeFiles/laplacian.dir/LaplacianEM.cxx.o: CMakeFiles/laplacian.dir/flags.make
-CMakeFiles/laplacian.dir/LaplacianEM.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/LaplacianEM.cxx
+CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.o: CMakeFiles/laplacian.dir/flags.make
+CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/LaplacianEM.cxx
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/laplacian.dir/LaplacianEM.cxx.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/laplacian.dir/LaplacianEM.cxx.o -c /home/michele/workspace/openCVtutorial/src/enginePrototype/LaplacianEM.cxx
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.o -c /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/LaplacianEM.cxx
 
-CMakeFiles/laplacian.dir/LaplacianEM.cxx.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/laplacian.dir/LaplacianEM.cxx.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/michele/workspace/openCVtutorial/src/enginePrototype/LaplacianEM.cxx > CMakeFiles/laplacian.dir/LaplacianEM.cxx.i
+CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/LaplacianEM.cxx > CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.i
 
-CMakeFiles/laplacian.dir/LaplacianEM.cxx.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/laplacian.dir/LaplacianEM.cxx.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/michele/workspace/openCVtutorial/src/enginePrototype/LaplacianEM.cxx -o CMakeFiles/laplacian.dir/LaplacianEM.cxx.s
+CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/LaplacianEM.cxx -o CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.s
 
-CMakeFiles/laplacian.dir/LaplacianEM.cxx.o.requires:
-.PHONY : CMakeFiles/laplacian.dir/LaplacianEM.cxx.o.requires
+CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.o.requires:
+.PHONY : CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.o.requires
 
-CMakeFiles/laplacian.dir/LaplacianEM.cxx.o.provides: CMakeFiles/laplacian.dir/LaplacianEM.cxx.o.requires
-	$(MAKE) -f CMakeFiles/laplacian.dir/build.make CMakeFiles/laplacian.dir/LaplacianEM.cxx.o.provides.build
-.PHONY : CMakeFiles/laplacian.dir/LaplacianEM.cxx.o.provides
+CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.o.provides: CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.o.requires
+	$(MAKE) -f CMakeFiles/laplacian.dir/build.make CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.o.provides.build
+.PHONY : CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.o.provides
 
-CMakeFiles/laplacian.dir/LaplacianEM.cxx.o.provides.build: CMakeFiles/laplacian.dir/LaplacianEM.cxx.o
-.PHONY : CMakeFiles/laplacian.dir/LaplacianEM.cxx.o.provides.build
+CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.o.provides.build: CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.o
+.PHONY : CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.o.provides.build
 
 # Object files for target laplacian
 laplacian_OBJECTS = \
-"CMakeFiles/laplacian.dir/LaplacianEM.cxx.o"
+"CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.o"
 
 # External object files for target laplacian
 laplacian_EXTERNAL_OBJECTS =
 
-liblaplacian.so: CMakeFiles/laplacian.dir/LaplacianEM.cxx.o
+liblaplacian.so: CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.o
 liblaplacian.so: CMakeFiles/laplacian.dir/build.make
 liblaplacian.so: CMakeFiles/laplacian.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX shared library liblaplacian.so"
@@ -90,7 +90,7 @@ liblaplacian.so: CMakeFiles/laplacian.dir/link.txt
 CMakeFiles/laplacian.dir/build: liblaplacian.so
 .PHONY : CMakeFiles/laplacian.dir/build
 
-CMakeFiles/laplacian.dir/requires: CMakeFiles/laplacian.dir/LaplacianEM.cxx.o.requires
+CMakeFiles/laplacian.dir/requires: CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.o.requires
 .PHONY : CMakeFiles/laplacian.dir/requires
 
 CMakeFiles/laplacian.dir/clean:

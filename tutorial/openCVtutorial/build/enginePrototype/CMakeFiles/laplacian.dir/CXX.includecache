@@ -6,15 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/michele/workspace/openCVtutorial/src/enginePrototype/EngineModule.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/EngineModule.h
 opencv/cv.h
 -
 
-/home/michele/workspace/openCVtutorial/src/enginePrototype/LaplacianEM.cxx
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/LaplacianEM.cxx
 LaplacianEM.h
-/home/michele/workspace/openCVtutorial/src/enginePrototype/LaplacianEM.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/LaplacianEM.h
 
-/home/michele/workspace/openCVtutorial/src/enginePrototype/LaplacianEM.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/LaplacianEM.h
 EngineModule.h
-/home/michele/workspace/openCVtutorial/src/enginePrototype/EngineModule.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/EngineModule.h
 

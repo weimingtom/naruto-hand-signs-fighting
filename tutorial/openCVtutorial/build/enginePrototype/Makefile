@@ -176,78 +176,6 @@ sobel/fast:
 	$(MAKE) -f CMakeFiles/sobel.dir/build.make CMakeFiles/sobel.dir/build
 .PHONY : sobel/fast
 
-CannyEM.o: CannyEM.cxx.o
-.PHONY : CannyEM.o
-
-# target to build an object file
-CannyEM.cxx.o:
-	$(MAKE) -f CMakeFiles/canny.dir/build.make CMakeFiles/canny.dir/CannyEM.cxx.o
-.PHONY : CannyEM.cxx.o
-
-CannyEM.i: CannyEM.cxx.i
-.PHONY : CannyEM.i
-
-# target to preprocess a source file
-CannyEM.cxx.i:
-	$(MAKE) -f CMakeFiles/canny.dir/build.make CMakeFiles/canny.dir/CannyEM.cxx.i
-.PHONY : CannyEM.cxx.i
-
-CannyEM.s: CannyEM.cxx.s
-.PHONY : CannyEM.s
-
-# target to generate assembly for a file
-CannyEM.cxx.s:
-	$(MAKE) -f CMakeFiles/canny.dir/build.make CMakeFiles/canny.dir/CannyEM.cxx.s
-.PHONY : CannyEM.cxx.s
-
-HistogramEM.o: HistogramEM.cxx.o
-.PHONY : HistogramEM.o
-
-# target to build an object file
-HistogramEM.cxx.o:
-	$(MAKE) -f CMakeFiles/histo.dir/build.make CMakeFiles/histo.dir/HistogramEM.cxx.o
-.PHONY : HistogramEM.cxx.o
-
-HistogramEM.i: HistogramEM.cxx.i
-.PHONY : HistogramEM.i
-
-# target to preprocess a source file
-HistogramEM.cxx.i:
-	$(MAKE) -f CMakeFiles/histo.dir/build.make CMakeFiles/histo.dir/HistogramEM.cxx.i
-.PHONY : HistogramEM.cxx.i
-
-HistogramEM.s: HistogramEM.cxx.s
-.PHONY : HistogramEM.s
-
-# target to generate assembly for a file
-HistogramEM.cxx.s:
-	$(MAKE) -f CMakeFiles/histo.dir/build.make CMakeFiles/histo.dir/HistogramEM.cxx.s
-.PHONY : HistogramEM.cxx.s
-
-LaplacianEM.o: LaplacianEM.cxx.o
-.PHONY : LaplacianEM.o
-
-# target to build an object file
-LaplacianEM.cxx.o:
-	$(MAKE) -f CMakeFiles/laplacian.dir/build.make CMakeFiles/laplacian.dir/LaplacianEM.cxx.o
-.PHONY : LaplacianEM.cxx.o
-
-LaplacianEM.i: LaplacianEM.cxx.i
-.PHONY : LaplacianEM.i
-
-# target to preprocess a source file
-LaplacianEM.cxx.i:
-	$(MAKE) -f CMakeFiles/laplacian.dir/build.make CMakeFiles/laplacian.dir/LaplacianEM.cxx.i
-.PHONY : LaplacianEM.cxx.i
-
-LaplacianEM.s: LaplacianEM.cxx.s
-.PHONY : LaplacianEM.s
-
-# target to generate assembly for a file
-LaplacianEM.cxx.s:
-	$(MAKE) -f CMakeFiles/laplacian.dir/build.make CMakeFiles/laplacian.dir/LaplacianEM.cxx.s
-.PHONY : LaplacianEM.cxx.s
-
 RecognitionEngine.o: RecognitionEngine.cxx.o
 .PHONY : RecognitionEngine.o
 
@@ -272,29 +200,101 @@ RecognitionEngine.cxx.s:
 	$(MAKE) -f CMakeFiles/engLib.dir/build.make CMakeFiles/engLib.dir/RecognitionEngine.cxx.s
 .PHONY : RecognitionEngine.cxx.s
 
-SobelEM.o: SobelEM.cxx.o
-.PHONY : SobelEM.o
+engineModules/CannyEM.o: engineModules/CannyEM.cxx.o
+.PHONY : engineModules/CannyEM.o
 
 # target to build an object file
-SobelEM.cxx.o:
-	$(MAKE) -f CMakeFiles/sobel.dir/build.make CMakeFiles/sobel.dir/SobelEM.cxx.o
-.PHONY : SobelEM.cxx.o
+engineModules/CannyEM.cxx.o:
+	$(MAKE) -f CMakeFiles/canny.dir/build.make CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o
+.PHONY : engineModules/CannyEM.cxx.o
 
-SobelEM.i: SobelEM.cxx.i
-.PHONY : SobelEM.i
+engineModules/CannyEM.i: engineModules/CannyEM.cxx.i
+.PHONY : engineModules/CannyEM.i
 
 # target to preprocess a source file
-SobelEM.cxx.i:
-	$(MAKE) -f CMakeFiles/sobel.dir/build.make CMakeFiles/sobel.dir/SobelEM.cxx.i
-.PHONY : SobelEM.cxx.i
+engineModules/CannyEM.cxx.i:
+	$(MAKE) -f CMakeFiles/canny.dir/build.make CMakeFiles/canny.dir/engineModules/CannyEM.cxx.i
+.PHONY : engineModules/CannyEM.cxx.i
 
-SobelEM.s: SobelEM.cxx.s
-.PHONY : SobelEM.s
+engineModules/CannyEM.s: engineModules/CannyEM.cxx.s
+.PHONY : engineModules/CannyEM.s
 
 # target to generate assembly for a file
-SobelEM.cxx.s:
-	$(MAKE) -f CMakeFiles/sobel.dir/build.make CMakeFiles/sobel.dir/SobelEM.cxx.s
-.PHONY : SobelEM.cxx.s
+engineModules/CannyEM.cxx.s:
+	$(MAKE) -f CMakeFiles/canny.dir/build.make CMakeFiles/canny.dir/engineModules/CannyEM.cxx.s
+.PHONY : engineModules/CannyEM.cxx.s
+
+engineModules/HistogramEM.o: engineModules/HistogramEM.cxx.o
+.PHONY : engineModules/HistogramEM.o
+
+# target to build an object file
+engineModules/HistogramEM.cxx.o:
+	$(MAKE) -f CMakeFiles/histo.dir/build.make CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.o
+.PHONY : engineModules/HistogramEM.cxx.o
+
+engineModules/HistogramEM.i: engineModules/HistogramEM.cxx.i
+.PHONY : engineModules/HistogramEM.i
+
+# target to preprocess a source file
+engineModules/HistogramEM.cxx.i:
+	$(MAKE) -f CMakeFiles/histo.dir/build.make CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.i
+.PHONY : engineModules/HistogramEM.cxx.i
+
+engineModules/HistogramEM.s: engineModules/HistogramEM.cxx.s
+.PHONY : engineModules/HistogramEM.s
+
+# target to generate assembly for a file
+engineModules/HistogramEM.cxx.s:
+	$(MAKE) -f CMakeFiles/histo.dir/build.make CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.s
+.PHONY : engineModules/HistogramEM.cxx.s
+
+engineModules/LaplacianEM.o: engineModules/LaplacianEM.cxx.o
+.PHONY : engineModules/LaplacianEM.o
+
+# target to build an object file
+engineModules/LaplacianEM.cxx.o:
+	$(MAKE) -f CMakeFiles/laplacian.dir/build.make CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.o
+.PHONY : engineModules/LaplacianEM.cxx.o
+
+engineModules/LaplacianEM.i: engineModules/LaplacianEM.cxx.i
+.PHONY : engineModules/LaplacianEM.i
+
+# target to preprocess a source file
+engineModules/LaplacianEM.cxx.i:
+	$(MAKE) -f CMakeFiles/laplacian.dir/build.make CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.i
+.PHONY : engineModules/LaplacianEM.cxx.i
+
+engineModules/LaplacianEM.s: engineModules/LaplacianEM.cxx.s
+.PHONY : engineModules/LaplacianEM.s
+
+# target to generate assembly for a file
+engineModules/LaplacianEM.cxx.s:
+	$(MAKE) -f CMakeFiles/laplacian.dir/build.make CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.s
+.PHONY : engineModules/LaplacianEM.cxx.s
+
+engineModules/SobelEM.o: engineModules/SobelEM.cxx.o
+.PHONY : engineModules/SobelEM.o
+
+# target to build an object file
+engineModules/SobelEM.cxx.o:
+	$(MAKE) -f CMakeFiles/sobel.dir/build.make CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.o
+.PHONY : engineModules/SobelEM.cxx.o
+
+engineModules/SobelEM.i: engineModules/SobelEM.cxx.i
+.PHONY : engineModules/SobelEM.i
+
+# target to preprocess a source file
+engineModules/SobelEM.cxx.i:
+	$(MAKE) -f CMakeFiles/sobel.dir/build.make CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.i
+.PHONY : engineModules/SobelEM.cxx.i
+
+engineModules/SobelEM.s: engineModules/SobelEM.cxx.s
+.PHONY : engineModules/SobelEM.s
+
+# target to generate assembly for a file
+engineModules/SobelEM.cxx.s:
+	$(MAKE) -f CMakeFiles/sobel.dir/build.make CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.s
+.PHONY : engineModules/SobelEM.cxx.s
 
 mainEngine.o: mainEngine.cxx.o
 .PHONY : mainEngine.o
@@ -334,21 +334,21 @@ help:
 	@echo "... laplacian"
 	@echo "... rebuild_cache"
 	@echo "... sobel"
-	@echo "... CannyEM.o"
-	@echo "... CannyEM.i"
-	@echo "... CannyEM.s"
-	@echo "... HistogramEM.o"
-	@echo "... HistogramEM.i"
-	@echo "... HistogramEM.s"
-	@echo "... LaplacianEM.o"
-	@echo "... LaplacianEM.i"
-	@echo "... LaplacianEM.s"
 	@echo "... RecognitionEngine.o"
 	@echo "... RecognitionEngine.i"
 	@echo "... RecognitionEngine.s"
-	@echo "... SobelEM.o"
-	@echo "... SobelEM.i"
-	@echo "... SobelEM.s"
+	@echo "... engineModules/CannyEM.o"
+	@echo "... engineModules/CannyEM.i"
+	@echo "... engineModules/CannyEM.s"
+	@echo "... engineModules/HistogramEM.o"
+	@echo "... engineModules/HistogramEM.i"
+	@echo "... engineModules/HistogramEM.s"
+	@echo "... engineModules/LaplacianEM.o"
+	@echo "... engineModules/LaplacianEM.i"
+	@echo "... engineModules/LaplacianEM.s"
+	@echo "... engineModules/SobelEM.o"
+	@echo "... engineModules/SobelEM.i"
+	@echo "... engineModules/SobelEM.s"
 	@echo "... mainEngine.o"
 	@echo "... mainEngine.i"
 	@echo "... mainEngine.s"

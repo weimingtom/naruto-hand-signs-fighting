@@ -1,5 +1,5 @@
 FILE(REMOVE_RECURSE
-  "CMakeFiles/laplacian.dir/LaplacianEM.cxx.o"
+  "CMakeFiles/laplacian.dir/engineModules/LaplacianEM.cxx.o"
   "liblaplacian.pdb"
   "liblaplacian.so"
 )

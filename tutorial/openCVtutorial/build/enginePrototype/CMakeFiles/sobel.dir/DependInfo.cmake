@@ -4,7 +4,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/home/michele/workspace/openCVtutorial/src/enginePrototype/SobelEM.cxx" "/home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/sobel.dir/SobelEM.cxx.o"
+  "/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/SobelEM.cxx" "/home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 

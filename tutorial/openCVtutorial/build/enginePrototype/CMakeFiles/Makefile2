@@ -126,11 +126,11 @@ clean: CMakeFiles/engLib.dir/clean
 # Target rules for target CMakeFiles/enginePrototype.dir
 
 # All Build rule for target.
-CMakeFiles/enginePrototype.dir/all: CMakeFiles/engLib.dir/all
-CMakeFiles/enginePrototype.dir/all: CMakeFiles/laplacian.dir/all
 CMakeFiles/enginePrototype.dir/all: CMakeFiles/canny.dir/all
-CMakeFiles/enginePrototype.dir/all: CMakeFiles/sobel.dir/all
+CMakeFiles/enginePrototype.dir/all: CMakeFiles/engLib.dir/all
 CMakeFiles/enginePrototype.dir/all: CMakeFiles/histo.dir/all
+CMakeFiles/enginePrototype.dir/all: CMakeFiles/sobel.dir/all
+CMakeFiles/enginePrototype.dir/all: CMakeFiles/laplacian.dir/all
 	$(MAKE) -f CMakeFiles/enginePrototype.dir/build.make CMakeFiles/enginePrototype.dir/depend
 	$(MAKE) -f CMakeFiles/enginePrototype.dir/build.make CMakeFiles/enginePrototype.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles  3

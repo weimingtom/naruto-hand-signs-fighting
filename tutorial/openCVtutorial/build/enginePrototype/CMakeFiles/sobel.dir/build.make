@@ -49,38 +49,38 @@ include CMakeFiles/sobel.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/sobel.dir/flags.make
 
-CMakeFiles/sobel.dir/SobelEM.cxx.o: CMakeFiles/sobel.dir/flags.make
-CMakeFiles/sobel.dir/SobelEM.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/SobelEM.cxx
+CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.o: CMakeFiles/sobel.dir/flags.make
+CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/SobelEM.cxx
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/sobel.dir/SobelEM.cxx.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/sobel.dir/SobelEM.cxx.o -c /home/michele/workspace/openCVtutorial/src/enginePrototype/SobelEM.cxx
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.o -c /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/SobelEM.cxx
 
-CMakeFiles/sobel.dir/SobelEM.cxx.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sobel.dir/SobelEM.cxx.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/michele/workspace/openCVtutorial/src/enginePrototype/SobelEM.cxx > CMakeFiles/sobel.dir/SobelEM.cxx.i
+CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/SobelEM.cxx > CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.i
 
-CMakeFiles/sobel.dir/SobelEM.cxx.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sobel.dir/SobelEM.cxx.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/michele/workspace/openCVtutorial/src/enginePrototype/SobelEM.cxx -o CMakeFiles/sobel.dir/SobelEM.cxx.s
+CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/SobelEM.cxx -o CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.s
 
-CMakeFiles/sobel.dir/SobelEM.cxx.o.requires:
-.PHONY : CMakeFiles/sobel.dir/SobelEM.cxx.o.requires
+CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.o.requires:
+.PHONY : CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.o.requires
 
-CMakeFiles/sobel.dir/SobelEM.cxx.o.provides: CMakeFiles/sobel.dir/SobelEM.cxx.o.requires
-	$(MAKE) -f CMakeFiles/sobel.dir/build.make CMakeFiles/sobel.dir/SobelEM.cxx.o.provides.build
-.PHONY : CMakeFiles/sobel.dir/SobelEM.cxx.o.provides
+CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.o.provides: CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.o.requires
+	$(MAKE) -f CMakeFiles/sobel.dir/build.make CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.o.provides.build
+.PHONY : CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.o.provides
 
-CMakeFiles/sobel.dir/SobelEM.cxx.o.provides.build: CMakeFiles/sobel.dir/SobelEM.cxx.o
-.PHONY : CMakeFiles/sobel.dir/SobelEM.cxx.o.provides.build
+CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.o.provides.build: CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.o
+.PHONY : CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.o.provides.build
 
 # Object files for target sobel
 sobel_OBJECTS = \
-"CMakeFiles/sobel.dir/SobelEM.cxx.o"
+"CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.o"
 
 # External object files for target sobel
 sobel_EXTERNAL_OBJECTS =
 
-libsobel.so: CMakeFiles/sobel.dir/SobelEM.cxx.o
+libsobel.so: CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.o
 libsobel.so: CMakeFiles/sobel.dir/build.make
 libsobel.so: CMakeFiles/sobel.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX shared library libsobel.so"
@@ -90,7 +90,7 @@ libsobel.so: CMakeFiles/sobel.dir/link.txt
 CMakeFiles/sobel.dir/build: libsobel.so
 .PHONY : CMakeFiles/sobel.dir/build
 
-CMakeFiles/sobel.dir/requires: CMakeFiles/sobel.dir/SobelEM.cxx.o.requires
+CMakeFiles/sobel.dir/requires: CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.o.requires
 .PHONY : CMakeFiles/sobel.dir/requires
 
 CMakeFiles/sobel.dir/clean:
