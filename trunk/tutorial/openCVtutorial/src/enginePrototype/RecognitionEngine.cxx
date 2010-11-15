@@ -8,7 +8,6 @@
 #include <iostream>
 #include "RecognitionEngine.h"
 
-#define OUTPUT_IMAGE_DEPTH IPL_DEPTH_32F
 
 using namespace std;
 
@@ -20,7 +19,7 @@ int RecognitionEngine::process(IplImage* src, IplImage* res){
 //	IplImage* temp = cvCreateImage(cvSize(src->width, src->height),
 //			src->depth, src->nChannels);
 	if(temp == NULL)
-		temp = cvCreateImage(cvSize(src->width, src->height), OUTPUT_IMAGE_DEPTH, src->nChannels);
+		temp = cvCreateImage(cvSize(src->width, src->height), RE_OUTPUT_IMAGE_DEPTH, src->nChannels);
 
 	for(int i=0; i<modulesArray.size(); i++){
 		try{

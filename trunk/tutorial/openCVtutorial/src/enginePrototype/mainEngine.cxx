@@ -42,10 +42,13 @@ int main(int argc, char* argv[] ){
 	res = cvCreateImage(cvSize(img->width, img->height), IPL_DEPTH_32F, img->nChannels);
 
 	//The first step is to add different modules to our engine
-//	recognitionEngine.addModule(laplacian);
-//	recognitionEngine.addModule(sobel);
 	recognitionEngine.addModule(histogram);
+	SobelEM* modifySobel = (SobelEM*)sobel;
+	modifySobel->setKernelSize(15);
+	modifySobel->setSobelDerivates(2,2);
+//	recognitionEngine.addModule(sobel);
 //	recognitionEngine.addModule(canny);
+	recognitionEngine.addModule(laplacian);
 
 	cout<<"starting process\n"; fflush(stdout);
 	//Then we launch the processing phase
