@@ -5,3 +5,9 @@
  *      Author: michele
  */
 
+#include "ContoursFinderEM.h"
+
+int ContoursFinderEM::compute(const IplImage* src, IplImage* dst){
+
+}
+

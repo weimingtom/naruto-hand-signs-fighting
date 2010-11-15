@@ -21,7 +21,7 @@
 
 #include "EngineModule.h"
 
-#define DEFAULT_KERNEL_SIZE 9
+#define DEFAULT_LAPLACIAN_KERNEL_SIZE 9
 
 class LaplacianEM : public EngineModule{
 	int kernelSize;
@@ -29,7 +29,7 @@ public:
 
 	LaplacianEM(){
 		moduleName = "LaplacianModule";
-		kernelSize = DEFAULT_KERNEL_SIZE;
+		kernelSize = DEFAULT_LAPLACIAN_KERNEL_SIZE;
 	}
 
 	void setKernelSize(int kerSize){
