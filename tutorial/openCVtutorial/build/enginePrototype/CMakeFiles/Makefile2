@@ -53,13 +53,48 @@ CMAKE_SOURCE_DIR = /home/michele/workspace/openCVtutorial/src/enginePrototype
 CMAKE_BINARY_DIR = /home/michele/workspace/openCVtutorial/build/enginePrototype
 
 #=============================================================================
+# Target rules for target CMakeFiles/canny.dir
+
+# All Build rule for target.
+CMakeFiles/canny.dir/all:
+	$(MAKE) -f CMakeFiles/canny.dir/build.make CMakeFiles/canny.dir/depend
+	$(MAKE) -f CMakeFiles/canny.dir/build.make CMakeFiles/canny.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles  1
+	@echo "Built target canny"
+.PHONY : CMakeFiles/canny.dir/all
+
+# Include target in all.
+all: CMakeFiles/canny.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/canny.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/canny.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles 0
+.PHONY : CMakeFiles/canny.dir/rule
+
+# Convenience name for target.
+canny: CMakeFiles/canny.dir/rule
+.PHONY : canny
+
+# clean rule for target.
+CMakeFiles/canny.dir/clean:
+	$(MAKE) -f CMakeFiles/canny.dir/build.make CMakeFiles/canny.dir/clean
+.PHONY : CMakeFiles/canny.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/canny.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/engLib.dir
 
 # All Build rule for target.
 CMakeFiles/engLib.dir/all:
 	$(MAKE) -f CMakeFiles/engLib.dir/build.make CMakeFiles/engLib.dir/depend
 	$(MAKE) -f CMakeFiles/engLib.dir/build.make CMakeFiles/engLib.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles  2
 	@echo "Built target engLib"
 .PHONY : CMakeFiles/engLib.dir/all
 
@@ -92,10 +127,13 @@ clean: CMakeFiles/engLib.dir/clean
 
 # All Build rule for target.
 CMakeFiles/enginePrototype.dir/all: CMakeFiles/engLib.dir/all
+CMakeFiles/enginePrototype.dir/all: CMakeFiles/laplacian.dir/all
+CMakeFiles/enginePrototype.dir/all: CMakeFiles/canny.dir/all
 CMakeFiles/enginePrototype.dir/all: CMakeFiles/sobel.dir/all
+CMakeFiles/enginePrototype.dir/all: CMakeFiles/histo.dir/all
 	$(MAKE) -f CMakeFiles/enginePrototype.dir/build.make CMakeFiles/enginePrototype.dir/depend
 	$(MAKE) -f CMakeFiles/enginePrototype.dir/build.make CMakeFiles/enginePrototype.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles  2
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles  3
 	@echo "Built target enginePrototype"
 .PHONY : CMakeFiles/enginePrototype.dir/all
 
@@ -105,7 +143,7 @@ all: CMakeFiles/enginePrototype.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/enginePrototype.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/enginePrototype.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles 0
 .PHONY : CMakeFiles/enginePrototype.dir/rule
@@ -124,13 +162,83 @@ clean: CMakeFiles/enginePrototype.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/histo.dir
+
+# All Build rule for target.
+CMakeFiles/histo.dir/all:
+	$(MAKE) -f CMakeFiles/histo.dir/build.make CMakeFiles/histo.dir/depend
+	$(MAKE) -f CMakeFiles/histo.dir/build.make CMakeFiles/histo.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles  4
+	@echo "Built target histo"
+.PHONY : CMakeFiles/histo.dir/all
+
+# Include target in all.
+all: CMakeFiles/histo.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/histo.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/histo.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles 0
+.PHONY : CMakeFiles/histo.dir/rule
+
+# Convenience name for target.
+histo: CMakeFiles/histo.dir/rule
+.PHONY : histo
+
+# clean rule for target.
+CMakeFiles/histo.dir/clean:
+	$(MAKE) -f CMakeFiles/histo.dir/build.make CMakeFiles/histo.dir/clean
+.PHONY : CMakeFiles/histo.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/histo.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/laplacian.dir
+
+# All Build rule for target.
+CMakeFiles/laplacian.dir/all:
+	$(MAKE) -f CMakeFiles/laplacian.dir/build.make CMakeFiles/laplacian.dir/depend
+	$(MAKE) -f CMakeFiles/laplacian.dir/build.make CMakeFiles/laplacian.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles  5
+	@echo "Built target laplacian"
+.PHONY : CMakeFiles/laplacian.dir/all
+
+# Include target in all.
+all: CMakeFiles/laplacian.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/laplacian.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/laplacian.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles 0
+.PHONY : CMakeFiles/laplacian.dir/rule
+
+# Convenience name for target.
+laplacian: CMakeFiles/laplacian.dir/rule
+.PHONY : laplacian
+
+# clean rule for target.
+CMakeFiles/laplacian.dir/clean:
+	$(MAKE) -f CMakeFiles/laplacian.dir/build.make CMakeFiles/laplacian.dir/clean
+.PHONY : CMakeFiles/laplacian.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/laplacian.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/sobel.dir
 
 # All Build rule for target.
 CMakeFiles/sobel.dir/all:
 	$(MAKE) -f CMakeFiles/sobel.dir/build.make CMakeFiles/sobel.dir/depend
 	$(MAKE) -f CMakeFiles/sobel.dir/build.make CMakeFiles/sobel.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles  3
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles  6
 	@echo "Built target sobel"
 .PHONY : CMakeFiles/sobel.dir/all
 

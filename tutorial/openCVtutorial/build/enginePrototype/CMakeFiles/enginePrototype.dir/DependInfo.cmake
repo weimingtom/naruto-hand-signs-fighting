@@ -12,4 +12,7 @@ SET(CMAKE_CXX_COMPILER_ID "GNU")
 SET(CMAKE_TARGET_LINKED_INFO_FILES
   "/home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/engLib.dir/DependInfo.cmake"
   "/home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/sobel.dir/DependInfo.cmake"
+  "/home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/laplacian.dir/DependInfo.cmake"
+  "/home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/histo.dir/DependInfo.cmake"
+  "/home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/canny.dir/DependInfo.cmake"
   )

@@ -13,6 +13,8 @@ opencv/cv.h
 /home/michele/workspace/openCVtutorial/src/enginePrototype/Move.h
 
 /home/michele/workspace/openCVtutorial/src/enginePrototype/RecognitionEngine.cxx
+iostream
+-
 RecognitionEngine.h
 /home/michele/workspace/openCVtutorial/src/enginePrototype/RecognitionEngine.h
 

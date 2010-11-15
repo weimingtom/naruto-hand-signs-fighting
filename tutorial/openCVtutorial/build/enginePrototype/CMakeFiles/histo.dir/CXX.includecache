@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/michele/workspace/openCVtutorial/src/enginePrototype/EngineModule.h
+opencv/cv.h
+-
+
+/home/michele/workspace/openCVtutorial/src/enginePrototype/HistogramEM.cxx
+opencv/cv.h
+-
+opencv/highgui.h
+-
+stdio.h
+-
+iostream
+-
+HistogramEM.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/HistogramEM.h
+
+/home/michele/workspace/openCVtutorial/src/enginePrototype/HistogramEM.h
+EngineModule.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/EngineModule.h
+

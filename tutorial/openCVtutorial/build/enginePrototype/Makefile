@@ -99,6 +99,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named canny
+
+# Build rule for target.
+canny: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 canny
+.PHONY : canny
+
+# fast build rule for target.
+canny/fast:
+	$(MAKE) -f CMakeFiles/canny.dir/build.make CMakeFiles/canny.dir/build
+.PHONY : canny/fast
+
+#=============================================================================
 # Target rules for targets named engLib
 
 # Build rule for target.
@@ -125,6 +138,32 @@ enginePrototype/fast:
 .PHONY : enginePrototype/fast
 
 #=============================================================================
+# Target rules for targets named histo
+
+# Build rule for target.
+histo: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 histo
+.PHONY : histo
+
+# fast build rule for target.
+histo/fast:
+	$(MAKE) -f CMakeFiles/histo.dir/build.make CMakeFiles/histo.dir/build
+.PHONY : histo/fast
+
+#=============================================================================
+# Target rules for targets named laplacian
+
+# Build rule for target.
+laplacian: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 laplacian
+.PHONY : laplacian
+
+# fast build rule for target.
+laplacian/fast:
+	$(MAKE) -f CMakeFiles/laplacian.dir/build.make CMakeFiles/laplacian.dir/build
+.PHONY : laplacian/fast
+
+#=============================================================================
 # Target rules for targets named sobel
 
 # Build rule for target.
@@ -136,6 +175,78 @@ sobel: cmake_check_build_system
 sobel/fast:
 	$(MAKE) -f CMakeFiles/sobel.dir/build.make CMakeFiles/sobel.dir/build
 .PHONY : sobel/fast
+
+CannyEM.o: CannyEM.cxx.o
+.PHONY : CannyEM.o
+
+# target to build an object file
+CannyEM.cxx.o:
+	$(MAKE) -f CMakeFiles/canny.dir/build.make CMakeFiles/canny.dir/CannyEM.cxx.o
+.PHONY : CannyEM.cxx.o
+
+CannyEM.i: CannyEM.cxx.i
+.PHONY : CannyEM.i
+
+# target to preprocess a source file
+CannyEM.cxx.i:
+	$(MAKE) -f CMakeFiles/canny.dir/build.make CMakeFiles/canny.dir/CannyEM.cxx.i
+.PHONY : CannyEM.cxx.i
+
+CannyEM.s: CannyEM.cxx.s
+.PHONY : CannyEM.s
+
+# target to generate assembly for a file
+CannyEM.cxx.s:
+	$(MAKE) -f CMakeFiles/canny.dir/build.make CMakeFiles/canny.dir/CannyEM.cxx.s
+.PHONY : CannyEM.cxx.s
+
+HistogramEM.o: HistogramEM.cxx.o
+.PHONY : HistogramEM.o
+
+# target to build an object file
+HistogramEM.cxx.o:
+	$(MAKE) -f CMakeFiles/histo.dir/build.make CMakeFiles/histo.dir/HistogramEM.cxx.o
+.PHONY : HistogramEM.cxx.o
+
+HistogramEM.i: HistogramEM.cxx.i
+.PHONY : HistogramEM.i
+
+# target to preprocess a source file
+HistogramEM.cxx.i:
+	$(MAKE) -f CMakeFiles/histo.dir/build.make CMakeFiles/histo.dir/HistogramEM.cxx.i
+.PHONY : HistogramEM.cxx.i
+
+HistogramEM.s: HistogramEM.cxx.s
+.PHONY : HistogramEM.s
+
+# target to generate assembly for a file
+HistogramEM.cxx.s:
+	$(MAKE) -f CMakeFiles/histo.dir/build.make CMakeFiles/histo.dir/HistogramEM.cxx.s
+.PHONY : HistogramEM.cxx.s
+
+LaplacianEM.o: LaplacianEM.cxx.o
+.PHONY : LaplacianEM.o
+
+# target to build an object file
+LaplacianEM.cxx.o:
+	$(MAKE) -f CMakeFiles/laplacian.dir/build.make CMakeFiles/laplacian.dir/LaplacianEM.cxx.o
+.PHONY : LaplacianEM.cxx.o
+
+LaplacianEM.i: LaplacianEM.cxx.i
+.PHONY : LaplacianEM.i
+
+# target to preprocess a source file
+LaplacianEM.cxx.i:
+	$(MAKE) -f CMakeFiles/laplacian.dir/build.make CMakeFiles/laplacian.dir/LaplacianEM.cxx.i
+.PHONY : LaplacianEM.cxx.i
+
+LaplacianEM.s: LaplacianEM.cxx.s
+.PHONY : LaplacianEM.s
+
+# target to generate assembly for a file
+LaplacianEM.cxx.s:
+	$(MAKE) -f CMakeFiles/laplacian.dir/build.make CMakeFiles/laplacian.dir/LaplacianEM.cxx.s
+.PHONY : LaplacianEM.cxx.s
 
 RecognitionEngine.o: RecognitionEngine.cxx.o
 .PHONY : RecognitionEngine.o
@@ -215,11 +326,23 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... canny"
 	@echo "... edit_cache"
 	@echo "... engLib"
 	@echo "... enginePrototype"
+	@echo "... histo"
+	@echo "... laplacian"
 	@echo "... rebuild_cache"
 	@echo "... sobel"
+	@echo "... CannyEM.o"
+	@echo "... CannyEM.i"
+	@echo "... CannyEM.s"
+	@echo "... HistogramEM.o"
+	@echo "... HistogramEM.i"
+	@echo "... HistogramEM.s"
+	@echo "... LaplacianEM.o"
+	@echo "... LaplacianEM.i"
+	@echo "... LaplacianEM.s"
 	@echo "... RecognitionEngine.o"
 	@echo "... RecognitionEngine.i"
 	@echo "... RecognitionEngine.s"

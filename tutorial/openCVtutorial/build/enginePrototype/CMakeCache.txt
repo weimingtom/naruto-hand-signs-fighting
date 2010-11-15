@@ -152,6 +152,9 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 OpenCV_DIR:PATH=/usr/local/share/opencv
 
 //Dependencies for target
+canny_LIB_DEPENDS:STATIC=
+
+//Dependencies for target
 engLib_LIB_DEPENDS:STATIC=
 
 //Value Computed by CMake
@@ -159,6 +162,12 @@ enginePrototype_proj_BINARY_DIR:STATIC=/home/michele/workspace/openCVtutorial/bu
 
 //Value Computed by CMake
 enginePrototype_proj_SOURCE_DIR:STATIC=/home/michele/workspace/openCVtutorial/src/enginePrototype
+
+//Dependencies for target
+histo_LIB_DEPENDS:STATIC=
+
+//Dependencies for target
+laplacian_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
 modLib_LIB_DEPENDS:STATIC=

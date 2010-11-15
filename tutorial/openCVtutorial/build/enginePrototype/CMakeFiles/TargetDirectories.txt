@@ -1,3 +1,6 @@
+/home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/canny.dir
 /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/engLib.dir
 /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/enginePrototype.dir
+/home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/histo.dir
+/home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/laplacian.dir
 /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/sobel.dir
