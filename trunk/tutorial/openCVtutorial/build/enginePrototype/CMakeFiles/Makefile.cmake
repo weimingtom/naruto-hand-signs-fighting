@@ -40,7 +40,10 @@ SET(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 SET(CMAKE_DEPEND_INFO_FILES
+  "CMakeFiles/canny.dir/DependInfo.cmake"
   "CMakeFiles/engLib.dir/DependInfo.cmake"
   "CMakeFiles/enginePrototype.dir/DependInfo.cmake"
+  "CMakeFiles/histo.dir/DependInfo.cmake"
+  "CMakeFiles/laplacian.dir/DependInfo.cmake"
   "CMakeFiles/sobel.dir/DependInfo.cmake"
   )

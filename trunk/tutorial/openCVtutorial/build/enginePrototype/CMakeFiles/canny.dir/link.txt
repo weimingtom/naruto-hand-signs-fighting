@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC   -shared -Wl,-soname,libcanny.so -o libcanny.so CMakeFiles/canny.dir/CannyEM.cxx.o -L/usr/local/lib 

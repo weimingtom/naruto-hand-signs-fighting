@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/michele/workspace/openCVtutorial/src/enginePrototype/CannyEM.cxx
+CannyEM.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/CannyEM.h
+
+/home/michele/workspace/openCVtutorial/src/enginePrototype/CannyEM.h
+EngineModule.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/EngineModule.h
+
+/home/michele/workspace/openCVtutorial/src/enginePrototype/EngineModule.h
+opencv/cv.h
+-
+

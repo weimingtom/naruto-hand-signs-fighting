@@ -13,7 +13,7 @@ cmake_minimum_required(VERSION 2.6)
 PROJECT( enginePrototype_proj )
 FIND_PACKAGE( OpenCV REQUIRED )
 ADD_EXECUTABLE( enginePrototype mainEngine.cxx)
-TARGET_LINK_LIBRARIES( enginePrototype ${OpenCV_LIBS} engLib sobel laplacian)
+TARGET_LINK_LIBRARIES( enginePrototype ${OpenCV_LIBS} engLib sobel laplacian histo canny)
 ADD_DEPENDENCIES(enginePrototype EngineModule.h)
 
 ADD_DEPENDENCIES(enginePrototype engLib)
@@ -26,6 +26,14 @@ ADD_DEPENDENCIES(sobel EngineModule.h)
 ADD_DEPENDENCIES(enginePrototype laplacian)
 ADD_LIBRARY(laplacian SHARED LaplacianEM.h LaplacianEM.cxx)
 ADD_DEPENDENCIES(laplacian EngineModule.h)
+
+ADD_DEPENDENCIES(enginePrototype histo)
+ADD_LIBRARY(histo SHARED HistogramEM.h HistogramEM.cxx)
+ADD_DEPENDENCIES(histo EngineModule.h)
+
+ADD_DEPENDENCIES(enginePrototype canny)
+ADD_LIBRARY(canny SHARED CannyEM.h CannyEM.cxx)
+ADD_DEPENDENCIES(canny EngineModule.h)
 
 #new library
 #remember to add the <"mylib"> name in TARGET_LINK_LIBRARIES
