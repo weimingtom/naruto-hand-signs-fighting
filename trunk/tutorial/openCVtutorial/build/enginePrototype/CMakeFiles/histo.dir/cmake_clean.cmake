@@ -1,5 +1,5 @@
 FILE(REMOVE_RECURSE
-  "CMakeFiles/histo.dir/HistogramEM.cxx.o"
+  "CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.o"
   "libhisto.pdb"
   "libhisto.so"
 )

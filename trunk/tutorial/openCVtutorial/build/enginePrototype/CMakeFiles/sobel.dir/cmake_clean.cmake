@@ -1,5 +1,5 @@
 FILE(REMOVE_RECURSE
-  "CMakeFiles/sobel.dir/SobelEM.cxx.o"
+  "CMakeFiles/sobel.dir/engineModules/SobelEM.cxx.o"
   "libsobel.pdb"
   "libsobel.so"
 )

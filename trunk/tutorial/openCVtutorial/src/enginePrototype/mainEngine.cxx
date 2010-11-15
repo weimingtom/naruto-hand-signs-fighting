@@ -15,14 +15,14 @@
 #include <stdio.h>
 
 #include "RecognitionEngine.h"
-#include "EngineModule.h"
+#include "engineModules/EngineModule.h"
 //////////////////
 //My built modules
 //////////////////
-#include "SobelEM.h"
-#include "LaplacianEM.h"
-#include "HistogramEM.h"
-#include "CannyEM.h"
+#include "engineModules/CannyEM.h"
+#include "engineModules/LaplacianEM.h"
+#include "engineModules/SobelEM.h"
+#include "engineModules/HistogramEM.h"
 //////////////////
 
 #define MAIN_WIN "mainWin"
@@ -42,8 +42,8 @@ int main(int argc, char* argv[] ){
 	res = cvCreateImage(cvSize(img->width, img->height), IPL_DEPTH_32F, img->nChannels);
 
 	//The first step is to add different modules to our engine
-	recognitionEngine.addModule(laplacian);
-	recognitionEngine.addModule(sobel);
+//	recognitionEngine.addModule(laplacian);
+//	recognitionEngine.addModule(sobel);
 //	recognitionEngine.addModule(histogram);
 	recognitionEngine.addModule(canny);
 

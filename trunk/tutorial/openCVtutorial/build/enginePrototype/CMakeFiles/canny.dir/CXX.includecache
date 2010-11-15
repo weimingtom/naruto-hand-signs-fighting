@@ -6,15 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/michele/workspace/openCVtutorial/src/enginePrototype/CannyEM.cxx
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/CannyEM.cxx
 CannyEM.h
-/home/michele/workspace/openCVtutorial/src/enginePrototype/CannyEM.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/CannyEM.h
 
-/home/michele/workspace/openCVtutorial/src/enginePrototype/CannyEM.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/CannyEM.h
 EngineModule.h
-/home/michele/workspace/openCVtutorial/src/enginePrototype/EngineModule.h
-
-/home/michele/workspace/openCVtutorial/src/enginePrototype/EngineModule.h
-opencv/cv.h
--
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/EngineModule.h
 

@@ -49,38 +49,38 @@ include CMakeFiles/histo.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/histo.dir/flags.make
 
-CMakeFiles/histo.dir/HistogramEM.cxx.o: CMakeFiles/histo.dir/flags.make
-CMakeFiles/histo.dir/HistogramEM.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/HistogramEM.cxx
+CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.o: CMakeFiles/histo.dir/flags.make
+CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/HistogramEM.cxx
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/histo.dir/HistogramEM.cxx.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/histo.dir/HistogramEM.cxx.o -c /home/michele/workspace/openCVtutorial/src/enginePrototype/HistogramEM.cxx
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.o -c /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/HistogramEM.cxx
 
-CMakeFiles/histo.dir/HistogramEM.cxx.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/histo.dir/HistogramEM.cxx.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/michele/workspace/openCVtutorial/src/enginePrototype/HistogramEM.cxx > CMakeFiles/histo.dir/HistogramEM.cxx.i
+CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/HistogramEM.cxx > CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.i
 
-CMakeFiles/histo.dir/HistogramEM.cxx.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/histo.dir/HistogramEM.cxx.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/michele/workspace/openCVtutorial/src/enginePrototype/HistogramEM.cxx -o CMakeFiles/histo.dir/HistogramEM.cxx.s
+CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/HistogramEM.cxx -o CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.s
 
-CMakeFiles/histo.dir/HistogramEM.cxx.o.requires:
-.PHONY : CMakeFiles/histo.dir/HistogramEM.cxx.o.requires
+CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.o.requires:
+.PHONY : CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.o.requires
 
-CMakeFiles/histo.dir/HistogramEM.cxx.o.provides: CMakeFiles/histo.dir/HistogramEM.cxx.o.requires
-	$(MAKE) -f CMakeFiles/histo.dir/build.make CMakeFiles/histo.dir/HistogramEM.cxx.o.provides.build
-.PHONY : CMakeFiles/histo.dir/HistogramEM.cxx.o.provides
+CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.o.provides: CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.o.requires
+	$(MAKE) -f CMakeFiles/histo.dir/build.make CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.o.provides.build
+.PHONY : CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.o.provides
 
-CMakeFiles/histo.dir/HistogramEM.cxx.o.provides.build: CMakeFiles/histo.dir/HistogramEM.cxx.o
-.PHONY : CMakeFiles/histo.dir/HistogramEM.cxx.o.provides.build
+CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.o.provides.build: CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.o
+.PHONY : CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.o.provides.build
 
 # Object files for target histo
 histo_OBJECTS = \
-"CMakeFiles/histo.dir/HistogramEM.cxx.o"
+"CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.o"
 
 # External object files for target histo
 histo_EXTERNAL_OBJECTS =
 
-libhisto.so: CMakeFiles/histo.dir/HistogramEM.cxx.o
+libhisto.so: CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.o
 libhisto.so: CMakeFiles/histo.dir/build.make
 libhisto.so: CMakeFiles/histo.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX shared library libhisto.so"
@@ -90,7 +90,7 @@ libhisto.so: CMakeFiles/histo.dir/link.txt
 CMakeFiles/histo.dir/build: libhisto.so
 .PHONY : CMakeFiles/histo.dir/build
 
-CMakeFiles/histo.dir/requires: CMakeFiles/histo.dir/HistogramEM.cxx.o.requires
+CMakeFiles/histo.dir/requires: CMakeFiles/histo.dir/engineModules/HistogramEM.cxx.o.requires
 .PHONY : CMakeFiles/histo.dir/requires
 
 CMakeFiles/histo.dir/clean:

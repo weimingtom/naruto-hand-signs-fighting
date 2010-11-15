@@ -6,22 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/michele/workspace/openCVtutorial/src/enginePrototype/CannyEM.h
-EngineModule.h
-/home/michele/workspace/openCVtutorial/src/enginePrototype/EngineModule.h
-
-/home/michele/workspace/openCVtutorial/src/enginePrototype/EngineModule.h
-opencv/cv.h
--
-
-/home/michele/workspace/openCVtutorial/src/enginePrototype/HistogramEM.h
-EngineModule.h
-/home/michele/workspace/openCVtutorial/src/enginePrototype/EngineModule.h
-
-/home/michele/workspace/openCVtutorial/src/enginePrototype/LaplacianEM.h
-EngineModule.h
-/home/michele/workspace/openCVtutorial/src/enginePrototype/EngineModule.h
-
 /home/michele/workspace/openCVtutorial/src/enginePrototype/Move.h
 
 /home/michele/workspace/openCVtutorial/src/enginePrototype/RecognitionEngine.h
@@ -29,14 +13,34 @@ vector
 -
 opencv/cv.h
 -
-EngineModule.h
-/home/michele/workspace/openCVtutorial/src/enginePrototype/EngineModule.h
+engineModules/EngineModule.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/EngineModule.h
 Move.h
 /home/michele/workspace/openCVtutorial/src/enginePrototype/Move.h
 
-/home/michele/workspace/openCVtutorial/src/enginePrototype/SobelEM.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/CannyEM.h
+opencv/cv.h
+-
+opencv/cxcore.h
+-
 EngineModule.h
-/home/michele/workspace/openCVtutorial/src/enginePrototype/EngineModule.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/EngineModule.h
+
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/EngineModule.h
+opencv/cv.h
+-
+
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/HistogramEM.h
+EngineModule.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/EngineModule.h
+
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/LaplacianEM.h
+EngineModule.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/EngineModule.h
+
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/SobelEM.h
+EngineModule.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/EngineModule.h
 
 /home/michele/workspace/openCVtutorial/src/enginePrototype/mainEngine.cxx
 opencv/cv.h
@@ -55,14 +59,14 @@ stdio.h
 -
 RecognitionEngine.h
 /home/michele/workspace/openCVtutorial/src/enginePrototype/RecognitionEngine.h
-EngineModule.h
-/home/michele/workspace/openCVtutorial/src/enginePrototype/EngineModule.h
-SobelEM.h
-/home/michele/workspace/openCVtutorial/src/enginePrototype/SobelEM.h
-LaplacianEM.h
-/home/michele/workspace/openCVtutorial/src/enginePrototype/LaplacianEM.h
-HistogramEM.h
-/home/michele/workspace/openCVtutorial/src/enginePrototype/HistogramEM.h
-CannyEM.h
-/home/michele/workspace/openCVtutorial/src/enginePrototype/CannyEM.h
+engineModules/EngineModule.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/EngineModule.h
+engineModules/CannyEM.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/CannyEM.h
+engineModules/LaplacianEM.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/LaplacianEM.h
+engineModules/SobelEM.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/SobelEM.h
+engineModules/HistogramEM.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/HistogramEM.h
 

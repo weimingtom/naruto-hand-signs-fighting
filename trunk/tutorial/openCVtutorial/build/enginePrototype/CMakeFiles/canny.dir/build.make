@@ -49,38 +49,38 @@ include CMakeFiles/canny.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/canny.dir/flags.make
 
-CMakeFiles/canny.dir/CannyEM.cxx.o: CMakeFiles/canny.dir/flags.make
-CMakeFiles/canny.dir/CannyEM.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/CannyEM.cxx
+CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o: CMakeFiles/canny.dir/flags.make
+CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/CannyEM.cxx
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/canny.dir/CannyEM.cxx.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/canny.dir/CannyEM.cxx.o -c /home/michele/workspace/openCVtutorial/src/enginePrototype/CannyEM.cxx
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o -c /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/CannyEM.cxx
 
-CMakeFiles/canny.dir/CannyEM.cxx.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/canny.dir/CannyEM.cxx.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/michele/workspace/openCVtutorial/src/enginePrototype/CannyEM.cxx > CMakeFiles/canny.dir/CannyEM.cxx.i
+CMakeFiles/canny.dir/engineModules/CannyEM.cxx.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/canny.dir/engineModules/CannyEM.cxx.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/CannyEM.cxx > CMakeFiles/canny.dir/engineModules/CannyEM.cxx.i
 
-CMakeFiles/canny.dir/CannyEM.cxx.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/canny.dir/CannyEM.cxx.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/michele/workspace/openCVtutorial/src/enginePrototype/CannyEM.cxx -o CMakeFiles/canny.dir/CannyEM.cxx.s
+CMakeFiles/canny.dir/engineModules/CannyEM.cxx.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/canny.dir/engineModules/CannyEM.cxx.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/CannyEM.cxx -o CMakeFiles/canny.dir/engineModules/CannyEM.cxx.s
 
-CMakeFiles/canny.dir/CannyEM.cxx.o.requires:
-.PHONY : CMakeFiles/canny.dir/CannyEM.cxx.o.requires
+CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o.requires:
+.PHONY : CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o.requires
 
-CMakeFiles/canny.dir/CannyEM.cxx.o.provides: CMakeFiles/canny.dir/CannyEM.cxx.o.requires
-	$(MAKE) -f CMakeFiles/canny.dir/build.make CMakeFiles/canny.dir/CannyEM.cxx.o.provides.build
-.PHONY : CMakeFiles/canny.dir/CannyEM.cxx.o.provides
+CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o.provides: CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o.requires
+	$(MAKE) -f CMakeFiles/canny.dir/build.make CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o.provides.build
+.PHONY : CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o.provides
 
-CMakeFiles/canny.dir/CannyEM.cxx.o.provides.build: CMakeFiles/canny.dir/CannyEM.cxx.o
-.PHONY : CMakeFiles/canny.dir/CannyEM.cxx.o.provides.build
+CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o.provides.build: CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o
+.PHONY : CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o.provides.build
 
 # Object files for target canny
 canny_OBJECTS = \
-"CMakeFiles/canny.dir/CannyEM.cxx.o"
+"CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o"
 
 # External object files for target canny
 canny_EXTERNAL_OBJECTS =
 
-libcanny.so: CMakeFiles/canny.dir/CannyEM.cxx.o
+libcanny.so: CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o
 libcanny.so: CMakeFiles/canny.dir/build.make
 libcanny.so: CMakeFiles/canny.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX shared library libcanny.so"
@@ -90,7 +90,7 @@ libcanny.so: CMakeFiles/canny.dir/link.txt
 CMakeFiles/canny.dir/build: libcanny.so
 .PHONY : CMakeFiles/canny.dir/build
 
-CMakeFiles/canny.dir/requires: CMakeFiles/canny.dir/CannyEM.cxx.o.requires
+CMakeFiles/canny.dir/requires: CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o.requires
 .PHONY : CMakeFiles/canny.dir/requires
 
 CMakeFiles/canny.dir/clean:

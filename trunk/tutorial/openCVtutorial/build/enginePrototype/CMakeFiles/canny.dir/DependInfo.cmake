@@ -4,7 +4,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/home/michele/workspace/openCVtutorial/src/enginePrototype/CannyEM.cxx" "/home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/canny.dir/CannyEM.cxx.o"
+  "/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/CannyEM.cxx" "/home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 

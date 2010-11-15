@@ -17,23 +17,28 @@ TARGET_LINK_LIBRARIES( enginePrototype ${OpenCV_LIBS} engLib sobel laplacian his
 ADD_DEPENDENCIES(enginePrototype EngineModule.h)
 
 ADD_DEPENDENCIES(enginePrototype engLib)
-ADD_LIBRARY(engLib SHARED RecognitionEngine.h RecognitionEngine.cxx EngineModule.h Move.h)
+ADD_LIBRARY(engLib SHARED RecognitionEngine.h RecognitionEngine.cxx engineModules/EngineModule.h 
+Move.h)
 
 ADD_DEPENDENCIES(enginePrototype sobel)
-ADD_LIBRARY(sobel SHARED SobelEM.h SobelEM.cxx)
-ADD_DEPENDENCIES(sobel EngineModule.h)
+ADD_LIBRARY(sobel SHARED engineModules/SobelEM.h engineModules/SobelEM.cxx)
+ADD_DEPENDENCIES(sobel engineModules/EngineModule.h)
 
 ADD_DEPENDENCIES(enginePrototype laplacian)
-ADD_LIBRARY(laplacian SHARED LaplacianEM.h LaplacianEM.cxx)
-ADD_DEPENDENCIES(laplacian EngineModule.h)
+ADD_LIBRARY(laplacian SHARED engineModules/LaplacianEM.h engineModules/LaplacianEM.cxx)
+ADD_DEPENDENCIES(laplacian engineModules/EngineModule.h)
 
 ADD_DEPENDENCIES(enginePrototype histo)
-ADD_LIBRARY(histo SHARED HistogramEM.h HistogramEM.cxx)
-ADD_DEPENDENCIES(histo EngineModule.h)
+ADD_LIBRARY(histo SHARED engineModules/HistogramEM.h engineModules/HistogramEM.cxx)
+ADD_DEPENDENCIES(histo engineModules/EngineModule.h)
 
 ADD_DEPENDENCIES(enginePrototype canny)
-ADD_LIBRARY(canny SHARED CannyEM.h CannyEM.cxx)
-ADD_DEPENDENCIES(canny EngineModule.h)
+ADD_LIBRARY(canny SHARED engineModules/CannyEM.h engineModules/CannyEM.cxx)
+ADD_DEPENDENCIES(canny engineModules/EngineModule.h)
+
+#ADD_DEPENDENCIES(enginePrototype fourier)
+#ADD_LIBRARY(fourier SHARED FourierEM.h FourierEM.cxx)
+#ADD_DEPENDENCIES(fourier engineModules/EngineModule.h)
 
 #new library
 #remember to add the <"mylib"> name in TARGET_LINK_LIBRARIES

@@ -1,5 +1,5 @@
 FILE(REMOVE_RECURSE
-  "CMakeFiles/canny.dir/CannyEM.cxx.o"
+  "CMakeFiles/canny.dir/engineModules/CannyEM.cxx.o"
   "libcanny.pdb"
   "libcanny.so"
 )

@@ -11,7 +11,7 @@
 #include <vector>
 #include <opencv/cv.h>
 
-#include "EngineModule.h"
+#include "engineModules/EngineModule.h"
 #include "Move.h"
 
 using namespace std;

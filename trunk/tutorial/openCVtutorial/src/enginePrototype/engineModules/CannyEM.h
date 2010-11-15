@@ -8,6 +8,8 @@
 #ifndef CANNYEM_H_
 #define CANNYEM_H_
 
+#include <opencv/cv.h>
+#include <opencv/cxcore.h>
 #include "EngineModule.h"
 
 class CannyEM : public EngineModule{
