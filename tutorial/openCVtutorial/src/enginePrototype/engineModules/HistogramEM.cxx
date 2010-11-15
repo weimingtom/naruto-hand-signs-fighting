@@ -27,6 +27,8 @@ HistogramEM::HistogramEM(){
 
 	hist = NULL;
 	histImage = grayImage = NULL;
+
+	moduleName = "histogramModule";
 }
 
 HistogramEM::~HistogramEM(){
@@ -105,12 +107,18 @@ void HistogramEM::displayHistogram(const char* win){
 	cvShowImage(win, histImage);
 }
 
-int HistogramEM::equalize(const IplImage* src, IplImage* dst){
-	cvEqualizeHist(src, dst);
-}
-
 int HistogramEM::compute(const IplImage* src, IplImage* dst){
+	//Histogram equalization function need in input an 8-bit unsigned image,
+	//so we have to convert it (and re-invert before exit the function)
 	IplImage* temp = cvCreateImage(cvSize(src->width, src->height), IPL_DEPTH_8U, 1);
 	cvEqualizeHist(src, temp);
-	cvConvertScale(temp, dst);
+
+	/*
+	In order to convert the image
+	back to 32-bit floating point, we need the conversion
+	constant that't 1/255 = 0.0039215
+	because all the values need to be mapped in the range
+	from [0, 255] to [0, 1]
+	*/
+	cvConvertScale(temp, dst, 0.0039215, 0);
 }

@@ -1,8 +1,28 @@
 /*
+ ******************************************************
+ * NAME:
  * EngineModule.h
+ ******************************************************
+ * DESCRIPTION:
+ * Recall that the Recognition Engine is made by different module which
+ * are called Engine Module, each developing a different feature to
+ * the image process phase.
+ * This class is a pure virtual one which can be used in order to build
+ * these module and put them in the Recognition Engine.
  *
- *  Created on: Nov 13, 2010
- *      Author: michele
+ * Pattern Applied: Strategy
+ * Any Engine Module needs to provide an implementation for the
+ * strategy class member:
+ *       int compute( const IplImage* src, IplImage* dst);
+ * The implementation corresponds to the specific feature provided by the
+ * class performing a part in the overall algorithm.
+ *
+ ******************************************************
+ *	Created on: Nov 13, 2010
+ ******************************************************
+ *  Author: Michele Tamburini
+ *******************************************************
+ *
  */
 
 #ifndef ENGINEMODULE_H_
