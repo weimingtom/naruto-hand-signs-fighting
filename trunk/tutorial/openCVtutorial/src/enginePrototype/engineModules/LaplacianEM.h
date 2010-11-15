@@ -40,6 +40,8 @@ public:
 		return kernelSize;
 	}
 
+
+
 	int compute( const IplImage* src, IplImage* dst);
 };
 

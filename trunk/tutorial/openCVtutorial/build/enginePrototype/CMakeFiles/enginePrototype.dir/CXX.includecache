@@ -23,6 +23,14 @@ opencv/cv.h
 -
 opencv/cxcore.h
 -
+opencv/highgui.h
+-
+EngineModule.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/EngineModule.h
+
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/ContoursFinderEM.h
+opencv/cv.h
+-
 EngineModule.h
 /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/EngineModule.h
 
@@ -69,4 +77,6 @@ engineModules/SobelEM.h
 /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/SobelEM.h
 engineModules/HistogramEM.h
 /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/HistogramEM.h
+engineModules/ContoursFinderEM.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/ContoursFinderEM.h
 

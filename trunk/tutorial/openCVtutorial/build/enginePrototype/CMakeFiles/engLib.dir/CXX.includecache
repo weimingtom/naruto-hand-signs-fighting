@@ -19,8 +19,12 @@ vector
 -
 opencv/cv.h
 -
-EngineModule.h
-/home/michele/workspace/openCVtutorial/src/enginePrototype/EngineModule.h
+engineModules/EngineModule.h
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/EngineModule.h
 Move.h
 /home/michele/workspace/openCVtutorial/src/enginePrototype/Move.h
+
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/EngineModule.h
+opencv/cv.h
+-
 

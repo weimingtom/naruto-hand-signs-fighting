@@ -112,6 +112,19 @@ canny/fast:
 .PHONY : canny/fast
 
 #=============================================================================
+# Target rules for targets named contours
+
+# Build rule for target.
+contours: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 contours
+.PHONY : contours
+
+# fast build rule for target.
+contours/fast:
+	$(MAKE) -f CMakeFiles/contours.dir/build.make CMakeFiles/contours.dir/build
+.PHONY : contours/fast
+
+#=============================================================================
 # Target rules for targets named engLib
 
 # Build rule for target.
@@ -224,6 +237,30 @@ engineModules/CannyEM.cxx.s:
 	$(MAKE) -f CMakeFiles/canny.dir/build.make CMakeFiles/canny.dir/engineModules/CannyEM.cxx.s
 .PHONY : engineModules/CannyEM.cxx.s
 
+engineModules/ContoursFinderEM.o: engineModules/ContoursFinderEM.cxx.o
+.PHONY : engineModules/ContoursFinderEM.o
+
+# target to build an object file
+engineModules/ContoursFinderEM.cxx.o:
+	$(MAKE) -f CMakeFiles/contours.dir/build.make CMakeFiles/contours.dir/engineModules/ContoursFinderEM.cxx.o
+.PHONY : engineModules/ContoursFinderEM.cxx.o
+
+engineModules/ContoursFinderEM.i: engineModules/ContoursFinderEM.cxx.i
+.PHONY : engineModules/ContoursFinderEM.i
+
+# target to preprocess a source file
+engineModules/ContoursFinderEM.cxx.i:
+	$(MAKE) -f CMakeFiles/contours.dir/build.make CMakeFiles/contours.dir/engineModules/ContoursFinderEM.cxx.i
+.PHONY : engineModules/ContoursFinderEM.cxx.i
+
+engineModules/ContoursFinderEM.s: engineModules/ContoursFinderEM.cxx.s
+.PHONY : engineModules/ContoursFinderEM.s
+
+# target to generate assembly for a file
+engineModules/ContoursFinderEM.cxx.s:
+	$(MAKE) -f CMakeFiles/contours.dir/build.make CMakeFiles/contours.dir/engineModules/ContoursFinderEM.cxx.s
+.PHONY : engineModules/ContoursFinderEM.cxx.s
+
 engineModules/HistogramEM.o: engineModules/HistogramEM.cxx.o
 .PHONY : engineModules/HistogramEM.o
 
@@ -327,6 +364,7 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... canny"
+	@echo "... contours"
 	@echo "... edit_cache"
 	@echo "... engLib"
 	@echo "... enginePrototype"
@@ -340,6 +378,9 @@ help:
 	@echo "... engineModules/CannyEM.o"
 	@echo "... engineModules/CannyEM.i"
 	@echo "... engineModules/CannyEM.s"
+	@echo "... engineModules/ContoursFinderEM.o"
+	@echo "... engineModules/ContoursFinderEM.i"
+	@echo "... engineModules/ContoursFinderEM.s"
 	@echo "... engineModules/HistogramEM.o"
 	@echo "... engineModules/HistogramEM.i"
 	@echo "... engineModules/HistogramEM.s"

@@ -11,6 +11,16 @@ CannyEM.h
 /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/CannyEM.h
 
 /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/CannyEM.h
+opencv/cv.h
+-
+opencv/cxcore.h
+-
+opencv/highgui.h
+-
 EngineModule.h
 /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/EngineModule.h
+
+/home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/EngineModule.h
+opencv/cv.h
+-
 

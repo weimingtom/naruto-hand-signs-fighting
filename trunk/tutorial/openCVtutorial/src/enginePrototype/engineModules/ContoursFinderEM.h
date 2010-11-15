@@ -12,10 +12,15 @@
 #include "EngineModule.h"
 
 class ContoursFinderEM : public EngineModule{
-	CvMemStorage * memPointer;
+	CvMemStorage * g_storage;
+	CvSeq* contours;
+	int g_thresh;
 public:
+	ContoursFinderEM();
+
 	int compute( const IplImage* src, IplImage* dst);
 };
 
+extern EngineModule *contours;
 
 #endif /* CONTOURSFINDEREM_H_ */

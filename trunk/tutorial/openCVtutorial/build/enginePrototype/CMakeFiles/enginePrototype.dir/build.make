@@ -86,6 +86,7 @@ enginePrototype: libsobel.so
 enginePrototype: liblaplacian.so
 enginePrototype: libhisto.so
 enginePrototype: libcanny.so
+enginePrototype: libcontours.so
 enginePrototype: CMakeFiles/enginePrototype.dir/build.make
 enginePrototype: CMakeFiles/enginePrototype.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable enginePrototype"

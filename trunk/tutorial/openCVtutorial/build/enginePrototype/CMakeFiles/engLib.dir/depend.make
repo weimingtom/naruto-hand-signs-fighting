@@ -4,4 +4,5 @@
 CMakeFiles/engLib.dir/RecognitionEngine.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/Move.h
 CMakeFiles/engLib.dir/RecognitionEngine.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/RecognitionEngine.cxx
 CMakeFiles/engLib.dir/RecognitionEngine.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/RecognitionEngine.h
+CMakeFiles/engLib.dir/RecognitionEngine.cxx.o: /home/michele/workspace/openCVtutorial/src/enginePrototype/engineModules/EngineModule.h
 

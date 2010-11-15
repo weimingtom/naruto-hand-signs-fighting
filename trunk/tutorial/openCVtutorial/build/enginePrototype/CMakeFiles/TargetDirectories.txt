@@ -1,4 +1,5 @@
 /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/canny.dir
+/home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/contours.dir
 /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/engLib.dir
 /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/enginePrototype.dir
 /home/michele/workspace/openCVtutorial/build/enginePrototype/CMakeFiles/histo.dir

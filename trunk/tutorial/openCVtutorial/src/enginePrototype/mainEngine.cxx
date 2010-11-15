@@ -23,6 +23,7 @@
 #include "engineModules/LaplacianEM.h"
 #include "engineModules/SobelEM.h"
 #include "engineModules/HistogramEM.h"
+#include "engineModules/ContoursFinderEM.h"
 //////////////////
 
 #define MAIN_WIN "mainWin"
@@ -44,11 +45,15 @@ int main(int argc, char* argv[] ){
 	//The first step is to add different modules to our engine
 	recognitionEngine.addModule(histogram);
 	SobelEM* modifySobel = (SobelEM*)sobel;
-	modifySobel->setKernelSize(15);
-	modifySobel->setSobelDerivates(2,2);
+	modifySobel->setKernelSize(5);
+	modifySobel->setSobelDerivates(1,1);
 //	recognitionEngine.addModule(sobel);
 //	recognitionEngine.addModule(canny);
-	recognitionEngine.addModule(laplacian);
+	recognitionEngine.addModule(contours);
+
+	LaplacianEM* modifyLaplacian = (LaplacianEM*) laplacian;
+	modifyLaplacian->setKernelSize(7);
+//	recognitionEngine.addModule(laplacian);
 
 	cout<<"starting process\n"; fflush(stdout);
 	//Then we launch the processing phase
