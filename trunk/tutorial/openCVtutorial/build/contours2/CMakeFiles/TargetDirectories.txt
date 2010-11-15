@@ -1,0 +1,1 @@
+/home/michele/workspace/openCVtutorial/build/contours2/CMakeFiles/contours2.dir

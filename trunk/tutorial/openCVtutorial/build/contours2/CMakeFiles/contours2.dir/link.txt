@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/contours2.dir/contours2Main.cxx.o  -o contours2 -rdynamic -L/usr/local/lib -lcxcore -lcv -lml -lhighgui -lcvaux -Wl,-rpath,/usr/local/lib 
