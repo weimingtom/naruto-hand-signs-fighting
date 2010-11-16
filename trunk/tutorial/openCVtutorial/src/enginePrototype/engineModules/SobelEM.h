@@ -22,12 +22,16 @@ class SobelEM : public EngineModule{
 	//of the cvSobel function
 	int kernelSize;
 
+	void fixName();
+
 public:
 	SobelEM(){
-		moduleName = "sobelModule";
+		fixName();
 		sobelDX = sobelDY = DERIVATE_DEFAULT_GRADE;
 		kernelSize = DEFAULT_SOBEL_KERNEL_SIZE;
 	}
+
+	SobelEM(int kernelSize, int dx, int dy);
 
 
 	//*****************
@@ -62,7 +66,5 @@ public:
 
 
 };
-
-extern EngineModule *sobel;
 
 #endif /* SOBELEM_H_ */

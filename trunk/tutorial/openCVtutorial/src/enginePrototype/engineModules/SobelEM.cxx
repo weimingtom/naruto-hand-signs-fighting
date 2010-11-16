@@ -8,9 +8,17 @@
 #include <opencv/cv.h>
 #include "SobelEM.h"
 
-EngineModule *sobel = new SobelEM();
+SobelEM::SobelEM(int kernSize, int dx, int dy){
+	fixName();
+	kernelSize = kernSize;
+	sobelDX = dx;
+	sobelDY = dy;
+}
 
 int SobelEM::compute( const IplImage* src, IplImage* dst){
 	cvSobel(src, dst, sobelDX, sobelDY, kernelSize);
-//	cvSobel(src, dst, 1, 1, CV_SCHARR);
+}
+
+void SobelEM::fixName(){
+	setName("SobelModule");
 }

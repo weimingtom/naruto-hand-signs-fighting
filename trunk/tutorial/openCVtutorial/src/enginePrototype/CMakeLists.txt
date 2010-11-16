@@ -14,7 +14,7 @@ PROJECT( enginePrototype_proj )
 FIND_PACKAGE( OpenCV REQUIRED )
 ADD_EXECUTABLE( enginePrototype mainEngine.cxx)
 TARGET_LINK_LIBRARIES( enginePrototype ${OpenCV_LIBS} engLib sobel laplacian histo canny
-contours)
+contours blur)
 ADD_DEPENDENCIES(enginePrototype EngineModule.h)
 
 ADD_DEPENDENCIES(enginePrototype engLib)
@@ -40,6 +40,10 @@ ADD_DEPENDENCIES(canny engineModules/EngineModule.h)
 ADD_DEPENDENCIES(enginePrototype contours)
 ADD_LIBRARY(contours SHARED engineModules/ContoursFinderEM.h engineModules/ContoursFinderEM.cxx)
 ADD_DEPENDENCIES(contours engineModules/EngineModule.h)
+
+ADD_DEPENDENCIES(enginePrototype blur)
+ADD_LIBRARY(blur SHARED engineModules/BlurEM.h engineModules/BlurEM.cxx)
+ADD_DEPENDENCIES(blur engineModules/EngineModule.h)
 
 #ADD_DEPENDENCIES(enginePrototype fourier)
 #ADD_LIBRARY(fourier SHARED FourierEM.h FourierEM.cxx)

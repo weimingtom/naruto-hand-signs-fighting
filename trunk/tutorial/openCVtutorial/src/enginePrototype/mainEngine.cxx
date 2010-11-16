@@ -24,6 +24,7 @@
 #include "engineModules/SobelEM.h"
 #include "engineModules/HistogramEM.h"
 #include "engineModules/ContoursFinderEM.h"
+#include "engineModules/BlurEM.h"
 //////////////////
 
 #define MAIN_WIN "mainWin"
@@ -42,22 +43,41 @@ int main(int argc, char* argv[] ){
 	cvConvertScale(temp, img);
 	res = cvCreateImage(cvSize(img->width, img->height), IPL_DEPTH_32F, img->nChannels);
 
+	////////////////////////
 	//The first step is to add different modules to our engine
-	recognitionEngine.addModule(histogram);
-	SobelEM* modifySobel = (SobelEM*)sobel;
-	modifySobel->setKernelSize(5);
-	modifySobel->setSobelDerivates(1,1);
-//	recognitionEngine.addModule(sobel);
-//	recognitionEngine.addModule(canny);
-	recognitionEngine.addModule(contours);
+	///////////////////////
 
-	LaplacianEM* modifyLaplacian = (LaplacianEM*) laplacian;
-	modifyLaplacian->setKernelSize(7);
-//	recognitionEngine.addModule(laplacian);
+	HistogramEM *hist = new HistogramEM();
+	//If you want to display the histogram...
+	hist->createHistogram(img);
+	cvNamedWindow("histWin", CV_WINDOW_AUTOSIZE);
+	hist->displayHistogram("histWin");
 
-	cout<<"starting process\n"; fflush(stdout);
-	//Then we launch the processing phase
+	//equalization
+	recognitionEngine.addModule(hist);
+
+	//Sobel
+//	recognitionEngine.addModule(new SobelEM(7, 2, 2));
+	recognitionEngine.addModule(new SobelEM(CV_SCHARR, 1, 0)); //<-
+//	recognitionEngine.addModule(new SobelEM(CV_SCHARR, 0, 1));
+
+	//Canny
+//	recognitionEngine.addModule(new CannyEM(5, 200, 40));
+
+	//blurring
+	recognitionEngine.addModule(new BlurEM(CV_GAUSSIAN,3,3)); //<-(?)
+
+	//Laplacian
+	recognitionEngine.addModule(new LaplacianEM(7)); //<-
+
+	//contours extraction
+//	recognitionEngine.addModule(new ContoursFinderEM(120));
+
+	/////////////////////////////////////
+	//Processing phase:
+	cout<<"Starting process\n";
 	recognitionEngine.process(img, res);
+	///////////////////////////////////
 
 
 	cvNamedWindow(MAIN_WIN, CV_WINDOW_AUTOSIZE);
@@ -70,9 +90,6 @@ int main(int argc, char* argv[] ){
 	cvShowImage(MAIN_WIN, img);
 	cvShowImage(RES_WIN, res);
 
-	//If you want to display the histogram...
-//	HistogramEM* hist = (HistogramEM*) histogram;
-//	hist->displayHistogram(RES_WIN);
 
 	cvWaitKey(0);
 	cvReleaseImage(&img);

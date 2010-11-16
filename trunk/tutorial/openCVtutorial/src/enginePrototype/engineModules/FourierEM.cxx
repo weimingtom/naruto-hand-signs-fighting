@@ -11,8 +11,6 @@
 
 using namespace std;
 
-EngineModule *myFourier = new FourierEM();
-
 void FourierEM::speedyConvolution(const CvMat* A, const CvMat* B, CvMat* C){
 
 	int dft_M = cvGetOptimalDFTSize(A->rows + B->rows - 1);

@@ -24,15 +24,25 @@
 #include <opencv/highgui.h>
 #include "EngineModule.h"
 
+#define DEFAULT_CANNY_TH1 150
+#define DEFAULT_CANNY_TH2 100
+#define DEFAULT_CANNY_KERNEL 3
+
 class CannyEM : public EngineModule{
+	int kernelSize;
+	double lowThresh, highThresh;
+	void fixName();
 public:
 	CannyEM(){
-		moduleName = "cannyModule";
+		fixName();
+		kernelSize = DEFAULT_CANNY_KERNEL;
+		lowThresh = DEFAULT_CANNY_TH1;
+		highThresh = DEFAULT_CANNY_TH2;
 	}
+
+	CannyEM(int kernelSize, double highThreshold, double lowThreshold);
 
 	int compute( const IplImage* src, IplImage* dst);
 };
-
-extern EngineModule *canny;
 
 #endif /* CANNYEM_H_ */

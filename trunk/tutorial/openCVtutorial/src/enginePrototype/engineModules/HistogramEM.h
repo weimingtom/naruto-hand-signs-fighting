@@ -63,6 +63,4 @@ public:
 	int compute( const IplImage* src, IplImage* dst);
 };
 
-extern EngineModule *histogram;
-
 #endif /* HISTOGRAM_H_ */

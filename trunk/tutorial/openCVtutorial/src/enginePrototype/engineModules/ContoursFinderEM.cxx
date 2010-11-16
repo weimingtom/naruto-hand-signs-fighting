@@ -7,11 +7,18 @@
 
 #include "ContoursFinderEM.h"
 
-EngineModule *contours = new ContoursFinderEM;
-
 ContoursFinderEM::ContoursFinderEM(){
-	moduleName = "contoursFinder";
-	g_thresh = 100;
+	initContoursModule();
+	g_thresh = DEFAULT_CONTOUR_THRESHOLD;
+}
+
+ContoursFinderEM::ContoursFinderEM(int thresh){
+	initContoursModule();
+	g_thresh = thresh;
+}
+
+void ContoursFinderEM::initContoursModule(){
+	setName("ContoursFinderModule");
 	g_storage = cvCreateMemStorage(0);
 }
 

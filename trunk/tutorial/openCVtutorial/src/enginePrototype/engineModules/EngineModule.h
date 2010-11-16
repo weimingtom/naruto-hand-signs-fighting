@@ -36,6 +36,10 @@ protected:
 	long int moduleID;
 	const char* moduleName;
 
+	void setName(const char* name){
+		moduleName = name;
+	}
+
 public:
 	EngineModule(){
 		moduleID = globalID++;

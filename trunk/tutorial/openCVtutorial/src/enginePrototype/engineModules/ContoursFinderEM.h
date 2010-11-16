@@ -11,16 +11,22 @@
 #include <opencv/cv.h>
 #include "EngineModule.h"
 
+#define DEFAULT_CONTOUR_THRESHOLD 100
+
 class ContoursFinderEM : public EngineModule{
 	CvMemStorage * g_storage;
 	CvSeq* contours;
+
 	int g_thresh;
+
+	void initContoursModule();
+
 public:
 	ContoursFinderEM();
 
+	ContoursFinderEM(int threshold);
+
 	int compute( const IplImage* src, IplImage* dst);
 };
-
-extern EngineModule *contours;
 
 #endif /* CONTOURSFINDEREM_H_ */

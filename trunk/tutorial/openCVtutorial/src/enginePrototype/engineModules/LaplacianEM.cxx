@@ -9,6 +9,10 @@
 
 EngineModule *laplacian = new LaplacianEM();
 
+LaplacianEM::LaplacianEM(int inputKernelSize){
+	 kernelSize = inputKernelSize;
+}
+
 int LaplacianEM::compute( const IplImage* src, IplImage* dst){
 	cvLaplace(src, dst, kernelSize);
 }

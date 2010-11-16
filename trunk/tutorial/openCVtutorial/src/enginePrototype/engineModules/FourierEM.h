@@ -31,7 +31,4 @@ public:
 	int compute( const IplImage* src, IplImage* dst);
 };
 
-extern EngineModule* myFourier;
-
-
 #endif /* MYFOURIER_H_ */
