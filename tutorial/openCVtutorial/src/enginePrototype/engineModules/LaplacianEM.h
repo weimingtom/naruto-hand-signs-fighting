@@ -28,9 +28,11 @@ class LaplacianEM : public EngineModule{
 public:
 
 	LaplacianEM(){
-		moduleName = "LaplacianModule";
+		setName("LaplacianModule");
 		kernelSize = DEFAULT_LAPLACIAN_KERNEL_SIZE;
 	}
+
+	LaplacianEM(int kernelSize);
 
 	void setKernelSize(int kerSize){
 		kernelSize = kerSize;

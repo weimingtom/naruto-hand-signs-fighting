@@ -14,8 +14,6 @@
 
 using namespace std;
 
-EngineModule *histogram = new HistogramEM();
-
 float range_0[]={0,256};
 float* ranges[] = { range_0 };
 int histSizes = 64;
@@ -28,7 +26,7 @@ HistogramEM::HistogramEM(){
 	hist = NULL;
 	histImage = grayImage = NULL;
 
-	moduleName = "histogramModule";
+	setName("HistogramModule");
 }
 
 HistogramEM::~HistogramEM(){
