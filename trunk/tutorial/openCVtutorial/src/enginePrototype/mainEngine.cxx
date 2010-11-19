@@ -29,8 +29,11 @@
 
 #define MAIN_WIN "mainWin"
 #define RES_WIN "resWin"
+#define TEMPLATE_NAME "TEMPLATE-tiger.png"
 
 const char* IMAGE_PATH = "./2010-11-02-093111.png";
+static bool CREATE_TEMPLATE = true;
+
 
 int main(int argc, char* argv[] ){
 	IplImage *temp, *img, *res;
@@ -78,6 +81,13 @@ int main(int argc, char* argv[] ){
 	cout<<"Starting process\n";
 	recognitionEngine.process(img, res);
 	///////////////////////////////////
+
+	if(CREATE_TEMPLATE){
+		cout<<"creating template\n";
+		cvSaveImage(TEMPLATE_NAME, res);
+	}
+
+//	recognitionEngine.evaluate(res, tiger);
 
 
 	cvNamedWindow(MAIN_WIN, CV_WINDOW_AUTOSIZE);

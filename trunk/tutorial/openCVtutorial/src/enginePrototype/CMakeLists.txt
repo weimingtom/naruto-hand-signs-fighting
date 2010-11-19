@@ -12,44 +12,31 @@
 cmake_minimum_required(VERSION 2.6)
 PROJECT( enginePrototype_proj )
 FIND_PACKAGE( OpenCV REQUIRED )
+
+#######################
+##### Directories #####
+#######################
+# add the binary tree to the search path for include files
+# so that we will find all *.h files
+INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}")
+INCLUDE_DIRECTORIES("${PROJECT_SOURCE_DIR}/engineModules")
+
+ADD_SUBDIRECTORY(engineModules)
+#######################
+
+#######################
+##### Main Target #####
+#######################
 ADD_EXECUTABLE( enginePrototype mainEngine.cxx)
-TARGET_LINK_LIBRARIES( enginePrototype ${OpenCV_LIBS} engLib sobel laplacian histo canny
-contours blur)
-ADD_DEPENDENCIES(enginePrototype EngineModule.h)
-
-ADD_DEPENDENCIES(enginePrototype engLib)
-ADD_LIBRARY(engLib SHARED RecognitionEngine.h RecognitionEngine.cxx engineModules/EngineModule.h 
+TARGET_LINK_LIBRARIES( enginePrototype ${OpenCV_LIBS} engine engineModules)
+ADD_LIBRARY(engine SHARED RecognitionEngine.h RecognitionEngine.cxx engineModules/EngineModule.h 
 Move.h)
+#######################
 
-ADD_DEPENDENCIES(enginePrototype sobel)
-ADD_LIBRARY(sobel SHARED engineModules/SobelEM.h engineModules/SobelEM.cxx)
-ADD_DEPENDENCIES(sobel engineModules/EngineModule.h)
-
-ADD_DEPENDENCIES(enginePrototype laplacian)
-ADD_LIBRARY(laplacian SHARED engineModules/LaplacianEM.h engineModules/LaplacianEM.cxx)
-ADD_DEPENDENCIES(laplacian engineModules/EngineModule.h)
-
-ADD_DEPENDENCIES(enginePrototype histo)
-ADD_LIBRARY(histo SHARED engineModules/HistogramEM.h engineModules/HistogramEM.cxx)
-ADD_DEPENDENCIES(histo engineModules/EngineModule.h)
-
-ADD_DEPENDENCIES(enginePrototype canny)
-ADD_LIBRARY(canny SHARED engineModules/CannyEM.h engineModules/CannyEM.cxx)
-ADD_DEPENDENCIES(canny engineModules/EngineModule.h)
-
-ADD_DEPENDENCIES(enginePrototype contours)
-ADD_LIBRARY(contours SHARED engineModules/ContoursFinderEM.h engineModules/ContoursFinderEM.cxx)
-ADD_DEPENDENCIES(contours engineModules/EngineModule.h)
-
-ADD_DEPENDENCIES(enginePrototype blur)
-ADD_LIBRARY(blur SHARED engineModules/BlurEM.h engineModules/BlurEM.cxx)
-ADD_DEPENDENCIES(blur engineModules/EngineModule.h)
-
-#ADD_DEPENDENCIES(enginePrototype fourier)
-#ADD_LIBRARY(fourier SHARED FourierEM.h FourierEM.cxx)
-#ADD_DEPENDENCIES(fourier engineModules/EngineModule.h)
-
-#new library
-#remember to add the <"mylib"> name in TARGET_LINK_LIBRARIES
-#ADD_DEPENDENCIES(contours  <"mylib">)
-#ADD_LIBRARY(<"mylib"> SHARED <"mylib">.h <"mylib">.cxx)
+#######################
+#### Dependencies #####
+#######################
+ADD_DEPENDENCIES(enginePrototype EngineModule.h)
+ADD_DEPENDENCIES(enginePrototype engine)
+ADD_DEPENDENCIES(enginePrototype engineModules)
+#######################
