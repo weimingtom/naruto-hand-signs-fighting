@@ -18,14 +18,17 @@ SET(CMAKE_MAKEFILE_DEPENDS
   "/usr/local/share/cmake-2.8/Modules/CMakeCommonLanguageInclude.cmake"
   "/usr/local/share/cmake-2.8/Modules/CMakeGenericSystem.cmake"
   "/usr/local/share/cmake-2.8/Modules/CMakeSystemSpecificInformation.cmake"
+  "/usr/local/share/cmake-2.8/Modules/CPack.cmake"
   "/usr/local/share/cmake-2.8/Modules/Compiler/GNU-C.cmake"
   "/usr/local/share/cmake-2.8/Modules/Compiler/GNU-CXX.cmake"
   "/usr/local/share/cmake-2.8/Modules/Compiler/GNU.cmake"
+  "/usr/local/share/cmake-2.8/Modules/InstallRequiredSystemLibraries.cmake"
   "/usr/local/share/cmake-2.8/Modules/Platform/Linux-GNU-C.cmake"
   "/usr/local/share/cmake-2.8/Modules/Platform/Linux-GNU-CXX.cmake"
   "/usr/local/share/cmake-2.8/Modules/Platform/Linux-GNU.cmake"
   "/usr/local/share/cmake-2.8/Modules/Platform/Linux.cmake"
   "/usr/local/share/cmake-2.8/Modules/Platform/UnixPaths.cmake"
+  "/usr/local/share/cmake-2.8/Templates/CPackConfig.cmake.in"
   )
 
 # The corresponding makefile is:

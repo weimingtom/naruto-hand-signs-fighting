@@ -1,0 +1,2 @@
+/home/michele/workspace/CMake-TreeTutorial/build/_CPack_Packages/Linux/TZ/Tutorial-1.0.1-Linux/bin/libMathFunctions.a
+/home/michele/workspace/CMake-TreeTutorial/build/_CPack_Packages/Linux/TZ/Tutorial-1.0.1-Linux/include/mysqrt.h
