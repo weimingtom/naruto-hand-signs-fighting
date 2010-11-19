@@ -1,0 +1,17 @@
+/*
+ * TutorialConfig.h
+ *
+ *  Created on: Nov 19, 2010
+ *      Author: michele
+ */
+
+#ifndef TUTORIALCONFIG_H_
+#define TUTORIALCONFIG_H_
+
+// the configured options and settings for Tutorial
+#define Tutorial_VERSION_MAJOR @Tutorial_VERSION_MAJOR@
+#define Tutorial_VERSION_MINOR @Tutorial_VERSION_MINOR@
+#cmakedefine USE_MYMATH
+
+
+#endif /* TUTORIALCONFIG_H_ */
