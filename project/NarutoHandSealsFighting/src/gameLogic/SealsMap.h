@@ -20,22 +20,27 @@
 #include <string>
 #include "HandSeal.h"
 
+#define NOT_FOUND_SEAL -1
+
 using namespace std;
 
 class SealsMap{
-	map<HandSeal*, const char*> seals;
+	map<string, HandSeal*> seals;
 public:
 	SealsMap(){
 
 	}
 
-	map<HandSeal*, const char*> getSeals(){
+	map<string, HandSeal*> getSeals(){
 		return seals;
 	}
 
-	void addSeal(HandSeal* hs, string sealKey);
+	void addSeal(string sealKey, HandSeal* hs);
 	HandSeal* getSeal(string sealKey);
+	HandSeal* getSeal(const char* sealKey);
 };
+
+extern SealsMap sealsMap;
 
 
 #endif /* SEALSMAP_H_ */

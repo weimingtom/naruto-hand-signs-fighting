@@ -1,7 +1,7 @@
 /*
  ******************************************************
  * NAME:
- * MovesSet.h
+ * MovesFactoryAstract.h
  ******************************************************
  * DESCRIPTION:
  *
@@ -13,28 +13,15 @@
  *
  */
 
-#ifndef MOVESSET_H_
-#define MOVESSET_H_
+#ifndef MOVESFACTORYASTRACT_H_
+#define MOVESFACTORYASTRACT_H_
 
-#include <set>
-#include "Move.h"
+#include "MovesSet.h"
 
-using namespace std;
-
-class MovesSet{
-	set<Move*> movesSet;
-
+class MovesFactoryAbstract{
 public:
-	MovesSet(){};
-
-	int addMove(Move* m);
-
-    set<Move*> getMoveSet() const
-    {
-        return movesSet;
-    }
-
+	virtual void buildMovesSet(MovesSet* mSet) = 0;
 };
 
 
-#endif /* MOVESSET_H_ */
+#endif /* MOVESFACTORYASTRACT_H_ */

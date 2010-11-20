@@ -11,7 +11,7 @@ const string TEMPLATE_PATH("../../bin/movesTemplates");
 
 HandSealStruct globSeals[] = {
 		"tiger", "Tora", "January", "tiger-template.png", "",
-		"rabbit", "U", "February", "", "",
+		"hare", "U", "February", "", "",
 		"dragon", "Tatsu", "March", "", "",
 		"snake", "Mi", "April", "", "",
 		"horse", "Uma", "May", "", "",
