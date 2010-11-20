@@ -23,12 +23,14 @@ HandSeal::HandSeal(const char* m, const char* jap, const char* nameKey, int i){
 	ID = i;
 }
 
-void HandSeal::setImages(const char* templateImagePath, const char* thumbnailImagePath){
+void HandSeal::setImages(const char* templImagePath, const char* thumbImagePath){
 	try{
-		if(templateImagePath != NULL)
-			templateImage = cvLoadImage(templateImagePath, CV_LOAD_IMAGE_GRAYSCALE);
-		if(thumbnailImagePath != NULL)
-			thumbnailImage = cvLoadImage(thumbnailImagePath, CV_LOAD_IMAGE_GRAYSCALE);
+		templateImagePath = string(templImagePath);
+		thumbnailImagePath = string(thumbImagePath);
+		if(templImagePath != NULL)
+			templateImage = cvLoadImage(templImagePath, CV_LOAD_IMAGE_GRAYSCALE);
+		if(thumbImagePath != NULL)
+			thumbnailImage = cvLoadImage(thumbImagePath, CV_LOAD_IMAGE_GRAYSCALE);
 
 	}catch(cv::Exception e){
 		cout<< e.err <<"\n";

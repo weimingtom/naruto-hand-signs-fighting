@@ -18,7 +18,7 @@ int SealsFactory::buildSealsMap(SealsMap* sm){
 		t = &globSeals[i];
 		temp = new HandSeal(t->month, t->japaneseName, t->name, sealsIDs++);
 		temp->setImages(t->templatePath, t->thumbnailPath);
-		sm->addSeal(temp, temp->getName().c_str());
+		sm->addSeal(temp->getName() ,temp);
 	}
 
 }

@@ -26,6 +26,8 @@ class HandSeal{
 	string japaneseName;
 	string name;
 	int ID;
+	string templateImagePath;
+	string thumbnailImagePath;
 	IplImage* templateImage;
 	IplImage* thumbnailImage;
 public:
@@ -33,6 +35,21 @@ public:
 	HandSeal(const char* m, const char* jap, const char* nameKey, int i);
 
 	void setImages(const char* templateImagePath, const char* thumbnailsImagePath);
+
+    string getTemplateImagePath() const
+    {
+        return templateImagePath;
+    }
+
+    string getThumbnailImagePath() const
+    {
+        return thumbnailImagePath;
+    }
+
+    void setTemplateImagePath(string templateImagePath)
+    {
+        this->templateImagePath = templateImagePath;
+    }
 
     string getJapaneseName() const
     {

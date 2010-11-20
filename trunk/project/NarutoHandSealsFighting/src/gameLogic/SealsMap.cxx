@@ -7,13 +7,22 @@
 
 #include "SealsMap.h"
 
-using namespace std;
+SealsMap sealsMap;
 
-void SealsMap::addSeal(HandSeal* hs, string sealKey){
+void SealsMap::addSeal(string sealKey, HandSeal* hs){
 //	seals.insert(std::pair<HandSeal*, const char*>(hs, sealKey.c_str()));
+	seals[sealKey] = hs;
 }
 
 HandSeal* SealsMap::getSeal(string sealKey){
-//	return seals.find(sealKey.c_str());
-	return NULL;
+	map<string, HandSeal*>::iterator it = seals.find(sealKey);
+	if(it == seals.end()){
+		return NULL;
+	}
+	return it->second;
+}
+
+HandSeal* SealsMap::getSeal(const char* sealKey){
+	string s(sealKey);
+	return getSeal(s);
 }
