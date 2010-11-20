@@ -8,9 +8,13 @@
 #ifndef SEALSSETTINGS_H_
 #define SEALSSETTINGS_H_
 
+#include <string>
+
 #define SEALS_NUMBER 12
 
-struct Seals{
+using namespace std;
+
+struct HandSealStruct{
 	const char* name;
 	const char* japaneseName;
 	const char* month;
@@ -18,7 +22,8 @@ struct Seals{
 	const char* thumbnailPath;
 };
 
-extern Seals globalSeals[];
+extern HandSealStruct globSeals[];
+extern const string TEMPLATE_PATH;
 
 
 #endif /* SEALSSETTINGS_H_ */

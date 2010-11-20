@@ -1,7 +1,7 @@
 /*
  ******************************************************
  * NAME:
- * MovesFactory.h
+ * MovesSet.h
  ******************************************************
  * DESCRIPTION:
  *
@@ -13,8 +13,8 @@
  *
  */
 
-#ifndef MOVESFACTORY_H_
-#define MOVESFACTORY_H_
+#ifndef MOVESSET_H_
+#define MOVESSET_H_
 
 
-#endif /* MOVESFACTORY_H_ */
+#endif /* MOVESSET_H_ */
