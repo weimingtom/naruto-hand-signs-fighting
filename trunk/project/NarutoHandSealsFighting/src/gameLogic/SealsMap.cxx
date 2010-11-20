@@ -10,9 +10,10 @@
 using namespace std;
 
 void SealsMap::addSeal(HandSeal* hs, string sealKey){
-	seals.insert(std::pair<HandSeal*, string>(hs, sealKey));
+//	seals.insert(std::pair<HandSeal*, const char*>(hs, sealKey.c_str()));
 }
 
 HandSeal* SealsMap::getSeal(string sealKey){
-	return seals.find(sealKey);
+//	return seals.find(sealKey.c_str());
+	return NULL;
 }

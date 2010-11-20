@@ -22,7 +22,9 @@
 using namespace std;
 
 class HandSeal{
-	string month, japaneseName, name;
+	string month;
+	string japaneseName;
+	string name;
 	int ID;
 	IplImage* templateImage;
 	IplImage* thumbnailImage;
@@ -32,12 +34,27 @@ public:
 
 	void setImages(const char* templateImagePath, const char* thumbnailsImagePath);
 
+    string getJapaneseName() const
+    {
+        return japaneseName;
+    }
+
+    string getName() const
+    {
+        return name;
+    }
+
+    void setName(string name)
+    {
+        this->name = name;
+    }
+
     int getID() const
     {
         return ID;
     }
 
-    String getMonth() const
+    string getMonth() const
     {
         return month;
     }

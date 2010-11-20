@@ -13,10 +13,13 @@
 
 using namespace std;
 
-class SealsFactory : public SealFactoryAbstract{
+class SealsFactory : public SealsFactoryAbstract{
 public:
+	SealsFactory(){};
 	int buildSealsMap(SealsMap* sm);
 };
+
+extern SealsFactoryAbstract *sealsFactory;
 
 
 #endif /* SEALSFACTORY_H_ */

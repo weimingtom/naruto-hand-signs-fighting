@@ -10,7 +10,7 @@
 
 #include "SealsMap.h"
 
-class SealFactoryAbstract{
+class SealsFactoryAbstract{
 public:
 	virtual int buildSealsMap(SealsMap* sm) = 0;
 };

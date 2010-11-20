@@ -23,13 +23,13 @@
 using namespace std;
 
 class SealsMap{
-	map<HandSeal*, string> seals;
+	map<HandSeal*, const char*> seals;
 public:
 	SealsMap(){
 
 	}
 
-	map<HandSeal*, string> getSeals(){
+	map<HandSeal*, const char*> getSeals(){
 		return seals;
 	}
 
