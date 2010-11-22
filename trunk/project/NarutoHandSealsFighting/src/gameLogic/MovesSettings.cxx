@@ -15,7 +15,7 @@
 
 #include "MovesSettings.h"
 
-//const int MOVES_NUMBER = 2;
+using namespace std;
 
 const char* jutsuTypes[][2] = {
 		"Genjutsu", "Illusionary", //0
@@ -25,19 +25,7 @@ const char* jutsuTypes[][2] = {
 		"Fuingjutsu", "Sealing Jutsu" //4
 };
 
-//const char* demonicSoulSeal_Seals[] = {
-//		"serpent", "boar", "ram", "hare", "dog", "rat", "bird", "horse", "serpent"
-//};
-
-//const char* LightningBlade_Seals[] = {"cow", "hare", "monkey"};
-
-const char* movesSeals[][MOVES_NUMBER] = {
-		"cow", "hare", "monkey", "0", //LighningBlade
-		"serpent", "boar", "ram", "hare", "dog", "rat", "bird", "horse", "serpent", "0" //DemonicSoulSeal
-
-};
-
 MoveStruct moves[MOVES_NUMBER] = {
-		"LighningBlade", 4, LIGHTNING, B,
-		"DemonicSoulSeal", 4, UNBREAKABLESEAL, SECRET
+		"LighningBlade", 2, LIGHTNING, B,
+		"DemonicSoulSeal", 4, UNBREAKABLESEAL, S
 };

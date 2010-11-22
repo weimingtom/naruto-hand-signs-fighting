@@ -1,0 +1,71 @@
+<!-- Moves.dtd
+It Describes the legal definition of an xml file 
+able to contain the moves of the game
+-->
+<!-- STRUCTURE -->
+<!-- ********** -->
+<!ELEMENT moveslist move+ >
+<!ELEMENT move (name,jutsutype,element,difficultyrank,seallist)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT jutsutype (Genjutsu|Taijutsu|Ninjutsu|KekkeiGenkai|Fuingjutsu)>
+<!ELEMENT element (FIRE|WATER|EARTH|LIGHTNING|WIND|ICE|BOIL|DUST|WOOD|STORM|LAVA|EXPLOSION|BLAZE|SEAL)>
+<!ELEMENT difficultyrank (A|B|C|D|E|S|F|U)>
+<!ELEMENT seallist ((tiger|hare|dragon|snake|horse|ram|monkey|bird|dog|boar|rat|cow)+)>
+<!-- ********** -->
+
+<!-- JUTSUTYPES -->
+<!-- ********** -->
+<!ELEMENT Genjutsu EMPTY>
+<!ELEMENT Taijutsu EMPTY>
+<!ELEMENT Ninjutsu EMPTY>
+<!ELEMENT KekkeiGenkai EMPTY>
+<!ELEMENT Fuingjutsu EMPTY>
+<!-- ********** -->
+
+<!-- ELEMENTS -->
+<!-- ********** -->
+<!ELEMENT FIRE EMPTY>
+<!ELEMENT WATER EMPTY>
+<!ELEMENT EARTH EMPTY>
+<!ELEMENT LIGHTNING EMPTY>
+<!ELEMENT WIND EMPTY>
+<!ELEMENT ICE EMPTY>
+<!ELEMENT BOIL EMPTY>
+<!ELEMENT DUST EMPTY>
+<!ELEMENT WOOD EMPTY>
+<!ELEMENT STORM EMPTY>
+<!ELEMENT LAVA EMPTY>
+<!ELEMENT EXPLOSION EMPTY>
+<!ELEMENT BLAZE EMPTY>
+<!ELEMENT SEAL EMPTY>
+<!-- ********** -->
+
+<!-- DIFFICULTY RANKS -->
+<!-- ********** -->
+<!ELEMENT A EMPTY>
+<!ELEMENT B EMPTY>
+<!ELEMENT C EMPTY>
+<!ELEMENT D EMPTY>
+<!ELEMENT E EMPTY>
+<!ELEMENT S EMPTY> <!-- S = Secret -->
+<!ELEMENT F EMPTY> <!-- F = Forbidden -->
+<!ELEMENT U EMPTY> <!-- U = Unknown -->
+<!-- ********** -->
+
+<!-- SEALS -->
+<!ELEMENT tiger  EMPTY>
+<!ELEMENT hare EMPTY>
+<!ELEMENT dragon EMPTY>
+<!ELEMENT snake EMPTY>
+<!ELEMENT horse EMPTY>
+<!ELEMENT ram EMPTY>
+<!ELEMENT monkey EMPTY>
+<!ELEMENT bird EMPTY>
+<!ELEMENT dog  EMPTY>
+<!ELEMENT boar EMPTY>
+<!ELEMENT rat EMPTY>
+<!ELEMENT cow EMPTY>
+<!-- ********** -->
+<!-- ********** -->
+
+

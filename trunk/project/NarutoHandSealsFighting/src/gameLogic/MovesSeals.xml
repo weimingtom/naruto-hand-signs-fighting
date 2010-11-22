@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE movesSeals SYSTEM "Moves.dtd" >
+<!-- General Template for a move -->
+<!-- ********** -->
+<!-- 
+In order to add a new move
+copy the following lines and complete the elements description
+following the correct syntax
+look a the example
+<move>
+	<name> </name>
+	<jutsutype> </jutsutype>
+	<element> </element>
+	<difficultyrank> </difficultyrank>
+	<seallist> </seallist>
+</move>
+-->
+<!-- ********** -->
+<movelist>
+	<!-- EXAMPLE: Lighting Blade -->
+	<move>
+		<name>"Lightning Blade"</name>
+		<jutsutype> <Ninjutsu/> </jutsutype>
+		<element> <LIGHNING/> </element>
+		<difficultyrank> <A/> </difficultyrank>
+		<seallist> <cow/> <hare/> <monkey/> </seallist>
+	</move>
+
+	
+	<!-- ********** -->
+	<!-- Add new moves here -->
+	<move>
+		<name>"Fire Ball"</name>
+		<jutsutype> <Ninjutsu/>  </jutsutype>
+		<element> <FIRE/> </element>
+		<difficultyrank> <B/> </difficultyrank>
+		<seallist> <snake/> <ram/> <monkey/> <boar/> <horse/> <tiger/> </seallist>
+	</move>
+	
+	<move>
+		<name>"Demonic Soul Seal"</name>
+		<jutsutype> <Fuinjutsu/> </jutsutype>
+		<element> <SEAL/> </element>
+		<difficultyrank> <S/> </difficultyrank>
+		<seallist> <snake/> <boar/> <ram/> <hare/> <dog/> <rat/> <bird/> <horse/> <snake/> </seallist>
+	</move>
+	
+	
+	<!-- Don't write below that line -->
+	<!-- ********** -->
+</movelist>

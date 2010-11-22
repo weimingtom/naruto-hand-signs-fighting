@@ -17,10 +17,11 @@
 #define MOVESFACTORYASTRACT_H_
 
 #include "MovesSet.h"
+#include "SealsMap.h"
 
 class MovesFactoryAbstract{
 public:
-	virtual void buildMovesSet(MovesSet* mSet) = 0;
+	virtual void buildMovesSet(MovesSet* mSet,  SealsMap* sm) = 0;
 };
 
 

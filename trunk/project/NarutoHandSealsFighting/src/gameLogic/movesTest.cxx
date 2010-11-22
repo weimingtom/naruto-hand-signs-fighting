@@ -13,6 +13,8 @@
  *
  */
 #include <iostream>
+#include "SealsFactory.h"
+#include "SealsMap.h"
 #include "MovesFactory.h"
 #include "MovesSet.h"
 
@@ -20,22 +22,31 @@ using namespace std;
 
 int main(int argc, char* argv[]){
 	MovesSet myMoveSet;
+	SealsMap smap;
 	Move* temp;
-	movesFactory->buildMovesSet(&myMoveSet);
+	sealsFactory->buildSealsMap(&smap);
+	movesFactory->buildMovesSet(&myMoveSet, &smap);
 	cout<<"**********\n";
 	cout<<"Moves Test \n";
 	cout<<"**********\n";
 
-	for(set<Move*>::iterator it = myMoveSet.getMoveSet().begin();
-			it != myMoveSet.getMoveSet().end(); it++){
-		temp = *it;
-		cout<<"move: "<<temp->getMoveName()<<"\n";
-		vector<HandSeal*> s = temp->getMoveSeals();
-		cout<<"seals: ";
-		for(int i=0; i<s.size(); i++){
-			cout<<" "<< s.at(i)->getName();
+	if(myMoveSet.getMoveSet().size()>0){
+		for(set<Move*>::iterator it = myMoveSet.getMoveSet().begin();
+				it != myMoveSet.getMoveSet().end(); it++){
+			temp = *it;
+			cout<<"move: "<<temp->getMoveName()<<"\n";
+			cout<<"type: "<<temp->getType().japName <<", "<<temp->getType().engName <<"\n";
+			cout<<"element: "<<temp->getElementStr()<<"\n";
+			cout<<"difficult:"<<temp->getRankStr()<<"\n";
+			vector<HandSeal*> s = temp->getMoveSeals();
+			cout<<"seals: ";
+			for(int i=0; i<s.size(); i++){
+				cout<<" "<< s.at(i)->getName();
+			}
+			cout<<"\n\n";
 		}
-		cout<<"\n";
+	}else{
+		cout<<"empty move set\n";
 	}
 
 	cout<<"**********\n";
