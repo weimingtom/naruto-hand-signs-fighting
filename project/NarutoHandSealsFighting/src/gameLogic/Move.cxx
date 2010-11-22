@@ -18,3 +18,7 @@ Move::Move(const char* name, MoveType t, MoveElements ele, DifficultyRank diff){
 Move::Move(const char* n){
 	moveName = n;
 }
+
+void Move::addSeal(HandSeal* hs){
+	moveSeals.push_back(hs);
+}

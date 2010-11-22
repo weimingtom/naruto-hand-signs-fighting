@@ -19,9 +19,10 @@
 #include "Move.h"
 #include "SealsMap.h"
 
+#define STOPPING_STRING "stop"
+#define FILE_MOVES_SEALS "MovesSeals.txt"
 #define JUTSU_TYPES_JAPNAME 0
 #define JUTSU_TYPES_ENGNAME 1
-#define MOVES_NUMBER 2
 
 struct MoveStruct{
 	const char* name;
@@ -30,10 +31,13 @@ struct MoveStruct{
 	DifficultyRank difficulty;
 };
 
-extern const char* jutsuTypes[][2];
-//extern const int MOVES_NUMBER;
-extern MoveStruct moves[MOVES_NUMBER];
-extern const char* movesSeals[][MOVES_NUMBER];
+struct moveSealsStruct{
+	const char* s[];
+};
 
+extern const char* jutsuTypes[][2];
+
+#define MOVES_NUMBER 2
+extern MoveStruct moves[MOVES_NUMBER];
 
 #endif /* MOVESSETTINGS_H_ */

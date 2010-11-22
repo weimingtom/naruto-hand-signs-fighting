@@ -40,7 +40,7 @@ enum MoveElements{
 	};
 
 enum DifficultyRank{
-	A, B, C, D, E, F, SECRET, FORBIDDEN
+	A, B, C, D, E, F, S, U
 };
 
 class Move{
@@ -50,13 +50,58 @@ class Move{
 	MoveType type;
 	MoveElements element;
 	DifficultyRank rank;
+	string elementStr;
+	string rankStr;
 
 public:
 
+	Move(){};
 	Move(const char* name);
 	Move(const char* name, MoveType t, MoveElements ele, DifficultyRank diff);
 
-	void setMoveName(const char* s){
+	void addSeal(HandSeal* hs);
+
+    string getElementStr() const
+    {
+        return elementStr;
+    }
+
+    string getRankStr() const
+    {
+        return rankStr;
+    }
+
+    void setElement(MoveElements element)
+    {
+        this->element = element;
+    }
+
+    void setElementStr(string elementStr)
+    {
+        this->elementStr = elementStr;
+    }
+
+    void setRankStr(string rankStr)
+    {
+        this->rankStr = rankStr;
+    }
+
+    void setType(MoveType type)
+    {
+        this->type = type;
+    }
+
+    DifficultyRank getRank() const
+    {
+        return rank;
+    }
+
+    void setRank(DifficultyRank rank)
+    {
+        this->rank = rank;
+    }
+
+    void setMoveName(const char* s){
 		moveName = string(s);
 	}
 
