@@ -21,7 +21,7 @@ set (NHSF_VERSION_MINOR 0)
 ############ Main Target ##############
 #######################################
 ADD_EXECUTABLE( runNHSF main-NHSF.cxx)
-TARGET_LINK_LIBRARIES( runNHSF ${OpenCV_LIBS} recognitionEngine )
+TARGET_LINK_LIBRARIES( runNHSF ${OpenCV_LIBS} recognitionEngine gameLogic)
 
 #######################################
 
@@ -29,8 +29,10 @@ TARGET_LINK_LIBRARIES( runNHSF ${OpenCV_LIBS} recognitionEngine )
 ############ Directories ##############
 #######################################
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/recognitionEngine")
+INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gameLogic")
 
 ADD_SUBDIRECTORY(recognitionEngine)
+ADD_SUBDIRECTORY(gameLogic)
 
 #######################################
 

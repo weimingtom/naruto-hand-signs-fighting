@@ -24,7 +24,7 @@ ADD_SUBDIRECTORY(engineModules)
 ADD_EXECUTABLE( runRecognitionEngine mainEngine.cxx)
 TARGET_LINK_LIBRARIES( runRecognitionEngine ${OpenCV_LIBS} recognitionEngine engineModules)
 ADD_LIBRARY(recognitionEngine SHARED  RecognitionEngine.h RecognitionEngine.cxx 
-engineModules/EngineModule.h Move.h)
+engineModules/EngineModule.h ../gameLogic/Move.h)
 
 # add the command to generate the source code
 #ADD_CUSTOM_COMMAND (
