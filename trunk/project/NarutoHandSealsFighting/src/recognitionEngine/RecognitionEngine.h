@@ -37,7 +37,7 @@
 #include <opencv/cv.h>
 
 #include "engineModules/EngineModule.h"
-#include "Move.h"
+#include "../gameLogic/Move.h"
 
 #define RE_OUTPUT_IMAGE_DEPTH IPL_DEPTH_32F
 
