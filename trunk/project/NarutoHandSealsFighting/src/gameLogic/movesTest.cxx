@@ -37,7 +37,7 @@ int main(int argc, char* argv[]){
 			cout<<"move: "<<temp->getMoveName()<<"\n";
 			cout<<"type: "<<temp->getType().japName <<", "<<temp->getType().engName <<"\n";
 			cout<<"element: "<<temp->getElementStr()<<"\n";
-			cout<<"difficult:"<<temp->getRankStr()<<"\n";
+			cout<<"difficulty: "<<temp->getRankStr()<<"\n";
 			vector<HandSeal*> s = temp->getMoveSeals();
 			cout<<"seals: ";
 			for(int i=0; i<s.size(); i++){

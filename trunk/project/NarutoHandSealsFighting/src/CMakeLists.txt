@@ -30,9 +30,11 @@ TARGET_LINK_LIBRARIES( runNHSF ${OpenCV_LIBS} recognitionEngine gameLogic)
 #######################################
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/recognitionEngine")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gameLogic")
+INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/templatesCreatoionSection")
 
 ADD_SUBDIRECTORY(recognitionEngine)
 ADD_SUBDIRECTORY(gameLogic)
+ADD_SUBDIRECTORY(templatesCreationSection)
 
 #######################################
 
