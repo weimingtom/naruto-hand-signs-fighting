@@ -2,12 +2,22 @@
 #include "MovesSet.h"
 
 int MovesSet::addMove(Move* m){
-	pair<set<Move*>::iterator,bool> ret;
+//	pair<map<string,Move*>::iterator,bool> ret;
 
-	ret = movesSet.insert(m);
-	if(ret.second == false){
-		return -1;
-	}
+//	ret = movesSet.insert(m->getMoveName(), m);
+	movesSet[m->getMoveName()] = m;
+//	if(ret.second == false){
+//		return -1;
+//	}
 	return 1;
+}
+
+Move* MovesSet::getMove(const char* mName){
+	string k = string(mName);
+	map<string, Move*>::iterator t;
+	t = movesSet.find(k);
+	if(t == movesSet.end() )
+		return NULL;
+	return t->second;
 }
 

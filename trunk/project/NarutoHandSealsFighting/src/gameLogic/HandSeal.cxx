@@ -36,3 +36,10 @@ void HandSeal::setImages(const char* templImagePath, const char* thumbImagePath)
 		cout<< e.err <<"\n";
 	}
 }
+
+void HandSeal::displayTemplateImage(int delay){
+	cvNamedWindow(name.c_str(), CV_WINDOW_AUTOSIZE);
+	cvShowImage(name.c_str(), templateImage);
+	cvWaitKey(delay);
+	cvDestroyWindow(name.c_str());
+}

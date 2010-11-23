@@ -16,20 +16,23 @@
 #ifndef MOVESSET_H_
 #define MOVESSET_H_
 
-#include <set>
+//#include <set> // <- it will not works properly....
+#include <map>
+#include <string>
 #include "Move.h"
 
 using namespace std;
 
 class MovesSet{
-	set<Move*> movesSet;
+	map<string,Move*> movesSet;
 
 public:
 	MovesSet(){};
 
 	int addMove(Move* m);
+	Move* getMove(const char* moveName);
 
-    set<Move*> getMoveSet() const
+    map<string,Move*> getMoveSet() const
     {
         return movesSet;
     }

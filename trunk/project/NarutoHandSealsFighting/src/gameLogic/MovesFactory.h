@@ -24,7 +24,6 @@
 #include "tinyxml/tinyxml.h"
 
 #include "MovesFactoryAbstract.h"
-//#include "MovesSettings.h"
 #include "Move.h"
 
 class MovesFactory : public MovesFactoryAbstract {

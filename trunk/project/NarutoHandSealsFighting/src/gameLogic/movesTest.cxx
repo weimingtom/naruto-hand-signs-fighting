@@ -24,6 +24,7 @@ int main(int argc, char* argv[]){
 	MovesSet myMoveSet;
 	SealsMap smap;
 	Move* temp;
+	const char* s;
 	sealsFactory->buildSealsMap(&smap);
 	movesFactory->buildMovesSet(&myMoveSet, &smap);
 	cout<<"**********\n";
@@ -31,9 +32,9 @@ int main(int argc, char* argv[]){
 	cout<<"**********\n";
 
 	if(myMoveSet.getMoveSet().size()>0){
-		for(set<Move*>::iterator it = myMoveSet.getMoveSet().begin();
+		for(map<string,Move*>::iterator it = myMoveSet.getMoveSet().begin();
 				it != myMoveSet.getMoveSet().end(); it++){
-			temp = *it;
+			temp = it->second;
 			cout<<"move: "<<temp->getMoveName()<<"\n";
 			cout<<"type: "<<temp->getType().japName <<", "<<temp->getType().engName <<"\n";
 			cout<<"element: "<<temp->getElementStr()<<"\n";
@@ -48,6 +49,34 @@ int main(int argc, char* argv[]){
 	}else{
 		cout<<"empty move set\n";
 	}
+	cout<<"**********\n";
+
+	cout<<"Testing the finder method\n";
+	s = "balubba";
+	cout<<"try with "<<s<<" ... returned: ";
+	fflush(stdout);
+	temp =myMoveSet.getMove(s);
+	if(temp != NULL)
+		cout<<temp->getMoveName();
+	else
+		cout<<"NULL ";
+	cout<<"must be NULL... "<< "\n";
+
+	s = "Lightning Blade";
+	cout<<"try with "<<s<<" ... returned: ";
+	temp = myMoveSet.getMove(s);
+	if(temp != NULL)
+		cout<<temp->getMoveName();
+	else
+		cout<<"NULL ";
+	cout<<" must be "<<s<<"\n";
+	cout<<"**********\n";
+	cout<<"Let's now see the seals of the extracted move: ... \n";
+	for(int i=0; i<temp->getMoveSeals().size(); i++){
+		cout<<i+1<<") is: "<<temp->getMoveSeals().at(i)->getName()<<"\n";
+		temp->getMoveSeals().at(i)->displayTemplateImage(3000);
+	}
+	cout<<"done... wasn't it sweet?!?! =) \n";
 
 	cout<<"**********\n";
 

@@ -39,6 +39,7 @@ int main(int argc, char* argv[]){
 				hs->getTemplateImagePath()<<"|"<<
 				hs->getThumbnailImagePath()<<
 				"\n";
+		hs->displayTemplateImage(3000);
 	}
 	cout<<"end\n";
 	cout<<"**********\n";

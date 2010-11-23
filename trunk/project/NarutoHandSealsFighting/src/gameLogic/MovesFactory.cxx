@@ -11,8 +11,7 @@
 #include <iostream>
 
 #include "MovesFactory.h"
-
-#define XML_FILE "Moves.xml"
+#include "MovesFactorySettings.h"
 
 int usingTinyxml(MovesSet* mSet,  SealsMap* sm);
 
@@ -69,7 +68,9 @@ int usingTinyxml(MovesSet* mSet,  SealsMap* sm){
 			// should always have a valid root but handle gracefully if it does
 			if (!pElem) return -1;
 			//		name=pElem->Value();
-			mTemp->setMoveName(pElem->FirstChild()->Value());
+			//We must clean the quotes "..." from the xml file
+			string filter = string(pElem->FirstChild()->Value());
+			mTemp->setMoveName(filter.substr(1, filter.length()-2).c_str());
 //			cout<<pElem->Value()<<" "<<pElem->FirstChild()->Value()<<"\n";
 
 		}

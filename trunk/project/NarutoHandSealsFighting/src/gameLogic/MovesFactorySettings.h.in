@@ -1,0 +1,7 @@
+//"Moves.xml"
+#ifndef MOVES_FACTORY_SETTINGS_H
+#define MOVES_FACTORY_SETTINGS_H
+
+#define XML_FILE "@XML_FILE@"
+
+#endif
