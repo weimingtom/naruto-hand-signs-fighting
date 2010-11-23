@@ -12,9 +12,20 @@ TARGET_LINK_LIBRARIES(gameLogic tinyxml)
 ADD_DEPENDENCIES(gameLogic SealsSettings.h)
 ADD_DEPENDENCIES(gameLogic MovesSettings.h)
 ADD_DEPENDENCIES(gameLogic SealsFactoryAbstract.h)
-FILE(COPY Moves.xml DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-FILE(COPY Moves.dtd DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+FILE(COPY Moves.xml DESTINATION ${PROJECT_BINARY_DIR}/gameLogic)
+FILE(COPY Moves.dtd DESTINATION ${PROJECT_BINARY_DIR}/gameLogic)
 
+######################
+###### XML_FILE ######
+SET(XML_FILE ${PROJECT_BINARY_DIR}/gameLogic/Moves.xml)
+
+configure_file (
+  "${PROJECT_SOURCE_DIR}/gameLogic/MovesFactorySettings.h.in"
+  "${PROJECT_BINARY_DIR}/gameLogic/MovesFactorySettings.h"
+)
+
+######################
+# Test Executables ##
 ADD_EXECUTABLE( sealsTest sealsTest.cxx)
 TARGET_LINK_LIBRARIES( sealsTest ${OpenCV_LIBS} gameLogic)
 

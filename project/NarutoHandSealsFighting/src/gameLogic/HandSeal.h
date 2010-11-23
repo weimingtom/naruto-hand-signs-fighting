@@ -35,6 +35,7 @@ public:
 	HandSeal(const char* m, const char* jap, const char* nameKey, int i);
 
 	void setImages(const char* templateImagePath, const char* thumbnailsImagePath);
+	void displayTemplateImage(int delay);
 
     string getTemplateImagePath() const
     {

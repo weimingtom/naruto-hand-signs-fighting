@@ -7,21 +7,21 @@
 
 #include "SealsSettings.h"
 
-const string TEMPLATE_PATH("../../bin/movesTemplates");
+const string TEMPLATE_PATH("../movesTemplates/");
 
 HandSealStruct globSeals[] = {
-		"tiger", "Tora", "January", "tiger-template.png", "",
-		"hare", "U", "February", "", "",
+		"tiger", "Tora", "January", "../movesTemplates/tiger.png", "",
+		"hare", "U", "February", "../movesTemplates/hare.png", "",
 		"dragon", "Tatsu", "March", "", "",
-		"snake", "Mi", "April", "", "",
-		"horse", "Uma", "May", "", "",
+		"snake", "Mi", "April", "../movesTemplates/snake.png", "",
+		"horse", "Uma", "May", "../movesTemplates/horse.pgn", "",
 		"ram", "Hitsuji", "June", "", "",
-		"monkey", "Saru", "July", "", "",
+		"monkey", "Saru", "July", "../movesTemplates/monkey.png", "",
 		"bird", "Tori", "August", "", "",
 		"dog", "Inu", "September", "", "",
 		"boar", "I", "October", "", "",
-		"rat", "Ne", "November", "", "",
-		"cow", "Ushi", "December", "", "",
+		"rat", "Ne", "November", "../movesTemplates/rat.png", "",
+		"cow", "Ushi", "December", "../movesTemplates/cow.png", "",
 };
 
 const char* names[] = { "tiger",

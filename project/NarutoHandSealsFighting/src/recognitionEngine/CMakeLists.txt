@@ -14,6 +14,7 @@ FIND_PACKAGE( OpenCV REQUIRED )
 # so that we will find all *.h files
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}")
 INCLUDE_DIRECTORIES("${PROJECT_SOURCE_DIR}/engineModules")
+INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gameLogic")
 
 ADD_SUBDIRECTORY(engineModules)
 #######################
@@ -22,7 +23,7 @@ ADD_SUBDIRECTORY(engineModules)
 ### Engine Target #####
 #######################
 ADD_EXECUTABLE( runRecognitionEngine mainEngine.cxx)
-TARGET_LINK_LIBRARIES( runRecognitionEngine ${OpenCV_LIBS} recognitionEngine engineModules)
+TARGET_LINK_LIBRARIES( runRecognitionEngine ${OpenCV_LIBS} recognitionEngine engineModules gameLogic)
 ADD_LIBRARY(recognitionEngine SHARED  RecognitionEngine.h RecognitionEngine.cxx 
 engineModules/EngineModule.h ../gameLogic/Move.h)
 

@@ -15,10 +15,13 @@ RecognitionEngine::RecognitionEngine(){
 	temp == NULL;
 }
 
-int RecognitionEngine::process(IplImage* src, IplImage* res){
+int RecognitionEngine::process(const IplImage* src, IplImage* res){
 //	IplImage* temp = cvCreateImage(cvSize(src->width, src->height),
 //			src->depth, src->nChannels);
-	if(temp == NULL)
+	//!!! #REMINDER !!!
+	// each time the process enters this function needs to recreate the
+	// temp image, otherwise we'll get a type check errror!
+//	if(temp == NULL)
 		temp = cvCreateImage(cvSize(src->width, src->height), RE_OUTPUT_IMAGE_DEPTH, src->nChannels);
 
 	for(int i=0; i<modulesArray.size(); i++){
@@ -56,6 +59,10 @@ void RecognitionEngine::removeModule(EngineModule* m){
 		if( modulesArray.at(i)->getModuleID() == targetIndex )
 			modulesArray.erase(it);
 	}
+}
+
+void RecognitionEngine::setCurrentMove(Move* m){
+	currentMove = m;
 }
 
 int RecognitionEngine::evaluate(IplImage* img){

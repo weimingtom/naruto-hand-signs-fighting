@@ -40,15 +40,26 @@
 #include "../gameLogic/Move.h"
 
 #define RE_OUTPUT_IMAGE_DEPTH IPL_DEPTH_32F
+#define RE_INPUT_IMAGE_DEPTH IPL_DEPTH_8U
 
 using namespace std;
 
 class RecognitionEngine{
+	//It the container of all inserted modules
 	std::vector<EngineModule*> modulesArray;
+
+	//Internal variable used in the process phase to pass
+	//image among the modules
 	IplImage* temp;
 
+
+	//This is the current Move to keep track of.
+	//The inserted images are supposed to be part of
+	//the seals need by the currentMove.
+	Move *currentMove;
+
 	int findModuleByID(EngineModule* m);
-	Move *m;
+
 
 public:
 
@@ -63,9 +74,13 @@ public:
 	 * the input image *src, giving as result
 	 * a new image *res
 	 */
-	int process(IplImage* src, IplImage* res);
+	int process(const IplImage* src, IplImage* res);
 
+	// currentMove management
 	void setCurrentMove(Move *m);
+	Move* getCurrentMove(){
+		return currentMove;
+	}
 
 	/**
 	 * Evaluates
