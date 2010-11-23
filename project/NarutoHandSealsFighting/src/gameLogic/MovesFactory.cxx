@@ -12,6 +12,8 @@
 
 #include "MovesFactory.h"
 
+#define XML_FILE "Moves.xml"
+
 int usingTinyxml(MovesSet* mSet,  SealsMap* sm);
 
 MovesFactoryAbstract *movesFactory = new MovesFactory();
@@ -28,7 +30,7 @@ int usingTinyxml(MovesSet* mSet,  SealsMap* sm){
 	MoveElements e;
 	DifficultyRank d;
 
-	TiXmlDocument doc("MovesSeals.xml");
+	TiXmlDocument doc(XML_FILE);
 	if (!doc.LoadFile()) return -1;
 
 	TiXmlHandle hDoc(&doc);

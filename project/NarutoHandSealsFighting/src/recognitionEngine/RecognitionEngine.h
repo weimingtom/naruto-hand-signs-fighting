@@ -48,6 +48,7 @@ class RecognitionEngine{
 	IplImage* temp;
 
 	int findModuleByID(EngineModule* m);
+	Move *m;
 
 public:
 
@@ -64,10 +65,12 @@ public:
 	 */
 	int process(IplImage* src, IplImage* res);
 
+	void setCurrentMove(Move *m);
+
 	/**
 	 * Evaluates
 	 */
-	int evaluate(IplImage* img, Move m);
+	int evaluate(IplImage* img);
 
 }recognitionEngine;
 

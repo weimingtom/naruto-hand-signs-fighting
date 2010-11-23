@@ -1,0 +1,21 @@
+/*
+ ******************************************************
+ * NAME:
+ * templateCreatorLauncher.h
+ ******************************************************
+ * DESCRIPTION:
+ *
+ ******************************************************
+ *	Created on: Nov 22, 2010
+ ******************************************************
+ *  Author: Michele Tamburini
+ *******************************************************
+ *
+ */
+
+#ifndef TEMPLATECREATORLAUNCHER_H_
+#define TEMPLATECREATORLAUNCHER_H_
+
+#cmakedefine DEFAULT_DST_PATH
+
+#endif /* TEMPLATECREATORLAUNCHER_H_ */

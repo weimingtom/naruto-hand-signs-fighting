@@ -57,3 +57,7 @@ void RecognitionEngine::removeModule(EngineModule* m){
 			modulesArray.erase(it);
 	}
 }
+
+int RecognitionEngine::evaluate(IplImage* img){
+//TODO
+}
