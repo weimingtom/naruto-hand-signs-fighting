@@ -48,3 +48,6 @@ ADD_DEPENDENCIES(recognitionEngine engineModules)
 #######################
 ##### Engine Test #####
 #######################
+ADD_EXECUTABLE( reTest reTest.cxx)
+TARGET_LINK_LIBRARIES( reTest ${OpenCV_LIBS} recognitionEngine engineModules gameLogic 
+evaluationFunctions)

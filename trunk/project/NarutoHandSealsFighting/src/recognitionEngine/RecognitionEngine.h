@@ -113,8 +113,8 @@ public:
         this->evaluator = evaluator;
     }
 
-}recognitionEngine;
+};
 
-extern RecognitionEngine recognitionEngine;
+extern RecognitionEngine* recognitionEngine;
 
 #endif /* RECOGNITIONENGINE_H_ */
