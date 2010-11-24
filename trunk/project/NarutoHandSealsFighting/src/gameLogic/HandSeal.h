@@ -19,6 +19,8 @@
 #include <string>
 #include <opencv/cv.h>
 
+#define DEFAULT_INPUT_DEPTH IPL_DEPTH_8U
+
 using namespace std;
 
 class HandSeal{

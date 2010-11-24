@@ -27,20 +27,31 @@
 //#include "engineModules/ContoursFinderEM.h"
 //#include "engineModules/BlurEM.h"
 //////////////////
+
+//////////////////
+//Evaluation functions
+//////////////////
+#include "evaluationFunctions/MulEvaluator.h"
+//////////////////
+
 #include "../gameLogic/SealsFactory.h"
 #include "../gameLogic/SealsMap.h"
 #include "../gameLogic/MovesFactory.h"
 #include "../gameLogic/MovesSet.h"
 
+#include "../DebugPrint.h"
+
 #define TEMPLATE_WIN "Template"
 #define INPUT_WIN "Input"
 #define TEMPLATE_NAME "TEMPLATE-tiger.png"
+
+
 
 void initEngine();
 
 static bool CREATE_TEMPLATE = true;
 
-HistogramEM *hist = new HistogramEM();
+//HistogramEM *hist = new HistogramEM();
 //////////////////////////
 /// CRUCIAL VARIABLES ////
 MovesSet myMoveSet;
@@ -69,9 +80,9 @@ int main(int argc, char* argv[] ){
 		exit(0);
 	}
 	//If you want to display the histogram...
-	//	hist->createHistogram(img);
-	//	cvNamedWindow("histWin", CV_WINDOW_AUTOSIZE);
-	//	hist->displayHistogram("histWin");
+//		hist->createHistogram(img);
+//		cvNamedWindow("histWin", CV_WINDOW_AUTOSIZE);
+//		hist->displayHistogram("histWin");
 
 
 	////////////////////////
@@ -83,8 +94,9 @@ int main(int argc, char* argv[] ){
 	//Then let's define the currentMove
 	////////////////////////
 	recognitionEngine.setCurrentMove(myMoveSet.getMove("Lightning Blade"));
-	cout<<"current move is: "<<recognitionEngine.getCurrentMove()->getMoveName()<<"\n";
-	fflush(stdout);
+//	cout<<"current move is: "<<recognitionEngine.getCurrentMove()->getMoveName()<<"\n";
+	debugPrint("current move is %s \n", recognitionEngine.getCurrentMove()->getMoveName().c_str());
+	recognitionEngine.setEvaluatorFunction(mulEvaluator);
 
 	////////////////////////
 	//For all inserted images...
@@ -112,7 +124,7 @@ int main(int argc, char* argv[] ){
 		//		cvSaveImage(TEMPLATE_NAME, res);
 		//	}
 
-		//	recognitionEngine.evaluate(res, tiger);
+		cout<<"score is: "<<recognitionEngine.evaluate(res, i-1)<<"\n";
 
 		cvNamedWindow(TEMPLATE_WIN, CV_WINDOW_AUTOSIZE);
 		cvMoveWindow(TEMPLATE_WIN, 50, 50);
@@ -124,15 +136,17 @@ int main(int argc, char* argv[] ){
 		cvShowImage(TEMPLATE_WIN,
 				recognitionEngine.getCurrentMove()->getMoveSeals().at(i-1)->getTemplateImage());
 		cvShowImage(INPUT_WIN, res);
-		cvWaitKey(3000);
-
+		cvWaitKey(10000);
 	}
+
+	debugPrint("out of cycle\n");
 
 	cvReleaseImage(&img);
 	cvReleaseImage(&res);
 	cvReleaseImage(&temp);
-
 	cvDestroyAllWindows();
+
+	debugPrint("before return\n");
 	return 0;
 }
 

@@ -37,6 +37,7 @@
 #include <opencv/cv.h>
 
 #include "engineModules/EngineModule.h"
+#include "evaluationFunctions/EvaluatorFunctionTemplate.h"
 #include "../gameLogic/Move.h"
 
 #define RE_OUTPUT_IMAGE_DEPTH IPL_DEPTH_32F
@@ -47,6 +48,9 @@ using namespace std;
 class RecognitionEngine{
 	//It the container of all inserted modules
 	std::vector<EngineModule*> modulesArray;
+
+	//PATTERN: Template Method
+	EvaluatorFunctionTemplate * evaluator;
 
 	//Internal variable used in the process phase to pass
 	//image among the modules
@@ -64,6 +68,12 @@ class RecognitionEngine{
 public:
 
 	RecognitionEngine();
+	RecognitionEngine(EvaluatorFunctionTemplate* eval);
+	~RecognitionEngine(){
+		temp = NULL;
+		currentMove = NULL;
+		evaluator = NULL;
+	}
 
 	void addModule(EngineModule* m);
 
@@ -76,6 +86,8 @@ public:
 	 */
 	int process(const IplImage* src, IplImage* res);
 
+	void setEvaluatorFunction(EvaluatorFunctionTemplate *eval);
+
 	// currentMove management
 	void setCurrentMove(Move *m);
 	Move* getCurrentMove(){
@@ -85,7 +97,21 @@ public:
 	/**
 	 * Evaluates
 	 */
-	int evaluate(IplImage* img);
+	int evaluate(IplImage* img, int sealIndex);
+    EvaluatorFunctionTemplate *getEvaluator() const
+    {
+        return evaluator;
+    }
+
+    IplImage *getTemp() const
+    {
+        return temp;
+    }
+
+    void setEvaluator(EvaluatorFunctionTemplate *evaluator)
+    {
+        this->evaluator = evaluator;
+    }
 
 }recognitionEngine;
 

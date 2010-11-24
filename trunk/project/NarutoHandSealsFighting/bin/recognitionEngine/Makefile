@@ -146,6 +146,30 @@ runRecognitionEngine/fast:
 	cd /home/michele/workspace/NarutoHandSealsFighting/bin && $(MAKE) -f recognitionEngine/CMakeFiles/runRecognitionEngine.dir/build.make recognitionEngine/CMakeFiles/runRecognitionEngine.dir/build
 .PHONY : runRecognitionEngine/fast
 
+ImageProcessing.o: ImageProcessing.cxx.o
+.PHONY : ImageProcessing.o
+
+# target to build an object file
+ImageProcessing.cxx.o:
+	cd /home/michele/workspace/NarutoHandSealsFighting/bin && $(MAKE) -f recognitionEngine/CMakeFiles/recognitionEngine.dir/build.make recognitionEngine/CMakeFiles/recognitionEngine.dir/ImageProcessing.cxx.o
+.PHONY : ImageProcessing.cxx.o
+
+ImageProcessing.i: ImageProcessing.cxx.i
+.PHONY : ImageProcessing.i
+
+# target to preprocess a source file
+ImageProcessing.cxx.i:
+	cd /home/michele/workspace/NarutoHandSealsFighting/bin && $(MAKE) -f recognitionEngine/CMakeFiles/recognitionEngine.dir/build.make recognitionEngine/CMakeFiles/recognitionEngine.dir/ImageProcessing.cxx.i
+.PHONY : ImageProcessing.cxx.i
+
+ImageProcessing.s: ImageProcessing.cxx.s
+.PHONY : ImageProcessing.s
+
+# target to generate assembly for a file
+ImageProcessing.cxx.s:
+	cd /home/michele/workspace/NarutoHandSealsFighting/bin && $(MAKE) -f recognitionEngine/CMakeFiles/recognitionEngine.dir/build.make recognitionEngine/CMakeFiles/recognitionEngine.dir/ImageProcessing.cxx.s
+.PHONY : ImageProcessing.cxx.s
+
 RecognitionEngine.o: RecognitionEngine.cxx.o
 .PHONY : RecognitionEngine.o
 
@@ -206,6 +230,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... recognitionEngine"
 	@echo "... runRecognitionEngine"
+	@echo "... ImageProcessing.o"
+	@echo "... ImageProcessing.i"
+	@echo "... ImageProcessing.s"
 	@echo "... RecognitionEngine.o"
 	@echo "... RecognitionEngine.i"
 	@echo "... RecognitionEngine.s"

@@ -24,14 +24,19 @@ HandSeal::HandSeal(const char* m, const char* jap, const char* nameKey, int i){
 }
 
 void HandSeal::setImages(const char* templImagePath, const char* thumbImagePath){
+	IplImage *temp;
 	try{
 		templateImagePath = string(templImagePath);
 		thumbnailImagePath = string(thumbImagePath);
-		if(templImagePath != NULL)
-			templateImage = cvLoadImage(templImagePath, CV_LOAD_IMAGE_GRAYSCALE);
-		if(thumbImagePath != NULL)
+		if(templImagePath != NULL){
+			templateImage= cvLoadImage(templImagePath, CV_LOAD_IMAGE_GRAYSCALE);
+//			templateImage = cvCreateImage(cvSize(temp->width, temp->height),DEFAULT_INPUT_DEPTH,1);
+//			cvConvertScale(temp, templateImage);
+		}
+		if(thumbImagePath != NULL){
 			thumbnailImage = cvLoadImage(thumbImagePath, CV_LOAD_IMAGE_GRAYSCALE);
-
+		}
+//		cout<<"loaded images of: "<<name<<"\n";
 	}catch(cv::Exception e){
 		cout<< e.err <<"\n";
 	}
