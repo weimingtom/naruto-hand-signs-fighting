@@ -9,8 +9,9 @@
 #include <algorithm>
 #include "RecognitionEngine.h"
 
-
 using namespace std;
+
+RecognitionEngine *recognitionEngine = new RecognitionEngine();
 
 RecognitionEngine::RecognitionEngine(){
 	temp == NULL;

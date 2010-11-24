@@ -93,10 +93,10 @@ int main(int argc, char* argv[] ){
 	////////////////////////
 	//Then let's define the currentMove
 	////////////////////////
-	recognitionEngine.setCurrentMove(myMoveSet.getMove("Lightning Blade"));
-//	cout<<"current move is: "<<recognitionEngine.getCurrentMove()->getMoveName()<<"\n";
-	debugPrint("current move is %s \n", recognitionEngine.getCurrentMove()->getMoveName().c_str());
-	recognitionEngine.setEvaluatorFunction(mulEvaluator);
+	recognitionEngine->setCurrentMove(myMoveSet.getMove("Lightning Blade"));
+//	cout<<"current move is: "<<recognitionEngine->getCurrentMove()->getMoveName()<<"\n";
+	debugPrint("current move is %s \n", recognitionEngine->getCurrentMove()->getMoveName().c_str());
+	recognitionEngine->setEvaluatorFunction(mulEvaluator);
 
 	////////////////////////
 	//For all inserted images...
@@ -104,7 +104,7 @@ int main(int argc, char* argv[] ){
 	for(int i=1; i<argc; i++){
 		cout<<"Input of "<<argv[i]<<"\n";
 		cout<<"template image is: "<<
-						recognitionEngine.getCurrentMove()->getMoveSeals().at(i-1)->getName()<<"\n";
+						recognitionEngine->getCurrentMove()->getMoveSeals().at(i-1)->getName()<<"\n";
 
 		temp = cvLoadImage(argv[i], CV_LOAD_IMAGE_GRAYSCALE);
 		img = cvCreateImage(cvSize(temp->width, temp->height), IPL_DEPTH_8U, 1);
@@ -115,7 +115,7 @@ int main(int argc, char* argv[] ){
 		/////////////////////////////////////
 		//Processing phase:
 		cout<<"Starting process\n";
-		recognitionEngine.process(img, res);
+		recognitionEngine->process(img, res);
 		///////////////////////////////////
 
 		//Now there is the template creator... use that instead
@@ -124,7 +124,7 @@ int main(int argc, char* argv[] ){
 		//		cvSaveImage(TEMPLATE_NAME, res);
 		//	}
 
-		cout<<"score is: "<<recognitionEngine.evaluate(res, i-1)<<"\n";
+		cout<<"score is: "<<recognitionEngine->evaluate(res, i-1)<<"\n";
 
 		cvNamedWindow(TEMPLATE_WIN, CV_WINDOW_AUTOSIZE);
 		cvMoveWindow(TEMPLATE_WIN, 50, 50);
@@ -134,7 +134,7 @@ int main(int argc, char* argv[] ){
 		cvMoveWindow(INPUT_WIN, 700, 50);
 
 		cvShowImage(TEMPLATE_WIN,
-				recognitionEngine.getCurrentMove()->getMoveSeals().at(i-1)->getTemplateImage());
+				recognitionEngine->getCurrentMove()->getMoveSeals().at(i-1)->getTemplateImage());
 		cvShowImage(INPUT_WIN, res);
 		cvWaitKey(10000);
 	}
@@ -154,22 +154,22 @@ int main(int argc, char* argv[] ){
 void initEngine(){
 
 	//equalization
-	recognitionEngine.addModule(new HistogramEM()); //<- remember to uncomment
+	recognitionEngine->addModule(new HistogramEM()); //<- remember to uncomment
 
 	//Sobel
-	//	recognitionEngine.addModule(new SobelEM(7, 2, 2));
-	recognitionEngine.addModule(new SobelEM(CV_SCHARR, 1, 0)); //<-
-	//	recognitionEngine.addModule(new SobelEM(CV_SCHARR, 0, 1));
+	//	recognitionEngine->addModule(new SobelEM(7, 2, 2));
+	recognitionEngine->addModule(new SobelEM(CV_SCHARR, 1, 0)); //<-
+	//	recognitionEngine->addModule(new SobelEM(CV_SCHARR, 0, 1));
 
 	//Canny
-	//	recognitionEngine.addModule(new CannyEM(5, 200, 40));
+	//	recognitionEngine->addModule(new CannyEM(5, 200, 40));
 
 	//blurring
-	recognitionEngine.addModule(new BlurEM(CV_GAUSSIAN,3,3)); //<-(?)
+	recognitionEngine->addModule(new BlurEM(CV_GAUSSIAN,3,3)); //<-(?)
 
 	//Laplacian
-	recognitionEngine.addModule(new LaplacianEM(7)); //<-
+	recognitionEngine->addModule(new LaplacianEM(7)); //<-
 
 	//contours extraction
-	//	recognitionEngine.addModule(new ContoursFinderEM(120));
+	//	recognitionEngine->addModule(new ContoursFinderEM(120));
 }
