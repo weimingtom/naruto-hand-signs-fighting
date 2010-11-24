@@ -28,52 +28,51 @@ EvaluatorFunctionTemplate* mulEvaluator = new MulEvaluator();
 
 int MulEvaluator::evaluate(IplImage* img, Move* m, int index){
 	int ret, wPixelsTemplate, wPixelsRes;
+	float tempRes;
 	//!!! Remember !!!
 	//the triple (src, mul, dst) must have the same width, height and depth
 	//get the template image of the indexed seal into the move
-	IplImage* templateImg = m->getMoveSeals().at(index)->getTemplateImage();
+	IplImage* originalTemplateImg = m->getMoveSeals().at(index)->getTemplateImage();
 
 	//setting the ROI in the input img of the dimensions of the template
-	cvSetImageROI(img, cvRect( img->width/2 - templateImg->width/2,
-			img->height/2 - templateImg->height/2,
-			templateImg->width, templateImg->height));
+	cvSetImageROI(img, cvRect( img->width/2 - originalTemplateImg->width/2,
+			img->height/2 - originalTemplateImg->height/2,
+			originalTemplateImg->width, originalTemplateImg->height));
 
 	//create the temp matrixes for the multiplication and the output
 
-	IplImage* tempOut = cvCreateImage(cvSize(templateImg->width, templateImg->height),
+	IplImage* tempOut = cvCreateImage(
+			cvSize(originalTemplateImg->width, originalTemplateImg->height),
 			RE_OUTPUT_IMAGE_DEPTH, 1);
-	IplImage* tempMul = cvCreateImage(cvSize(templateImg->width, templateImg->height),
+	IplImage* tempMul = cvCreateImage(
+			cvSize(originalTemplateImg->width, originalTemplateImg->height),
+			RE_OUTPUT_IMAGE_DEPTH, 1);
+
+	//conversion from DEPTH_8U to DEPTH_32F
+	convertDepth_8U_to_32F(img, tempMul);
+
+	IplImage* tempTemplate = cvCreateImage(cvSize(originalTemplateImg->width, originalTemplateImg->height),
 			RE_OUTPUT_IMAGE_DEPTH, 1);
 	//conversion from DEPTH_8U to DEPTH_32F
-	convertDepth8UTo32F(img, tempMul);
-	cvConvertScale(img, tempMul, 0.0039215, 0);
-//	cvNot(tempMul, tempMul);
+	convertDepth_8U_to_32F(originalTemplateImg, tempTemplate);
 
-	IplImage* t = cvCreateImage(cvSize(templateImg->width, templateImg->height),
-			RE_OUTPUT_IMAGE_DEPTH, 1);
-	//conversion from DEPTH_8U to DEPTH_32F
-	convertDepth8UTo32F(templateImg, t);
-//	cvConvertScale(templateImg, t, 0.0039215, 0);
+//	cvMul(t, tempMul, tempOut);
+	cvAnd(tempTemplate, tempMul, tempOut, originalTemplateImg);
 
-//	IplImage* ones =cvCreateImage(cvSize(templateImg->width, templateImg->height),
-//			RE_OUTPUT_IMAGE_DEPTH, 1);
-//	cvSetZero(ones);
-//	cvNot(ones, ones);
+//	displayResult(tempMul, t, tempOut, 60000);
 
-
-	cvMul(t, tempMul, tempOut);
-//	cvAnd(t,tempMul, tempOut);
-//	cvOr(t, tempMul, tempOut);
-	displayResult(tempMul, t, tempOut, 20000);
 	//If we don't release the ROI it will display it instead of the "total" image
 //	cvResetImageROI(img);
 
-	wPixelsTemplate = cvCountNonZero(templateImg);
+	wPixelsTemplate = cvCountNonZero(originalTemplateImg);
+	cvThreshold(tempOut, tempOut, 0.2, 1, CV_THRESH_BINARY);
 	wPixelsRes = cvCountNonZero(tempOut);
-	cout<<"wp-teplate: "<<wPixelsTemplate<<" wp-res: "<<wPixelsRes<<"\n";
-	ret = wPixelsRes/wPixelsTemplate * 10;
 
-	cvConvertScale(tempOut, img);
+	tempRes =  float(wPixelsRes)/float(wPixelsTemplate);
+	ret = tempRes * 100;
+	cout<<"wp-teplate: "<<wPixelsTemplate<<" wp-res: "<<wPixelsRes<<" div: "<<tempRes<<"\n";
+
+//	cvConvertScale(tempOut, img);
 
 //	cvReleaseImage(&temp);
 	return ret;

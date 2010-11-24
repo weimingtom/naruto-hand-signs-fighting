@@ -1,7 +1,7 @@
 /*
  ******************************************************
  * NAME:
- * ImageProcessing.h
+ * reTest.cxx
  ******************************************************
  * DESCRIPTION:
  *
@@ -13,12 +13,7 @@
  *
  */
 
-#ifndef IMAGEPROCESSING_H_
-#define IMAGEPROCESSING_H_
+int main(int argc, char* argv[]){
 
-#include <opencv/cv.h>
-
-void convertDepth_8U_to_32F(const IplImage* src, IplImage* dst);
-
-
-#endif /* IMAGEPROCESSING_H_ */
+	return 0;
+}
