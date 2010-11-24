@@ -44,3 +44,7 @@ engineModules/EngineModule.h ../gameLogic/Move.h)
 ADD_DEPENDENCIES(recognitionEngine EngineModule.h)
 ADD_DEPENDENCIES(recognitionEngine engineModules)
 #######################
+
+#######################
+##### Engine Test #####
+#######################

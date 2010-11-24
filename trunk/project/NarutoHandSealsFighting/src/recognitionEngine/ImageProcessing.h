@@ -18,7 +18,7 @@
 
 #include <opencv/cv.h>
 
-void convertDepth8UTo32F(const IplImage* src, IplImage* dst);
+void convertDepth_8U_to_32F(const IplImage* src, IplImage* dst);
 
 
 #endif /* IMAGEPROCESSING_H_ */

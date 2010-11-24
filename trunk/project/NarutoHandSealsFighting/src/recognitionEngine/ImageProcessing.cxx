@@ -15,6 +15,6 @@
 
 #include "ImageProcessing.h"
 
-void convertDepth8UTo32F(const IplImage* src, IplImage* dst){
+void convertDepth_8U_to_32F(const IplImage* src, IplImage* dst){
 	cvConvertScale(src, dst, 0.0039215, 0);
 }
