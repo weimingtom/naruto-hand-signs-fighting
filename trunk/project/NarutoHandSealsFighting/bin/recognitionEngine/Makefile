@@ -119,6 +119,20 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+recognitionEngine/CMakeFiles/reTest.dir/rule:
+	cd /home/michele/workspace/NarutoHandSealsFighting/bin && $(MAKE) -f CMakeFiles/Makefile2 recognitionEngine/CMakeFiles/reTest.dir/rule
+.PHONY : recognitionEngine/CMakeFiles/reTest.dir/rule
+
+# Convenience name for target.
+reTest: recognitionEngine/CMakeFiles/reTest.dir/rule
+.PHONY : reTest
+
+# fast build rule for target.
+reTest/fast:
+	cd /home/michele/workspace/NarutoHandSealsFighting/bin && $(MAKE) -f recognitionEngine/CMakeFiles/reTest.dir/build.make recognitionEngine/CMakeFiles/reTest.dir/build
+.PHONY : reTest/fast
+
+# Convenience name for target.
 recognitionEngine/CMakeFiles/recognitionEngine.dir/rule:
 	cd /home/michele/workspace/NarutoHandSealsFighting/bin && $(MAKE) -f CMakeFiles/Makefile2 recognitionEngine/CMakeFiles/recognitionEngine.dir/rule
 .PHONY : recognitionEngine/CMakeFiles/recognitionEngine.dir/rule
@@ -218,6 +232,30 @@ mainEngine.cxx.s:
 	cd /home/michele/workspace/NarutoHandSealsFighting/bin && $(MAKE) -f recognitionEngine/CMakeFiles/runRecognitionEngine.dir/build.make recognitionEngine/CMakeFiles/runRecognitionEngine.dir/mainEngine.cxx.s
 .PHONY : mainEngine.cxx.s
 
+reTest.o: reTest.cxx.o
+.PHONY : reTest.o
+
+# target to build an object file
+reTest.cxx.o:
+	cd /home/michele/workspace/NarutoHandSealsFighting/bin && $(MAKE) -f recognitionEngine/CMakeFiles/reTest.dir/build.make recognitionEngine/CMakeFiles/reTest.dir/reTest.cxx.o
+.PHONY : reTest.cxx.o
+
+reTest.i: reTest.cxx.i
+.PHONY : reTest.i
+
+# target to preprocess a source file
+reTest.cxx.i:
+	cd /home/michele/workspace/NarutoHandSealsFighting/bin && $(MAKE) -f recognitionEngine/CMakeFiles/reTest.dir/build.make recognitionEngine/CMakeFiles/reTest.dir/reTest.cxx.i
+.PHONY : reTest.cxx.i
+
+reTest.s: reTest.cxx.s
+.PHONY : reTest.s
+
+# target to generate assembly for a file
+reTest.cxx.s:
+	cd /home/michele/workspace/NarutoHandSealsFighting/bin && $(MAKE) -f recognitionEngine/CMakeFiles/reTest.dir/build.make recognitionEngine/CMakeFiles/reTest.dir/reTest.cxx.s
+.PHONY : reTest.cxx.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -227,6 +265,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... package"
 	@echo "... package_source"
+	@echo "... reTest"
 	@echo "... rebuild_cache"
 	@echo "... recognitionEngine"
 	@echo "... runRecognitionEngine"
@@ -239,6 +278,9 @@ help:
 	@echo "... mainEngine.o"
 	@echo "... mainEngine.i"
 	@echo "... mainEngine.s"
+	@echo "... reTest.o"
+	@echo "... reTest.i"
+	@echo "... reTest.s"
 .PHONY : help
 
 
