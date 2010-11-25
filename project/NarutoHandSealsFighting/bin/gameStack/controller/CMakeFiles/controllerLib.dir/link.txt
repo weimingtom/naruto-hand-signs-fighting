@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC   -shared -Wl,-soname,libcontrollerLib.so -o libcontrollerLib.so CMakeFiles/controllerLib.dir/AbstractController.cxx.o CMakeFiles/controllerLib.dir/MainMenuController.cxx.o CMakeFiles/controllerLib.dir/OptionsMenuController.cxx.o -L/usr/local/lib /usr/local/lib/libSDLmain.a /usr/local/lib/libSDL.so -lpthread -lSDLmain -Wl,-rpath,/usr/local/lib 

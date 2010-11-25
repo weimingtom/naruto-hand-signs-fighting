@@ -81,6 +81,8 @@ evaluationFunctions_OBJECTS = \
 evaluationFunctions_EXTERNAL_OBJECTS =
 
 recognitionEngine/evaluationFunctions/libevaluationFunctions.so: recognitionEngine/evaluationFunctions/CMakeFiles/evaluationFunctions.dir/MulEvaluator.cxx.o
+recognitionEngine/evaluationFunctions/libevaluationFunctions.so: /usr/local/lib/libSDLmain.a
+recognitionEngine/evaluationFunctions/libevaluationFunctions.so: /usr/local/lib/libSDL.so
 recognitionEngine/evaluationFunctions/libevaluationFunctions.so: recognitionEngine/evaluationFunctions/CMakeFiles/evaluationFunctions.dir/build.make
 recognitionEngine/evaluationFunctions/libevaluationFunctions.so: recognitionEngine/evaluationFunctions/CMakeFiles/evaluationFunctions.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX shared library libevaluationFunctions.so"
