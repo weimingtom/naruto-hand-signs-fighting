@@ -15,10 +15,28 @@ FIND_PACKAGE( OpenCV REQUIRED )
 FIND_PACKAGE( SDL REQUIRED)
 
 ########################################
+############# OPENCV CHECK #############
+########################################
+#SET(OpenCV_FOUND false)
+IF (NOT OpenCV_FOUND)
+	MESSAGE(FATAL_ERROR "OpenCV library not found!
+	You can visit the official site: 
+	http://sourceforge.net/projects/opencvlibrary/ 
+	to get a working version.
+	Please be sure that all OpenCV tests are working properly in order to launch the current application." )
+ENDIF (NOT OpenCV_FOUND)
+
+########################################
 ############### SDL CHECK ##############
 ########################################
+#SET(SDL_FOUND false)
 IF (NOT SDL_FOUND)
-	MESSAGE(FATAL_ERROR "SDL not found!")
+	MESSAGE(FATAL_ERROR "SDL not found!
+	You can visit the official site 
+	http://www.libsdl.org/download-1.2.php
+	to get a working version, or use the command 'aptitude install' or 'apt-get install' with the following packages:
+	libsdl-dev libsdl1.2-all libsdl1.2-dev libsdl-image1.2 libsdl-image1.2-dev libsdl-ttf2.0-0 libsdl-ttf2.0-dev
+	")
 ENDIF (NOT SDL_FOUND)
 
 INCLUDE_DIRECTORIES(include ${SDL_INCLUDE_DIR})
@@ -39,27 +57,30 @@ set (NHSF_VERSION_MINOR 0)
 ############ Main Target ##############
 #######################################
 ADD_EXECUTABLE( runNHSF main-NHSF.cxx)
-TARGET_LINK_LIBRARIES( runNHSF ${OpenCV_LIBS} recognitionEngine gameLogic 
-gameStack menuLib controllerLib)
+TARGET_LINK_LIBRARIES( runNHSF ${OpenCV_LIBS}
+ recognitionEngine gameLogic 
+gameStack menuLib controllerLib guichan guichan_sdl)
 
 #######################################
 
 #######################################
 ############ Directories ##############
 #######################################
+
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/recognitionEngine")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gameLogic")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/templatesCreatoionSection")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gameStack")
-INCLUDE_DIRECTORIES(${SDL_INCLUDE_DIR})
-
-#INCLUDE(${CMAKE_ROOT}/Modules/FindSDL.cmake)
-
+INCLUDE_DIRECTORIES("${SDL_INCLUDE_DIR}")
+#INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gui")
+#INCLUDE_DIRECTORIES("${PROJECT_BINARY_BIR}/gui/guichan-0.8.2/include")
+#INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/gui/guichan-0.8.2/include/guichan/sdl)
 
 ADD_SUBDIRECTORY(recognitionEngine)
 ADD_SUBDIRECTORY(gameLogic)
 ADD_SUBDIRECTORY(templatesCreationSection)
 ADD_SUBDIRECTORY(gameStack)
+ADD_SUBDIRECTORY(gui)
 
 #######################################
 
