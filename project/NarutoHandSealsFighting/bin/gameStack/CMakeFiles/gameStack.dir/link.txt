@@ -1,1 +1,0 @@
-/usr/bin/c++  -fPIC   -shared -Wl,-soname,libgameStack.so -o libgameStack.so CMakeFiles/gameStack.dir/GameMachine.cxx.o CMakeFiles/gameStack.dir/FactoryGameMachine.cxx.o -L/usr/local/lib /usr/local/lib/libSDLmain.a /usr/local/lib/libSDL.so -lpthread -lSDLmain -Wl,-rpath,/usr/local/lib 
