@@ -15,6 +15,7 @@
 
 #include "AbstractFactory.h"
 
+
 AbstractFactory::AbstractFactory() {
 	screenWidth = DEFAULT_SCREEN_WIDTH;
 	screenHeight = DEFAULT_SCREEN_HEIGHT;
@@ -77,8 +78,9 @@ void AbstractFactory::init()
 	gui->setTop(panel);
 
 	// Now we load the font used in this example.
-	font = new gcn::ImageFont("fixedfont.bmp",
-			" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+	font = new gcn::ImageFont("rpgfont.bmp",
+			" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&`'*#=[]\"");
+
 	// Widgets may have a global font so we don't need to pass the
 	// font object to every created widget. The global font is static.
 	gcn::Widget::setGlobalFont(font);

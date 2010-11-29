@@ -18,6 +18,8 @@
 
 #include "AbstractFactory.h"
 
+#define MENU_ELEMENT 5
+
 class MenuWindow: public AbstractFactory {
 public:
 	MenuWindow();
