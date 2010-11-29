@@ -1,24 +1,27 @@
 /*
  ******************************************************
  * NAME:
- * ButtonMenu.cxx
+ * AbstractEventListener.h
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Nov 28, 2010
+ *	Created on: Nov 29, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#include "ButtonMenu.h"
+#ifndef ABSTRACTEVENTLISTENER_H_
+#define ABSTRACTEVENTLISTENER_H_
 
-ButtonMenu::ButtonMenu(const char* name, int xPos, int yPos) : AbstractGUIObject(xPos, yPos) {
-	button = new gcn::Button("Button");
-}
+#include "guichan-0.8.2/include/guichan.hpp"
 
-ButtonMenu::~ButtonMenu() {
-	// TODO Auto-generated destructor stub
-}
+class AbstractEventListener : gcn::ActionListener {
+public:
+	virtual void action(const gcn::ActionEvent& actionEvent) = 0;
+
+};
+
+#endif /* ABSTRACTEVENTLISTENER_H_ */

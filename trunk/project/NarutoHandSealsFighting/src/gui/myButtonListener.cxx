@@ -14,6 +14,8 @@
  */
 
 #include <iostream>
+#include <string.h>
+#include <SDL/SDL.h>
 #include "myButtonListener.h"
 
 using namespace std;
@@ -29,4 +31,11 @@ MyButtonListener::~MyButtonListener() {
 
 void MyButtonListener::action(const gcn::ActionEvent& actionEvent){
 	cout<<actionEvent.getSource() <<" through an id event of: "<<actionEvent.getId()<<"\n";
+
+	if(strcmp(actionEvent.getId().c_str(), "quit")==0){
+		SDL_Event e;
+		e.type = SDL_KEYDOWN;
+		e.key.keysym.sym = SDLK_ESCAPE;
+		SDL_PushEvent(&e);
+	}
 }

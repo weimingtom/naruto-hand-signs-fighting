@@ -6,11 +6,11 @@
  * /______/ //______/ //_/ //_____/\ /_/ //_/ //_/ //_/ //_/ /|_/ /
  * \______\/ \______\/ \_\/ \_____\/ \_\/ \_\/ \_\/ \_\/ \_\/ \_\/
  *
- * Copyright (c) 2004 - 2008 Olof Naessén and Per Larsson
+ * Copyright (c) 2004 - 2008 Olof Naessï¿½n and Per Larsson
  *
  *
  * Per Larsson a.k.a finalman
- * Olof Naessén a.k.a jansem/yakslem
+ * Olof Naessï¿½n a.k.a jansem/yakslem
  *
  * Visit: http://guichan.sourceforge.net
  *
@@ -67,7 +67,7 @@ namespace gcn
          *       function.
          *
          * @author Walluce Pinkham
-         * @author Olof Naessén
+         * @author Olof Naessï¿½n
          */
         class GCN_EXTENSION_DECLSPEC SDLTrueTypeFont: public Font
         {
@@ -138,7 +138,7 @@ namespace gcn
             virtual int getHeight() const;        
       
             virtual void drawString(Graphics* graphics, const std::string& text, int x, int y);
-      
+
         protected:
             TTF_Font *mFont;
       

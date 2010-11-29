@@ -16,27 +16,28 @@
 #include "guichan-0.8.2/include/guichan/graphics.hpp"
 #include "MenuWindow.h"
 #include "myButtonListener.h"
-#include "ButtonMenu.h"
+#include "EventToKeyPressConverter.h"
 
-#define MENU_ELEMENT 4
 
-int buttonWidth = 150;
+int buttonWidth = 250;
 int buttonHeight = 30;
 int distBetweenButtons = 30;
 int titleHeight = 80;
 
 const char* menuChar[MENU_ELEMENT] ={
-		"Play",
-		"Training Section",
-		"Instructions",
-		"Options"
+		"[P]lay",
+		"[T]raining Section",
+		"[I]nstructions",
+		"[O]ptions",
+		"[Q]uit"
 };
 
 const char* menuEventID[MENU_ELEMENT] = {
 		"play",
 		"training",
 		"instructions",
-		"options"
+		"options",
+		"quit"
 };
 
 MenuWindow::MenuWindow() {
@@ -51,7 +52,7 @@ MenuWindow::~MenuWindow() {
 void MenuWindow::buildWindow(){
 	//Buildind menu
 	gcn::Button* b;
-	gcn::ActionListener* act = new MyButtonListener();
+	gcn::ActionListener* act = new EventToKeyPressConverter();
 	gcn::Label *label = new gcn::Label("MAIN MENU");
 	int xPos = screenWidth/2 - buttonWidth/2, yPos;
 
