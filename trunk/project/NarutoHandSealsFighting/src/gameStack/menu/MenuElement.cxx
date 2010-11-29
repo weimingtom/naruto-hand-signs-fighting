@@ -17,7 +17,9 @@
 
 void MenuElement::loopFunction(){
 	SDL_Event event;
-	displayMenuElement();
-	if(SDL_PollEvent(&event))
+	if(SDL_PollEvent(&event)){
 		controllerElement->dispatchEvent(&event);
+		elementGraphic->getInput()->pushInput(event);
+	}
+	displayMenuElement();
 }

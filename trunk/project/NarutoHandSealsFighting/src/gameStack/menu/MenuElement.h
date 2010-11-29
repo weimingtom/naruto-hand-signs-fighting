@@ -18,9 +18,12 @@
 
 #include "../GameElement.h"
 #include "../controller/AbstractController.h"
+#include "../../gui/AbstractFactory.h"
 
 class MenuElement : public GameElement{
 	AbstractController* controllerElement;
+protected:
+	AbstractFactory *elementGraphic;
 
 public:
 	MenuElement(AbstractController* absCtrl){

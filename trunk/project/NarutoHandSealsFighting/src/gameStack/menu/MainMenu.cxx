@@ -14,7 +14,8 @@
  */
 
 #include "MainMenu.h"
-#include "iostream"
+#include <iostream>
+
 
 //void MainMenu::loopFunction(){
 //	SDL_Event event;
@@ -24,5 +25,6 @@
 //}
 
 void MainMenu::displayMenuElement(){
-	cout<<"MainMenu::displayMainMenu\n";
+//	cout<<"MainMenu::displayMainMenu\n";
+	elementGraphic->display();
 }

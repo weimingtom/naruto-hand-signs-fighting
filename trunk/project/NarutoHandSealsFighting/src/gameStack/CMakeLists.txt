@@ -13,9 +13,12 @@ ADD_LIBRARY(gameStack SHARED GameMachine.cxx FactoryGameMachine.cxx)
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gameStack")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gameStack/menu")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gameStack/controller")
+INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gui")
 
 ADD_DEPENDENCIES(gameStack GameElement.h)
 
+FILE(COPY ${PROJECT_SOURCE_DIR}/gui/guichan-0.8.2/examples/fixedfont.bmp
+	DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 ADD_SUBDIRECTORY(menu)
 ADD_SUBDIRECTORY(controller)
@@ -24,4 +27,5 @@ ADD_SUBDIRECTORY(controller)
 ### executable test ####
 ########################
 ADD_EXECUTABLE(gameStackTest gameStackTest.cxx)
-TARGET_LINK_LIBRARIES(gameStackTest ${OpenCV_LIBS} gameStack menuLib controllerLib)
+TARGET_LINK_LIBRARIES(gameStackTest ${OpenCV_LIBS} gameStack menuLib controllerLib gui guichan 
+guichan_sdl)
