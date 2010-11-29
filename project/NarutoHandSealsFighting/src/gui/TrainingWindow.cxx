@@ -1,25 +1,25 @@
 /*
  ******************************************************
  * NAME:
- * MenuElement.cxx
+ * TrainingWindow.cxx
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Nov 25, 2010
+ *	Created on: Nov 28, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#include "MenuElement.h"
+#include "TrainingWindow.h"
 
-void MenuElement::loopFunction(){
-	SDL_Event event;
-	if(SDL_PollEvent(&event)){
-		controllerElement->dispatchEvent(&event);
-		elementGraphic->getInput()->pushInput(event);
-	}
-	displayMenuElement();
+TrainingWindow::TrainingWindow() {
+	// TODO Auto-generated constructor stub
+
+}
+
+TrainingWindow::~TrainingWindow() {
+	// TODO Auto-generated destructor stub
 }

@@ -1,25 +1,29 @@
 /*
  ******************************************************
  * NAME:
- * MenuElement.cxx
+ * myButtonListener.h
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Nov 25, 2010
+ *	Created on: Nov 28, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#include "MenuElement.h"
+#ifndef MYBUTTONLISTENER_H_
+#define MYBUTTONLISTENER_H_
 
-void MenuElement::loopFunction(){
-	SDL_Event event;
-	if(SDL_PollEvent(&event)){
-		controllerElement->dispatchEvent(&event);
-		elementGraphic->getInput()->pushInput(event);
-	}
-	displayMenuElement();
-}
+#include "guichan-0.8.2/include/guichan.hpp"
+
+
+class MyButtonListener : public gcn::ActionListener {
+public:
+	MyButtonListener();
+	~MyButtonListener();
+	void action(const gcn::ActionEvent& actionEvent);
+};
+
+#endif /* MYBUTTONLISTENER_H_ */

@@ -1,25 +1,24 @@
 /*
  ******************************************************
  * NAME:
- * MenuElement.cxx
+ * AbstractGUIObject.cxx
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Nov 25, 2010
+ *	Created on: Nov 28, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#include "MenuElement.h"
+#include "AbstractGUIObject.h"
 
-void MenuElement::loopFunction(){
-	SDL_Event event;
-	if(SDL_PollEvent(&event)){
-		controllerElement->dispatchEvent(&event);
-		elementGraphic->getInput()->pushInput(event);
-	}
-	displayMenuElement();
+AbstractGUIObject::AbstractGUIObject(int xPos, int yPos) {
+	setPosition(xPos, yPos);
+}
+
+AbstractGUIObject::~AbstractGUIObject() {
+	// TODO Auto-generated destructor stub
 }

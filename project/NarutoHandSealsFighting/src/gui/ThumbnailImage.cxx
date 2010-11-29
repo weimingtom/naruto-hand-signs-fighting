@@ -1,25 +1,25 @@
 /*
  ******************************************************
  * NAME:
- * MenuElement.cxx
+ * ThumbnailImage.cxx
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Nov 25, 2010
+ *	Created on: Nov 28, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#include "MenuElement.h"
+#include "ThumbnailImage.h"
 
-void MenuElement::loopFunction(){
-	SDL_Event event;
-	if(SDL_PollEvent(&event)){
-		controllerElement->dispatchEvent(&event);
-		elementGraphic->getInput()->pushInput(event);
-	}
-	displayMenuElement();
+ThumbnailImage::ThumbnailImage(int x, int y) : AbstractGUIObject(x,y) {
+	// TODO Auto-generated constructor stub
+
+}
+
+ThumbnailImage::~ThumbnailImage() {
+	// TODO Auto-generated destructor stub
 }

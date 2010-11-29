@@ -59,7 +59,7 @@ set (NHSF_VERSION_MINOR 0)
 ADD_EXECUTABLE( runNHSF main-NHSF.cxx)
 TARGET_LINK_LIBRARIES( runNHSF ${OpenCV_LIBS}
  recognitionEngine gameLogic 
-gameStack menuLib controllerLib guichan guichan_sdl)
+gameStack menuLib controllerLib guichan guichan_sdl gui)
 
 #######################################
 

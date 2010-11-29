@@ -1,25 +1,24 @@
 /*
  ******************************************************
  * NAME:
- * MenuElement.cxx
+ * ButtonMenu.cxx
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Nov 25, 2010
+ *	Created on: Nov 28, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#include "MenuElement.h"
+#include "ButtonMenu.h"
 
-void MenuElement::loopFunction(){
-	SDL_Event event;
-	if(SDL_PollEvent(&event)){
-		controllerElement->dispatchEvent(&event);
-		elementGraphic->getInput()->pushInput(event);
-	}
-	displayMenuElement();
+ButtonMenu::ButtonMenu(const char* name, int xPos, int yPos) : AbstractGUIObject(xPos, yPos) {
+	button = new gcn::Button("Button");
+}
+
+ButtonMenu::~ButtonMenu() {
+	// TODO Auto-generated destructor stub
 }

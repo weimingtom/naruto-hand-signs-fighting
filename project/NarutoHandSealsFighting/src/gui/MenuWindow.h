@@ -1,25 +1,28 @@
 /*
  ******************************************************
  * NAME:
- * MenuElement.cxx
+ * MenuWindow.h
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Nov 25, 2010
+ *	Created on: Nov 28, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#include "MenuElement.h"
+#ifndef MENUWINDOW_H_
+#define MENUWINDOW_H_
 
-void MenuElement::loopFunction(){
-	SDL_Event event;
-	if(SDL_PollEvent(&event)){
-		controllerElement->dispatchEvent(&event);
-		elementGraphic->getInput()->pushInput(event);
-	}
-	displayMenuElement();
-}
+#include "AbstractFactory.h"
+
+class MenuWindow: public AbstractFactory {
+public:
+	MenuWindow();
+	virtual ~MenuWindow();
+	void buildWindow();
+};
+
+#endif /* MENUWINDOW_H_ */

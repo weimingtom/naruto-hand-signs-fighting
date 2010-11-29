@@ -17,11 +17,16 @@
 #define MAINMENU_H_
 
 #include "MenuElement.h"
+#include "../../gui/MenuWindow.h"
 
 class MainMenu : public MenuElement{
 
+
 public:
-	MainMenu(AbstractController* ctrlI):MenuElement(ctrlI){};
+	MainMenu(AbstractController* ctrlI):MenuElement(ctrlI){
+		elementGraphic = new MenuWindow();
+		elementGraphic->buildWindow();
+	};
 
 	void displayMenuElement();
 

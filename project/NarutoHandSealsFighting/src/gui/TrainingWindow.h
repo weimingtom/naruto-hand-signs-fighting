@@ -1,20 +1,27 @@
 /*
  ******************************************************
  * NAME:
- * boh.h
+ * TrainingWindow.h
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Nov 25, 2010
+ *	Created on: Nov 28, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#ifndef BOH_H_
-#define BOH_H_
+#ifndef TRAININGWINDOW_H_
+#define TRAININGWINDOW_H_
 
+#include "AbstractFactory.h"
 
-#endif /* BOH_H_ */
+class TrainingWindow: public AbstractFactory {
+public:
+	TrainingWindow();
+	~TrainingWindow();
+};
+
+#endif /* TRAININGWINDOW_H_ */

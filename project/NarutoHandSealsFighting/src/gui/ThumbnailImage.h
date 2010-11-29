@@ -1,25 +1,27 @@
 /*
  ******************************************************
  * NAME:
- * MenuElement.cxx
+ * ThumbnailImage.h
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Nov 25, 2010
+ *	Created on: Nov 28, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#include "MenuElement.h"
+#ifndef THUMBNAILIMAGE_H_
+#define THUMBNAILIMAGE_H_
 
-void MenuElement::loopFunction(){
-	SDL_Event event;
-	if(SDL_PollEvent(&event)){
-		controllerElement->dispatchEvent(&event);
-		elementGraphic->getInput()->pushInput(event);
-	}
-	displayMenuElement();
-}
+#include "AbstractGUIObject.h"
+
+class ThumbnailImage: public AbstractGUIObject {
+public:
+	ThumbnailImage(int x, int y);
+	~ThumbnailImage();
+};
+
+#endif /* THUMBNAILIMAGE_H_ */
