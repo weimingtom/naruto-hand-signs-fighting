@@ -19,6 +19,8 @@
 #include <SDL/SDL.h>
 #include "../GameMachine.h"
 
+using namespace std;
+
 class AbstractController{
 protected:
 	GameMachine* gameMachine;

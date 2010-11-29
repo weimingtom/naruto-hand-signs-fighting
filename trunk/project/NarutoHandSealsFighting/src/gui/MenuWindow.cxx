@@ -19,11 +19,6 @@
 #include "EventToKeyPressConverter.h"
 
 
-int buttonWidth = 250;
-int buttonHeight = 30;
-int distBetweenButtons = 30;
-int titleHeight = 80;
-
 const char* menuChar[MENU_ELEMENT] ={
 		"[P]lay",
 		"[T]raining Section",
@@ -41,28 +36,35 @@ const char* menuEventID[MENU_ELEMENT] = {
 };
 
 MenuWindow::MenuWindow() {
-	// TODO Auto-generated constructor stub
+	title = "MAIN MENU";
 
+	buttonWidth = 250;
+	buttonHeight = 30;
+	distBetweenButtons = 30;
+	titleHeight = 80;
 }
 
 MenuWindow::~MenuWindow() {
 	// TODO Auto-generated destructor stub
 }
 
+void MenuWindow::buildTitle(){
+	titleLabel = new gcn::Label(title);
+	titleLabel->setPosition(0,0);
+	titleLabel->setDimension( gcn::Rectangle(0,0, screenWidth, titleHeight));
+	titleLabel->setAlignment(gcn::Graphics::CENTER);
+}
+
 void MenuWindow::buildWindow(){
 	//Buildind menu
 	gcn::Button* b;
-	gcn::ActionListener* act = new EventToKeyPressConverter();
-	gcn::Label *label = new gcn::Label("MAIN MENU");
 	int xPos = screenWidth/2 - buttonWidth/2, yPos;
+	gcn::ActionListener* act = new EventToKeyPressConverter();
+	buildTitle();
 
-	label->setPosition(0,0);
-	label->setDimension( gcn::Rectangle(0,0, screenWidth, titleHeight));
-	label->setAlignment(gcn::Graphics::CENTER);
+	yPos = titleLabel->getHeight() + 20;
 
-	yPos = label->getHeight() + 20;
-
-	panel->add(label);
+	panel->add(titleLabel);
 	for(int i=0; i < MENU_ELEMENT; i++){
 		b = new gcn::Button(menuChar[i]);
 		b->setDimension(gcn::Rectangle(0,0,buttonWidth, buttonHeight));

@@ -17,5 +17,5 @@
 #include <iostream>
 
 void OptionsMenu::displayMenuElement(){
-	cout<<"OptionMenu::displayOptionsMenu\n";
+	elementGraphic->display();
 }

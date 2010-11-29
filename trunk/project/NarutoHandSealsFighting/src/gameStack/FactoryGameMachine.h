@@ -22,11 +22,15 @@
 //Elements that need to be inserted into the GameMachine
 /////////////////////////////
 #include "menu/MainMenu.h"
+#include "menu/OptionsMenu.h"
+#include "menu/MovesList.h"
 /////////////////////////////
 
 //Controller of the elements just inserted
 /////////////////////////////
 #include "controller/MainMenuController.h"
+#include "controller/OptionsMenuController.h"
+#include "controller/MovesListController.h"
 /////////////////////////////
 
 using namespace std;

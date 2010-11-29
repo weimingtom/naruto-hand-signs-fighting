@@ -25,6 +25,5 @@
 //}
 
 void MainMenu::displayMenuElement(){
-//	cout<<"MainMenu::displayMainMenu\n";
 	elementGraphic->display();
 }

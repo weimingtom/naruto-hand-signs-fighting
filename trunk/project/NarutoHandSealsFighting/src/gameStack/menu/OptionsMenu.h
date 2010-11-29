@@ -18,11 +18,15 @@
 
 #include "MenuElement.h"
 #include "../controller/AbstractController.h"
+#include "../../gui/OptionsWindow.h"
 
 class OptionsMenu : public MenuElement{
 
 public:
-	OptionsMenu(AbstractController* ctrlI):MenuElement(ctrlI){};
+	OptionsMenu(AbstractController* ctrlI) : MenuElement(ctrlI){
+		elementGraphic = new OptionsWindow();
+		elementGraphic->buildWindow();
+	};
 	void displayMenuElement();
 
 };
