@@ -5,7 +5,7 @@
 FIND_PACKAGE( OpenCV REQUIRED )
 FIND_PACKAGE( SDL REQUIRED ) #<- how is it wrote???
 
-ADD_LIBRARY(gameStack SHARED GameMachine.cxx FactoryGameMachine.cxx)
+ADD_LIBRARY(gameStack SHARED GameMachine.cxx FactoryGameMachine.cxx )
 
 ########################
 ##### directories ######
@@ -16,6 +16,7 @@ INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gameStack/controller")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gui")
 
 ADD_DEPENDENCIES(gameStack GameElement.h)
+ADD_DEPENDENCIES(gameStack controllerLib menuLib)
 
 FILE(COPY ${PROJECT_SOURCE_DIR}/gui/guichan-0.8.2/examples/fixedfont.bmp
 	DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

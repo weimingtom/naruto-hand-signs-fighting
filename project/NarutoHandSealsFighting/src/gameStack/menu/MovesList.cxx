@@ -1,29 +1,20 @@
 /*
  ******************************************************
  * NAME:
- * MainMenu.cxx
+ * MovesList.cxx
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Nov 25, 2010
+ *	Created on: Nov 29, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#include "MainMenu.h"
-#include <iostream>
+#include "MovesList.h"
 
-
-//void MainMenu::loopFunction(){
-//	SDL_Event event;
-//	displayMenuElement();
-//	if(SDL_PollEvent(&event))
-//		mainMenuCtrl->dispatchEvent(&event);
-//}
-
-void MainMenu::displayMenuElement(){
-	elementGraphic->display();
+MovesList::~MovesList() {
+	// TODO Auto-generated destructor stub
 }

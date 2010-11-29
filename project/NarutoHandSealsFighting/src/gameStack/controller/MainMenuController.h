@@ -25,6 +25,4 @@ public:
 	void dispatchEvent(SDL_Event* e);
 };
 
-//extern AbstractController* mainMenuController;
-
 #endif /* MAINMENUCONTROLLER_H_ */

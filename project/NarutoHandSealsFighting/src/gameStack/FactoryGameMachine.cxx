@@ -32,4 +32,6 @@ void FactoryGameMachine::initGameMachine(GameMachine* gameMachine){
 //	gameMachine->pushInGameStack(m);
 //	debugPrint("done");
 	gameMachine->pushInGameStack(new MainMenu(new MainMenuController(gameMachine)));
+	gameMachine->pushInGameStack(new OptionsMenu(new OptionsMenuController(gameMachine)));
+	gameMachine->pushInGameStack(new MovesList(new MovesListController(gameMachine)));
 }

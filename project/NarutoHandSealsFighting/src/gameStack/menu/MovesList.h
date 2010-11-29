@@ -1,35 +1,35 @@
 /*
  ******************************************************
  * NAME:
- * OptionsMenu.h
+ * MovesList.h
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Nov 25, 2010
+ *	Created on: Nov 29, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#ifndef OPTIONSMENU_H_
-#define OPTIONSMENU_H_
+#ifndef MOVESLIST_H_
+#define MOVESLIST_H_
 
 #include "MenuElement.h"
 #include "../controller/AbstractController.h"
-#include "../../gui/OptionsWindow.h"
+#include "../../gui/MovesListWindow.h"
 
-class OptionsMenu : public MenuElement{
-
+class MovesList: public MenuElement {
 public:
-	OptionsMenu(AbstractController* ctrlI) : MenuElement(ctrlI){
-		elementGraphic = new OptionsWindow();
+	MovesList(AbstractController* ctrlI): MenuElement(ctrlI){
+		elementGraphic = new MovesListWindow();
 		elementGraphic->buildWindow();
-	};
-	void displayMenuElement();
-
+	}
+	virtual ~MovesList();
+	void displayMenuElement(){
+		elementGraphic->display();
+	}
 };
 
-
-#endif /* OPTIONSMENU_H_ */
+#endif /* MOVESLIST_H_ */

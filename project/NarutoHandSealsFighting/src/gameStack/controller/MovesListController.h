@@ -1,28 +1,29 @@
 /*
  ******************************************************
  * NAME:
- * OptionsMenuController.h
+ * MovesListController.h
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Nov 25, 2010
+ *	Created on: Nov 29, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#ifndef OPTIONSMENUCONTROLLER_H_
-#define OPTIONSMENUCONTROLLER_H_
+#ifndef MOVESLISTCONTROLLER_H_
+#define MOVESLISTCONTROLLER_H_
 
 #include "AbstractController.h"
+#include "../GameMachine.h"
 
-class OptionsMenuController : public AbstractController{
+class MovesListController: public AbstractController {
 public:
-	OptionsMenuController(GameMachine* gm):AbstractController(gm){};
+	MovesListController(GameMachine* gm) : AbstractController(gm){};
+	virtual ~MovesListController();
 	void dispatchEvent(SDL_Event* e);
 };
 
-
-#endif /* OPTIONSMENUCONTROLLER_H_ */
+#endif /* MOVESLISTCONTROLLER_H_ */

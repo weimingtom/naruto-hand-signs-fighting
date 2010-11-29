@@ -21,6 +21,16 @@
 #define MENU_ELEMENT 5
 
 class MenuWindow: public AbstractFactory {
+protected:
+	const char* title;
+	gcn::Label *titleLabel;
+
+	int buttonWidth;
+	int buttonHeight;
+	int distBetweenButtons;
+	int titleHeight;
+
+	void buildTitle();
 public:
 	MenuWindow();
 	virtual ~MenuWindow();

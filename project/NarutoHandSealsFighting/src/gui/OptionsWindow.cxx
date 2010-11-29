@@ -1,29 +1,28 @@
 /*
  ******************************************************
  * NAME:
- * MainMenu.cxx
+ * OptionsWindow.cxx
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Nov 25, 2010
+ *	Created on: Nov 29, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#include "MainMenu.h"
-#include <iostream>
+#include "OptionsWindow.h"
 
+OptionsWindow::OptionsWindow() : MenuWindow(){
+	title = "OPTIONS WINDOW";
+}
 
-//void MainMenu::loopFunction(){
-//	SDL_Event event;
-//	displayMenuElement();
-//	if(SDL_PollEvent(&event))
-//		mainMenuCtrl->dispatchEvent(&event);
-//}
+OptionsWindow::~OptionsWindow() {
+	// TODO Auto-generated destructor stub
+}
 
-void MainMenu::displayMenuElement(){
-	elementGraphic->display();
+void OptionsWindow::buildWindow(){
+	buildTitle();
 }

@@ -1,29 +1,28 @@
 /*
  ******************************************************
  * NAME:
- * MainMenu.cxx
+ * TrainingGEWindow.h
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Nov 25, 2010
+ *	Created on: Nov 29, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#include "MainMenu.h"
-#include <iostream>
+#ifndef TRAININGGEWINDOW_H_
+#define TRAININGGEWINDOW_H_
 
+#include "MenuWindow.h"
 
-//void MainMenu::loopFunction(){
-//	SDL_Event event;
-//	displayMenuElement();
-//	if(SDL_PollEvent(&event))
-//		mainMenuCtrl->dispatchEvent(&event);
-//}
+class TrainingGEWindow: public MenuWindow {
+public:
+	TrainingGEWindow();
+	virtual ~TrainingGEWindow();
+	void buildWindow();
+};
 
-void MainMenu::displayMenuElement(){
-	elementGraphic->display();
-}
+#endif /* TRAININGGEWINDOW_H_ */

@@ -1,29 +1,28 @@
 /*
  ******************************************************
  * NAME:
- * MainMenu.cxx
+ * OptionsWindow.h
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Nov 25, 2010
+ *	Created on: Nov 29, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#include "MainMenu.h"
-#include <iostream>
+#ifndef OPTIONSWINDOW_H_
+#define OPTIONSWINDOW_H_
 
+#include "MenuWindow.h"
 
-//void MainMenu::loopFunction(){
-//	SDL_Event event;
-//	displayMenuElement();
-//	if(SDL_PollEvent(&event))
-//		mainMenuCtrl->dispatchEvent(&event);
-//}
+class OptionsWindow: public MenuWindow {
+public:
+	OptionsWindow();
+	virtual ~OptionsWindow();
+	void buildWindow();
+};
 
-void MainMenu::displayMenuElement(){
-	elementGraphic->display();
-}
+#endif /* OPTIONSWINDOW_H_ */
