@@ -16,11 +16,15 @@
 #ifndef TRAININGWINDOW_H_
 #define TRAININGWINDOW_H_
 
-#include "AbstractFactory.h"
+#include "MenuWindow.h"
+#include "../gameLogic/MovesSet.h"
 
-class TrainingWindow: public AbstractFactory {
+using namespace std;
+
+class TrainingWindow: public MenuWindow {
+	Move* move;
 public:
-	TrainingWindow();
+	TrainingWindow(string targetMove);
 	~TrainingWindow();
 };
 

@@ -18,6 +18,7 @@
 
 #include "MenuWindow.h"
 #include "../gameLogic/MovesSet.h"
+#include "MovesListListener.h"
 
 class MovesListModel : public gcn::ListModel{
 	MovesSet *movesSet;
@@ -43,6 +44,7 @@ public:
 class MovesListWindow: public MenuWindow {
 	gcn::ListBox* listBox;
 	MovesListModel* movesList;
+	gcn::Button* tryMove;
 	int listBoxWidth;
 	int listBoxHeight;
 public:

@@ -1,29 +1,31 @@
 /*
  ******************************************************
  * NAME:
- * TrainingWindow.cxx
+ * TrainingSectionController.cxx
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Nov 28, 2010
+ *	Created on: Nov 30, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#include "TrainingWindow.h"
+#include "TrainingSectionController.h"
 
-TrainingWindow::TrainingWindow(string targetMove) : MenuWindow() {
-	title = "TRAINING SECTION";
-	move = movesSetGlobal->getMove(targetMove);
+using namespace std;
+
+TrainingSectionController::TrainingSectionController(GameMachine* gm) :
+	AbstractController(gm){
+
 }
 
-TrainingWindow::~TrainingWindow() {
+TrainingSectionController::~TrainingSectionController() {
 	// TODO Auto-generated destructor stub
 }
 
-void buildWindow(){
-
+void TrainingSectionController::dispatchEvent(SDL_Event* e){
+	debugPrint("received event of type %d \n", e->type);
 }

@@ -21,8 +21,6 @@
 #include "../menu/MovesList.h"
 #include "../../gameLogic/MovesSet.h"
 
-#include "../../DebugPrint.h"
-
 using namespace std;
 
 void MainMenuController::dispatchEvent(SDL_Event* event){

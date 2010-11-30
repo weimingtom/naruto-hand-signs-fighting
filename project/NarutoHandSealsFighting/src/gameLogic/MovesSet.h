@@ -32,6 +32,7 @@ public:
 
 	int addMove(Move* m);
 	Move* getMove(const char* moveName);
+	Move* getMove(string s);
 
     map<string,Move*> getMoveSet() const
     {

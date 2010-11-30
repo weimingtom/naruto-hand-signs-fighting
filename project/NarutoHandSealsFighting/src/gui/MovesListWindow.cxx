@@ -15,6 +15,7 @@
 
 #include "MovesListWindow.h"
 #include "../gameLogic/MovesFactory.h"
+#include "MovesListListener.h"
 
 MovesListWindow::MovesListWindow(MovesSet* ms) : MenuWindow() {
 	title = "MOVES LIST WINDOW";
@@ -27,6 +28,7 @@ MovesListWindow::MovesListWindow(MovesSet* ms) : MenuWindow() {
 
 MovesListWindow::~MovesListWindow() {
 	delete listBox;
+	delete tryMove;
 }
 
 void MovesListWindow::buildWindow(){
@@ -39,4 +41,14 @@ void MovesListWindow::buildWindow(){
 	listBox->setPosition( 10 ,titleLabel->getHeight() + 10);
 	listBox->adjustSize();
 	panel->add(listBox);
+
+
+	tryMove = new gcn::Button("Start");
+	int startWidth = backButton->getWidth();
+	int startHeight = buttonHeight;
+	tryMove->setSize(startWidth, startHeight);
+	tryMove->setPosition(backButton->getX(), titleLabel->getY() + 30);
+	tryMove->setActionEventId(TRAINING_EVENT_ID);
+	tryMove->addActionListener(new MovesListListener(listBox));
+	panel->add(tryMove);
 }

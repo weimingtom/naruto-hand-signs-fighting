@@ -59,7 +59,7 @@ void MenuWindow::buildTitle(){
 
 void MenuWindow::buildBackButton(){
 	int backButtonWidth = buttonWidth/2, backButonHeight = buttonHeight/2;
-	backButton = new gcn::Button("Back");
+	backButton = new gcn::Button("[B]ack");
 	backButton->setDimension(gcn::Rectangle(0,0,backButtonWidth, backButonHeight));
 	backButton->setPosition(screenWidth-backButtonWidth - 2, screenHeight - backButonHeight - 2 );
 	backButton->setActionEventId("back");

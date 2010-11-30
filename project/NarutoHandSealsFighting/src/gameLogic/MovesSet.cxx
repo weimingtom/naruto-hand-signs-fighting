@@ -27,3 +27,6 @@ Move* MovesSet::getMove(const char* mName){
 	return t->second;
 }
 
+Move* MovesSet::getMove(string s){
+	return movesSet[s];
+}

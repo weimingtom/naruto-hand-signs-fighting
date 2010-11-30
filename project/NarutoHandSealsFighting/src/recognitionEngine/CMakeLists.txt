@@ -25,7 +25,7 @@ ADD_SUBDIRECTORY(evaluationFunctions)
 #######################
 ADD_EXECUTABLE( runRecognitionEngine mainEngine.cxx)
 TARGET_LINK_LIBRARIES( runRecognitionEngine ${OpenCV_LIBS} recognitionEngine engineModules 
-gameLogic evaluationFunctions)
+gameLogic evaluationFunctions deb)
 ADD_LIBRARY(recognitionEngine SHARED  RecognitionEngine.h RecognitionEngine.cxx ImageProcessing.cxx
 engineModules/EngineModule.h ../gameLogic/Move.h)
 
