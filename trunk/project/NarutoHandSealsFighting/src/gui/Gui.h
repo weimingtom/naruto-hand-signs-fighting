@@ -1,28 +1,22 @@
 /*
  ******************************************************
  * NAME:
- * TrainingGEWindow.h
+ * Gui.h
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Nov 29, 2010
+ *	Created on: Nov 30, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#ifndef TRAININGGEWINDOW_H_
-#define TRAININGGEWINDOW_H_
+#ifndef GUI_H_
+#define GUI_H_
 
 #include "MenuWindow.h"
 
-class TrainingGEWindow: public MenuWindow {
-public:
-	TrainingGEWindow();
-	virtual ~TrainingGEWindow();
-	void buildWindow();
-};
 
-#endif /* TRAININGGEWINDOW_H_ */
+#endif /* GUI_H_ */

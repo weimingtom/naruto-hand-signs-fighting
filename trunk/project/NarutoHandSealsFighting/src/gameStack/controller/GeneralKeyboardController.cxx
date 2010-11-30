@@ -24,6 +24,9 @@ GeneralKeyboardController::~GeneralKeyboardController() {
 }
 
 void GeneralKeyboardController::dispatchEvent(SDL_Event *e){
+	if(e->type == SDL_QUIT){
+		gameMachine->stopGameMachine();
+	}
 	switch(e->key.keysym.sym){
 		case SDLK_ESCAPE:
 			gameMachine->stopGameMachine();

@@ -57,9 +57,10 @@ set (NHSF_VERSION_MINOR 0)
 ############ Main Target ##############
 #######################################
 ADD_EXECUTABLE( runNHSF main-NHSF.cxx)
+ADD_LIBRARY(deb DebugPrint.cxx)
 TARGET_LINK_LIBRARIES( runNHSF ${OpenCV_LIBS}
  recognitionEngine gameLogic 
-gameStack menuLib controllerLib guichan guichan_sdl gui)
+gameStack menuLib controllerLib guichan guichan_sdl gui deb)
 
 #######################################
 
@@ -83,6 +84,18 @@ ADD_SUBDIRECTORY(gameStack)
 ADD_SUBDIRECTORY(gui)
 
 #######################################
+
+#######################################
+####### Required Support Files ########
+#######################################
+
+#Moves file
+FILE(COPY ${PROJECT_SOURCE_DIR}/gameLogic/Moves.xml 
+	DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+#Fonts image file
+FILE(COPY ${PROJECT_SOURCE_DIR}/gui/guichan-0.8.2/examples/rpgfont.bmp
+	DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 #######################################
 ################ CPack ################

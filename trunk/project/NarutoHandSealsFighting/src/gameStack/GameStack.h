@@ -1,29 +1,22 @@
 /*
  ******************************************************
  * NAME:
- * TrainingGEWindow.cxx
+ * GameStack.h
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Nov 29, 2010
+ *	Created on: Nov 30, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#include "TrainingGEWindow.h"
+#ifndef GAMESTACK_H_
+#define GAMESTACK_H_
 
-TrainingGEWindow::TrainingGEWindow() : MenuWindow(){
-	title = "TRAINING WINDOW";
-}
+#include "GameMachine.h"
+#include "FactoryGameMachine.h"
 
-TrainingGEWindow::~TrainingGEWindow() {
-	// TODO Auto-generated destructor stub
-}
-
-void TrainingGEWindow::buildWindow(){
-	buildTitle();
-	buildBackButton();
-}
+#endif /* GAMESTACK_H_ */

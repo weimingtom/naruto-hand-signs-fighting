@@ -1,4 +1,4 @@
-/*
+	/*
  ******************************************************
  * NAME:
  * gameStackTest.cxx
@@ -40,11 +40,6 @@ int main(int argc, char* argv[]){
 		debugPrint("Initializing the GameMachine ... ");
 		factoryGameMachine->initGameMachine(gm);
 		debugPrint("done\n");
-
-//		debugPrint("building the main menu\n");
-//		mainMenu = new MenuWindow();
-//		mainMenu->buildWindow();
-//		debugPrint("done\n");
 
 		debugPrint("Starting the machine: ");
 		gm->startGameMachine();

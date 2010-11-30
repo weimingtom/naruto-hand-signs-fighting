@@ -15,11 +15,15 @@
 
 #include "TrainingWindow.h"
 
-TrainingWindow::TrainingWindow() {
-	// TODO Auto-generated constructor stub
-
+TrainingWindow::TrainingWindow(string targetMove) : MenuWindow() {
+	title = "TRAINING SECTION";
+	move = movesSetGlobal->getMove(targetMove);
 }
 
 TrainingWindow::~TrainingWindow() {
 	// TODO Auto-generated destructor stub
+}
+
+void buildWindow(){
+
 }

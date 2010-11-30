@@ -18,6 +18,7 @@
 
 #include <SDL/SDL.h>
 #include "../GameMachine.h"
+#include "../../DebugPrint.h"
 
 using namespace std;
 
