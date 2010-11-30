@@ -27,8 +27,9 @@ using namespace std;
 class SealsMap{
 	map<string, HandSeal*> seals;
 public:
-	SealsMap(){
-
+	SealsMap(){}
+	~SealsMap(){
+		seals.clear();
 	}
 
 	map<string, HandSeal*> getSeals(){

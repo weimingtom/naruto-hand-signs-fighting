@@ -16,11 +16,11 @@
 #ifndef OPTIONSMENUCONTROLLER_H_
 #define OPTIONSMENUCONTROLLER_H_
 
-#include "AbstractController.h"
+#include "GeneralKeyboardController.h"
 
-class OptionsMenuController : public AbstractController{
+class OptionsMenuController : public GeneralKeyboardController{
 public:
-	OptionsMenuController(GameMachine* gm):AbstractController(gm){};
+	OptionsMenuController(GameMachine* gm):GeneralKeyboardController(gm){};
 	void dispatchEvent(SDL_Event* e);
 };
 

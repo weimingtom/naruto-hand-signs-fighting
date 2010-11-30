@@ -23,6 +23,8 @@ void FactoryGameMachine::initGameMachine(GameMachine* gameMachine){
 	/*
 	 * !!! REMEMBER !!!
 	 * The order is relevant!!
+	 * The gameMachine is a stack, with policy LIFO (Last In First Out).
+	 * Your last inserted element will be the one (first) displayed.
 	 */
 //	debugPrint("create a MainMenu\n");
 //	MainMenu* m = new MainMenu();
@@ -31,7 +33,9 @@ void FactoryGameMachine::initGameMachine(GameMachine* gameMachine){
 //	debugPrint("inserting the MainMenu... ");
 //	gameMachine->pushInGameStack(m);
 //	debugPrint("done");
+
+//	gameMachine->pushInGameStack(new OptionsMenu(new OptionsMenuController(gameMachine)));
+//	gameMachine->pushInGameStack(new MovesList(new MovesListController(gameMachine)));
+
 	gameMachine->pushInGameStack(new MainMenu(new MainMenuController(gameMachine)));
-	gameMachine->pushInGameStack(new OptionsMenu(new OptionsMenuController(gameMachine)));
-	gameMachine->pushInGameStack(new MovesList(new MovesListController(gameMachine)));
 }

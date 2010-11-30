@@ -24,6 +24,7 @@ class MenuWindow: public AbstractFactory {
 protected:
 	const char* title;
 	gcn::Label *titleLabel;
+	gcn::Button *backButton;
 
 	int buttonWidth;
 	int buttonHeight;
@@ -31,6 +32,7 @@ protected:
 	int titleHeight;
 
 	void buildTitle();
+	void buildBackButton();
 public:
 	MenuWindow();
 	virtual ~MenuWindow();

@@ -26,6 +26,8 @@
 #include "MovesFactoryAbstract.h"
 #include "Move.h"
 
+#define XML_FILE "Moves.xml"
+
 class MovesFactory : public MovesFactoryAbstract {
 	ifstream fileSealsInput;
 	int commentLines;

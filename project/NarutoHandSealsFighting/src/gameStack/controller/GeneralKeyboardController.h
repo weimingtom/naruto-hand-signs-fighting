@@ -1,29 +1,28 @@
 /*
  ******************************************************
  * NAME:
- * MainMenuController.h
+ * GeneralKeyboadController.h
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Nov 25, 2010
+ *	Created on: Nov 30, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#ifndef MAINMENUCONTROLLER_H_
-#define MAINMENUCONTROLLER_H_
+#ifndef GENERALKEYBOADCONTROLLER_H_
+#define GENERALKEYBOADCONTROLLER_H_
 
-//#include "AbstractController.h"
-#include "GeneralKeyboardController.h"
+#include "AbstractController.h"
 
-class MainMenuController : public GeneralKeyboardController{
-
+class GeneralKeyboardController: public AbstractController {
 public:
-	MainMenuController(GameMachine* gm):GeneralKeyboardController(gm){};
+	GeneralKeyboardController(GameMachine* gm);
+	virtual ~GeneralKeyboardController();
 	void dispatchEvent(SDL_Event* e);
 };
 
-#endif /* MAINMENUCONTROLLER_H_ */
+#endif /* GENERALKEYBOADCONTROLLER_H_ */

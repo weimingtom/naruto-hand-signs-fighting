@@ -13,27 +13,28 @@
  *
  */
 #include <iostream>
-#include "SealsFactory.h"
-#include "SealsMap.h"
-#include "MovesFactory.h"
-#include "MovesSet.h"
+//#include "SealsFactory.h"
+//#include "SealsMap.h"
+//#include "MovesFactory.h"
+//#include "MovesSet.h"
+#include "GameLogic.h"
 
 using namespace std;
 
 int main(int argc, char* argv[]){
-	MovesSet myMoveSet;
+	MovesSet *myMoveSet = movesSetGlobal;
 	SealsMap smap;
 	Move* temp;
 	const char* s;
 	sealsFactory->buildSealsMap(&smap);
-	movesFactory->buildMovesSet(&myMoveSet, &smap);
+	movesFactory->buildMovesSet(myMoveSet, &smap);
 	cout<<"**********\n";
 	cout<<"Moves Test \n";
 	cout<<"**********\n";
 
-	if(myMoveSet.getMoveSet().size()>0){
-		for(map<string,Move*>::iterator it = myMoveSet.getMoveSet().begin();
-				it != myMoveSet.getMoveSet().end(); it++){
+	if(myMoveSet->getMoveSet().size()>0){
+		for(map<string,Move*>::iterator it = myMoveSet->getMoveSet().begin();
+				it != myMoveSet->getMoveSet().end(); it++){
 			temp = it->second;
 			cout<<"move: "<<temp->getMoveName()<<"\n";
 			cout<<"type: "<<temp->getType().japName <<", "<<temp->getType().engName <<"\n";
@@ -55,7 +56,7 @@ int main(int argc, char* argv[]){
 	s = "balubba";
 	cout<<"try with "<<s<<" ... returned: ";
 	fflush(stdout);
-	temp =myMoveSet.getMove(s);
+	temp =myMoveSet->getMove(s);
 	if(temp != NULL)
 		cout<<temp->getMoveName();
 	else
@@ -64,7 +65,7 @@ int main(int argc, char* argv[]){
 
 	s = "Lightning Blade";
 	cout<<"try with "<<s<<" ... returned: ";
-	temp = myMoveSet.getMove(s);
+	temp = myMoveSet->getMove(s);
 	if(temp != NULL)
 		cout<<temp->getMoveName();
 	else

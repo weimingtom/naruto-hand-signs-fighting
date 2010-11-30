@@ -28,6 +28,7 @@ class MovesSet{
 
 public:
 	MovesSet(){};
+	~MovesSet();
 
 	int addMove(Move* m);
 	Move* getMove(const char* moveName);
@@ -38,6 +39,8 @@ public:
     }
 
 };
+
+extern MovesSet* movesSetGlobal;
 
 
 #endif /* MOVESSET_H_ */

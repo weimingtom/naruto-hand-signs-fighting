@@ -38,7 +38,7 @@ namespace widgets
     public:
         int getNumberOfElements()
         {
-            return 5;
+            return 10;
         }
 
         std::string getElementAt(int i)
@@ -55,6 +55,16 @@ namespace widgets
                   return std::string("three");
               case 4:
                   return std::string("four");
+              case 5:
+            	  return std::string("five");
+              case 6:
+            	  return std::string("six");
+              case 7:
+            	  return std::string("seven");
+              case 8:
+            	  return std::string("eight");
+              case 9:
+            	  return std::string("nine");
               default: // Just to keep warnings away
                   return std::string("");
             }
@@ -80,7 +90,8 @@ namespace widgets
         globals::gui->setTop(top);
 
         // Now we load the font used in this example.
-        font = new gcn::ImageFont("fixedfont.bmp", " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+        font = new gcn::ImageFont("fixedfont.bmp",
+        		" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
         // Widgets may have a global font so we don't need to pass the
         // font object to every created widget. The global font is static.
         gcn::Widget::setGlobalFont(font);
@@ -103,7 +114,11 @@ namespace widgets
         textBoxScrollArea->setFrameSize(1);
 
         listBox = new gcn::ListBox(&demoListModel);
-        listBox->setFrameSize(1);
+        listBox->setFrameSize(5);
+        listBox->setSize(150, 50);
+//        listBox->adjustSize();
+        listBox->setTabInEnabled(true);
+        listBox->setTabOutEnabled(false);
         dropDown = new gcn::DropDown(&demoListModel);
         
         checkBox1 = new gcn::CheckBox("Checkbox 1");
@@ -126,7 +141,11 @@ namespace widgets
 
         tabbedArea = new gcn::TabbedArea();
         tabbedArea->setSize(200, 100);
-        tabOneButton = new gcn::Button("A button in tab 1");
+        for(int i=0; i<10; i++){
+        	std::string s = "A button in tab 1 ";
+//        	s.append(i);
+        	tabOneButton = new gcn::Button(s);
+        }
         tabbedArea->addTab("Tab 1", tabOneButton);
         tabTwoCheckBox = new gcn::CheckBox("A check box in tab 2");
         tabbedArea->addTab("Tab 2", tabTwoCheckBox);

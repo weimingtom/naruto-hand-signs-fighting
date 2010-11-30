@@ -49,6 +49,10 @@ bool running = true;
 AbstractFactory* menu;
 
 int main(int argc, char* argv[]){
+	cout<<"**********\n";
+	cout<<"GUI TEST \n";
+	cout<<"**********\n";
+	cout<<"remenber: you cannot surf the menu...\n";
 
 //	init();
 

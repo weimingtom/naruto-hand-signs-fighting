@@ -1,29 +1,27 @@
 /*
  ******************************************************
  * NAME:
- * OptionsWindow.cxx
+ * GameLogic.h
  ******************************************************
  * DESCRIPTION:
+ * It includes all necessary header files in order to
+ * use the NHSF game logic
  *
  ******************************************************
- *	Created on: Nov 29, 2010
+ *	Created on: Nov 30, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#include "OptionsWindow.h"
+#ifndef GAMELOGIC_H_
+#define GAMELOGIC_H_
 
-OptionsWindow::OptionsWindow() : MenuWindow(){
-	title = "OPTIONS WINDOW";
-}
+#include "SealsFactory.h"
+#include "SealsMap.h"
+#include "MovesFactory.h"
+#include "MovesSet.h"
 
-OptionsWindow::~OptionsWindow() {
-	// TODO Auto-generated destructor stub
-}
 
-void OptionsWindow::buildWindow(){
-	buildTitle();
-	buildBackButton();
-}
+#endif /* GAMELOGIC_H_ */
