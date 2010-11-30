@@ -16,6 +16,7 @@
 #include <iostream>
 #include "EventToKeyPressConverter.h"
 #include "MenuWindow.h"
+#include "../DebugPrint.h"
 
 using namespace std;
 
@@ -47,6 +48,11 @@ void EventToKeyPressConverter::action(const gcn::ActionEvent & event){
 
 	else if(strcmp(event.getId().c_str(),"quit")==0)
 		sdlEvent.key.keysym.sym = SDLK_ESCAPE;
+
+	else if(strcmp(event.getId().c_str(),"back")==0)
+			sdlEvent.key.keysym.sym = SDLK_b;
+
+//	debugPrint("generated key: %s\n", SDL_GetKeyName(sdlEvent.key.keysym.sym));
 
 	SDL_PushEvent(&sdlEvent);
 }

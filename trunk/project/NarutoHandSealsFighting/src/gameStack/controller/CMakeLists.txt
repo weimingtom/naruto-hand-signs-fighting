@@ -3,7 +3,6 @@
 ########################
 
 ADD_LIBRARY(controllerLib SHARED AbstractController.cxx MainMenuController.cxx 
- MovesListController.cxx OptionsMenuController.cxx)
-
-#INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gameStack")
-#INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gameStack/menu")
+ MovesListController.cxx OptionsMenuController.cxx GeneralKeyboardController.cxx)
+ 
+INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gameLogic")

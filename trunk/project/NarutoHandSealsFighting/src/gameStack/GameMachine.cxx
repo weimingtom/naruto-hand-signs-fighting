@@ -40,5 +40,7 @@ void GameMachine::pushInGameStack(GameElement* e){
 
 GameElement* GameMachine::popFromGameStack(){
 	gameStack.pop();
+	if(gameStack.empty())
+		return NULL;
 	return gameStack.top();
 }

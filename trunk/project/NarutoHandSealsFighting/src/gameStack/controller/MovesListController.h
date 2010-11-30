@@ -16,12 +16,11 @@
 #ifndef MOVESLISTCONTROLLER_H_
 #define MOVESLISTCONTROLLER_H_
 
-#include "AbstractController.h"
-#include "../GameMachine.h"
+#include "GeneralKeyboardController.h"
 
-class MovesListController: public AbstractController {
+class MovesListController: public GeneralKeyboardController {
 public:
-	MovesListController(GameMachine* gm) : AbstractController(gm){};
+	MovesListController(GameMachine* gm) : GeneralKeyboardController(gm){};
 	virtual ~MovesListController();
 	void dispatchEvent(SDL_Event* e);
 };

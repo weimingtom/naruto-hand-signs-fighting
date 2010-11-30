@@ -19,40 +19,40 @@
 #include "../controller/OptionsMenuController.h"
 #include "../menu/OptionsMenu.h"
 #include "../menu/MovesList.h"
+#include "../../gameLogic/MovesSet.h"
+
+#include "../../DebugPrint.h"
 
 using namespace std;
-
-//AbstractController* mainMenuController = new MainMenuController();
 
 void MainMenuController::dispatchEvent(SDL_Event* event){
 	if (event->type == SDL_KEYDOWN)
 	{
+		GeneralKeyboardController::dispatchEvent(event);
 		switch(event->key.keysym.sym){
-			case SDLK_ESCAPE: case SDLK_q:
+			case SDLK_q:
 				gameMachine->stopGameMachine();
 				break;
 
 			case SDLK_i:
-				cout<<"pressed i\n";
 				break;
 
 			case SDLK_t:
-				cout<<"pressed t\n";
-				gameMachine->pushInGameStack(new MovesList(new MovesListController(gameMachine)));
+				gameMachine->pushInGameStack(
+						new MovesList(new MovesListController(gameMachine), movesSetGlobal));
+				break;
+
+			case SDLK_p:
+				cout<<"NOT Supported feature in this release\n";
 				break;
 
 			case SDLK_o:
-				cout<<"pressed o\n";
 				gameMachine->pushInGameStack(new OptionsMenu(new OptionsMenuController(gameMachine)));
 				break;
 
-			case SDLK_b:
-				if(gameMachine->popFromGameStack() == NULL)
-					gameMachine->stopGameMachine();
-				break;
-
 			default:
-				cout<<"not recognized key pressed: "<< event->key.keysym.sym <<"\n";
+//				cout<<"not recognized key pressed: "<< SDL_GetKeyName(event->key.keysym.sym) <<"\n";
+				break;
 		}
 	}
 }

@@ -16,12 +16,13 @@
 #ifndef MAINMENUCONTROLLER_H_
 #define MAINMENUCONTROLLER_H_
 
-#include "AbstractController.h"
+//#include "AbstractController.h"
+#include "GeneralKeyboardController.h"
 
-class MainMenuController : public AbstractController{
+class MainMenuController : public GeneralKeyboardController{
 
 public:
-	MainMenuController(GameMachine* gm):AbstractController(gm){};
+	MainMenuController(GameMachine* gm):GeneralKeyboardController(gm){};
 	void dispatchEvent(SDL_Event* e);
 };
 

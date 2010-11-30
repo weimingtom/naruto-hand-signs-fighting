@@ -25,4 +25,5 @@ OptionsWindow::~OptionsWindow() {
 
 void OptionsWindow::buildWindow(){
 	buildTitle();
+	buildBackButton();
 }

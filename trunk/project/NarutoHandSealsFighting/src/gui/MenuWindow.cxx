@@ -45,7 +45,8 @@ MenuWindow::MenuWindow() {
 }
 
 MenuWindow::~MenuWindow() {
-	// TODO Auto-generated destructor stub
+	delete titleLabel;
+	delete backButton;
 }
 
 void MenuWindow::buildTitle(){
@@ -53,6 +54,17 @@ void MenuWindow::buildTitle(){
 	titleLabel->setPosition(0,0);
 	titleLabel->setDimension( gcn::Rectangle(0,0, screenWidth, titleHeight));
 	titleLabel->setAlignment(gcn::Graphics::CENTER);
+	panel->add(titleLabel);
+}
+
+void MenuWindow::buildBackButton(){
+	int backButtonWidth = buttonWidth/2, backButonHeight = buttonHeight/2;
+	backButton = new gcn::Button("Back");
+	backButton->setDimension(gcn::Rectangle(0,0,backButtonWidth, backButonHeight));
+	backButton->setPosition(screenWidth-backButtonWidth - 2, screenHeight - backButonHeight - 2 );
+	backButton->setActionEventId("back");
+	backButton->addActionListener(new EventToKeyPressConverter());
+	panel->add(backButton);
 }
 
 void MenuWindow::buildWindow(){
@@ -64,7 +76,6 @@ void MenuWindow::buildWindow(){
 
 	yPos = titleLabel->getHeight() + 20;
 
-	panel->add(titleLabel);
 	for(int i=0; i < MENU_ELEMENT; i++){
 		b = new gcn::Button(menuChar[i]);
 		b->setDimension(gcn::Rectangle(0,0,buttonWidth, buttonHeight));

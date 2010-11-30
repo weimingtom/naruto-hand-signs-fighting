@@ -23,7 +23,13 @@ AbstractFactory::AbstractFactory() {
 }
 
 AbstractFactory::~AbstractFactory() {
-	// TODO Auto-generated destructor stub
+	delete gui;
+	SDL_FreeSurface(screen);
+	delete panel;
+	delete font;
+	delete graphics;
+	delete input;
+	delete imageLoader;
 }
 
 void AbstractFactory::display(){

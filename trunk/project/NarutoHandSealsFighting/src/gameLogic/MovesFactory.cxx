@@ -11,7 +11,6 @@
 #include <iostream>
 
 #include "MovesFactory.h"
-#include "MovesFactorySettings.h"
 
 int usingTinyxml(MovesSet* mSet,  SealsMap* sm);
 

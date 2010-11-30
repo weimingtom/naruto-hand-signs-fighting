@@ -17,10 +17,36 @@
 #define MOVESLISTWINDOW_H_
 
 #include "MenuWindow.h"
+#include "../gameLogic/MovesSet.h"
+
+class MovesListModel : public gcn::ListModel{
+	MovesSet *movesSet;
+public:
+	MovesListModel(MovesSet* ms){
+		movesSet = ms;
+	}
+	int getNumberOfElements()
+	{
+		return movesSet->getMoveSet().size();
+	}
+
+	std::string getElementAt(int i){
+		Move* m;
+		map<string, Move*>::iterator it = movesSet->getMoveSet().begin();
+		for(int j=0; j<i; j++)
+			it++;
+		m = it->second;
+		return m->getMoveName();
+	}
+};
 
 class MovesListWindow: public MenuWindow {
+	gcn::ListBox* listBox;
+	MovesListModel* movesList;
+	int listBoxWidth;
+	int listBoxHeight;
 public:
-	MovesListWindow();
+	MovesListWindow(MovesSet* ms);
 	virtual ~MovesListWindow();
 	void buildWindow();
 };

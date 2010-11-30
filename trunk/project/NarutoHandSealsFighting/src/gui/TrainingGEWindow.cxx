@@ -25,4 +25,5 @@ TrainingGEWindow::~TrainingGEWindow() {
 
 void TrainingGEWindow::buildWindow(){
 	buildTitle();
+	buildBackButton();
 }

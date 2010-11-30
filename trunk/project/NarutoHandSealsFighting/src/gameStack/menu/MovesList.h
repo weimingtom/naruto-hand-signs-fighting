@@ -19,11 +19,12 @@
 #include "MenuElement.h"
 #include "../controller/AbstractController.h"
 #include "../../gui/MovesListWindow.h"
+#include "../../gameLogic/MovesSet.h"
 
 class MovesList: public MenuElement {
 public:
-	MovesList(AbstractController* ctrlI): MenuElement(ctrlI){
-		elementGraphic = new MovesListWindow();
+	MovesList(AbstractController* ctrlI, MovesSet* ms): MenuElement(ctrlI){
+		elementGraphic = new MovesListWindow(ms);
 		elementGraphic->buildWindow();
 	}
 	virtual ~MovesList();

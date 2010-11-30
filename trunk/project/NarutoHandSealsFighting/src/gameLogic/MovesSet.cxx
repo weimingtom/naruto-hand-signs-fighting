@@ -1,6 +1,12 @@
 
 #include "MovesSet.h"
 
+MovesSet* movesSetGlobal = new MovesSet();
+
+MovesSet::~MovesSet(){
+	movesSet.clear();
+}
+
 int MovesSet::addMove(Move* m){
 //	pair<map<string,Move*>::iterator,bool> ret;
 

@@ -20,5 +20,14 @@ MovesListController::~MovesListController() {
 }
 
 void MovesListController::dispatchEvent(SDL_Event* e){
-	//TODO
+	if (e->type == SDL_KEYDOWN)
+	{
+		GeneralKeyboardController::dispatchEvent(e);
+		switch(e->key.keysym.sym){
+
+			default:
+				//cout<<"not recognized key pressed: "<< SDL_GetKeyName(event->key.keysym.sym) <<"\n";
+				break;
+		}
+	}
 }
