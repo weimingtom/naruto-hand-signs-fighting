@@ -53,6 +53,7 @@ void TrainingSectionController::dispatchKeyboardEvent(SDL_Event* e){
 
 		case SDLK_b:
 			gameMachine->popFromGameStack();
+			trainingWindow->restoreOldSizeWindow();
 			break;
 
 		default:

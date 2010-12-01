@@ -63,7 +63,8 @@ void MenuWindow::buildBackButton(){
 	backButton->setDimension(gcn::Rectangle(0,0,backButtonWidth, backButonHeight));
 	backButton->setPosition(screenWidth-backButtonWidth - 2, screenHeight - backButonHeight - 2 );
 	backButton->setActionEventId("back");
-	backButton->addActionListener(new EventToKeyPressConverter());
+	backButtonListener = new EventToKeyPressConverter();
+	backButton->addActionListener(backButtonListener);
 	panel->add(backButton);
 }
 

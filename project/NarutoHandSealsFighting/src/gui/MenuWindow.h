@@ -17,10 +17,14 @@
 #define MENUWINDOW_H_
 
 #include "AbstractFactory.h"
+#include "AbstractEventListener.h"
 
 #define MENU_ELEMENT 5
 
 class MenuWindow: public AbstractFactory {
+protected:
+	AbstractEventListener* backButtonListener;
+
 protected:
 	const char* title;
 	gcn::Label *titleLabel;
