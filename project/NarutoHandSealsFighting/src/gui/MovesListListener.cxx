@@ -33,7 +33,8 @@ void MovesListListener::action(const gcn::ActionEvent& actionEvent){
 		movesListController_Kagi->setTargetMove(moveKey);
 		SDL_Event sdlEvent;
 		sdlEvent.type = SDL_KEYDOWN;
-		sdlEvent.key.keysym.sym = SDLK_ASTERISK;
+		sdlEvent.key.keysym.sym = SDLK_s;
+		SDL_PushEvent(&sdlEvent);
 
 	}else{
 		EventToKeyPressConverter::action(actionEvent);

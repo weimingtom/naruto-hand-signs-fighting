@@ -113,12 +113,14 @@ namespace widgets
         textBoxScrollArea->setHeight(100);
         textBoxScrollArea->setFrameSize(1);
 
+        gcn::ScrollArea* listBoxScrollArea;
         listBox = new gcn::ListBox(&demoListModel);
-        listBox->setFrameSize(5);
-        listBox->setSize(150, 50);
+        listBoxScrollArea = new gcn::ScrollArea(listBox);
+        listBoxScrollArea->setFrameSize(5);
+        listBoxScrollArea->setSize(150, 50);
 //        listBox->adjustSize();
-        listBox->setTabInEnabled(true);
-        listBox->setTabOutEnabled(false);
+//        listBox->setTabInEnabled(true);
+//        listBox->setTabOutEnabled(false);
         dropDown = new gcn::DropDown(&demoListModel);
         
         checkBox1 = new gcn::CheckBox("Checkbox 1");
@@ -158,7 +160,7 @@ namespace widgets
         top->add(button, 200, 10);
         top->add(textField, 250, 10);
         top->add(textBoxScrollArea, 200, 50);
-        top->add(listBox, 200, 200);
+        top->add(listBoxScrollArea, 200, 200);
         top->add(dropDown, 500, 10);
         top->add(checkBox1, 500, 130);
         top->add(checkBox2, 500, 150);

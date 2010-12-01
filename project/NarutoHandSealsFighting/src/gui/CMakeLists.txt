@@ -4,7 +4,7 @@
 
 ADD_LIBRARY(gui SHARED AbstractFactory.cxx MenuWindow.cxx TrainingWindow.cxx 
   myButtonListener.cxx AbstractEventListener.cxx EventToKeyPressConverter.cxx 
-  MovesListWindow.cxx OptionsWindow.cxx MovesListListener.cxx)
+  MovesListWindow.cxx OptionsWindow.cxx MovesListListener.cxx MovesListBoxListener.cxx)
 
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gui")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_BIR}/gui/guichan-0.8.2/include")

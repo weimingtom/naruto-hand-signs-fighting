@@ -43,6 +43,7 @@ public:
 
 class MovesListWindow: public MenuWindow {
 	gcn::ListBox* listBox;
+	gcn::ScrollArea* listBoxScrollArea;
 	MovesListModel* movesList;
 	gcn::Button* tryMove;
 	int listBoxWidth;

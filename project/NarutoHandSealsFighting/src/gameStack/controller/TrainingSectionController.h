@@ -19,6 +19,7 @@
 #include "AbstractController.h"
 
 class TrainingSectionController: public AbstractController {
+	void dispatchKeyboardEvent(SDL_Event* e);
 public:
 	TrainingSectionController(GameMachine* gm);
 	virtual ~TrainingSectionController();

@@ -18,7 +18,7 @@
 
 #include "guichan-0.8.2/include/guichan.hpp"
 
-class AbstractEventListener : gcn::ActionListener {
+class AbstractEventListener : public gcn::ActionListener {
 public:
 	virtual void action(const gcn::ActionEvent& actionEvent) = 0;
 

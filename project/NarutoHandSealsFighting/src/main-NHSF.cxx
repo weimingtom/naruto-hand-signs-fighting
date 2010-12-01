@@ -39,12 +39,13 @@ int main(int argc, char* argv[]){
 
 	}catch(gcn::Exception e){
 		cout<<e.getMessage().c_str()<<"\n";
-	}catch(std::exception e){
-		cout<<e.what()<<"\n";
 	}catch(cv::Exception e){
 		cout<<e.msg<<"\n";
+	}catch(std::exception e){
+		cout<<e.what()<<"\n";
 	}
 
+	SDL_Quit();
 
 	return 0;
 }

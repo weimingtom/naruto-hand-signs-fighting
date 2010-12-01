@@ -19,6 +19,7 @@ TrainingSection::TrainingSection(Move* m, AbstractController* ctrl){
 	trainingSectionController = ctrl;
 	move = m;
 	graphicWindow = new TrainingWindow(m->getMoveName());
+	graphicWindow->buildWindow();
 }
 
 TrainingSection::~TrainingSection() {
