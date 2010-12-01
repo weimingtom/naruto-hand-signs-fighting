@@ -34,4 +34,4 @@ ADD_SUBDIRECTORY(controller)
 ########################
 ADD_EXECUTABLE(gameStackTest gameStackTest.cxx)
 TARGET_LINK_LIBRARIES(gameStackTest ${OpenCV_LIBS} gameStack gameLogic menuLib controllerLib gui 
-guichan guichan_sdl deb)
+guichan guichan_sdl deb camLib)

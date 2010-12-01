@@ -20,6 +20,8 @@
 #include <vector>
 #include "MenuWindow.h"
 #include "../gameLogic/MovesSet.h"
+#include "EventToKeyPressConverter.h"
+#include "../acquisitionSection/Camera.h"
 
 #define TRAINING_WINDOW_WIDTH 800
 #define TRAINING_WINDOW_HEIGHT 600
@@ -30,50 +32,64 @@ class TrainingWindow: public MenuWindow {
 	Move* move;
 	int	oldScreenWidth;
 	int oldScreenHeight;
-
-	////Move description///
-	///////////////////////
-	gcn::Label* moveName;
-	gcn::Label* moveElement;
-	gcn::Label* moveRank;
-	gcn::Label* moveType;
-
-	gcn::Label* labelName;
-	gcn::Label* labelElement;
-	gcn::Label* labelRank;
-	gcn::Label* labelType;
-
-	///// Thumbnails //////
-	///////////////////////
-	//Current Seal:
-	gcn::Icon* bigImageIcon;
-	std::vector<gcn::Icon*> icoVector;
-	gcn::Label* bigImageLabel;
-
-	//Small Thumbnails
-	gcn::Label* secondsLabel;
-	gcn::Window* bottomRow;
-	gcn::ScrollArea* bottomRowScroll;
-
-	gcn::Button* shotButton;
-
-	//Camera input
-	int cameraWindowWidth;
-	int cameraWindowHeight;
-	int cameraWindowX;
-	int cameraWindowY;
-	gcn::Window *cameraWindow;
-
-	int currentSealIndex;
-
-	void restoreOldSizeWindow();
-
+    gcn::Label *moveName;
+    gcn::Label *moveElement;
+    gcn::Label *moveRank;
+    gcn::Label *moveType;
+    gcn::Label *labelName;
+    gcn::Label *labelElement;
+    gcn::Label *labelRank;
+    gcn::Label *labelType;
+    gcn::Icon *bigImageIcon;
+    std::vector<gcn::Icon*> icoVector;
+    gcn::Label *bigImageLabel;
+    gcn::Label *secondsLabel;
+    gcn::Window *bottomRow;
+    gcn::ScrollArea *bottomRowScroll;
+    gcn::Button *shotButton;
+    int cameraWindowWidth;
+    int cameraWindowHeight;
+    int cameraWindowX;
+    int cameraWindowY;
+    gcn::Window *cameraWindow;
+    int currentSealIndex;
+    Camera *cam;
 public:
-	TrainingWindow(string targetMove);
-	~TrainingWindow();
-	void buildWindow();
+    TrainingWindow(string targetMove);
+    ~TrainingWindow();
+    void buildWindow();
+    void restoreOldSizeWindow();
+    gcn::Window *getCameraWindow() const
+    {
+        return cameraWindow;
+    }
 
-	void incrementCurrentSealIndex(){
+    int getCameraWindowHeight() const
+    {
+        return cameraWindowHeight;
+    }
+
+    int getCameraWindowWidth() const
+    {
+        return cameraWindowWidth;
+    }
+
+    int getCameraWindowX() const
+    {
+        return cameraWindowX;
+    }
+
+    int getCameraWindowY() const
+    {
+        return cameraWindowY;
+    }
+
+    void setCameraWindowWidth(int cameraWindowWidth)
+    {
+        this->cameraWindowWidth = cameraWindowWidth;
+    }
+
+    void incrementCurrentSealIndex(){
 		currentSealIndex++;
 	}
 
@@ -87,6 +103,15 @@ public:
         this->currentSealIndex = currentSealIndex;
     }
 
+};
+
+class ResizingListener : public EventToKeyPressConverter{
+	TrainingWindow* trainingWindow;
+public:
+	ResizingListener(TrainingWindow* tw){
+		trainingWindow = tw;
+	}
+	void action(const gcn::ActionEvent& actionEvent);
 };
 
 #endif /* TRAININGWINDOW_H_ */

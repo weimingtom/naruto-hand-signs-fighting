@@ -31,6 +31,7 @@ TrainingWindow::TrainingWindow(string targetMove) : MenuWindow() {
 	screen = SDL_SetVideoMode(screenWidth, screenHeight, 32, SDL_HWSURFACE);
 	panel->setDimension(gcn::Rectangle(0,0, screenWidth, screenHeight));
 	currentSealIndex = 0;
+//	cam = Camera::getCameraInstance();
 }
 
 TrainingWindow::~TrainingWindow() {
@@ -128,10 +129,9 @@ void TrainingWindow::buildWindow(){
 	//here the position is relative into the window
 	x = 0;
 	y = 0;
-	//@BUG we mill the last ico image.... why??
 	for(int i=0; i<move->getMoveSeals().size(); i++){
-		debugPrint("reaching the image: %s\n",
-				move->getMoveSeals().at(i)->getThumbnailImagePath().c_str());
+//		debugPrint("reaching the image: %s\n",
+//				move->getMoveSeals().at(i)->getThumbnailImagePath().c_str());
 		image = gcn::Image::load(move->getMoveSeals().at(i)->getThumbnailImagePath().c_str());
 //		debugPrint("creating the ico\n");
 		ico = new gcn::Icon(image);
@@ -140,7 +140,7 @@ void TrainingWindow::buildWindow(){
 		x += ico->getWidth() + 10;
 		brWidth += ico->getWidth();
 		icoVector.push_back(ico);
-		debugPrint("adding to bottom row\n");
+//		debugPrint("adding to bottom row\n");
 		bottomRow->add(ico);
 	}
 	if(brWidth < bottomRowScrollWidth)
@@ -181,7 +181,12 @@ void TrainingWindow::buildWindow(){
 			cameraWindow->getY() + cameraWindow->getHeight() + 5);
 	panel->add(secondsLabel);
 
-
-
 //	delete image;
+}
+
+void ResizingListener::action(const gcn::ActionEvent & actionEvent){
+	if(strcmp(actionEvent.getId().c_str(),"back") == 0){
+		trainingWindow->restoreOldSizeWindow();
+	}
+	EventToKeyPressConverter::action(actionEvent);
 }

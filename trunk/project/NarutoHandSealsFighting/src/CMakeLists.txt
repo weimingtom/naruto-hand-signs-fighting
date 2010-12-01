@@ -60,7 +60,7 @@ ADD_EXECUTABLE( runNHSF main-NHSF.cxx)
 ADD_LIBRARY(deb DebugPrint.cxx)
 TARGET_LINK_LIBRARIES( runNHSF ${OpenCV_LIBS}
  recognitionEngine gameLogic 
-gameStack menuLib controllerLib guichan guichan_sdl gui deb)
+gameStack menuLib controllerLib guichan guichan_sdl gui deb camLib)
 
 #######################################
 
@@ -75,13 +75,15 @@ INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gameStack")
 INCLUDE_DIRECTORIES("${SDL_INCLUDE_DIR}")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gui")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_BIR}/gui/guichan-0.8.2/include")
-INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR}/gui/guichan-0.8.2/include/guichan/sdl)
+INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gui/guichan-0.8.2/include/guichan/sdl")
+INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/acquisitionSection")
 
 ADD_SUBDIRECTORY(recognitionEngine)
 ADD_SUBDIRECTORY(gameLogic)
 ADD_SUBDIRECTORY(templatesCreationSection)
 ADD_SUBDIRECTORY(gameStack)
 ADD_SUBDIRECTORY(gui)
+ADD_SUBDIRECTORY(acquisitionSection)
 
 #######################################
 

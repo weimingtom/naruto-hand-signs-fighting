@@ -19,7 +19,7 @@
 #include <SDL/SDL.h>
 #include "AbstractEventListener.h"
 
-class EventToKeyPressConverter : public gcn::ActionListener {
+class EventToKeyPressConverter : public AbstractEventListener {
 public:
 	EventToKeyPressConverter();
 	virtual ~EventToKeyPressConverter();
