@@ -16,6 +16,7 @@
 #include "MovesListWindow.h"
 #include "../gameLogic/MovesFactory.h"
 #include "MovesListListener.h"
+#include "MovesListBoxListener.h"
 
 MovesListWindow::MovesListWindow(MovesSet* ms) : MenuWindow() {
 	title = "MOVES LIST WINDOW";
@@ -29,6 +30,7 @@ MovesListWindow::MovesListWindow(MovesSet* ms) : MenuWindow() {
 MovesListWindow::~MovesListWindow() {
 	delete listBox;
 	delete tryMove;
+	delete listBoxScrollArea;
 }
 
 void MovesListWindow::buildWindow(){
@@ -36,14 +38,21 @@ void MovesListWindow::buildWindow(){
 //	buildBackButton();
 
 	listBox = new gcn::ListBox(movesList);
-	listBox->setFrameSize(5);
 	listBox->setSize(listBoxWidth, listBoxHeight);
-	listBox->setPosition( 10 ,titleLabel->getHeight() + 10);
 	listBox->adjustSize();
-	panel->add(listBox);
+	//you know.. such as in music when you have to play different instruments...
+	listBox->addFocusListener(new MovesListBoxListener());
+	listBox->addSelectionListener(new MovesListBoxListener() );
+	listBox->addActionListener(new MovesListBoxListener());
+	listBoxScrollArea = new gcn::ScrollArea(listBox);
+	listBoxScrollArea->setFrameSize(5);
+	listBoxScrollArea->setSize(listBoxWidth, listBoxHeight);
+	listBoxScrollArea->setPosition( 10 ,titleLabel->getHeight() + 10);
+//	listBoxScrollArea->setFocusable(true);
+	panel->add(listBoxScrollArea);
 
 
-	tryMove = new gcn::Button("Start");
+	tryMove = new gcn::Button("[S]tart");
 	int startWidth = backButton->getWidth();
 	int startHeight = buttonHeight;
 	tryMove->setSize(startWidth, startHeight);

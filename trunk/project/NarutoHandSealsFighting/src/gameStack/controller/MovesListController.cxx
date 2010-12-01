@@ -13,6 +13,7 @@
  *
  */
 
+#include "../../DebugPrint.h"
 #include "MovesListController.h"
 
 MovesListController* movesListController_Kagi = new MovesListController(
@@ -29,9 +30,15 @@ void MovesListController::dispatchEvent(SDL_Event* e){
 		GeneralKeyboardController::dispatchEvent(e);
 		switch(e->key.keysym.sym){
 
-			case SDLK_ASTERISK:
-				m = movesSetGlobal->getMove(targetMove);
-				gameMachine->pushInGameStack(new TrainingSection(m, movesListController_Kagi));
+			case SDLK_s:
+//				debugPrint("SDL asterisk\n targetMove: %s \n", targetMove.c_str());
+				if(strcmp(targetMove.c_str(), "") != 0){
+					m = movesSetGlobal->getMove(targetMove);
+					gameMachine->pushInGameStack(
+							new TrainingSection(m, new TrainingSectionController(gameMachine)));
+				}else{
+					cout<<"ERROR: MovesListController: targetMove still not initialized\n";
+				}
 				break;
 
 			default:

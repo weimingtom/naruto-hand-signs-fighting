@@ -27,5 +27,35 @@ TrainingSectionController::~TrainingSectionController() {
 }
 
 void TrainingSectionController::dispatchEvent(SDL_Event* e){
-	debugPrint("received event of type %d \n", e->type);
+//	debugPrint("received event of type %d \n", e->type);
+	switch(e->type){
+		case SDL_KEYDOWN:
+			dispatchKeyboardEvent(e);
+			break;
+
+		case SDL_QUIT:
+			gameMachine->stopGameMachine();
+			break;
+
+		default:
+			break;
+	}
+}
+
+void TrainingSectionController::dispatchKeyboardEvent(SDL_Event* e){
+	switch(e->key.keysym.sym){
+		case SDLK_ESCAPE:
+			break;
+
+		case SDLK_SPACE:
+			//shotPhoto();
+			break;
+
+		case SDLK_b:
+			gameMachine->popFromGameStack();
+			break;
+
+		default:
+			break;
+	}
 }

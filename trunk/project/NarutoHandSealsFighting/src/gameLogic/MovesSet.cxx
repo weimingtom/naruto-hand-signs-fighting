@@ -20,13 +20,13 @@ int MovesSet::addMove(Move* m){
 
 Move* MovesSet::getMove(const char* mName){
 	string k = string(mName);
+	return getMove(k);
+}
+
+Move* MovesSet::getMove(string k){
 	map<string, Move*>::iterator t;
 	t = movesSet.find(k);
 	if(t == movesSet.end() )
 		return NULL;
 	return t->second;
-}
-
-Move* MovesSet::getMove(string s){
-	return movesSet[s];
 }

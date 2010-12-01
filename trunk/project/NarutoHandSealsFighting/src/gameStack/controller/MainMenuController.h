@@ -16,8 +16,8 @@
 #ifndef MAINMENUCONTROLLER_H_
 #define MAINMENUCONTROLLER_H_
 
-//#include "AbstractController.h"
 #include "GeneralKeyboardController.h"
+#include "MovesListController.h"
 
 class MainMenuController : public GeneralKeyboardController{
 
