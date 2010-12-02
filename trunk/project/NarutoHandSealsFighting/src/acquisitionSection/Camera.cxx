@@ -16,6 +16,10 @@ Camera *cam = Camera::getCameraInstance();
 
 void Camera::initCamera(){
 	capture = cvCaptureFromCAM( CV_CAP_ANY );
+	captureWidth = DEFAULT_CAPTURE_WIDTH;
+	captureHeigh = DEFAULT_CAPTURE_HEIGHT;
+	cvSetCaptureProperty( capture, CV_CAP_PROP_FRAME_WIDTH, captureWidth );
+	cvSetCaptureProperty( capture, CV_CAP_PROP_FRAME_HEIGHT, captureHeigh );
 //	capture = cvCreateCameraCapture( CV_CAP_ANY );
 	if( !capture ) {
 		fprintf( stderr, "ERROR: capture is NULL \n" );
@@ -80,6 +84,7 @@ int Camera::capturing(){
 	//Or we can use:
 	if(cvGrabFrame(capture)){
 		frame = cvQueryFrame( capture );
+		cvFlip(frame, frame, 1);
 		//			frame = cvRetrieveFrame( capture );
 	}
 	if( !frame && (offFakeFrame > OFFSET_FRAME) ) {
@@ -94,4 +99,11 @@ int Camera::capturing(){
 //WARNING: NOT race condition free!!!
 void Camera::shotAPhoto(){
 	photoShot =captureImage();
+}
+
+void Camera::setCaptureSize(int w, int h){
+	captureWidth = w;
+	captureHeigh = h;
+	cvSetCaptureProperty( capture, CV_CAP_PROP_FRAME_WIDTH, captureWidth );
+	cvSetCaptureProperty( capture, CV_CAP_PROP_FRAME_HEIGHT, captureHeigh );
 }
