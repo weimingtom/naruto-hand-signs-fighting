@@ -42,7 +42,8 @@ void MovesListController::dispatchEvent(SDL_Event* e){
 				break;
 
 			default:
-				cout<<"not recognized key pressed: \n";
+//				cout<<"not recognized key pressed: \n";
+				break;
 		}
 	}
 }

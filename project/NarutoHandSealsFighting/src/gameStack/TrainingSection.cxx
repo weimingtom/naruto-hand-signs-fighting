@@ -15,6 +15,8 @@
 
 #include "TrainingSection.h"
 
+static const char* CAMERA_WINDOW = "Camera";
+
 TrainingSection::TrainingSection(Move* m, AbstractController* ctrl){
 	TrainingWindow* trwin = (TrainingWindow*) graphicWindow;
 	trainingSectionController = ctrl;
@@ -23,10 +25,8 @@ TrainingSection::TrainingSection(Move* m, AbstractController* ctrl){
 	graphicWindow->buildWindow();
 	((TrainingSectionController*)trainingSectionController)->setTrainingWindow(
 			(TrainingWindow*)graphicWindow);
-	cam = Camera::getCameraInstance();
-	cam->setCapture(cvCaptureFromCAM( CV_CAP_ANY ));
 	enabledCameraWindow = -1;
-	openOpenCVWindow();
+//	cam = Camera::getCameraInstance();
 }
 
 TrainingSection::~TrainingSection() {
@@ -35,23 +35,25 @@ TrainingSection::~TrainingSection() {
 
 void TrainingSection::openOpenCVWindow(){
 	enabledCameraWindow = cvNamedWindow( CAMERA_WINDOW, CV_WINDOW_AUTOSIZE );
-	cvMoveWindow(CAMERA_WINDOW, graphicWindow->getCameraWindowX(), graphicWindow->getCameraWindowY());
+//	cvMoveWindow(CAMERA_WINDOW, graphicWindow->getCameraWindowX(), graphicWindow->getCameraWindowY());
 //	cvResizeWindow(CAMERA_WINDOW, graphicWindow->getCameraWindowWidth(),
 //			graphicWindow->getCameraWindowHeight());
+	cvMoveWindow(CAMERA_WINDOW, 800, 200);
+	cvResizeWindow(CAMERA_WINDOW, 220, 150);
 }
 
 void TrainingSection::loopFunction(){
 	SDL_Event event;
-//	if(enabledCameraWindow<0)
-//		openOpenCVWindow();
 	if(SDL_PollEvent(&event)){
 		trainingSectionController->dispatchEvent(&event);
 		graphicWindow->getInput()->pushInput(event);
 	}
-	if(cam->capturing() < 0){
-		cout<<"camera problem!!\n";
-	}
-	cvShowImage(CAMERA_WINDOW, cam->getFrame());
+//	if(enabledCameraWindow<0)
+//		openOpenCVWindow();
+//	if(cam->capturing() < 0){
+//		cout<<"camera problem!!\n";
+//	}
+//	cvShowImage(CAMERA_WINDOW, cam->getFrame());
 	graphicWindow->display();
 
 }

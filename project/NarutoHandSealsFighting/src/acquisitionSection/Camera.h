@@ -44,7 +44,7 @@ public:
 	~Camera();
 	void initCamera();
 	static Camera* getCameraInstance();
-	int activateAndShow();
+	int activateAndShowInWindow();
 	int capturing();
 	IplImage* captureImage();
 	void shotAPhoto();
@@ -96,7 +96,7 @@ public:
 
 };
 
-//extern Camera cam;
+extern Camera *cam;
 
 
 #endif /* CAMERA_H_ */
