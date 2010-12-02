@@ -16,6 +16,7 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
+#include <SDL/SDL_thread.h>
 #include "TrainingWindow.h"
 #include "../DebugPrint.h"
 
