@@ -28,6 +28,7 @@ Camera::~Camera(){
 	// Release the capture device housekeeping
 	cvReleaseCapture( &capture );
 	cvReleaseImage(&frame);
+	cvReleaseImage(&photoShot);
 }
 
 Camera* Camera::getCameraInstance(){
@@ -84,4 +85,9 @@ int Camera::capturing(){
 	}
 	if(offFakeFrame <= OFFSET_FRAME)
 		offFakeFrame++;
+}
+
+//WARNING: NOT race condition free!!!
+void Camera::shotAPhoto(){
+	photoShot =captureImage();
 }

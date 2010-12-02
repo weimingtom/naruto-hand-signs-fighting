@@ -28,8 +28,12 @@ class Camera{
 	//PATTERN Singleton
 	static Camera* camera;
 
+	//Variables used in the Video modality of the camera
 	CvCapture* capture;
 	IplImage* frame;
+
+	//Variable used to shot a photo
+	IplImage* photoShot;
 
 	int winX;
 	int winY;
@@ -43,6 +47,18 @@ public:
 	int activateAndShow();
 	int capturing();
 	IplImage* captureImage();
+	void shotAPhoto();
+
+    IplImage *getPhotoShot() const
+    {
+        return photoShot;
+    }
+
+    void setPhotoShot(IplImage *photoShot)
+    {
+        this->photoShot = photoShot;
+    }
+
     CvCapture *getCapture() const
     {
         return capture;
