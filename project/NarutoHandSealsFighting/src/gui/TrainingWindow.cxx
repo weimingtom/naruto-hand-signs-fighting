@@ -58,22 +58,20 @@ void TrainingWindow::restoreOldSizeWindow(){
 void TrainingWindow::buildCameraWindow(){
 	//Camera Window:
 	cameraWindow = new gcn::Window("Camera");
-	cameraWindowWidth = screenWidth - (bigImageIcon->getWidth() + 40);
-	cameraWindowHeight = screenHeight - (titleLabel->getHeight() + bottomRowScroll->getHeight() + 40);
-	cameraWindowX = bigImageIcon->getX() + bigImageIcon->getWidth() + 20 ;
-	cameraWindowY = titleLabel->getY() + titleLabel->getHeight() ;
+//	cameraWindowWidth = screenWidth - (bigImageIcon->getWidth() + 30);
+//	cameraWindowHeight = screenHeight - (titleLabel->getHeight() + bottomRowScroll->getHeight() + 30);
+	cameraWindowWidth = 640;
+	cameraWindowHeight = 480;
+	cameraWindowX = screenWidth - cameraWindowWidth - 10;
+	cameraWindowY = 10;
 	cameraWindow->setSize(cameraWindowWidth, cameraWindowHeight);
 	cameraWindow->setPosition(cameraWindowX, cameraWindowY);
 	cameraWindow->setMovable(false);
 
 	cameraIcon = NULL;
-//	cameraImage = NULL;
-//	debugPrint("buildingCameraWindow: cameraIcon...\n");
-//	cameraIcon = new gcn::Icon(cameraImage);
-//	cameraIcon->setSize(cameraWindowWidth, cameraWindowHeight);
-//	cameraIcon->setPosition(cameraWindowX, cameraWindowY);
-//	cameraWindow->add(cameraIcon);
-//	panel->add(cameraWindow);
+	//Remember: the size will be set to the closer approximation
+	//of a well difined resolution: 320x240, 640x480 and 1280x960
+	cam->setCaptureSize(cameraWindowWidth, cameraWindowHeight);
 }
 
 void TrainingWindow::buildBottomRow(int x, int y){
@@ -83,7 +81,7 @@ void TrainingWindow::buildBottomRow(int x, int y){
 	bottomRow = new gcn::Window("SEALS:");
 	bottomRow->setPosition(10,screenHeight - 400);
 	int bottomRowScrollWidth = screenWidth - 20;
-	int bottomRowScrollHeight = 170;
+	int bottomRowScrollHeight = 160;
 	int brWidth = 0;
 	//here the position is relative into the window
 	x = 0;
@@ -113,6 +111,10 @@ void TrainingWindow::buildBottomRow(int x, int y){
 	panel->add(bottomRowScroll);
 }
 
+void TrainingWindow::translateTitleLabel(){
+	titleLabel->setPosition( 40, 20);
+}
+
 void TrainingWindow::buildWindow(){
 	gcn::Image *image;
 	int numberOfSeals = move->getMoveSeals().size();
@@ -122,11 +124,11 @@ void TrainingWindow::buildWindow(){
 	string type;
 	buildBackButton();
 	buildTitle();
+	translateTitleLabel();
 
 	//Move Name:
 	labelName = new gcn::Label("NAME: ");
-//	y = titleLabel->getY() + titleLabel->getHeight() + 10;
-	y = 10;
+	y = titleLabel->getY() + titleLabel->getHeight() + 10;
 	labelName->setPosition(x, y);
 	panel->add(labelName);
 	moveName = new gcn::Label(move->getMoveName().c_str());
@@ -189,8 +191,10 @@ void TrainingWindow::buildWindow(){
 
 	//Seconds Label:
 	secondsLabel = new gcn::Label("Seconds");
-	secondsLabel->setPosition(cameraWindow->getX() + cameraWindow->getWidth()/2,
-			cameraWindow->getY() + cameraWindow->getHeight() + 5);
+//	secondsLabel->setPosition(cameraWindow->getX() + cameraWindow->getWidth()/2,
+//			cameraWindow->getY() + cameraWindow->getHeight() + 5);
+	secondsLabel->setPosition(cameraWindow->getX() - secondsLabel->getWidth() - 20,
+			labelName->getY());
 	panel->add(secondsLabel);
 
 //	delete image;

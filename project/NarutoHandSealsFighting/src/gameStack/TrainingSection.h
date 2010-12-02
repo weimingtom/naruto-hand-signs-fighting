@@ -34,10 +34,6 @@ class TrainingSection: public GameElement {
 	Move* move;
 	TrainingWindow* graphicWindow;
 
-//	Camera* cam;
-	int enabledCameraWindow;
-	void openOpenCVWindow();
-
 public:
 	TrainingSection(Move* m, AbstractController* ctrl);
 	virtual ~TrainingSection();

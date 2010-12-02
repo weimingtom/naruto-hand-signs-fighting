@@ -29,8 +29,8 @@
 #include "../gameLogic/MovesSet.h"
 #include "../acquisitionSection/Camera.h"
 
-#define TRAINING_WINDOW_WIDTH 800
-#define TRAINING_WINDOW_HEIGHT 600
+#define TRAINING_WINDOW_WIDTH 1024
+#define TRAINING_WINDOW_HEIGHT 690
 
 using namespace std;
 
@@ -79,6 +79,9 @@ class TrainingWindow: public MenuWindow {
 
     void buildCameraWindow();
     void buildBottomRow(int x, int y);
+    void translateTitleLabel();
+
+    //Camera Functions Facilities
     gcn::Image* convertIplImageToGcnImage(IplImage* iplImage);
     SDL_Surface* ipl_to_surface (IplImage *opencvimg);
 

@@ -115,5 +115,5 @@ int main(int argc, char* argv[]) {
 void createMuWindow(){
 	cvNamedWindow(mu, CV_WINDOW_NORMAL);
 	cvMoveWindow(mu, 500, 200);
-	cvResizeWindow(mu, 230, 150);
+	cvResizeWindow(mu, 500, 300);
 }
