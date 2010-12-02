@@ -28,14 +28,13 @@
 #include "controller/TrainingSectionController.h"
 #include "../acquisitionSection/Camera.h"
 
-#define CAMERA_WINDOW "Camera"
 
 class TrainingSection: public GameElement {
 	AbstractController* trainingSectionController;
 	Move* move;
 	TrainingWindow* graphicWindow;
-	Camera* cam;
 
+//	Camera* cam;
 	int enabledCameraWindow;
 	void openOpenCVWindow();
 

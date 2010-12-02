@@ -13,12 +13,10 @@
  *
  */
 
-#include <iostream>
-#include <string>
-#include <stdlib.h>
-#include <SDL/SDL_thread.h>
 #include "TrainingWindow.h"
 #include "../DebugPrint.h"
+
+static const char* TEMP_IMAGE_FILE = "tempImg.png";
 
 using namespace std;
 
@@ -32,11 +30,9 @@ TrainingWindow::TrainingWindow(string targetMove) : MenuWindow() {
 	screen = SDL_SetVideoMode(screenWidth, screenHeight, 32, SDL_HWSURFACE);
 	panel->setDimension(gcn::Rectangle(0,0, screenWidth, screenHeight));
 	currentSealIndex = 0;
-//	cam = Camera::getCameraInstance();
 }
 
 TrainingWindow::~TrainingWindow() {
-	restoreOldSizeWindow();
 	delete labelName;
 	delete labelElement;
 	delete labelRank;
@@ -47,6 +43,8 @@ TrainingWindow::~TrainingWindow() {
 	delete shotButton;
 	delete bottomRow;
 	delete cameraWindow;
+	delete cameraIcon;
+	delete cameraImage;
 	for(int i=0; i< icoVector.size(); i++)
 		delete icoVector.at(i);
 	icoVector.clear();
@@ -55,6 +53,64 @@ TrainingWindow::~TrainingWindow() {
 void TrainingWindow::restoreOldSizeWindow(){
 	screen = SDL_SetVideoMode(oldScreenWidth, oldScreenHeight, 32, SDL_HWSURFACE);
 	panel->setDimension(gcn::Rectangle(0,0, oldScreenWidth, oldScreenHeight));
+}
+
+void TrainingWindow::buildCameraWindow(){
+	//Camera Window:
+	cameraWindow = new gcn::Window("Camera");
+	cameraWindowWidth = screenWidth - (bigImageIcon->getWidth() + 40);
+	cameraWindowHeight = screenHeight - (titleLabel->getHeight() + bottomRowScroll->getHeight() + 40);
+	cameraWindowX = bigImageIcon->getX() + bigImageIcon->getWidth() + 20 ;
+	cameraWindowY = titleLabel->getY() + titleLabel->getHeight() ;
+	cameraWindow->setSize(cameraWindowWidth, cameraWindowHeight);
+	cameraWindow->setPosition(cameraWindowX, cameraWindowY);
+	cameraWindow->setMovable(false);
+
+	cameraIcon = NULL;
+//	cameraImage = NULL;
+//	debugPrint("buildingCameraWindow: cameraIcon...\n");
+//	cameraIcon = new gcn::Icon(cameraImage);
+//	cameraIcon->setSize(cameraWindowWidth, cameraWindowHeight);
+//	cameraIcon->setPosition(cameraWindowX, cameraWindowY);
+//	cameraWindow->add(cameraIcon);
+//	panel->add(cameraWindow);
+}
+
+void TrainingWindow::buildBottomRow(int x, int y){
+	gcn::Image* image;
+	//Small Seals Thumbnails:
+	gcn::Icon* ico;
+	bottomRow = new gcn::Window("SEALS:");
+	bottomRow->setPosition(10,screenHeight - 400);
+	int bottomRowScrollWidth = screenWidth - 20;
+	int bottomRowScrollHeight = 170;
+	int brWidth = 0;
+	//here the position is relative into the window
+	x = 0;
+	y = 0;
+	for(int i=0; i<move->getMoveSeals().size(); i++){
+		//		debugPrint("reaching the image: %s\n",
+		//				move->getMoveSeals().at(i)->getThumbnailImagePath().c_str());
+		image = gcn::Image::load(move->getMoveSeals().at(i)->getThumbnailImagePath().c_str());
+		//		debugPrint("creating the ico\n");
+		ico = new gcn::Icon(image);
+		ico->setSize(130, 130);
+		ico->setPosition(x,y);
+		x += ico->getWidth() + 10;
+		brWidth += ico->getWidth();
+		icoVector.push_back(ico);
+		//		debugPrint("adding to bottom row\n");
+		bottomRow->add(ico);
+	}
+	if(brWidth < bottomRowScrollWidth)
+		brWidth = bottomRowScrollWidth;
+	bottomRow->setSize(brWidth + ico->getWidth(), 200);
+	bottomRowScroll = new gcn::ScrollArea(bottomRow);
+	bottomRowScroll->setHorizontalScrollPolicy( gcn::ScrollArea::SHOW_ALWAYS);
+	bottomRowScroll->setVerticalScrollPolicy(gcn::ScrollArea::SHOW_NEVER);
+	bottomRowScroll->setSize(bottomRowScrollWidth, bottomRowScrollHeight);
+	bottomRowScroll->setPosition(10, screenHeight - bottomRowScroll->getHeight() - 10);
+	panel->add(bottomRowScroll);
 }
 
 void TrainingWindow::buildWindow(){
@@ -107,7 +163,6 @@ void TrainingWindow::buildWindow(){
 	panel->add(moveType);
 
 	//Current Seal
-	cout<<path<<"\n";
 	image = gcn::Image::load(path);
 	bigImageIcon = new gcn::Icon(image);
 	bigImageIcon->setPosition(10,labelType->getY() + 60);
@@ -118,41 +173,8 @@ void TrainingWindow::buildWindow(){
 			bigImageIcon->getY() - 20);
 	panel->add(bigImageLabel);
 
-
-
-	//Small Seals Thumbnails:
-	gcn::Icon* ico;
-	bottomRow = new gcn::Window("SEALS:");
-	bottomRow->setPosition(10,screenHeight - 400);
-	int bottomRowScrollWidth = screenWidth - 20;
-	int bottomRowScrollHeight = 170;
-	int brWidth = 0;
-	//here the position is relative into the window
-	x = 0;
-	y = 0;
-	for(int i=0; i<move->getMoveSeals().size(); i++){
-//		debugPrint("reaching the image: %s\n",
-//				move->getMoveSeals().at(i)->getThumbnailImagePath().c_str());
-		image = gcn::Image::load(move->getMoveSeals().at(i)->getThumbnailImagePath().c_str());
-//		debugPrint("creating the ico\n");
-		ico = new gcn::Icon(image);
-		ico->setSize(130, 130);
-		ico->setPosition(x,y);
-		x += ico->getWidth() + 10;
-		brWidth += ico->getWidth();
-		icoVector.push_back(ico);
-//		debugPrint("adding to bottom row\n");
-		bottomRow->add(ico);
-	}
-	if(brWidth < bottomRowScrollWidth)
-		brWidth = bottomRowScrollWidth;
-	bottomRow->setSize(brWidth + ico->getWidth(), 200);
-	bottomRowScroll = new gcn::ScrollArea(bottomRow);
-	bottomRowScroll->setHorizontalScrollPolicy( gcn::ScrollArea::SHOW_ALWAYS);
-	bottomRowScroll->setVerticalScrollPolicy(gcn::ScrollArea::SHOW_NEVER);
-	bottomRowScroll->setSize(bottomRowScrollWidth, bottomRowScrollHeight);
-	bottomRowScroll->setPosition(10, screenHeight - bottomRowScroll->getHeight() - 10);
-	panel->add(bottomRowScroll);
+	buildBottomRow(x,y);
+	buildCameraWindow();
 
 	//we position the back button away
 	shotButton = new gcn::Button("SHOT!");
@@ -165,17 +187,6 @@ void TrainingWindow::buildWindow(){
 	backButton->setPosition(bigImageIcon->getX(),
 			shotButton->getY() + shotButton->getHeight() + 15);
 
-	//Camera Window:
-	cameraWindow = new gcn::Window("Camera");
-	cameraWindowWidth = screenWidth - (bigImageIcon->getWidth() + 40);
-	cameraWindowHeight = screenHeight - (titleLabel->getHeight() + bottomRowScroll->getHeight() + 40);
-	cameraWindowX = bigImageIcon->getX() + bigImageIcon->getWidth() + 20 ;
-	cameraWindowY = titleLabel->getY() + titleLabel->getHeight() ;
-	cameraWindow->setSize(cameraWindowWidth, cameraWindowHeight);
-	cameraWindow->setPosition(cameraWindowX, cameraWindowY);
-	cameraWindow->setMovable(false);
-	panel->add(cameraWindow);
-
 	//Seconds Label:
 	secondsLabel = new gcn::Label("Seconds");
 	secondsLabel->setPosition(cameraWindow->getX() + cameraWindow->getWidth()/2,
@@ -184,6 +195,48 @@ void TrainingWindow::buildWindow(){
 
 //	delete image;
 }
+
+void TrainingWindow::display(){
+//	debugPrint("cameraCapturing\n");
+	if(cam->capturing() < 0){
+		cout<<"ERROR: capturing of the camera fails!\n";
+	}
+//	debugPrint("image conversion:...\n");
+	cameraImage = convertIplImageToGcnImage(cam->getFrame());
+	if(cameraIcon == NULL){
+		cameraIcon = new gcn::Icon(cameraImage);
+		cameraIcon->setSize(cameraWindowWidth, cameraWindowHeight);
+		cameraIcon->setPosition(cameraWindowX, cameraWindowY);
+//		cameraWindow->add(cameraIcon);
+		panel->add(cameraIcon);
+	}
+//	debugPrint("go to the display!!\n");
+	cameraIcon->setImage(cameraImage);
+	AbstractFactory::display();
+}
+
+gcn::Image* TrainingWindow::convertIplImageToGcnImage(IplImage* iplImage){
+	SDL_Surface* surf = ipl_to_surface(iplImage);
+	gcn::SDLImage* sdlImage = new gcn::SDLImage(surf,false);
+	return (gcn::Image*) sdlImage;
+}
+
+SDL_Surface* TrainingWindow::ipl_to_surface (IplImage *opencvimg)
+{
+    int pitch = opencvimg->nChannels*opencvimg->width;
+//    printf("Depth %d, nChannels %d, pitch %d\n", opencvimg->depth,
+//                    opencvimg->nChannels, pitch);
+    SDL_Surface *surface = SDL_CreateRGBSurfaceFrom((void*)opencvimg->imageData,
+                    opencvimg->width,
+                    opencvimg->height,
+                    opencvimg->depth*opencvimg->nChannels,
+                    opencvimg->widthStep,
+                    0xff0000, 0x00ff00, 0x0000ff, 0
+                    );
+    return surface;
+
+}
+
 
 void ResizingListener::action(const gcn::ActionEvent & actionEvent){
 	if(strcmp(actionEvent.getId().c_str(),"back") == 0){

@@ -6,10 +6,13 @@
  */
 
 #include "Camera.h"
+#include <iostream>
 
-//Camera cam;
+using namespace std;
+
 
 Camera* Camera::camera = NULL;
+Camera *cam = Camera::getCameraInstance();
 
 void Camera::initCamera(){
 	capture = cvCaptureFromCAM( CV_CAP_ANY );
@@ -35,12 +38,13 @@ Camera* Camera::getCameraInstance(){
 	if(camera == NULL){
 		camera = new Camera();
 		camera->initCamera();
+		cout<<"created new camera\n";
 		return camera;
 	}
 	return camera;
 }
 
-int Camera::activateAndShow(){
+int Camera::activateAndShowInWindow(){
 
 	// Create a window in which the captured images will be presented
 	cvNamedWindow( CAM_WIN, CV_WINDOW_AUTOSIZE );

@@ -5,11 +5,14 @@
  *      Author: michele
  */
 
+#include <iostream>
 #include "Camera.h"
 
-
-
 using namespace std;
+
+void createMuWindow();
+
+const char* mu = "showTry";
 
 // A Simple Camera Capture Framework
 int main(int argc, char* argv[]) {
@@ -58,14 +61,59 @@ int main(int argc, char* argv[]) {
 	Camera* cam = Camera::getCameraInstance();
 	IplImage* img = cam->captureImage();
 	IplImage* res;
+	bool done = false;
 
-	cvNamedWindow( "mainWin", CV_WINDOW_AUTOSIZE );
+	cvNamedWindow( "photoWin", CV_WINDOW_AUTOSIZE );
 	res = cvCreateImage(cvSize(img->width, img->height), img->depth, 1);
 	cvCvtColor(img, res, CV_BGR2GRAY);
-	cvShowImage( "mainWin", res );
+	cvShowImage( "photoWin", res );
 	cvWaitKey(0);
 
-	cam->activateAndShow();
+	createMuWindow();
+
+	while(!done){
+		/*
+		 * The following are two equivalent alternatives.
+		 * Remember that you have to take care about the
+		 * refresh time and the way you are handling the
+		 * main loop, so depending on your purpose they
+		 * may result in different behaviors!
+		 */
+		///////////////////////////////
+		//1) using the capturing method of the Camera
+		//  this is the best result looking at the refresh time
+		if( cam->capturing() < 0){				//<- uncomment this line
+			cout<<"camera problem!\n";			//<- uncomment this line
+			break;								//<- uncomment this line
+		}										//<- uncomment this line
+		cvShowImage( mu, cam->getFrame());		//<- uncomment this line
+		///////////////////////////////
+
+		//////////////////////////////////
+		//2) simply capture a single frame at time ad shows it
+//		cvShowImage(mu, cam->captureImage()); 	//<- uncomment this line
+		//////////////////////////////////
+
+		//////////////////////////////////
+		//3) using the photoShot functions: the photo is
+		//  simply an image such as frame, but their are split in
+		//  order to differentiate the photo which one would keep
+		//  and the temporary image used by the camera acquisition
+//		cam->shotAPhoto(); 						//<- uncomment this line
+//		cvShowImage(mu, cam->getPhotoShot()); 	//<- uncomment this line
+		if( (cvWaitKey(10) & 255) == 27 ){
+			done = true;
+		}
+	}
+
+
+//	cam->activateAndShowInWindow();
 
 	cvDestroyAllWindows();
+}
+
+void createMuWindow(){
+	cvNamedWindow(mu, CV_WINDOW_NORMAL);
+	cvMoveWindow(mu, 500, 200);
+	cvResizeWindow(mu, 230, 150);
 }
