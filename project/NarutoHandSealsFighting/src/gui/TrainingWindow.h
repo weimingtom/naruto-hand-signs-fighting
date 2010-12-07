@@ -64,7 +64,9 @@ class TrainingWindow: public MenuWindow {
     gcn::Button *shotButton;
 
     //Seconds Label
+    int seconds;
     gcn::Label *secondsLabel;
+    gcn::Label *secondsTitle;
 
     //Camera
     int cameraWindowWidth;
@@ -88,6 +90,7 @@ class TrainingWindow: public MenuWindow {
     SDL_Surface* ipl_to_surface (IplImage *opencvimg);
 
 public:
+
     TrainingWindow(string targetMove);
     ~TrainingWindow();
     void buildWindow();
@@ -135,6 +138,14 @@ public:
     void setCurrentSealIndex(int currentSealIndex)
     {
         this->currentSealIndex = currentSealIndex;
+    }
+
+    int getSeconds(){
+    	return seconds;
+    }
+
+    void setSeconds(int sec){
+    	seconds = sec;
     }
 
 };

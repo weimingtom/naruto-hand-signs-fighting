@@ -29,8 +29,8 @@ TrainingSection::TrainingSection(Move* m, AbstractController* ctrl){
 	TrainingSectionController* trainingSectionCtrl = (TrainingSectionController*) ctrl;
 	trainingSectionCtrl->setTrainingWindow(trwin);
 
-	trainingSectionCtrl->setDirector(new TrainingDirector(trwin, recognitionEngine, cam, m));
-
+	trainingDirector = new TrainingDirector(trwin,recognitionEngine, cam, m);
+	trainingSectionCtrl->setDirector(trainingDirector);
 }
 
 TrainingSection::~TrainingSection() {
