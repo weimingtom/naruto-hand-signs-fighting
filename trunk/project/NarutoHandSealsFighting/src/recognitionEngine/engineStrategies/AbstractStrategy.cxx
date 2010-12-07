@@ -15,7 +15,8 @@
 
 #include "AbstractStrategy.h"
 
-AbstractStrategy::AbstractStrategy() {
+AbstractStrategy::AbstractStrategy(ModulesPool* p) {
+	pool = p;
 }
 
 AbstractStrategy::~AbstractStrategy() {

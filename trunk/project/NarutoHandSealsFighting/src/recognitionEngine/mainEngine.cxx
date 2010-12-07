@@ -67,7 +67,9 @@ int main(int argc, char* argv[] ){
 	//////////////////////////
 	// Before doing anything else we have to use the factories
 	// to build the seals and all the moves
+	debugPrint("sealsFactoy\n");
 	sealsFactory->buildSealsMap(&smap);
+	debugPrint("movesFactory\n");
 	movesFactory->buildMovesSet(&myMoveSet, &smap);
 	//////////////////////////
 
@@ -88,15 +90,31 @@ int main(int argc, char* argv[] ){
 	////////////////////////
 	//The first step is to add different modules to our engine
 	///////////////////////
-	initEngine();
+	debugPrint("recognition engine initialization...");
+//	initEngine();
+	recognitionEngine->initEngine();
+	debugPrint("done\n");
 
 	////////////////////////
 	//Then let's define the currentMove
 	////////////////////////
+	debugPrint("set current move...");
 	recognitionEngine->setCurrentMove(myMoveSet.getMove("Lightning Blade"));
+	debugPrint("done\n");
 //	cout<<"current move is: "<<recognitionEngine->getCurrentMove()->getMoveName()<<"\n";
-	debugPrint("current move is %s \n", recognitionEngine->getCurrentMove()->getMoveName().c_str());
+	debugPrint("current move is %s \n",
+			recognitionEngine->getCurrentMove()->getMoveName().c_str());
+
+	debugPrint("set evaluator function...");
 	recognitionEngine->setEvaluatorFunction(mulEvaluator);
+	debugPrint("done\n");
+
+	cvNamedWindow(TEMPLATE_WIN, CV_WINDOW_AUTOSIZE);
+	cvMoveWindow(TEMPLATE_WIN, 50, 50);
+
+	// create a second window
+	cvNamedWindow(INPUT_WIN, CV_WINDOW_AUTOSIZE);
+	cvMoveWindow(INPUT_WIN, 700, 50);
 
 	////////////////////////
 	//For all inserted images...
@@ -116,6 +134,7 @@ int main(int argc, char* argv[] ){
 		//Processing phase:
 		cout<<"Starting process\n";
 		recognitionEngine->process(img, res);
+		debugPrint("process ended\n");
 		///////////////////////////////////
 
 		//Now there is the template creator... use that instead
@@ -124,19 +143,20 @@ int main(int argc, char* argv[] ){
 		//		cvSaveImage(TEMPLATE_NAME, res);
 		//	}
 
-		cout<<"score is: "<<recognitionEngine->evaluate(res, i-1)<<"\n";
-
-		cvNamedWindow(TEMPLATE_WIN, CV_WINDOW_AUTOSIZE);
-		cvMoveWindow(TEMPLATE_WIN, 50, 50);
-
-		// create a second window
-		cvNamedWindow(INPUT_WIN, CV_WINDOW_AUTOSIZE);
-		cvMoveWindow(INPUT_WIN, 700, 50);
-
+		cvShowImage(INPUT_WIN, res);
 		cvShowImage(TEMPLATE_WIN,
 				recognitionEngine->getCurrentMove()->getMoveSeals().at(i-1)->getTemplateImage());
+		cvWaitKey(5000);
+
+		debugPrint("evaluation: \n");
+		cout<<"score is: "<<recognitionEngine->evaluate(res, i-1)<<"\n";
+
 		cvShowImage(INPUT_WIN, res);
+		cvShowImage(TEMPLATE_WIN,
+				recognitionEngine->getCurrentMove()->getMoveSeals().at(i-1)->getTemplateImage());
 		cvWaitKey(10000);
+
+
 	}
 
 	debugPrint("out of cycle\n");

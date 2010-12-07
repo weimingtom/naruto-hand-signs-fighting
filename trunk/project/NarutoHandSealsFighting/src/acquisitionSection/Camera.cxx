@@ -99,6 +99,7 @@ int Camera::capturing(){
 //WARNING: NOT race condition free!!!
 void Camera::shotAPhoto(){
 	photoShot =captureImage();
+	cvFlip(photoShot, photoShot, 1);
 }
 
 void Camera::setCaptureSize(int w, int h){

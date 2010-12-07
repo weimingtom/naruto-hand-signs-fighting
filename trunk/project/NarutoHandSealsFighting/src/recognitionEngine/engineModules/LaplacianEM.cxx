@@ -10,6 +10,7 @@
 EngineModule *laplacian = new LaplacianEM();
 
 LaplacianEM::LaplacianEM(int inputKernelSize){
+	setName("LaplacianModule");
 	 kernelSize = inputKernelSize;
 }
 

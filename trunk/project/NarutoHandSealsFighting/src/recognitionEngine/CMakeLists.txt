@@ -3,7 +3,7 @@
 ########################
 
 cmake_minimum_required(VERSION 2.6)
-PROJECT( recognitionEngine_Project )
+#PROJECT( recognitionEngine_Project )
 FIND_PACKAGE( OpenCV REQUIRED )
 
 #######################
@@ -53,3 +53,10 @@ ADD_DEPENDENCIES(recognitionEngine engineStrategies)
 ADD_EXECUTABLE( reTest reTest.cxx)
 TARGET_LINK_LIBRARIES( reTest ${OpenCV_LIBS} recognitionEngine engineModules gameLogic 
 evaluationFunctions engineStrategies)
+
+#######################
+##### Moves File ######
+#######################
+#Moves file
+FILE(COPY ${PROJECT_SOURCE_DIR}/gameLogic/Moves.xml 
+	DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

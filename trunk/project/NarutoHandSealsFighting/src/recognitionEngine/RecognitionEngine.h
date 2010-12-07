@@ -27,6 +27,18 @@
  *
  * Remember that before to use the Recognition Engine you have to initialize it,
  * otherwise you have to provide you own set of modules.
+ * The engine initialization provoke the loading off all modules selected by the
+ * strategy into the ModulesPool. If you haven't changed the strategy policy
+ * then the default one will be applied.
+ *
+ * In the evaluation phase you have to choose one of the proposed
+ * evaluator stored in the directory evaluationFunctions.
+ * These algorithms, once the input image has been processed,
+ * apply their own function comparing the result with the
+ * original template of the target seal.
+ * The way in which one operates and the score depends on the
+ * function provided. The default function is a multiplier
+ * of the templated and the result image.
  *
  ******************************************************
  *	Created on: Nov 13, 2010
@@ -45,6 +57,7 @@
 #include "engineStrategies/AbstractStrategy.h"
 #include "engineStrategies/DefaultStrategy.h"
 #include "evaluationFunctions/EvaluatorFunctionTemplate.h"
+#include "evaluationFunctions/MulEvaluator.h"
 #include "../gameLogic/Move.h"
 
 #define RE_OUTPUT_IMAGE_DEPTH IPL_DEPTH_32F

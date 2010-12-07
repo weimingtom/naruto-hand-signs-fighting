@@ -17,9 +17,9 @@ RecognitionEngine* RecognitionEngine::engine = NULL;
 
 RecognitionEngine::RecognitionEngine(){
 	temp == NULL;
-	evaluator = NULL;
 	currentMove = NULL;
-	strategy = new DefaultStrategy();
+	evaluator = NULL;
+	strategy = new DefaultStrategy(this);
 }
 
 
@@ -36,9 +36,11 @@ int RecognitionEngine::process(const IplImage* src, IplImage* res){
 //	if(temp == NULL)
 	temp = cvCreateImage(cvSize(src->width, src->height), RE_OUTPUT_IMAGE_DEPTH, src->nChannels);
 
+//	cout<<"modules applied:\n";
 	for(int i=0; i<modulesArray.size(); i++){
 		try{
 			modulesArray.at(i)->compute(src, temp);
+//			cout<<modulesArray.at(i)->getModuleName()<<"\n";
 		}catch(cv::Exception e){
 			cout<<"EXCEPTION in " << modulesArray.at(i)->getModuleName() << "\n";
 			cout<<e.err<<"\n";
@@ -75,11 +77,21 @@ int RecognitionEngine::evaluate(IplImage* img, int sealIndex){
 }
 
 int RecognitionEngine::initEngine(){
+	int ret =0;
 	if(strategy != NULL){
 		strategy->initModules();
-		return 1;
-	}else
-		return -1;
+		ret = 1;
+	}else{
+		ret = -1;
+		cout<<"strategy module not initialized\n";
+	}
+	if(evaluator == NULL){
+		evaluator = mulEvaluator;
+		cout<<"using default evaluator "<<evaluator->getEvaluatorName()<<"\n";
+	}else{
+		cout<<"evaluator: "<<evaluator->getEvaluatorName()<<"\n";
+	}
+	return ret;
 }
 
 void RecognitionEngine::changeEngineStrategy(AbstractStrategy* newStrategy){

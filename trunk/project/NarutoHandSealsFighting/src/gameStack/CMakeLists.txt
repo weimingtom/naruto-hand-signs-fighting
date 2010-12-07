@@ -36,5 +36,6 @@ ADD_SUBDIRECTORY(timers)
 ### executable test ####
 ########################
 ADD_EXECUTABLE(gameStackTest gameStackTest.cxx)
-TARGET_LINK_LIBRARIES(gameStackTest ${OpenCV_LIBS} gameStack gameLogic menuLib controllerLib gui 
+TARGET_LINK_LIBRARIES(gameStackTest ${OpenCV_LIBS} gameStack gameLogic menuLib controllerLib gui
+evaluationFunctions 
 guichan guichan_sdl deb camLib recognitionEngine engineStrategies engineModules timersNHSF )

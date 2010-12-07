@@ -28,10 +28,12 @@
 #include "../ModulesPool.h"
 #include "../engineModules/All.h"
 
-class AbstractStrategy : public ModulesPool {
+class AbstractStrategy {
+protected:
+	ModulesPool* pool;
 
 public:
-	AbstractStrategy();
+	AbstractStrategy(ModulesPool* p);
 	virtual ~AbstractStrategy();
 
 	virtual void initModules() = 0;

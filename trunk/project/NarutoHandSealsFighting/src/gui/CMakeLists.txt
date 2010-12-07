@@ -23,5 +23,6 @@ FILE(COPY ${PROJECT_SOURCE_DIR}/gui/guichan-0.8.2/examples/rpgfont.bmp
 
 ADD_EXECUTABLE(guiTest guiTest.cxx)
 TARGET_LINK_LIBRARIES(guiTest gui  guichan_sdl guichan gameLogic gameStack controllerLib 
-	${OpenCV_LIBS} menuLib deb camLib recognitionEngine engineStrategies engineModules timersNHSF)
+	${OpenCV_LIBS} menuLib deb camLib recognitionEngine engineStrategies evaluationFunctions
+	engineModules timersNHSF)
 
