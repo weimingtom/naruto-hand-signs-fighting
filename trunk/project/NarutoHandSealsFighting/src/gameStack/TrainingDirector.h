@@ -25,20 +25,61 @@
 using namespace std;
 
 class TrainingDirector {
-	TrainingWindow* trainingWindow;
-	RecognitionEngine* recognitionEngine;
-	Camera* cam;
-	Move* targetMove;
-	CountdownTimer* timer;
+    TrainingWindow *trainingWindow;
+    RecognitionEngine *recognitionEngine;
+    Camera *cam;
+    Move *targetMove;
+    CountdownTimer *timer;
 
 public:
-	TrainingDirector(TrainingWindow* tw, RecognitionEngine* re, Camera* c, Move* m);
-	virtual ~TrainingDirector();
+    TrainingDirector(TrainingWindow *tw, RecognitionEngine *re, Camera *c, Move *m);
+    virtual ~TrainingDirector();
+    void handleShot(int seconds, int sealIndex);
 
-	void handleShot(int seconds, int sealIndex);
+    void elapsedTimer();
 
-	//Used by the timer
-	void fire();
+    Camera *getCam() const
+    {
+        return cam;
+    }
+
+    CountdownTimer *getTimer() const
+    {
+        return timer;
+    }
+
+    void setCam(Camera *cam)
+    {
+        this->cam = cam;
+    }
+
+    void setRecognitionEngine(RecognitionEngine *recognitionEngine)
+    {
+        this->recognitionEngine = recognitionEngine;
+    }
+
+    void setTimer(CountdownTimer *timer)
+    {
+        this->timer = timer;
+    }
+
+    void setTrainingWindow(TrainingWindow *trainingWindow)
+    {
+        this->trainingWindow = trainingWindow;
+    }
+
+    Move *getTargetMove() const
+    {
+        return targetMove;
+    }
+
+    void setTargetMove(Move *targetMove)
+    {
+        this->targetMove = targetMove;
+    }
+
 };
+
+extern TrainingDirector* trainingDirector;
 
 #endif /* TRAININGDIRECTOR_H_ */

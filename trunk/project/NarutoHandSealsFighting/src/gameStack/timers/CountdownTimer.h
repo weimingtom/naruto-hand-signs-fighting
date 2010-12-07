@@ -17,20 +17,26 @@
 #define COUNTDOWNTIMER_H_
 
 #include "TimerNHSF.h"
+#include "../../gui/TrainingWindow.h"
 
 class CountdownTimer : public TimerNHSF {
 	int seconds;
+	TrainingWindow* trainingWindow;
 
 public:
 
-	CountdownTimer();
-	CountdownTimer(Uint32 delay ,SDL_NewTimerCallback callbackFunction);
+	CountdownTimer(TrainingWindow* trainingWindow);
 	virtual ~CountdownTimer();
+    int countDown(int sec);
+    TrainingWindow *getTrainingWindow() const
+    {
+        return trainingWindow;
+    }
 
-	//inherited from TimerNHSF.h
-//	friend Uint32 callbackFunction(Uint32 interval, void* pointer);
-
-	int countDown(int sec);
+    void setTrainingWindow(TrainingWindow *trainingWindow)
+    {
+        this->trainingWindow = trainingWindow;
+    }
 
     int getSeconds() const
     {

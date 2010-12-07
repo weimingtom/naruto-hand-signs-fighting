@@ -17,12 +17,13 @@
 #include <stdio.h>
 #include "TrainingDirector.h"
 
+TrainingDirector* trainingDirector;
+
 TrainingDirector::TrainingDirector(TrainingWindow* tw, RecognitionEngine* re, Camera* c, Move* m){
 	trainingWindow = tw;
 	recognitionEngine = re;
 	cam = c;
 	targetMove = m;
-
 }
 
 TrainingDirector::~TrainingDirector() {
@@ -30,7 +31,10 @@ TrainingDirector::~TrainingDirector() {
 }
 
 void TrainingDirector::handleShot(int seconds, int sealIndex){
-	cout<<"director\n"; fflush(stdout);
-	timer = new CountdownTimer();
-	timer->countDown(10);
+	timer = new CountdownTimer(trainingWindow);
+	timer->countDown(15);
+}
+
+void TrainingDirector::elapsedTimer(){
+	cout<<"elapsed timer!\n";
 }

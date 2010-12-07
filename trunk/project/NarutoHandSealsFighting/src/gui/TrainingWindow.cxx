@@ -16,6 +16,9 @@
 #include "TrainingWindow.h"
 #include "../DebugPrint.h"
 
+static const string TIMER_STR = "00'.";
+static const string TIMER_STR_DEC = "00'.0";
+static const string TIMER_STR_SEC = "''";
 static const char* TEMP_IMAGE_FILE = "tempImg.png";
 
 using namespace std;
@@ -30,6 +33,7 @@ TrainingWindow::TrainingWindow(string targetMove) : MenuWindow() {
 	screen = SDL_SetVideoMode(screenWidth, screenHeight, 32, SDL_HWSURFACE);
 	panel->setDimension(gcn::Rectangle(0,0, screenWidth, screenHeight));
 	currentSealIndex = 0;
+	seconds = 0;
 }
 
 TrainingWindow::~TrainingWindow() {
@@ -45,6 +49,7 @@ TrainingWindow::~TrainingWindow() {
 	delete cameraWindow;
 	delete cameraIcon;
 	delete cameraImage;
+	delete secondsTitle;
 	for(int i=0; i< icoVector.size(); i++)
 		delete icoVector.at(i);
 	icoVector.clear();
@@ -202,12 +207,18 @@ void TrainingWindow::buildWindow(){
 			shotButton->getY() + shotButton->getHeight() + 15);
 
 	//Seconds Label:
-	secondsLabel = new gcn::Label("Seconds");
+	//Warning: the string inserted into the Label constructor also defines the
+	//total length of the label
+	secondsLabel = new gcn::Label("00'.00''"); //<-
+	secondsTitle = new gcn::Label("Timer");
 //	secondsLabel->setPosition(cameraWindow->getX() + cameraWindow->getWidth()/2,
 //			cameraWindow->getY() + cameraWindow->getHeight() + 5);
-	secondsLabel->setPosition(cameraWindow->getX() - secondsLabel->getWidth() - 20,
+	secondsTitle->setPosition(cameraWindow->getX() - secondsTitle->getWidth() - 20,
 			labelName->getY());
+	secondsLabel->setPosition(secondsTitle->getX(),
+			secondsTitle->getY() + secondsLabel->getHeight() + 10);
 	panel->add(secondsLabel);
+	panel->add(secondsTitle);
 
 //	delete image;
 }
@@ -228,6 +239,19 @@ void TrainingWindow::display(){
 	}
 //	debugPrint("go to the display!!\n");
 	cameraIcon->setImage(cameraImage);
+
+	/////////////////////////
+	//Updating the seconds//
+	std::stringstream streamtemp;
+	string temp;
+	streamtemp << seconds;
+	if(seconds > 9)
+		temp = TIMER_STR + streamtemp.str();
+	else
+		temp = TIMER_STR_DEC + streamtemp.str();
+	temp += TIMER_STR_SEC;
+	secondsLabel->setCaption(temp.c_str());
+
 	AbstractFactory::display();
 }
 
