@@ -52,6 +52,9 @@ void EventToKeyPressConverter::action(const gcn::ActionEvent & event){
 	else if(strcmp(event.getId().c_str(),"back")==0)
 			sdlEvent.key.keysym.sym = SDLK_b;
 
+	else if(strcmp(event.getId().c_str(),"shot")==0)
+				sdlEvent.key.keysym.sym = SDLK_SPACE;
+
 //	debugPrint("generated key: %s\n", SDL_GetKeyName(sdlEvent.key.keysym.sym));
 
 	SDL_PushEvent(&sdlEvent);

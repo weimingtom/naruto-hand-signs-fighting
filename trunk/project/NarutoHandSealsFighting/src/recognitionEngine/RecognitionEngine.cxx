@@ -15,6 +15,8 @@ RecognitionEngine *recognitionEngine = new RecognitionEngine();
 
 RecognitionEngine::RecognitionEngine(){
 	temp == NULL;
+	evaluator = NULL;
+	currentMove = NULL;
 }
 
 RecognitionEngine::RecognitionEngine(EvaluatorFunctionTemplate* eval){

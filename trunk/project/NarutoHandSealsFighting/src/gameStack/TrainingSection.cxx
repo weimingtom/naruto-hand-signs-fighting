@@ -18,13 +18,19 @@
 static const char* CAMERA_WINDOW = "Camera";
 
 TrainingSection::TrainingSection(Move* m, AbstractController* ctrl){
-	TrainingWindow* trwin = (TrainingWindow*) graphicWindow;
+
 	trainingSectionController = ctrl;
 	move = m;
+
 	graphicWindow = new TrainingWindow(m->getMoveName());
+	TrainingWindow* trwin = (TrainingWindow*) graphicWindow;
 	graphicWindow->buildWindow();
-	((TrainingSectionController*)trainingSectionController)->setTrainingWindow(
-			(TrainingWindow*)graphicWindow);
+
+	TrainingSectionController* trainingSectionCtrl = (TrainingSectionController*) ctrl;
+	trainingSectionCtrl->setTrainingWindow(trwin);
+
+	trainingSectionCtrl->setDirector(new TrainingDirector(trwin, recognitionEngine, cam, m));
+
 }
 
 TrainingSection::~TrainingSection() {

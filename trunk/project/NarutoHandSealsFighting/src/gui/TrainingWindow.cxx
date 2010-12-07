@@ -55,6 +55,49 @@ void TrainingWindow::restoreOldSizeWindow(){
 	panel->setDimension(gcn::Rectangle(0,0, oldScreenWidth, oldScreenHeight));
 }
 
+void TrainingWindow::buildMoveDescription(int x, int y){
+	string type;
+	int distanceMoveDescription = 20;
+
+	//Move Name:
+	labelName = new gcn::Label("NAME: ");
+	y = titleLabel->getY() + titleLabel->getHeight() + 10;
+	labelName->setPosition(x, y);
+	panel->add(labelName);
+	moveName = new gcn::Label(move->getMoveName().c_str());
+	moveName->setPosition(x + labelName->getWidth(), y);
+	panel->add(moveName);
+
+
+	//Move Element:
+	labelElement = new gcn::Label("ELEMENT: ");
+	y = labelName->getY() + distanceMoveDescription;
+	labelElement->setPosition(x, y);
+	panel->add(labelElement);
+	moveElement = new gcn::Label(move->getElementStr().c_str());
+	moveElement->setPosition(x+labelElement->getWidth(), y);
+	panel->add(moveElement);
+
+	//Move Rank:
+	labelRank = new gcn::Label("RANK: ");
+	y = labelElement->getY() + distanceMoveDescription;
+	labelRank->setPosition(x, y);
+	panel->add(labelRank);
+	moveRank = new gcn::Label(move->getRankStr().c_str());
+	moveRank->setPosition(x+labelRank->getWidth(), y);
+	panel->add(moveRank);
+
+	//Move type
+	labelType = new gcn::Label("TYPE: ");
+	y = labelRank->getY() + distanceMoveDescription;
+	labelType->setPosition(x, y);
+	panel->add(labelType);
+	type = move->getType().japName + " - " +  move->getType().engName ;
+	moveType = new gcn::Label(type.c_str());
+	moveType->setPosition(x+labelType->getWidth(), y);
+	panel->add(moveType);
+}
+
 void TrainingWindow::buildCameraWindow(){
 	//Camera Window:
 	cameraWindow = new gcn::Window("Camera");
@@ -115,54 +158,30 @@ void TrainingWindow::translateTitleLabel(){
 	titleLabel->setPosition( 40, 20);
 }
 
+void TrainingWindow::buildShotButton(){
+	//we position the back button away
+	shotButton = new gcn::Button("SHOT!");
+	shotButton->setPosition(bigImageIcon->getX(),
+			bigImageIcon->getY() + bigImageIcon->getHeight() + 25);
+	shotButton->setSize(bigImageIcon->getWidth(), buttonHeight + 20);
+	shotButton->setFrameSize(3);
+	shotButton->setActionEventId("shot");
+	shotButton->addActionListener(new EventToKeyPressConverter());
+	panel->add(shotButton);
+}
+
 void TrainingWindow::buildWindow(){
 	gcn::Image *image;
 	int numberOfSeals = move->getMoveSeals().size();
-	int distanceMoveDescription = 20;
-	int x=10, y=0;
 	string path = move->getMoveSeals().at(currentSealIndex)->getThumbnailImagePath();
-	string type;
+
+
 	buildBackButton();
 	buildTitle();
 	translateTitleLabel();
 
-	//Move Name:
-	labelName = new gcn::Label("NAME: ");
-	y = titleLabel->getY() + titleLabel->getHeight() + 10;
-	labelName->setPosition(x, y);
-	panel->add(labelName);
-	moveName = new gcn::Label(move->getMoveName().c_str());
-	moveName->setPosition(x + labelName->getWidth(), y);
-	panel->add(moveName);
-
-
-	//Move Element:
-	labelElement = new gcn::Label("ELEMENT: ");
-	y = labelName->getY() + distanceMoveDescription;
-	labelElement->setPosition(x, y);
-	panel->add(labelElement);
-	moveElement = new gcn::Label(move->getElementStr().c_str());
-	moveElement->setPosition(x+labelElement->getWidth(), y);
-	panel->add(moveElement);
-
-	//Move Rank:
-	labelRank = new gcn::Label("RANK: ");
-	y = labelElement->getY() + distanceMoveDescription;
-	labelRank->setPosition(x, y);
-	panel->add(labelRank);
-	moveRank = new gcn::Label(move->getRankStr().c_str());
-	moveRank->setPosition(x+labelRank->getWidth(), y);
-	panel->add(moveRank);
-
-	//Move type
-	labelType = new gcn::Label("TYPE: ");
-	y = labelRank->getY() + distanceMoveDescription;
-	labelType->setPosition(x, y);
-	panel->add(labelType);
-	type = move->getType().japName + " - " +  move->getType().engName ;
-	moveType = new gcn::Label(type.c_str());
-	moveType->setPosition(x+labelType->getWidth(), y);
-	panel->add(moveType);
+	int x=10, y=0;
+	buildMoveDescription(x, y);
 
 	//Current Seal
 	image = gcn::Image::load(path);
@@ -177,14 +196,7 @@ void TrainingWindow::buildWindow(){
 
 	buildBottomRow(x,y);
 	buildCameraWindow();
-
-	//we position the back button away
-	shotButton = new gcn::Button("SHOT!");
-	shotButton->setPosition(bigImageIcon->getX(),
-			bigImageIcon->getY() + bigImageIcon->getHeight() + 25);
-	shotButton->setSize(bigImageIcon->getWidth(), buttonHeight + 20);
-	shotButton->setFrameSize(3);
-	panel->add(shotButton);
+	buildShotButton();
 
 	backButton->setPosition(bigImageIcon->getX(),
 			shotButton->getY() + shotButton->getHeight() + 15);

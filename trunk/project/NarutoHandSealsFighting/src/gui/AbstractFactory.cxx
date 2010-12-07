@@ -45,7 +45,7 @@ void AbstractFactory::display(){
 void AbstractFactory::init()
 {
 	// We simply initialise SDL as we would do with any SDL application.
-	SDL_Init(SDL_INIT_VIDEO);
+//	SDL_Init(SDL_INIT_VIDEO);
 	screen = SDL_SetVideoMode(screenWidth, screenHeight, 32, SDL_HWSURFACE);
 	// We want unicode for the SDLInput object to function properly.
 	SDL_EnableUNICODE(1);
