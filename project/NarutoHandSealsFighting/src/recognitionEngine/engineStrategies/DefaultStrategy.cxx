@@ -15,7 +15,7 @@
 
 #include "DefaultStrategy.h"
 
-DefaultStrategy::DefaultStrategy() {
+DefaultStrategy::DefaultStrategy(ModulesPool* p) : AbstractStrategy(p) {
 	// TODO Auto-generated constructor stub
 
 }
@@ -26,21 +26,21 @@ DefaultStrategy::~DefaultStrategy() {
 
 void DefaultStrategy::initModules(){
 	//equalization
-	addModule(new HistogramEM()); //<- remember to uncomment
+	pool->addModule(new HistogramEM()); //<- remember to uncomment
 
 	//Sobel
-	//	recognitionEngine->addModule(new SobelEM(7, 2, 2));
-	addModule(new SobelEM(CV_SCHARR, 1, 0)); //<-
-	//	addModule(new SobelEM(CV_SCHARR, 0, 1));
+	//	pool->addModule(new SobelEM(7, 2, 2));
+	pool->addModule(new SobelEM(CV_SCHARR, 1, 0)); //<-
+	//	pool->addModule(new SobelEM(CV_SCHARR, 0, 1));
 
 	//Canny
-	//	addModule(new CannyEM(5, 200, 40));
+	//	pool->addModule(new CannyEM(5, 200, 40));
 
 	//blurring
-	addModule(new BlurEM(CV_GAUSSIAN,3,3)); //<-(?)
+	pool->addModule(new BlurEM(CV_GAUSSIAN,3,3)); //<-(?)
 
 	//Laplacian
-	addModule(new LaplacianEM(7)); //<-
+	pool->addModule(new LaplacianEM(7)); //<-
 
 	//contours extraction
 	//addModule(new ContoursFinderEM(120));

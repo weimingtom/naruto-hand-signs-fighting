@@ -26,7 +26,7 @@
 
 class DefaultStrategy: public AbstractStrategy {
 public:
-	DefaultStrategy();
+	DefaultStrategy(ModulesPool* modulesPool);
 	virtual ~DefaultStrategy();
 
 	void initModules();

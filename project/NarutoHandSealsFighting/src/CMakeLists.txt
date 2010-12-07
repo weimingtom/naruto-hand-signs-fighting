@@ -27,7 +27,7 @@ IF (NOT OpenCV_FOUND)
 ENDIF (NOT OpenCV_FOUND)
 
 ########################################
-############### SDL CHECK ##############
+############## SDL CHECK ###############
 ########################################
 #SET(SDL_FOUND false)
 IF (NOT SDL_FOUND)
@@ -58,9 +58,9 @@ set (NHSF_VERSION_MINOR 0)
 #######################################
 ADD_EXECUTABLE( runNHSF main-NHSF.cxx)
 ADD_LIBRARY(deb DebugPrint.cxx)
-TARGET_LINK_LIBRARIES( runNHSF ${OpenCV_LIBS}
- recognitionEngine engineStrategies engineModules gameLogic 
-gameStack menuLib controllerLib guichan guichan_sdl gui deb camLib timersNHSF)
+TARGET_LINK_LIBRARIES( runNHSF ${OpenCV_LIBS} recognitionEngine engineStrategies engineModules 
+evaluationFunctions gameLogic gameStack menuLib controllerLib 
+guichan guichan_sdl gui deb camLib timersNHSF)
 
 #######################################
 
@@ -69,6 +69,7 @@ gameStack menuLib controllerLib guichan guichan_sdl gui deb camLib timersNHSF)
 #######################################
 
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/recognitionEngine")
+INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/recognitionEngine/evaluationFunctions")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gameLogic")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/templatesCreatoionSection")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gameStack")

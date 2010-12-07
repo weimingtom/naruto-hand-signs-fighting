@@ -46,6 +46,7 @@ int main(int argc, char* argv[]){
 
 	recognitionEngine->initEngine();
 
+
 	/*
 	 * and so on...
 	 */
