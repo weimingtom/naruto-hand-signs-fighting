@@ -58,8 +58,8 @@ set (NHSF_VERSION_MINOR 0)
 #######################################
 ADD_EXECUTABLE( runNHSF main-NHSF.cxx)
 ADD_LIBRARY(deb DebugPrint.cxx)
-TARGET_LINK_LIBRARIES( runNHSF ${OpenCV_LIBS} ${SDL_LIBRARY} ${SDLIMAGE_LIBRARY}
- recognitionEngine gameLogic 
+TARGET_LINK_LIBRARIES( runNHSF ${OpenCV_LIBS}
+ recognitionEngine engineStrategies engineModules gameLogic 
 gameStack menuLib controllerLib guichan guichan_sdl gui deb camLib timersNHSF)
 
 #######################################

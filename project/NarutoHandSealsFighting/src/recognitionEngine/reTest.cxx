@@ -39,10 +39,12 @@ int main(int argc, char* argv[]){
 	sealsFactory->buildSealsMap(&smap);
 	movesFactory->buildMovesSet(&myMoveSet, &smap);
 
-	recognitionEngine->addModule(new HistogramEM());
-	recognitionEngine->addModule(new SobelEM(CV_SCHARR, 1, 0));
-	recognitionEngine->addModule(new BlurEM(CV_GAUSSIAN,3,3));
-	recognitionEngine->addModule(new LaplacianEM(7));
+//	recognitionEngine->addModule(new HistogramEM());
+//	recognitionEngine->addModule(new SobelEM(CV_SCHARR, 1, 0));
+//	recognitionEngine->addModule(new BlurEM(CV_GAUSSIAN,3,3));
+//	recognitionEngine->addModule(new LaplacianEM(7));
+
+	recognitionEngine->initEngine();
 
 	/*
 	 * and so on...

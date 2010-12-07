@@ -20,7 +20,7 @@
 #include "../recognitionEngine/engineModules/All.h"
 
 class TemplateCreator{
-	RecognitionEngine internalEngine;
+	RecognitionEngine* internalEngine;
 
 public:
 	TemplateCreator();

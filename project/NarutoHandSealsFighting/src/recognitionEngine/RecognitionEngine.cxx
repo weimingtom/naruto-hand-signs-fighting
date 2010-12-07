@@ -11,17 +11,17 @@
 
 using namespace std;
 
-RecognitionEngine *recognitionEngine = new RecognitionEngine();
+RecognitionEngine *recognitionEngine = RecognitionEngine::instantiate();
+
+RecognitionEngine* RecognitionEngine::engine = NULL;
 
 RecognitionEngine::RecognitionEngine(){
 	temp == NULL;
 	evaluator = NULL;
 	currentMove = NULL;
+	strategy = new DefaultStrategy();
 }
 
-RecognitionEngine::RecognitionEngine(EvaluatorFunctionTemplate* eval){
-	setEvaluatorFunction(eval);
-}
 
 void RecognitionEngine::setEvaluatorFunction(EvaluatorFunctionTemplate* eval){
 	evaluator = eval;
@@ -57,22 +57,6 @@ int RecognitionEngine::findModuleByID(EngineModule* m){
 	return ret;
 }
 
-
-void RecognitionEngine::addModule(EngineModule* m){
-	modulesArray.push_back(m);
-}
-
-void RecognitionEngine::removeModule(EngineModule* m){
-	long int targetIndex = m->getModuleID();
-	int i=0;
-	for(vector<EngineModule*>::iterator it = modulesArray.begin();
-			it != modulesArray.end();
-			it++, i++){
-		if( modulesArray.at(i)->getModuleID() == targetIndex )
-			modulesArray.erase(it);
-	}
-}
-
 void RecognitionEngine::setCurrentMove(Move* m){
 	currentMove = m;
 }
@@ -88,4 +72,20 @@ int RecognitionEngine::evaluate(IplImage* img, int sealIndex){
 	}
 	return ret;
 
+}
+
+int RecognitionEngine::initEngine(){
+	if(strategy != NULL){
+		strategy->initModules();
+		return 1;
+	}else
+		return -1;
+}
+
+void RecognitionEngine::changeEngineStrategy(AbstractStrategy* newStrategy){
+	if(newStrategy != NULL){
+		modulesArray.clear();
+		strategy= newStrategy;
+		initEngine();
+	}
 }
