@@ -70,9 +70,9 @@ public:
 	RecognitionEngine();
 	RecognitionEngine(EvaluatorFunctionTemplate* eval);
 	~RecognitionEngine(){
-		temp = NULL;
 		currentMove = NULL;
-		evaluator = NULL;
+		cvReleaseImage(&temp);
+		delete evaluator;
 	}
 
 	void addModule(EngineModule* m);

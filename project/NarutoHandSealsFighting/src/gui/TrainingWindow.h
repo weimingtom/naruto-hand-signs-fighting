@@ -77,8 +77,10 @@ class TrainingWindow: public MenuWindow {
 
     int currentSealIndex;
 
+    void buildMoveDescription(int x, int y);
     void buildCameraWindow();
     void buildBottomRow(int x, int y);
+    void buildShotButton();
     void translateTitleLabel();
 
     //Camera Functions Facilities

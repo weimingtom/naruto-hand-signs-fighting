@@ -19,7 +19,6 @@ using namespace std;
 
 TrainingSectionController::TrainingSectionController(GameMachine* gm) :
 	AbstractController(gm){
-
 }
 
 TrainingSectionController::~TrainingSectionController() {
@@ -48,7 +47,7 @@ void TrainingSectionController::dispatchKeyboardEvent(SDL_Event* e){
 			break;
 
 		case SDLK_SPACE:
-			//shotPhoto();
+			director->handleShot(10, trainingWindow->getCurrentSealIndex());
 			break;
 
 		case SDLK_b:

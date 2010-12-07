@@ -15,6 +15,7 @@
 
 #include "DebugPrint.h"
 
+void initialization();
 
 int main(int argc, char* argv[]){
 	SealsMap smap;
@@ -22,6 +23,8 @@ int main(int argc, char* argv[]){
 	sealsFactory->buildSealsMap(&smap);
 	movesFactory->buildMovesSet(myMoveSet, &smap);
 	GameMachine *gm;
+
+	initialization();
 
 	cout<<"**********\n";
 	cout<<"NARUTO HAND SEALS FIGHTING\n";
@@ -48,4 +51,9 @@ int main(int argc, char* argv[]){
 	SDL_Quit();
 
 	return 0;
+}
+
+void initialization(){
+	SDL_Init(SDL_INIT_VIDEO);
+	SDL_Init(SDL_INIT_TIMER);
 }

@@ -16,6 +16,7 @@
 #ifndef ABSTRACTFACTORY_H_
 #define ABSTRACTFACTORY_H_
 
+#include <SDL/SDL.h>
 #include "./guichan-0.8.2/include/guichan.hpp"
 #include "./guichan-0.8.2/include/guichan/sdl.hpp"
 
