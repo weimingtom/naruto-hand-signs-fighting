@@ -13,11 +13,13 @@ FIND_PACKAGE( OpenCV REQUIRED )
 # so that we will find all *.h files
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/engineModules")
+INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/engineStrategies")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/evaluationFunctions")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gameLogic")
 
 ADD_SUBDIRECTORY(engineModules)
 ADD_SUBDIRECTORY(evaluationFunctions)
+ADD_SUBDIRECTORY(engineStrategies)
 #######################
 
 #######################
@@ -25,9 +27,9 @@ ADD_SUBDIRECTORY(evaluationFunctions)
 #######################
 ADD_EXECUTABLE( runRecognitionEngine mainEngine.cxx)
 TARGET_LINK_LIBRARIES( runRecognitionEngine ${OpenCV_LIBS} recognitionEngine engineModules 
-gameLogic evaluationFunctions deb)
+engineStrategies gameLogic evaluationFunctions deb )
 ADD_LIBRARY(recognitionEngine SHARED  RecognitionEngine.h RecognitionEngine.cxx ImageProcessing.cxx
-engineModules/EngineModule.h ../gameLogic/Move.h)
+engineModules/EngineModule.h ../gameLogic/Move.h ModulesPool.cxx)
 
 # add the command to generate the source code
 #ADD_CUSTOM_COMMAND (
@@ -42,6 +44,7 @@ engineModules/EngineModule.h ../gameLogic/Move.h)
 #######################
 ADD_DEPENDENCIES(recognitionEngine EngineModule.h)
 ADD_DEPENDENCIES(recognitionEngine engineModules)
+ADD_DEPENDENCIES(recognitionEngine engineStrategies)
 #######################
 
 #######################
@@ -49,4 +52,4 @@ ADD_DEPENDENCIES(recognitionEngine engineModules)
 #######################
 ADD_EXECUTABLE( reTest reTest.cxx)
 TARGET_LINK_LIBRARIES( reTest ${OpenCV_LIBS} recognitionEngine engineModules gameLogic 
-evaluationFunctions)
+evaluationFunctions engineStrategies)

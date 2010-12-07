@@ -6,6 +6,7 @@
  */
 
 #include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
 
 #include "gui/Gui.h"
 #include "gameLogic/GameLogic.h"
@@ -25,6 +26,8 @@ int main(int argc, char* argv[]){
 	GameMachine *gm;
 
 	initialization();
+
+	recognitionEngine->initEngine();
 
 	cout<<"**********\n";
 	cout<<"NARUTO HAND SEALS FIGHTING\n";

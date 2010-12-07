@@ -15,6 +15,8 @@
 
 #include <iostream>
 #include <stdio.h>
+#include <opencv/cv.h>
+#include <opencv/highgui.h>
 #include "TrainingDirector.h"
 
 TrainingDirector* trainingDirector;
@@ -36,5 +38,15 @@ void TrainingDirector::handleShot(int seconds, int sealIndex){
 }
 
 void TrainingDirector::elapsedTimer(){
+	IplImage* photo;
 	cout<<"elapsed timer!\n";
+	cam->shotAPhoto();
+	photo = cam->getPhotoShot();
+	cvNamedWindow("mu",CV_WINDOW_AUTOSIZE);
+	cvFlip(photo, photo, 1);
+	cvShowImage("mu", photo);
+	cvWaitKey(0);
+	cvDestroyWindow("mu");
+//	recognitionEngine->process()
+
 }
