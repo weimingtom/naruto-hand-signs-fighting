@@ -19,6 +19,8 @@
 #include "TimerNHSF.h"
 #include "../../gui/TrainingWindow.h"
 
+extern SDL_TimerID UNSET_TIMER;
+
 class CountdownTimer : public TimerNHSF {
 	int seconds;
 	TrainingWindow* trainingWindow;
@@ -28,6 +30,7 @@ public:
 	CountdownTimer(TrainingWindow* trainingWindow);
 	virtual ~CountdownTimer();
     int countDown(int sec);
+    void unsetTimerID();
     TrainingWindow *getTrainingWindow() const
     {
         return trainingWindow;

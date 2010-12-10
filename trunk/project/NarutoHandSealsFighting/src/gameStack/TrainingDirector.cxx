@@ -21,6 +21,8 @@
 
 #include "../DebugPrint.h"
 
+#define SHOW_SUPPL_WIN 0
+
 TrainingDirector* trainingDirector;
 
 TrainingDirector::TrainingDirector(TrainingWindow* tw, RecognitionEngine* re, Camera* c, Move* m){
@@ -29,6 +31,7 @@ TrainingDirector::TrainingDirector(TrainingWindow* tw, RecognitionEngine* re, Ca
 	cam = c;
 	targetMove = m;
 	recognitionEngine->setCurrentMove(m);
+	timer = new CountdownTimer(trainingWindow);
 }
 
 TrainingDirector::~TrainingDirector() {
@@ -36,8 +39,9 @@ TrainingDirector::~TrainingDirector() {
 }
 
 void TrainingDirector::handleShot(int seconds, int sealIndex){
-	timer = new CountdownTimer(trainingWindow);
-	timer->countDown(5);
+	if(timer->countDown(5) < 0){
+		cout<<"cannot start another timer... probably you have just a seal acting?\n";
+	}
 }
 
 void TrainingDirector::elapsedTimer(){
@@ -62,16 +66,19 @@ void TrainingDirector::elapsedTimer(){
 		cout<<"your score is: "<<score<<"\n";
 		trainingWindow->updateScore(score);
 		trainingWindow->incrementCurrentSealIndex();
-//		cvNamedWindow("mu",CV_WINDOW_AUTOSIZE);
-		//	cvFlip(photo, photo, 1);
-//		cvShowImage("mu", res);
+#if SHOW_SUPPL_WIN == 1
+		cvNamedWindow("mu",CV_WINDOW_AUTOSIZE);
+		cvShowImage("mu", res);
+#endif
 
 	}catch(cv::Exception e){
 		cout<<e.msg;
 	}catch(std::exception e){
 		cout<<e.what();
 	}
-//	cvWaitKey(3000);
-//	cvDestroyWindow("mu");
+#if SHOW_SUPPL_WIN == 1
+	cvWaitKey(3000);
+	cvDestroyWindow("mu");
+#endif
 
 }

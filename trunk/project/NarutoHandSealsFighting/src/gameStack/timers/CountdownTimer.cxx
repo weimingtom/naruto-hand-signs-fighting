@@ -18,18 +18,30 @@
 
 Uint32 countdownFunction(Uint32 interval, void* pointer);
 
+SDL_TimerID UNSET_TIMER = NULL;
+
 CountdownTimer::~CountdownTimer() {
 	// TODO Auto-generated destructor stub
 }
 
 CountdownTimer::CountdownTimer(TrainingWindow* tw): TimerNHSF(0, countdownFunction){
 	trainingWindow = tw;
+	timerID = UNSET_TIMER;
 }
 
 
 int CountdownTimer::countDown(int sec){
-	seconds = sec;
-	return startTimer();
+	if(timerID == UNSET_TIMER){
+		seconds = sec;
+		return startTimer();
+	}else{
+		return -1;
+	}
+
+}
+
+void CountdownTimer::unsetTimerID(){
+	timerID = UNSET_TIMER;
 }
 
 Uint32 countdownFunction(Uint32 interval, void* pointer){
@@ -40,6 +52,7 @@ Uint32 countdownFunction(Uint32 interval, void* pointer){
 	t->getTrainingWindow()->setSeconds(t->getSeconds());
 	if(t->getSeconds() == 0){
 //		cout<<"elapsed timer\n";
+		t->unsetTimerID();
 		trainingDirector->elapsedTimer();
 		return 0;
 	}

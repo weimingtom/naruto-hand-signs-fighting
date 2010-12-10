@@ -50,7 +50,7 @@ void TrainingSectionController::dispatchKeyboardEvent(SDL_Event* e){
 		case SDLK_ESCAPE:
 			break;
 
-		case SDLK_SPACE:
+		case SDLK_s:
 			director->handleShot(10, trainingWindow->getCurrentSealIndex());
 			break;
 

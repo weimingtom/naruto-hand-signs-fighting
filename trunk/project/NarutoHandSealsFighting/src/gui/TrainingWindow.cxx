@@ -168,7 +168,7 @@ void TrainingWindow::translateTitleLabel(){
 
 void TrainingWindow::buildShotButton(){
 	//we position the back button away
-	shotButton = new gcn::Button("SHOT!");
+	shotButton = new gcn::Button("[S]HOT!");
 	shotButton->setPosition(bigImageIcon->getX(),
 			bigImageIcon->getY() + bigImageIcon->getHeight() + 25);
 	shotButton->setSize(bigImageIcon->getWidth(), buttonHeight + 20);
