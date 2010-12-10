@@ -32,6 +32,10 @@ void TrainingSectionController::dispatchEvent(SDL_Event* e){
 			dispatchKeyboardEvent(e);
 			break;
 
+		case SDL_KEYUP:
+			//nothing
+			break;
+
 		case SDL_QUIT:
 			gameMachine->stopGameMachine();
 			break;

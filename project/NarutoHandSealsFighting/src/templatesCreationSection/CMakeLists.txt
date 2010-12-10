@@ -4,7 +4,7 @@
 
 ADD_EXECUTABLE( createTemplates templateCreatorLauncher.cxx)
 TARGET_LINK_LIBRARIES( createTemplates ${OpenCV_LIBS} templateCreator recognitionEngine 
-engineModules engineStrategies evaluationFunctions)
+engineModules engineStrategies deb evaluationFunctions)
 
 ADD_LIBRARY(templateCreator SHARED TemplateCreator.cxx)
 

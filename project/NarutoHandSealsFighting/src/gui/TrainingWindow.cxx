@@ -34,6 +34,7 @@ TrainingWindow::TrainingWindow(string targetMove) : MenuWindow() {
 	panel->setDimension(gcn::Rectangle(0,0, screenWidth, screenHeight));
 	currentSealIndex = 0;
 	seconds = 0;
+	scores = 0;
 }
 
 TrainingWindow::~TrainingWindow() {
@@ -42,6 +43,7 @@ TrainingWindow::~TrainingWindow() {
 	delete labelRank;
 	delete labelType;
 	delete bigImageIcon;
+	delete bigImage;
 	delete bigImageLabel;
 	delete secondsLabel;
 	delete shotButton;
@@ -50,6 +52,7 @@ TrainingWindow::~TrainingWindow() {
 	delete cameraIcon;
 	delete cameraImage;
 	delete secondsTitle;
+	delete scoresBox;
 	for(int i=0; i< icoVector.size(); i++)
 		delete icoVector.at(i);
 	icoVector.clear();
@@ -176,9 +179,8 @@ void TrainingWindow::buildShotButton(){
 }
 
 void TrainingWindow::buildWindow(){
-	gcn::Image *image;
+
 	int numberOfSeals = move->getMoveSeals().size();
-	string path = move->getMoveSeals().at(currentSealIndex)->getThumbnailImagePath();
 
 
 	buildBackButton();
@@ -189,8 +191,9 @@ void TrainingWindow::buildWindow(){
 	buildMoveDescription(x, y);
 
 	//Current Seal
-	image = gcn::Image::load(path);
-	bigImageIcon = new gcn::Icon(image);
+	string path = move->getMoveSeals().at(currentSealIndex)->getThumbnailImagePath();
+	bigImage = gcn::Image::load(path);
+	bigImageIcon = new gcn::Icon(bigImage);
 	bigImageIcon->setPosition(10,labelType->getY() + 60);
 	panel->add(bigImageIcon);
 	bigImageLabel = new gcn::Label("CURRENT SEAL");
@@ -213,12 +216,14 @@ void TrainingWindow::buildWindow(){
 	secondsTitle = new gcn::Label("Timer");
 //	secondsLabel->setPosition(cameraWindow->getX() + cameraWindow->getWidth()/2,
 //			cameraWindow->getY() + cameraWindow->getHeight() + 5);
-	secondsTitle->setPosition(cameraWindow->getX() - secondsTitle->getWidth() - 20,
+	secondsTitle->setPosition(cameraWindow->getX() - secondsTitle->getWidth() - 40,
 			labelName->getY());
 	secondsLabel->setPosition(secondsTitle->getX(),
 			secondsTitle->getY() + secondsLabel->getHeight() + 10);
 	panel->add(secondsLabel);
 	panel->add(secondsTitle);
+
+	buildScoresBox();
 
 //	delete image;
 }
@@ -283,4 +288,44 @@ void ResizingListener::action(const gcn::ActionEvent & actionEvent){
 		trainingWindow->restoreOldSizeWindow();
 	}
 	EventToKeyPressConverter::action(actionEvent);
+}
+
+void TrainingWindow::buildScoresBox(){
+	scoresBox = new gcn::TextBox("scores:  \n");
+//	scoresBox->setPosition( cameraWindow->getX() - scoresBox->getWidth() - 40 ,
+//			secondsLabel->getY() + secondsLabel->getHeight() + 40);
+	scoresBox->setSize(130, 150);
+	scoresBox->setBackgroundColor(gcn::Color(10, 10, 255, 0));
+	scoresBoxScroll = new gcn::ScrollArea(scoresBox);
+	scoresBoxScroll->setSize(130, 150);
+	scoresBoxScroll->setPosition( cameraWindow->getX() - scoresBox->getWidth() - 40 ,
+				bigImageIcon->getY());
+	panel->add(scoresBoxScroll);
+}
+
+void TrainingWindow::updateScore(double newScore){
+	string sc = scoresBox->getText();
+	std::stringstream streamtempSc;
+
+	if(currentSealIndex < move->getMoveSeals().size()){
+		scores =newScore;
+		streamtempSc << scores;
+		sc = sc + move->getMoveSeals().at(currentSealIndex)->getName() + " " +
+				streamtempSc.str() + "\n";
+	}
+	scoresBox->setText(sc);
+}
+
+void TrainingWindow::incrementCurrentSealIndex(){
+	currentSealIndex++;
+	if(currentSealIndex < move->getMoveSeals().size()){
+			debugPrint("currentSealIndex is: %d\n", currentSealIndex);
+		string path = move->getMoveSeals().at(currentSealIndex)->getThumbnailImagePath();
+			debugPrint("path to image is: %s", path.c_str());
+		bigImage = gcn::Image::load(path);
+		bigImageIcon->setImage(bigImage);
+	}else{
+		cout<<"You have just accomplished this move!\nPlease select a new one.\n";
+		scoresBox->setText( scoresBox->getText() + "\ncompleted!\nselect a\nnew one\n" );
+	}
 }
