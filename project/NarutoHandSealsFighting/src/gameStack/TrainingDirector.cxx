@@ -21,7 +21,7 @@
 
 #include "../DebugPrint.h"
 
-#define SHOW_SUPPL_WIN 0
+#define SHOW_SUPPL_WIN 1
 
 TrainingDirector* trainingDirector;
 

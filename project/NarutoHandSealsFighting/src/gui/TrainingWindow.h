@@ -20,6 +20,7 @@
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_types.h>
 #include <opencv/cv.h>
+#include <opencv/cxcore.h>
 #include <vector>
 #include <iostream>
 #include <string>
@@ -85,12 +86,20 @@ class TrainingWindow: public MenuWindow {
 
     int currentSealIndex;
 
+    //Contours of the track in the camera window:
+    IplImage*	g_gray;
+    int		g_thresh;
+    CvMemStorage* 	g_storage;
+    CvSeq* contours;
+
     void buildMoveDescription(int x, int y);
     void buildCameraWindow();
     void buildBottomRow(int x, int y);
     void buildShotButton();
     void translateTitleLabel();
     void buildScoresBox();
+
+    void createTemplateContours();
 
     //Camera Functions Facilities
     gcn::Image* convertIplImageToGcnImage(IplImage* iplImage);
