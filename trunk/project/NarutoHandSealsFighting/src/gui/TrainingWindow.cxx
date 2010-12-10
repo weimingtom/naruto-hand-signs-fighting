@@ -35,6 +35,9 @@ TrainingWindow::TrainingWindow(string targetMove) : MenuWindow() {
 	currentSealIndex = 0;
 	seconds = 0;
 	scores = 0;
+	g_thresh = 100;
+	g_gray = NULL;
+	g_storage = NULL;
 }
 
 TrainingWindow::~TrainingWindow() {
@@ -224,6 +227,7 @@ void TrainingWindow::buildWindow(){
 	panel->add(secondsTitle);
 
 	buildScoresBox();
+	createTemplateContours();
 
 //	delete image;
 }
@@ -234,6 +238,12 @@ void TrainingWindow::display(){
 		cout<<"ERROR: capturing of the camera fails!\n";
 	}
 //	debugPrint("image conversion:...\n");
+	cvDrawContours(
+			cam->getFrame(),
+			contours,
+			cvScalarAll(255),
+			cvScalarAll(255),
+			100 );
 	cameraImage = convertIplImageToGcnImage(cam->getFrame());
 	if(cameraIcon == NULL){
 		cameraIcon = new gcn::Icon(cameraImage);
@@ -324,8 +334,26 @@ void TrainingWindow::incrementCurrentSealIndex(){
 			debugPrint("path to image is: %s", path.c_str());
 		bigImage = gcn::Image::load(path);
 		bigImageIcon->setImage(bigImage);
+		createTemplateContours();
 	}else{
 		cout<<"You have just accomplished this move!\nPlease select a new one.\n";
 		scoresBox->setText( scoresBox->getText() + "\ncompleted!\nselect a\nnew one\n" );
 	}
+}
+
+void TrainingWindow::createTemplateContours(){
+	IplImage* g_image = cvLoadImage(
+			move->getMoveSeals().at(currentSealIndex)->getTemplateImagePath().c_str());
+	if( g_storage != NULL ){
+		cvClearMemStorage( g_storage );
+		cvReleaseImage(&g_gray);
+	}
+	g_gray = cvCreateImage( cvGetSize( g_image ), 8, 1 );
+	g_storage = cvCreateMemStorage(0);
+
+	contours = 0;
+	cvCvtColor( g_image, g_gray, CV_BGR2GRAY );
+	cvThreshold( g_gray, g_gray, g_thresh, 255, CV_THRESH_BINARY );
+	cvFindContours( g_gray, g_storage, &contours );
+	cvZero( g_gray );
 }
