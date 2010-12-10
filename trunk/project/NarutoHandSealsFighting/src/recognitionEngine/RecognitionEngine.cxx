@@ -8,6 +8,7 @@
 #include <iostream>
 #include <algorithm>
 #include "RecognitionEngine.h"
+#include "../DebugPrint.h"
 
 using namespace std;
 
@@ -66,6 +67,9 @@ void RecognitionEngine::setCurrentMove(Move* m){
 int RecognitionEngine::evaluate(IplImage* img, int sealIndex){
 	int ret;
 	try{
+		debugPrint("evaluating move: %s\n", currentMove->getMoveName().c_str());
+		debugPrint("seal: %s\n", currentMove->getMoveSeals().at(sealIndex)->getName().c_str());
+		debugPrint("template path: %s",currentMove->getMoveSeals().at(sealIndex)->getTemplateImagePath().c_str());
 		ret = evaluator->evaluate(img, currentMove, sealIndex);
 	}catch(cv::Exception e){
 		cout<<"Exception in the evaluator: "<<evaluator->getEvaluatorName()<<"\n";

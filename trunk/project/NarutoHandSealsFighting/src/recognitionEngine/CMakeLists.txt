@@ -52,7 +52,7 @@ ADD_DEPENDENCIES(recognitionEngine engineStrategies)
 #######################
 ADD_EXECUTABLE( reTest reTest.cxx)
 TARGET_LINK_LIBRARIES( reTest ${OpenCV_LIBS} recognitionEngine engineModules gameLogic 
-evaluationFunctions engineStrategies)
+evaluationFunctions deb engineStrategies)
 
 #######################
 ##### Moves File ######

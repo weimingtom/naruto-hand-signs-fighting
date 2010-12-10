@@ -53,6 +53,7 @@ class TrainingWindow: public MenuWindow {
     //Seals:
     //Current Seal
     gcn::Icon *bigImageIcon;
+    gcn::Image *bigImage;
     std::vector<gcn::Icon*> icoVector;
     gcn::Label *bigImageLabel;
 
@@ -67,6 +68,11 @@ class TrainingWindow: public MenuWindow {
     int seconds;
     gcn::Label *secondsLabel;
     gcn::Label *secondsTitle;
+
+    //Scores box
+    gcn::TextBox* scoresBox;
+    gcn::ScrollArea* scoresBoxScroll;
+    double scores;
 
     //Camera
     int cameraWindowWidth;
@@ -84,6 +90,7 @@ class TrainingWindow: public MenuWindow {
     void buildBottomRow(int x, int y);
     void buildShotButton();
     void translateTitleLabel();
+    void buildScoresBox();
 
     //Camera Functions Facilities
     gcn::Image* convertIplImageToGcnImage(IplImage* iplImage);
@@ -96,6 +103,9 @@ public:
     void buildWindow();
     void restoreOldSizeWindow();
     void display();
+
+    void updateScore(double scores);
+
     gcn::Window *getCameraWindow() const
     {
         return cameraWindow;
@@ -126,9 +136,7 @@ public:
         this->cameraWindowWidth = cameraWindowWidth;
     }
 
-    void incrementCurrentSealIndex(){
-		currentSealIndex++;
-	}
+    void incrementCurrentSealIndex();
 
 	int getCurrentSealIndex() const
     {

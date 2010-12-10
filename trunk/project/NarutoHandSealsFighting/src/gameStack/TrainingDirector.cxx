@@ -60,16 +60,18 @@ void TrainingDirector::elapsedTimer(){
 		debugPrint("evaluation\n");
 		score = recognitionEngine->evaluate(res, trainingWindow->getCurrentSealIndex());
 		cout<<"your score is: "<<score<<"\n";
-		cvNamedWindow("mu",CV_WINDOW_AUTOSIZE);
+		trainingWindow->updateScore(score);
+		trainingWindow->incrementCurrentSealIndex();
+//		cvNamedWindow("mu",CV_WINDOW_AUTOSIZE);
 		//	cvFlip(photo, photo, 1);
-		cvShowImage("mu", res);
+//		cvShowImage("mu", res);
 
 	}catch(cv::Exception e){
 		cout<<e.msg;
 	}catch(std::exception e){
 		cout<<e.what();
 	}
-	cvWaitKey(3000);
-	cvDestroyWindow("mu");
+//	cvWaitKey(3000);
+//	cvDestroyWindow("mu");
 
 }
