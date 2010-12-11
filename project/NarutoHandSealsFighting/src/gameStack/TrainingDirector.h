@@ -27,9 +27,13 @@ using namespace std;
 class TrainingDirector {
     TrainingWindow *trainingWindow;
     RecognitionEngine *recognitionEngine;
-    Camera *cam;
+//    Camera *cam;
     Move *targetMove;
     CountdownTimer *timer;
+
+    double totalScore;
+
+    bool lastSealInMove();
 
 public:
     TrainingDirector(TrainingWindow *tw, RecognitionEngine *re, Camera *c, Move *m);
@@ -38,20 +42,21 @@ public:
 
     void elapsedTimer();
 
-    Camera *getCam() const
-    {
-        return cam;
-    }
 
     CountdownTimer *getTimer() const
     {
         return timer;
     }
 
-    void setCam(Camera *cam)
-    {
-        this->cam = cam;
-    }
+//    Camera *getCam() const
+//    {
+//        return cam;
+//    }
+//
+//    void setCam(Camera *cam)
+//    {
+//        this->cam = cam;
+//    }
 
     void setRecognitionEngine(RecognitionEngine *recognitionEngine)
     {
@@ -80,6 +85,6 @@ public:
 
 };
 
-extern TrainingDirector* trainingDirector;
+//extern TrainingDirector* trainingDirector;
 
 #endif /* TRAININGDIRECTOR_H_ */

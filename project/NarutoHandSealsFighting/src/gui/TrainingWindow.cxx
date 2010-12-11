@@ -59,6 +59,9 @@ TrainingWindow::~TrainingWindow() {
 	for(int i=0; i< icoVector.size(); i++)
 		delete icoVector.at(i);
 	icoVector.clear();
+
+	cvClearMemStorage( g_storage );
+	cvReleaseImage(&g_gray);
 }
 
 void TrainingWindow::restoreOldSizeWindow(){
@@ -241,8 +244,8 @@ void TrainingWindow::display(){
 	cvDrawContours(
 			cam->getFrame(),
 			contours,
-			cvScalarAll(255),
-			cvScalarAll(255),
+			cvScalarAll(180),
+			cvScalarAll(180),
 			100 );
 	cameraImage = convertIplImageToGcnImage(cam->getFrame());
 	if(cameraIcon == NULL){
@@ -329,16 +332,23 @@ void TrainingWindow::updateScore(double newScore){
 void TrainingWindow::incrementCurrentSealIndex(){
 	currentSealIndex++;
 	if(currentSealIndex < move->getMoveSeals().size()){
-			debugPrint("currentSealIndex is: %d\n", currentSealIndex);
+//			debugPrint("currentSealIndex is: %d\n", currentSealIndex);
 		string path = move->getMoveSeals().at(currentSealIndex)->getThumbnailImagePath();
-			debugPrint("path to image is: %s", path.c_str());
+//			debugPrint("path to image is: %s", path.c_str());
 		bigImage = gcn::Image::load(path);
 		bigImageIcon->setImage(bigImage);
 		createTemplateContours();
 	}else{
 		cout<<"You have just accomplished this move!\nPlease select a new one.\n";
-		scoresBox->setText( scoresBox->getText() + "\ncompleted!\nselect a\nnew one\n" );
+		string str = scoresBox->getText();
+		std::stringstream streamtemp;
+
+		streamtemp << totalScore;
+		str = str +"\ncompliment!\nyour total\nscore is:\n" + streamtemp.str()+"\n"+
+				"\nselect a\nnew one\n";
+		scoresBox->setText(str);
 	}
+	scoresBox->scrollToCaret();
 }
 
 void TrainingWindow::createTemplateContours(){
@@ -356,4 +366,8 @@ void TrainingWindow::createTemplateContours(){
 	cvThreshold( g_gray, g_gray, g_thresh, 255, CV_THRESH_BINARY );
 	cvFindContours( g_gray, g_storage, &contours );
 	cvZero( g_gray );
+}
+
+void TrainingWindow::setTotalScore(double score){
+	totalScore = score;
 }

@@ -54,6 +54,10 @@ void TrainingSectionController::dispatchKeyboardEvent(SDL_Event* e){
 			director->handleShot(10, trainingWindow->getCurrentSealIndex());
 			break;
 
+		case SDLK_ASTERISK:
+			director->elapsedTimer();
+			break;
+
 		case SDLK_b:
 			gameMachine->popFromGameStack();
 			trainingWindow->restoreOldSizeWindow();

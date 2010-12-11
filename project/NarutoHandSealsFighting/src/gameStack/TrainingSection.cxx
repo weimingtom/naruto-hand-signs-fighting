@@ -23,14 +23,12 @@ TrainingSection::TrainingSection(Move* m, AbstractController* ctrl){
 	move = m;
 
 	graphicWindow = new TrainingWindow(m->getMoveName());
-	TrainingWindow* trwin = (TrainingWindow*) graphicWindow;
 	graphicWindow->buildWindow();
-
+	TrainingWindow* trwin = (TrainingWindow*) graphicWindow;
 	TrainingSectionController* trainingSectionCtrl = (TrainingSectionController*) ctrl;
-	trainingSectionCtrl->setTrainingWindow(trwin);
 
-	trainingDirector = new TrainingDirector(trwin,recognitionEngine, cam, m);
-	trainingSectionCtrl->setDirector(trainingDirector);
+	trainingSectionCtrl->setTrainingWindow(trwin);
+	trainingSectionCtrl->setDirector(new TrainingDirector(trwin,recognitionEngine, cam, m));
 }
 
 TrainingSection::~TrainingSection() {

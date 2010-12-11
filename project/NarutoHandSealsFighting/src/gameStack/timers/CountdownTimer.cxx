@@ -53,7 +53,18 @@ Uint32 countdownFunction(Uint32 interval, void* pointer){
 	if(t->getSeconds() == 0){
 //		cout<<"elapsed timer\n";
 		t->unsetTimerID();
-		trainingDirector->elapsedTimer();
+//		trainingDirector->elapsedTimer();
+
+		//In order to de-coupling the Timer from a director we send a
+		//new SDL_Event that have to be collected by a listener or a
+		//controller. In our case will be the TrainingSectionController
+		//!!!Warning!!!
+		//take care about what controller is still running in the main loop! ;)
+		SDL_Event sdlEvent;
+		sdlEvent.type = SDL_KEYDOWN;
+		//we need a symbol difficult to reproduce by the keyboard
+		sdlEvent.key.keysym.sym = SDLK_ASTERISK; //<- what do you thing about that?
+		SDL_PushEvent(&sdlEvent);
 		return 0;
 	}
 	return 1000;
