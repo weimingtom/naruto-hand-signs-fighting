@@ -74,6 +74,7 @@ class TrainingWindow: public MenuWindow {
     gcn::TextBox* scoresBox;
     gcn::ScrollArea* scoresBoxScroll;
     double scores;
+    double totalScore;
 
     //Camera
     int cameraWindowWidth;
@@ -114,6 +115,7 @@ public:
     void display();
 
     void updateScore(double scores);
+    void setTotalScore(double score);
 
     gcn::Window *getCameraWindow() const
     {
