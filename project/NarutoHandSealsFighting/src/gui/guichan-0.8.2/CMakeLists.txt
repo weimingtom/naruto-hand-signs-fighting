@@ -147,7 +147,7 @@ IF(ENABLE_ALLEGRO AND ALLEGRO_FOUND)
 ENDIF(ENABLE_ALLEGRO AND ALLEGRO_FOUND)
 
 # The Guichan OpenGL extension library
-OPTION(ENABLE_OPENGL "Enable the Guichan OpenGL extension" ON)
+OPTION(ENABLE_OPENGL "Enable the Guichan OpenGL extension" OFF)
 OPTION(BUILD_GUICHAN_OPENGL_SHARED "Build the Guichan OpenGL extension library as a shared library." ON)
 FIND_PACKAGE(OpenGL)
 IF(ENABLE_OPENGL AND OPENGL_FOUND)  

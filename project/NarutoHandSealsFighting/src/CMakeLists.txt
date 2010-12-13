@@ -12,7 +12,8 @@
 CMAKE_MINIMUM_REQUIRED (VERSION 2.6)
 project (NHSF)
 FIND_PACKAGE( OpenCV REQUIRED )
-FIND_PACKAGE( SDL REQUIRED)
+FIND_PACKAGE( SDL REQUIRED )
+FIND_PACKAGE( SDL_image REQUIRED )
 
 ########################################
 ############# OPENCV CHECK #############
@@ -23,7 +24,7 @@ IF (NOT OpenCV_FOUND)
 	You can visit the official site: 
 	http://sourceforge.net/projects/opencvlibrary/ 
 	to get a working version.
-	Please be sure that all OpenCV tests are working properly in order to launch the current application." )
+	Please be sure that all OpenCV tests work properly in order to launch the current application." )
 ENDIF (NOT OpenCV_FOUND)
 
 ########################################
@@ -58,9 +59,11 @@ set (NHSF_VERSION_MINOR 0)
 #######################################
 ADD_EXECUTABLE( runNHSF main-NHSF.cxx)
 ADD_LIBRARY(deb DebugPrint.cxx)
-TARGET_LINK_LIBRARIES( runNHSF ${OpenCV_LIBS} recognitionEngine engineStrategies engineModules 
+
+TARGET_LINK_LIBRARIES( runNHSF ${OpenCV_LIBS}
+guichan guichan_sdl recognitionEngine engineStrategies engineModules 
 evaluationFunctions gameLogic gameStack menuLib controllerLib 
-guichan guichan_sdl gui deb camLib timersNHSF)
+gui deb camLib timersNHSF)
 
 #######################################
 
@@ -113,4 +116,17 @@ set (CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/License.txt")
 set (CPACK_PACKAGE_VERSION_MAJOR "${NHSF_VERSION_MAJOR}")
 set (CPACK_PACKAGE_VERSION_MINOR "${NHSF_VERSION_MINOR}")
 include (CPack)
+#######################################
+
+#######################################
+########### CMake Variables ###########
+#######################################
+# We will put all CMake Variables in a file for debug purpose in order to
+# take a track of the settings
+FILE(WRITE ${CMAKE_CURRENT_BINARY_DIR}/AllVariables.txt "")
+GET_CMAKE_PROPERTY(res VARIABLES)
+FOREACH(var ${res})
+  FILE(APPEND ${CMAKE_CURRENT_BINARY_DIR}/AllVariables.txt 
+             "${var} \"${${var}}\"\n")
+ENDFOREACH(var)
 #######################################
