@@ -24,7 +24,8 @@ static const char* TEMP_IMAGE_FILE = "tempImg.png";
 using namespace std;
 
 TrainingWindow::TrainingWindow(string targetMove) : MenuWindow() {
-	debugPrint("TrainingWindow constructor\ncamera? %s\n", cam->getPiggyBackCamera());
+	cam = Camera::getCameraInstance();
+//	debugPrint("TrainingWindow constructor\ncamera? %s\n", cam->getPiggyBackCamera());
 	title = "TRAINING SECTION";
 	move = movesSetGlobal->getMove(targetMove);
 	oldScreenWidth = screenWidth;
@@ -42,8 +43,8 @@ TrainingWindow::TrainingWindow(string targetMove) : MenuWindow() {
 }
 
 TrainingWindow::~TrainingWindow() {
-	debugPrint("TrainingWindow: destructor\n");
-	debugPrint("camera? %s\n", cam->getPiggyBackCamera());
+//	debugPrint("TrainingWindow: destructor\n");
+//	debugPrint("camera? %s\n", cam->getPiggyBackCamera());
 	delete labelName;
 	delete labelElement;
 	delete labelRank;
@@ -131,7 +132,9 @@ void TrainingWindow::buildCameraWindow(){
 	cameraIcon = NULL;
 	//Remember: the size will be set to the closer approximation
 	//of a well difined resolution: 320x240, 640x480 and 1280x960
-	cam->setCaptureSize(cameraWindowWidth, cameraWindowHeight);
+	if(cam->getCaptureWidth() != cameraWindowWidth ||
+			cam->getCaptureHeigh() != cameraWindowHeight)
+		cam->setCaptureSize(cameraWindowWidth, cameraWindowHeight);
 }
 
 void TrainingWindow::buildBottomRow(int x, int y){
@@ -239,7 +242,7 @@ void TrainingWindow::buildWindow(){
 }
 
 void TrainingWindow::display(){
-	debugPrint("cameraCapturing\n");
+//	debugPrint("cameraCapturing\n");
 	try{
 		if(cam->capturing() < 0){
 			cout<<"ERROR: capturing of the camera fails!\n";
@@ -247,7 +250,7 @@ void TrainingWindow::display(){
 	}catch(cv::Exception e){
 		cout<<e.msg<<"\n";
 	}
-	debugPrint("image conversion:...\n");
+//	debugPrint("image conversion:...\n");
 	cvDrawContours(
 			cam->getFrame(),
 			contours,

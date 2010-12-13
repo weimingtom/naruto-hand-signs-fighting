@@ -139,6 +139,14 @@ public:
         this->frame = frame;
     }
 
+    int getCaptureWidth(){
+    	return captureWidth;
+    }
+
+    int getCaptureHeigh(){
+    	return captureHeigh;
+    }
+
 };
 
 extern Camera *cam;

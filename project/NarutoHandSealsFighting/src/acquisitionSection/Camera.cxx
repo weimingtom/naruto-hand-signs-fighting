@@ -13,7 +13,6 @@ using namespace std;
 
 Camera* Camera::camera = NULL;
 Camera *cam = Camera::getCameraInstance();
-//Camera *cam = new Camera();
 
 Camera::Camera(){
 	initCamera();
@@ -107,8 +106,12 @@ void Camera::shotAPhoto(){
 }
 
 void Camera::setCaptureSize(int w, int h){
-	captureWidth = w;
-	captureHeigh = h;
-	cvSetCaptureProperty( capture, CV_CAP_PROP_FRAME_WIDTH, captureWidth );
-	cvSetCaptureProperty( capture, CV_CAP_PROP_FRAME_HEIGHT, captureHeigh );
+	if(w != captureWidth){
+		captureWidth = w;
+		cvSetCaptureProperty( capture, CV_CAP_PROP_FRAME_WIDTH, captureWidth );
+	}
+	if(h != captureHeigh){
+		captureHeigh = h;
+		cvSetCaptureProperty( capture, CV_CAP_PROP_FRAME_HEIGHT, captureHeigh );
+	}
 }

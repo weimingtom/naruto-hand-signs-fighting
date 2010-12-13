@@ -29,6 +29,7 @@ public:
 	MenuElement(AbstractController* absCtrl){
 		controllerElement = absCtrl;
 	}
+	~MenuElement();
 	void loopFunction();
 
 	virtual void displayMenuElement() = 0;

@@ -14,6 +14,7 @@
  */
 
 #include "MenuElement.h"
+#include "../../DebugPrint.h"
 
 void MenuElement::loopFunction(){
 	SDL_Event event;
@@ -22,4 +23,10 @@ void MenuElement::loopFunction(){
 		elementGraphic->getInput()->pushInput(event);
 	}
 	displayMenuElement();
+}
+
+MenuElement::~MenuElement(){
+//	debugPrint("menuElement destructor\n");
+	delete controllerElement;
+	delete elementGraphic;
 }

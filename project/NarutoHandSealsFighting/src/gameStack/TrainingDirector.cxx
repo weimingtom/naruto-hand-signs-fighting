@@ -26,7 +26,7 @@
 //TrainingDirector* trainingDirector;
 
 TrainingDirector::TrainingDirector(TrainingWindow* tw, RecognitionEngine* re, Camera* c, Move* m){
-	debugPrint("TrainingDirector constructor: camera? %s\n", cam->getPiggyBackCamera());
+//	debugPrint("TrainingDirector constructor: camera? %s\n", cam->getPiggyBackCamera());
 	trainingWindow = tw;
 	recognitionEngine = re;
 //	cam = c;
@@ -54,7 +54,7 @@ void TrainingDirector::elapsedTimer(){
 	IplImage* res;
 	int score;
 	try{
-		debugPrint("photo shot\n");
+//		debugPrint("photo shot\n");
 		cam->shotAPhoto();
 		photo = cam->getPhotoShot();
 		res = cvCreateImage(cvSize(photo->width, photo->height),

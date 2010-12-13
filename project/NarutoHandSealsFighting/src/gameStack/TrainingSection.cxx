@@ -19,7 +19,7 @@
 static const char* CAMERA_WINDOW = "Camera";
 
 TrainingSection::TrainingSection(Move* m, AbstractController* ctrl){
-	debugPrint("TrainingSection constructor\ncamera? %s\n", cam->getPiggyBackCamera());
+//	debugPrint("TrainingSection constructor\ncamera? %s\n", cam->getPiggyBackCamera());
 	trainingSectionController = ctrl;
 	move = m;
 	graphicWindow = new TrainingWindow(m->getMoveName());
@@ -32,7 +32,7 @@ TrainingSection::TrainingSection(Move* m, AbstractController* ctrl){
 }
 
 TrainingSection::~TrainingSection() {
-	debugPrint("TrainingSection destructor\n");
+//	debugPrint("TrainingSection destructor\n");
 	delete graphicWindow;
 	delete trainingSectionController;
 }

@@ -14,6 +14,7 @@
  */
 
 #include "GameMachine.h"
+#include "../DebugPrint.h"
 
 //Initialization of the gameMachine pointer
 GameMachine* GameMachine::gameMachine = NULL;
@@ -39,7 +40,7 @@ void GameMachine::pushInGameStack(GameElement* e){
 }
 
 GameElement* GameMachine::popFromGameStack(){
-	gameStack.pop();
+	gameStack.pop(); //<- it automatically calls the destructor of the object
 	if(gameStack.empty())
 		return NULL;
 	return gameStack.top();
