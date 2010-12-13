@@ -13,14 +13,19 @@ using namespace std;
 
 Camera* Camera::camera = NULL;
 Camera *cam = Camera::getCameraInstance();
+//Camera *cam = new Camera();
+
+Camera::Camera(){
+	initCamera();
+}
 
 void Camera::initCamera(){
 	capture = cvCaptureFromCAM( CV_CAP_ANY );
+//	capture = cvCreateCameraCapture( CV_CAP_ANY );
 	captureWidth = DEFAULT_CAPTURE_WIDTH;
 	captureHeigh = DEFAULT_CAPTURE_HEIGHT;
 	cvSetCaptureProperty( capture, CV_CAP_PROP_FRAME_WIDTH, captureWidth );
 	cvSetCaptureProperty( capture, CV_CAP_PROP_FRAME_HEIGHT, captureHeigh );
-//	capture = cvCreateCameraCapture( CV_CAP_ANY );
 	if( !capture ) {
 		fprintf( stderr, "ERROR: capture is NULL \n" );
 		getchar();
@@ -29,6 +34,7 @@ void Camera::initCamera(){
 	frame = NULL;
 	winX = winY = 300;
 	offFakeFrame = 0;
+	piggyBackCamera = "I'm alive!";
 }
 
 Camera::~Camera(){
@@ -41,9 +47,7 @@ Camera::~Camera(){
 Camera* Camera::getCameraInstance(){
 	if(camera == NULL){
 		camera = new Camera();
-		camera->initCamera();
 		cout<<"created new camera\n";
-		return camera;
 	}
 	return camera;
 }

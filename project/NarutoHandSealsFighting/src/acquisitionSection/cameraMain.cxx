@@ -58,7 +58,8 @@ int main(int argc, char* argv[]) {
 	//////////////////////////////////////
 	//// my new code for the project ////
 	/////////////////////////////////////
-	Camera* cam = Camera::getCameraInstance();
+//	Camera* cam = Camera::getCameraInstance();
+//	Camera* cam = new Camera();
 	IplImage* img = cam->captureImage();
 	IplImage* res;
 	bool done = false;
@@ -105,9 +106,18 @@ int main(int argc, char* argv[]) {
 			done = true;
 		}
 	}
+//	delete cam;
 
+//	cam = new Camera();
+	Camera *c2 = cam;
+	cout<<"built a new camera! ";
+	cout<<c2->getPiggyBackCamera()<<"\n";
 
-//	cam->activateAndShowInWindow();
+	c2->activateAndShowInWindow();
+
+	Camera *c3 = c2;
+	cout<<"using now a new one: C3! \n";
+	c3->activateAndShowInWindow();
 
 	cvDestroyAllWindows();
 }

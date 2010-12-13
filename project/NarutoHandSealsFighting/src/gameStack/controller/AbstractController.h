@@ -30,6 +30,9 @@ public:
 	AbstractController(GameMachine* gm){
 		gameMachine = gm;
 	}
+	~AbstractController(){
+
+	}
 	virtual void dispatchEvent(SDL_Event* e) = 0;
 
     GameMachine *getGameMachine() const
