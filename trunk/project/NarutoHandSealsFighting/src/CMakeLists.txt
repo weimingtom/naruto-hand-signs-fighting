@@ -100,6 +100,10 @@ FILE(COPY ${PROJECT_SOURCE_DIR}/gameLogic/Moves.xml
 FILE(COPY ${PROJECT_SOURCE_DIR}/gui/guichan-0.8.2/examples/rpgfont.bmp
 	DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
+#Cleaning Script
+FILE(COPY ${PROJECT_SOURCE_DIR}/dist-clean.sh
+	DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
 #######################################
 ################ CPack ################
 #######################################
