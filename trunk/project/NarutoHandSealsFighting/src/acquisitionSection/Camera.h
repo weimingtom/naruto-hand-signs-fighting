@@ -38,6 +38,7 @@ using namespace std;
 class Camera{
 	//PATTERN Singleton
 	static Camera* camera;
+
 	int captureWidth;
 	int captureHeigh;
 
@@ -53,7 +54,11 @@ class Camera{
 
 	int offFakeFrame;
 
+	const char* piggyBackCamera;
+
+
 public:
+	Camera();
 	~Camera();
 	void initCamera();
 
@@ -84,6 +89,10 @@ public:
 	void shotAPhoto();
 
 	void setCaptureSize(int w, int h);
+    const char *getPiggyBackCamera() const
+    {
+        return piggyBackCamera;
+    }
 
     IplImage *getPhotoShot() const
     {

@@ -14,15 +14,22 @@
  */
 
 #include "TrainingSectionController.h"
+#include "../../DebugPrint.h"
 
 using namespace std;
 
 TrainingSectionController::TrainingSectionController(GameMachine* gm) :
 	AbstractController(gm){
+	director = NULL;
+	trainingWindow = NULL;
 }
 
 TrainingSectionController::~TrainingSectionController() {
-	// TODO Auto-generated destructor stub
+	debugPrint("TrainingSectionController destructor\n");
+	if(director != NULL)
+		delete director;
+	if(trainingWindow != NULL)
+		delete trainingWindow;
 }
 
 void TrainingSectionController::dispatchEvent(SDL_Event* e){

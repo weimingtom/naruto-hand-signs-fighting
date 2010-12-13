@@ -24,6 +24,7 @@ static const char* TEMP_IMAGE_FILE = "tempImg.png";
 using namespace std;
 
 TrainingWindow::TrainingWindow(string targetMove) : MenuWindow() {
+	debugPrint("TrainingWindow constructor\ncamera? %s\n", cam->getPiggyBackCamera());
 	title = "TRAINING SECTION";
 	move = movesSetGlobal->getMove(targetMove);
 	oldScreenWidth = screenWidth;
@@ -41,6 +42,8 @@ TrainingWindow::TrainingWindow(string targetMove) : MenuWindow() {
 }
 
 TrainingWindow::~TrainingWindow() {
+	debugPrint("TrainingWindow: destructor\n");
+	debugPrint("camera? %s\n", cam->getPiggyBackCamera());
 	delete labelName;
 	delete labelElement;
 	delete labelRank;
@@ -236,11 +239,15 @@ void TrainingWindow::buildWindow(){
 }
 
 void TrainingWindow::display(){
-//	debugPrint("cameraCapturing\n");
-	if(cam->capturing() < 0){
-		cout<<"ERROR: capturing of the camera fails!\n";
+	debugPrint("cameraCapturing\n");
+	try{
+		if(cam->capturing() < 0){
+			cout<<"ERROR: capturing of the camera fails!\n";
+		}
+	}catch(cv::Exception e){
+		cout<<e.msg<<"\n";
 	}
-//	debugPrint("image conversion:...\n");
+	debugPrint("image conversion:...\n");
 	cvDrawContours(
 			cam->getFrame(),
 			contours,

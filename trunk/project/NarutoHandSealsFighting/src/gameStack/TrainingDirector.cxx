@@ -26,6 +26,7 @@
 //TrainingDirector* trainingDirector;
 
 TrainingDirector::TrainingDirector(TrainingWindow* tw, RecognitionEngine* re, Camera* c, Move* m){
+	debugPrint("TrainingDirector constructor: camera? %s\n", cam->getPiggyBackCamera());
 	trainingWindow = tw;
 	recognitionEngine = re;
 //	cam = c;
