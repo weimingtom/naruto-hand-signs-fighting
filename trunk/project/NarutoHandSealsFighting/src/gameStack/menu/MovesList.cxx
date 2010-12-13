@@ -15,6 +15,6 @@
 
 #include "MovesList.h"
 
-MovesList::~MovesList() {
-	// TODO Auto-generated destructor stub
-}
+//MovesList::~MovesList() {
+//	// TODO Auto-generated destructor stub
+//}

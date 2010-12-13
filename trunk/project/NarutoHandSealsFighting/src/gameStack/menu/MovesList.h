@@ -27,7 +27,7 @@ public:
 		elementGraphic = new MovesListWindow(ms);
 		elementGraphic->buildWindow();
 	}
-	virtual ~MovesList();
+//	virtual ~MovesList();
 	void displayMenuElement(){
 		elementGraphic->display();
 	}

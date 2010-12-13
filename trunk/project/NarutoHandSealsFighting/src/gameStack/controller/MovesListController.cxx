@@ -16,8 +16,9 @@
 #include "../../DebugPrint.h"
 #include "MovesListController.h"
 
-MovesListController* movesListController_Kagi = new MovesListController(
-		GameMachine::getGameMachineInstance());
+//MovesListController* movesListController_Kagi = new MovesListController(
+//		GameMachine::getGameMachineInstance());
+MovesListController* movesListController_Kagi ;
 
 MovesListController::~MovesListController() {
 	// TODO Auto-generated destructor stub

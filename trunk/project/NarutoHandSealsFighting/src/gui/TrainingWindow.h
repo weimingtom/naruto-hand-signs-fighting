@@ -37,6 +37,7 @@ using namespace std;
 
 class TrainingWindow: public MenuWindow {
 	Move* move;
+	Camera* cam;
 
 	int	oldScreenWidth;
 	int oldScreenHeight;

@@ -25,7 +25,7 @@ TrainingSectionController::TrainingSectionController(GameMachine* gm) :
 }
 
 TrainingSectionController::~TrainingSectionController() {
-	debugPrint("TrainingSectionController destructor\n");
+//	debugPrint("TrainingSectionController destructor\n");
 	if(director != NULL)
 		delete director;
 	if(trainingWindow != NULL)
@@ -66,8 +66,8 @@ void TrainingSectionController::dispatchKeyboardEvent(SDL_Event* e){
 			break;
 
 		case SDLK_b:
-			gameMachine->popFromGameStack();
 			trainingWindow->restoreOldSizeWindow();
+			gameMachine->popFromGameStack();
 			break;
 
 		default:

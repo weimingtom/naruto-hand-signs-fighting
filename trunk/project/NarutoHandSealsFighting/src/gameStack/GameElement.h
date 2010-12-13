@@ -35,12 +35,16 @@
 #define GAMEELEMENT_H_
 
 #include <SDL/SDL.h>
+#include "../DebugPrint.h"
 
 using namespace std;
 
 class GameElement {
 
 public:
+	virtual ~GameElement(){
+//		debugPrint("GameElement destructor\n");
+	}
 	virtual void loopFunction() = 0;
 };
 

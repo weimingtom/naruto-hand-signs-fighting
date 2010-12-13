@@ -36,6 +36,7 @@ void MainMenuController::dispatchEvent(SDL_Event* event){
 				break;
 
 			case SDLK_t:
+				movesListController_Kagi = new MovesListController(gameMachine);
 				gameMachine->pushInGameStack(
 						new MovesList(movesListController_Kagi, movesSetGlobal));
 				break;
