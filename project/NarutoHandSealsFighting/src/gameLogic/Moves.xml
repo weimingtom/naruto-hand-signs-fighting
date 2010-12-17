@@ -9,7 +9,7 @@ following the correct syntax
 look a the example
 <move>
 	<name> </name>
-	<jutsutype> </jutsutype>
+	<jutsutype>  <Ninjutsu/> </jutsutype>
 	<element> </element>
 	<difficultyrank> </difficultyrank>
 	<seallist> </seallist>
@@ -45,6 +45,125 @@ look a the example
 		<seallist> <snake/> <boar/> <ram/> <hare/> <dog/> <rat/> <bird/> <horse/> <snake/> </seallist>
 	</move>
 	
+	<move>
+	<name>"Phoenix Fire flower"</name>
+	<jutsutype> <Ninjutsu/> </jutsutype>
+	<element> <FIRE/> </element>
+	<difficultyrank> <C/> </difficultyrank>
+	<seallist> <rat/> <tiger/> <dog/> <cow/> <hare/> <tiger/> </seallist>
+	</move>	
+
+	<move>
+	<name>"Dragon Flame Bullet"</name>
+	<jutsutype> <Ninjutsu/> </jutsutype>
+	<element> <FIRE/> </element>
+	<difficultyrank> <B/> </difficultyrank>
+	<seallist> <ram/> <horse/> <snake/> <dragon/> <rat/> 
+	<cow/> <tiger/>
+	</seallist>
+	</move>
+	
+	<move>
+	<name>"Dragon Flame"</name>
+	<jutsutype> <Ninjutsu/> </jutsutype>
+	<element> <FIRE/> </element>
+	<difficultyrank> <A/> </difficultyrank>
+	<seallist>  <snake/> <dragon/> <hare/> <tiger/>  </seallist>
+	</move>
+	
+	<move>
+	<name>"Water Prison"</name>
+	<jutsutype> <Ninjutsu/></jutsutype>
+	<element> <WATER/> </element>
+	<difficultyrank> <C/> </difficultyrank>
+	<seallist> <snake/> <ram/> <horse/> <hare/> <ram/> <horse/> <hare/> 
+	</seallist>
+	</move>
+	
+	<move>
+	<name>"Giant Vortex"</name>
+	<jutsutype><Ninjutsu/> </jutsutype>
+	<element> <WATER/></element>
+	<difficultyrank> <A/> </difficultyrank>
+	<seallist>
+	<tiger/> <cow/> <monkey/> <hare/> <ram/> <boar/> <cow/> <horse/> 
+	<monkey/> <tiger/> <dog/> <tiger/> <snake/> <tiger/> <cow/>  
+	<monkey/> <hare/> <bird/>
+	</seallist>
+	</move>
+	
+	<move>
+	<name>"Water Dragon" </name>
+	<jutsutype> <Ninjutsu/> </jutsutype>
+	<element> <WATER/> </element>
+	<difficultyrank> <B/> </difficultyrank>
+	<seallist> 
+	<cow/> <monkey/> <hare/> <rat/> <boar/> <bird/> <cow/> <horse/>
+	<bird/> <rat/> <tiger/> <dog/> <tiger/> <snake/> <cow/> <ram/>
+	<snake/> <boar/> <ram/> <rat/> <monkey/> <bird/> <dragon/> <bird/>
+	<cow/> <horse/> <ram/> <tiger/> <snake/> <rat/> <monkey/> <hare/> 
+	<boar/> <dragon/> <ram/> <rat/> <cow/> <monkey/> <bird/> <rat/>
+	<boar/> <bird/>
+	</seallist>
+	</move>
+	
+	<move>
+	<name>"Summoning Tecnique"</name>
+	<jutsutype> <Ninjutsu/></jutsutype>
+	<element> <SUMMONING/> </element>
+	<difficultyrank> <C/> </difficultyrank>
+	<seallist> 
+	<boar/> <dog/> <bird/> <monkey/> <ram/>
+	</seallist>
+	</move>
+	
+	<move>
+	<name>"Chakra Scalpel" </name>
+	<jutsutype> <Ninjutsu/> </jutsutype>
+	<element> <LIGHTNING/> </element>
+	<difficultyrank> <C/> </difficultyrank>
+	<seallist> 
+	<tiger/> <horse/> <hare/> <rat/> <dog/>
+	</seallist>
+	</move>
+		
+	<move>
+	<name>"Tracking Fang Technique"</name>
+	<jutsutype> <Ninjutsu/> </jutsutype>
+	<element> <HEARTH/> </element>
+	<difficultyrank> <B/> </difficultyrank>
+	<seallist> 
+	<tiger/> <snake/> <dragon/> <dog/>
+	</seallist>
+	</move>
+	
+	<move>
+	<name>"Impure World Resurrection"</name>
+	<jutsutype>  <Ninjutsu/> </jutsutype>
+	<element> <SUMMONING/> </element>
+	<difficultyrank> <S/> </difficultyrank>
+	<seallist> 
+	<tiger/> <snake/> <dog/> <dragon/>
+	</seallist>
+	</move>
+	
+	<move>
+	<name>"Shadow Clone Technique"</name>
+	<jutsutype> <Ninjutsu/> </jutsutype>
+	<element> <LIGHTNING/> </element>
+	<difficultyrank> <B/> </difficultyrank>
+	<seallist>
+	<tiger/> <boar/> <cow/> <dog/>
+	 </seallist>
+	</move>
+	
+	<move>
+	<name>"Shadow Imitation Technique" </name>
+	<jutsutype>  <Ninjutsu/> </jutsutype>
+	<element> <HEARTH/> </element>
+	<difficultyrank> <U/> </difficultyrank>
+	<seallist> <rat/> <ram/> </seallist>
+	</move>
 	
 	<!-- Don't write below that line -->
 	<!-- ********** -->
