@@ -8,7 +8,7 @@ able to contain the moves of the game
 <!ELEMENT move (name,jutsutype,element,difficultyrank,seallist)>
 <!ELEMENT name (#PCDATA)>
 <!ELEMENT jutsutype (Genjutsu|Taijutsu|Ninjutsu|KekkeiGenkai|Fuingjutsu)>
-<!ELEMENT element (FIRE|WATER|EARTH|LIGHTNING|WIND|ICE|BOIL|DUST|WOOD|STORM|LAVA|EXPLOSION|BLAZE|SEAL)>
+<!ELEMENT element (FIRE|WATER|HEARTH|LIGHTNING|WIND|ICE|BOIL|DUST|WOOD|STORM|LAVA|EXPLOSION|BLAZE|SEAL)>
 <!ELEMENT difficultyrank (A|B|C|D|E|S|F|U)>
 <!ELEMENT seallist ((tiger|hare|dragon|snake|horse|ram|monkey|bird|dog|boar|rat|cow)+)>
 <!-- ********** -->
@@ -26,7 +26,7 @@ able to contain the moves of the game
 <!-- ********** -->
 <!ELEMENT FIRE EMPTY>
 <!ELEMENT WATER EMPTY>
-<!ELEMENT EARTH EMPTY>
+<!ELEMENT HEARTH EMPTY>
 <!ELEMENT LIGHTNING EMPTY>
 <!ELEMENT WIND EMPTY>
 <!ELEMENT ICE EMPTY>
@@ -38,6 +38,7 @@ able to contain the moves of the game
 <!ELEMENT EXPLOSION EMPTY>
 <!ELEMENT BLAZE EMPTY>
 <!ELEMENT SEAL EMPTY>
+<!ELEMENT SUMMONIG EMPTY>
 <!-- ********** -->
 
 <!-- DIFFICULTY RANKS -->
