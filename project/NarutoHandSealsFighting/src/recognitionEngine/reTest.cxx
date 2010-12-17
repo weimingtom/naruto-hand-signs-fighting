@@ -15,7 +15,6 @@
 #include <opencv/cv.h>
 #include <opencv/highgui.h>
 #include <opencv/cvaux.h>
-//#include <opencv/cxtypes.h>
 
 #include "RecognitionEngine.h"
 #include "RecognitionEngine.h"
