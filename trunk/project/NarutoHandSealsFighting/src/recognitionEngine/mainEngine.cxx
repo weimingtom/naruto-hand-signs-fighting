@@ -8,7 +8,6 @@
 #include <opencv/cv.h>
 #include <opencv/highgui.h>
 #include <opencv/cvaux.h>
-//#include <opencv/cxtypes.h>
 #include <opencv/cxcore.h>   // unnecessary - included in cv.h
 
 #include <iostream>
