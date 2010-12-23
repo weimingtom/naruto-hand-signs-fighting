@@ -371,15 +371,6 @@ void TrainingWindow::incrementCurrentSealIndex(){
 		bigImage = gcn::Image::load(path);
 		bigImageIcon->setImage(bigImage);
 		createTemplateContours();
-	}else{
-		cout<<"You have just accomplished this move!\nPlease select a new one.\n";
-		string str = scoresBox->getText();
-		std::stringstream streamtemp;
-
-		streamtemp << totalScore;
-		str = str +"\ncompliment!\nyour total\nscore is:\n" + streamtemp.str()+"\n"+
-				"\nselect a\nnew one\n";
-		scoresBox->setText(str);
 	}
 	scoresBox->scrollToCaret();
 }
@@ -403,4 +394,14 @@ void TrainingWindow::createTemplateContours(){
 
 void TrainingWindow::setTotalScore(double score){
 	totalScore = score;
+	{
+		cout<<"You have just accomplished this move!\nPlease select a new one.\n";
+		string str = scoresBox->getText();
+		std::stringstream streamtemp;
+
+		streamtemp << totalScore;
+		str = str +"\ncompliment!\nyour total\nscore is:\n" + streamtemp.str()+"\n"+
+				"\nselect a\nnew one\n";
+		scoresBox->setText(str);
+	}
 }

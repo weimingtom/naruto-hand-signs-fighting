@@ -68,14 +68,14 @@ void TrainingDirector::elapsedTimer(){
 //		debugPrint("evaluation\n");
 		score = recognitionEngine->evaluate(res, trainingWindow->getCurrentSealIndex());
 		totalScore += score;
-//		cout<<"your score is: "<<score<<"\n";
+		cout<<"your score is: "<<score<<"\n";
 		trainingWindow->updateScore(score);
 		trainingWindow->incrementCurrentSealIndex();
 		if(lastSealInMove()){
 			totalScore = totalScore / targetMove->getMoveSeals().size();
 			trainingWindow->setTotalScore(totalScore);
-//			debugPrint("this is the last seal...\n"
-//					"total score is: %g",totalScore);
+			debugPrint("this is the last seal...\n"
+					"total score is: %g\n",totalScore);
 		}
 
 #if SHOW_SUPPL_WIN == 1
@@ -97,5 +97,5 @@ void TrainingDirector::elapsedTimer(){
 
 bool TrainingDirector::lastSealInMove(){
 	//we want to show the total score only after the last seal
-	return trainingWindow->getCurrentSealIndex() == targetMove->getMoveSeals().size() - 1;
+	return trainingWindow->getCurrentSealIndex() == targetMove->getMoveSeals().size();
 }
