@@ -43,6 +43,7 @@ class TrainingWindow: public MenuWindow {
 	int oldScreenHeight;
 
 	//Move description
+	gcn::Label *moveTitle;
     gcn::Label *moveName;
     gcn::Label *moveElement;
     gcn::Label *moveRank;
@@ -100,6 +101,7 @@ class TrainingWindow: public MenuWindow {
     void buildShotButton();
     void translateTitleLabel();
     void buildScoresBox();
+    void buildTimerLabel();
 
     void createTemplateContours();
 
