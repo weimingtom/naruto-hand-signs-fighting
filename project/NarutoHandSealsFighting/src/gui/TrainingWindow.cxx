@@ -37,6 +37,7 @@ TrainingWindow::TrainingWindow(string targetMove) : MenuWindow() {
 	currentSealIndex = 0;
 	seconds = 0;
 	scores = 0;
+	totalScore = 0;
 	g_thresh = 100;
 	g_gray = NULL;
 	g_storage = NULL;
@@ -45,6 +46,11 @@ TrainingWindow::TrainingWindow(string targetMove) : MenuWindow() {
 TrainingWindow::~TrainingWindow() {
 //	debugPrint("TrainingWindow: destructor\n");
 //	debugPrint("camera? %s\n", cam->getPiggyBackCamera());
+	delete moveTitle;
+	delete moveName;
+	delete moveElement;
+	delete moveRank;
+	delete moveType;
 	delete labelName;
 	delete labelElement;
 	delete labelRank;
@@ -77,9 +83,15 @@ void TrainingWindow::buildMoveDescription(int x, int y){
 	string type;
 	int distanceMoveDescription = 20;
 
+	//Title
+	moveTitle = new gcn::Label("MOVE DESCRIPTION");
+	moveTitle->setPosition(x, y);
+	panel->add(moveTitle);
+
 	//Move Name:
 	labelName = new gcn::Label("NAME: ");
-	y = titleLabel->getY() + titleLabel->getHeight() + 10;
+//	y = titleLabel->getY() + titleLabel->getHeight() + 10;
+	y = moveTitle->getY() + labelName->getHeight() + distanceMoveDescription;
 	labelName->setPosition(x, y);
 	panel->add(labelName);
 	moveName = new gcn::Label(move->getMoveName().c_str());
@@ -181,13 +193,32 @@ void TrainingWindow::translateTitleLabel(){
 void TrainingWindow::buildShotButton(){
 	//we position the back button away
 	shotButton = new gcn::Button("[S]HOT!");
-	shotButton->setPosition(bigImageIcon->getX(),
+	shotButton->setSize(bigImageIcon->getWidth() + 20, buttonHeight + 40);
+	shotButton->setPosition(bigImageIcon->getX() + bigImageIcon->getWidth()/2,
 			bigImageIcon->getY() + bigImageIcon->getHeight() + 25);
-	shotButton->setSize(bigImageIcon->getWidth(), buttonHeight + 20);
 	shotButton->setFrameSize(3);
 	shotButton->setActionEventId("shot");
 	shotButton->addActionListener(new EventToKeyPressConverter());
 	panel->add(shotButton);
+}
+
+void TrainingWindow::buildTimerLabel(){
+	//Seconds Label:
+	//Warning: the string inserted into the Label constructor also defines the
+	//total length of the label
+	secondsLabel = new gcn::Label("00'.00''"); //<-
+	secondsTitle = new gcn::Label("Timer");
+	//	secondsLabel->setPosition(cameraWindow->getX() + cameraWindow->getWidth()/2,
+	//			cameraWindow->getY() + cameraWindow->getHeight() + 5);
+//	secondsTitle->setPosition(cameraWindow->getX() - secondsTitle->getWidth() - 40,
+//			labelName->getY());
+	secondsLabel->setPosition(scoresBoxScroll->getX() + scoresBoxScroll->getWidth()/2 -
+			secondsLabel->getWidth()/2,
+			scoresBoxScroll->getY() - secondsLabel->getHeight() - 10);
+	secondsTitle->setPosition(secondsLabel->getX(),
+			secondsLabel->getY() - secondsTitle->getHeight() - 5);
+	panel->add(secondsLabel);
+	panel->add(secondsTitle);
 }
 
 void TrainingWindow::buildWindow(){
@@ -199,14 +230,17 @@ void TrainingWindow::buildWindow(){
 	buildTitle();
 	translateTitleLabel();
 
-	int x=10, y=0;
+	int x=10, y=20;
 	buildMoveDescription(x, y);
+
+	buildCameraWindow();
 
 	//Current Seal
 	string path = move->getMoveSeals().at(currentSealIndex)->getThumbnailImagePath();
 	bigImage = gcn::Image::load(path);
 	bigImageIcon = new gcn::Icon(bigImage);
-	bigImageIcon->setPosition(10,labelType->getY() + 60);
+//	bigImageIcon->setPosition(10,labelType->getY() + 60);
+	bigImageIcon->setPosition(10, (cameraWindow->getHeight()/2) - 30);
 	panel->add(bigImageIcon);
 	bigImageLabel = new gcn::Label("CURRENT SEAL");
 	bigImageLabel->setPosition(bigImageIcon->getX() + (bigImageIcon->getWidth()/2) -
@@ -215,27 +249,16 @@ void TrainingWindow::buildWindow(){
 	panel->add(bigImageLabel);
 
 	buildBottomRow(x,y);
-	buildCameraWindow();
 	buildShotButton();
 
+//	backButton->setPosition(bigImageIcon->getX(),
+//			shotButton->getY() + shotButton->getHeight() + 20);
 	backButton->setPosition(bigImageIcon->getX(),
-			shotButton->getY() + shotButton->getHeight() + 15);
-
-	//Seconds Label:
-	//Warning: the string inserted into the Label constructor also defines the
-	//total length of the label
-	secondsLabel = new gcn::Label("00'.00''"); //<-
-	secondsTitle = new gcn::Label("Timer");
-//	secondsLabel->setPosition(cameraWindow->getX() + cameraWindow->getWidth()/2,
-//			cameraWindow->getY() + cameraWindow->getHeight() + 5);
-	secondsTitle->setPosition(cameraWindow->getX() - secondsTitle->getWidth() - 40,
-			labelName->getY());
-	secondsLabel->setPosition(secondsTitle->getX(),
-			secondsTitle->getY() + secondsLabel->getHeight() + 10);
-	panel->add(secondsLabel);
-	panel->add(secondsTitle);
+				bottomRowScroll->getY() - backButton->getHeight() - 15);
 
 	buildScoresBox();
+	buildTimerLabel();
+
 	createTemplateContours();
 
 //	delete image;
