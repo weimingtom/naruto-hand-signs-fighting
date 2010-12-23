@@ -142,6 +142,11 @@ public:
         this->evaluator = evaluator;
     }
 
+    /*
+     * Initializes the engine with the modules brought by the current
+     * strategy selected. The default is the:
+     * "DefaultStrategy".
+     */
     int initEngine();
 
     void changeEngineStrategy(AbstractStrategy* newStrategy);

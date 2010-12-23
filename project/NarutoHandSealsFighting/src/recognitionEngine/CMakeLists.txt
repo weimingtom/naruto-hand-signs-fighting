@@ -16,6 +16,7 @@ INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/engineModules")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/engineStrategies")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/evaluationFunctions")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gameLogic")
+INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/acquisitionSection")
 
 ADD_SUBDIRECTORY(engineModules)
 ADD_SUBDIRECTORY(evaluationFunctions)
@@ -52,7 +53,7 @@ ADD_DEPENDENCIES(recognitionEngine engineStrategies)
 #######################
 ADD_EXECUTABLE( reTest reTest.cxx)
 TARGET_LINK_LIBRARIES( reTest ${OpenCV_LIBS} recognitionEngine engineModules gameLogic 
-evaluationFunctions deb engineStrategies)
+evaluationFunctions deb engineStrategies camLib)
 
 #######################
 ##### Moves File ######

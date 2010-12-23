@@ -48,6 +48,7 @@ int RecognitionEngine::process(const IplImage* src, IplImage* res){
 		}
 		cvAdd(res, temp, res);
 	}
+	cvReleaseImage(&temp);
 }
 
 int RecognitionEngine::findModuleByID(EngineModule* m){
