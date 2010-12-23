@@ -59,7 +59,7 @@ int MulEvaluator::evaluate(IplImage* img, Move* m, int index){
 //	cvMul(t, tempMul, tempOut);
 	cvAnd(tempTemplate, tempMul, tempOut, originalTemplateImg);
 
-//	displayResult(tempMul, t, tempOut, 60000);
+	displayResult(tempMul, tempTemplate, tempOut, 60000);
 
 	//If we don't release the ROI it will display it instead of the "total" image
 //	cvResetImageROI(img);

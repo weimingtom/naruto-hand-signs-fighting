@@ -19,6 +19,7 @@
 #include <opencv/cv.h>
 
 void convertDepth_8U_to_32F(const IplImage* src, IplImage* dst);
+void convertToGrayScale(const IplImage* src, IplImage* dst);
 
 
 #endif /* IMAGEPROCESSING_H_ */
