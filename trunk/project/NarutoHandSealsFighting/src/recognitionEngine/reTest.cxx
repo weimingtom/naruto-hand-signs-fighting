@@ -43,10 +43,21 @@ const char* win = "reTestWin";
 int main(int argc, char* argv[]){
 	IplImage *temp, *img, *res;
 	bool done = false;
+	int sealIndex = 0;
+	Move* move;
 	int appo;
 
-	sealsFactory->buildSealsMap(&smap);
-	movesFactory->buildMovesSet(&myMoveSet, &smap);
+	sealsFactory->buildSealsMap(&sealsMap);
+	movesFactory->buildMovesSet( movesSetGlobal, &sealsMap);
+	move = movesSetGlobal->getMove("Lightning Blade");
+	if(move == NULL){
+		cout<<"DON'T FOUND move!!\n";
+	}
+	debugPrint("test move name: ");
+	debugPrint("%s\n", move->getMoveName().c_str());
+
+	recognitionEngine->setCurrentMove(move);
+
 //	recognitionEngine->initEngine();
 
 //	recognitionEngine->addModule(new HistogramEM());
@@ -64,7 +75,7 @@ int main(int argc, char* argv[]){
 	temp = cvCreateImage(cvSize(img->width, img->height),RE_INPUT_IMAGE_DEPTH, 1);
 	debugPrint(">created temp\n");
 	appo = cvMean(img);
-	debugPrint("mean is :%d", appo);
+	debugPrint("mean is :%d\n", appo);
 	recognitionEngine->addModule(new CannyEM(5, 100, appo));
 //	recognitionEngine->addModule(new ContoursFinderEM(appo));
 
@@ -95,15 +106,24 @@ int main(int argc, char* argv[]){
 
 
 			convertToGrayScale(img, temp);
-//			debugPrint(">convertScale\n");
-//			debugPrint(">processing\n");
+			debugPrint(">convertScale\n");
+			debugPrint(">processing\n");
 			res = cvCreateImage(cvSize(img->width, img->height),RE_OUTPUT_IMAGE_DEPTH, 1);
 			recognitionEngine->process(temp, res);
+//			cvShowImage(win, res);
+			debugPrint(">evaluation\n");
+			recognitionEngine->evaluate(res, sealIndex); //<- here's the problem!!!
 			cvShowImage(win, res);
-			cvReleaseImage(&res);
+
+
 			if( (cvWaitKey(10) & 255) == 27 ){
 				done = true;
 			}
+
+//			if( (cvWaitKey(10) & 255) == 115 ){
+//				sealIndex = ((sealIndex + 1) % move->getMoveSeals().size());
+//			}
+			cvReleaseImage(&res);
 		}
 
 	cvDestroyWindow(win);
