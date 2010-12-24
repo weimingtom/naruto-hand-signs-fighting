@@ -77,6 +77,8 @@ void TrainingDirector::elapsedTimer(){
 			debugPrint("this is the last seal...\n"
 					"total score is: %g\n",totalScore);
 		}
+		cvReleaseImage(&grayImage);
+		cvReleaseImage(&res); //<- should we use res for an output to the user?
 
 #if SHOW_SUPPL_WIN == 1
 		cvNamedWindow("mu",CV_WINDOW_AUTOSIZE);

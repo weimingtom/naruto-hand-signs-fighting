@@ -11,6 +11,7 @@ int BlurEM::compute(const IplImage* src, IplImage* dst){
 	IplImage* temp = cvCreateImage(cvGetSize(src), src->depth, src->nChannels);
 	cvSmooth(src, temp, blurType, size1, size2, sigma1, sigma2);
 	cvConvertScale(temp, dst, 0.0039215, 0);
+	cvReleaseImage(&temp);
 }
 
 BlurEM::BlurEM(int cvType, int localSize1, int localSize2){

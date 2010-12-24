@@ -57,6 +57,7 @@ int main(int argc, char* argv[]){
 	debugPrint("%s\n", move->getMoveName().c_str());
 
 	recognitionEngine->setCurrentMove(move);
+	recognitionEngine->setEvaluatorFunction(mulEvaluator);
 
 //	recognitionEngine->initEngine();
 
@@ -106,13 +107,13 @@ int main(int argc, char* argv[]){
 
 
 			convertToGrayScale(img, temp);
-			debugPrint(">convertScale\n");
-			debugPrint(">processing\n");
+//			debugPrint(">convertScale\n");
+//			debugPrint(">processing\n");
 			res = cvCreateImage(cvSize(img->width, img->height),RE_OUTPUT_IMAGE_DEPTH, 1);
 			recognitionEngine->process(temp, res);
 //			cvShowImage(win, res);
-			debugPrint(">evaluation\n");
-			recognitionEngine->evaluate(res, sealIndex); //<- here's the problem!!!
+//			debugPrint(">evaluation\n");
+			recognitionEngine->evaluate(res, sealIndex);
 			cvShowImage(win, res);
 
 
@@ -120,12 +121,13 @@ int main(int argc, char* argv[]){
 				done = true;
 			}
 
-//			if( (cvWaitKey(10) & 255) == 115 ){
-//				sealIndex = ((sealIndex + 1) % move->getMoveSeals().size());
-//			}
+			if( (cvWaitKey(10) & 255) == 115 ){
+				sealIndex = ((sealIndex + 1) % move->getMoveSeals().size());
+			}
 			cvReleaseImage(&res);
 		}
 
+	cvReleaseImage(&temp);
 	cvDestroyWindow(win);
 	cvDestroyWindow(winOrig);
 	/*

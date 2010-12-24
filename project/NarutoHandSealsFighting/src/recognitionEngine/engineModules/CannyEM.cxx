@@ -19,6 +19,7 @@ int CannyEM::compute( const IplImage* src, IplImage* dst){
 	IplImage* temp = cvCreateImage(cvSize(src->width, src->height), IPL_DEPTH_8U, 1);
 	cvCanny(src, temp, lowThresh, highThresh, kernelSize );
 	cvConvertScale(temp, dst);
+	cvReleaseImage(&temp);
 }
 
 void CannyEM::fixName(){

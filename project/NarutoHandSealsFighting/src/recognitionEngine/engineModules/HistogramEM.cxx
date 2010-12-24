@@ -31,6 +31,7 @@ HistogramEM::HistogramEM(){
 
 HistogramEM::~HistogramEM(){
 	cvReleaseImage(&histImage);
+	cvReleaseImage(&grayImage);
 	cvRelease((void**)&hist);
 }
 
@@ -119,4 +120,5 @@ int HistogramEM::compute(const IplImage* src, IplImage* dst){
 	from [0, 255] to [0, 1]
 	*/
 	cvConvertScale(temp, dst, 0.0039215, 0);
+	cvReleaseImage(&temp);
 }

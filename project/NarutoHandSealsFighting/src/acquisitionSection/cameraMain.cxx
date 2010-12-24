@@ -118,7 +118,7 @@ int main(int argc, char* argv[]) {
 	Camera *c3 = c2;
 	cout<<"using now a new one: C3! \n";
 	c3->activateAndShowInWindow();
-
+	cvReleaseImage(&res);
 	cvDestroyAllWindows();
 }
 
