@@ -32,3 +32,12 @@ TARGET_LINK_LIBRARIES( sealsTest ${OpenCV_LIBS} gameLogic)
 ADD_EXECUTABLE( movesTest movesTest.cxx)
 TARGET_LINK_LIBRARIES( movesTest ${OpenCV_LIBS} gameLogic)
 
+#######################
+# Linking Templates ###
+#######################
+#it links the directories of templates and thumbnail images
+ADD_CUSTOM_COMMAND( TARGET sealsTest POST_BUILD 
+	COMMAND ln -sf ${PROJECT_BINARY_DIR}/movesTemplates
+	COMMAND ln -sf ${PROJECT_BINARY_DIR}/movesThumbnails
+)
+#######################

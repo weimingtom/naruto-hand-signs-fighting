@@ -54,6 +54,7 @@ ADD_DEPENDENCIES(recognitionEngine engineStrategies)
 ADD_EXECUTABLE( reTest reTest.cxx)
 TARGET_LINK_LIBRARIES( reTest ${OpenCV_LIBS} recognitionEngine engineModules gameLogic 
 evaluationFunctions deb engineStrategies camLib)
+#######################
 
 #######################
 ##### Moves File ######
@@ -61,3 +62,14 @@ evaluationFunctions deb engineStrategies camLib)
 #Moves file
 FILE(COPY ${PROJECT_SOURCE_DIR}/gameLogic/Moves.xml 
 	DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+#######################
+
+#######################
+# Linking Templates ###
+#######################
+#it links the directories of templates and thumbnail images
+ADD_CUSTOM_COMMAND( TARGET reTest POST_BUILD 
+	COMMAND ln -sf ${PROJECT_BINARY_DIR}/movesTemplates
+	COMMAND ln -sf ${PROJECT_BINARY_DIR}/movesThumbnails
+)
+#######################
