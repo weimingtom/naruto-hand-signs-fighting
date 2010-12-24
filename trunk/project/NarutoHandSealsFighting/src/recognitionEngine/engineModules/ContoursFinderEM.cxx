@@ -30,5 +30,6 @@ int ContoursFinderEM::compute(const IplImage* src, IplImage* dst){
 	if( contours ){
 		cvDrawContours( dst, contours, cvScalarAll(255), cvScalarAll(255), 100 );
 	}
+	cvReleaseImage(&temp);
 }
 

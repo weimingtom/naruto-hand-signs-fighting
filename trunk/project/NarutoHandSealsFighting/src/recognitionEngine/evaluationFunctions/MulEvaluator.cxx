@@ -59,7 +59,7 @@ int MulEvaluator::evaluate(IplImage* img, Move* m, int index){
 //	cvMul(t, tempMul, tempOut);
 	cvAnd(tempTemplate, tempMul, tempOut, originalTemplateImg);
 
-	displayResult(tempMul, tempTemplate, tempOut, 60000);
+//	displayResult(tempMul, tempTemplate, tempOut, 60000);
 
 	//If we don't release the ROI it will display it instead of the "total" image
 //	cvResetImageROI(img);
@@ -70,11 +70,13 @@ int MulEvaluator::evaluate(IplImage* img, Move* m, int index){
 
 	tempRes =  float(wPixelsRes)/float(wPixelsTemplate);
 	ret = tempRes * 100;
-	cout<<"wp-teplate: "<<wPixelsTemplate<<" wp-res: "<<wPixelsRes<<" div: "<<tempRes<<"\n";
+//	cout<<"wp-teplate: "<<wPixelsTemplate<<" wp-res: "<<wPixelsRes<<" div: "<<tempRes<<"\n";
 
-//	cvConvertScale(tempOut, img);
+	cvConvertScale(tempOut, img);
 
-//	cvReleaseImage(&temp);
+	cvReleaseImage(&tempOut);
+	cvReleaseImage(&tempMul);
+	cvReleaseImage(&tempTemplate);
 	return ret;
 }
 

@@ -58,9 +58,13 @@ TrainingWindow::~TrainingWindow() {
 	delete bigImageIcon;
 	delete bigImage;
 	delete bigImageLabel;
-	delete secondsLabel;
-	delete shotButton;
 	delete bottomRow;
+	delete bottomRowScroll;
+	delete shotButton;
+	delete secondsLabel;
+	delete secondsTitle;
+	delete scoresBox;
+	delete scoresBoxScroll;
 	delete cameraWindow;
 	delete cameraIcon;
 	delete cameraImage;
@@ -72,6 +76,7 @@ TrainingWindow::~TrainingWindow() {
 
 	cvClearMemStorage( g_storage );
 	cvReleaseImage(&g_gray);
+	delete contours;
 }
 
 void TrainingWindow::restoreOldSizeWindow(){
@@ -390,6 +395,7 @@ void TrainingWindow::createTemplateContours(){
 	cvThreshold( g_gray, g_gray, g_thresh, 255, CV_THRESH_BINARY );
 	cvFindContours( g_gray, g_storage, &contours );
 	cvZero( g_gray );
+	cvReleaseImage(&g_image);
 }
 
 void TrainingWindow::setTotalScore(double score){
