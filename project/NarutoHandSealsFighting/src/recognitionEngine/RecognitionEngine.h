@@ -56,12 +56,16 @@
 #include "engineModules/EngineModule.h"
 #include "engineStrategies/AbstractStrategy.h"
 #include "engineStrategies/DefaultStrategy.h"
+
 #include "evaluationFunctions/EvaluatorFunctionTemplate.h"
 #include "evaluationFunctions/MulEvaluator.h"
-#include "../gameLogic/Move.h"
 
-#define RE_OUTPUT_IMAGE_DEPTH IPL_DEPTH_32F
-#define RE_INPUT_IMAGE_DEPTH IPL_DEPTH_8U
+#include "processingFunctions/AbstractProcessingFunction.h"
+#include "processingFunctions/DifferentTempsAdder.h"
+#include "processingFunctions/ChainAdder.h"
+
+#include "RecognitionEngineDefaults.h"
+#include "../gameLogic/Move.h"
 
 using namespace std;
 
@@ -80,6 +84,8 @@ class RecognitionEngine : public ModulesPool{
 	//The strategy defines what modules are put into the engine
 	//and their order
 	AbstractStrategy* strategy;
+
+	AbstractProcessingFunction* processingFunction;
 
 	//This is the current Move to keep track of.
 	//The inserted images are supposed to be part of
@@ -150,6 +156,14 @@ public:
     int initEngine();
 
     void changeEngineStrategy(AbstractStrategy* newStrategy);
+
+    void setProcessFunction(AbstractProcessingFunction* procFunc){
+    	processingFunction = procFunc;
+    }
+
+    AbstractProcessingFunction* getProcessFunction(){
+    	return processingFunction;
+    }
 
 };
 

@@ -15,12 +15,15 @@ INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/engineModules")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/engineStrategies")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/evaluationFunctions")
+INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/processingFunctions")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/gameLogic")
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}/acquisitionSection")
+
 
 ADD_SUBDIRECTORY(engineModules)
 ADD_SUBDIRECTORY(evaluationFunctions)
 ADD_SUBDIRECTORY(engineStrategies)
+ADD_SUBDIRECTORY(processingFunctions)
 #######################
 
 #######################
@@ -28,7 +31,7 @@ ADD_SUBDIRECTORY(engineStrategies)
 #######################
 ADD_EXECUTABLE( runRecognitionEngine mainEngine.cxx)
 TARGET_LINK_LIBRARIES( runRecognitionEngine ${OpenCV_LIBS} recognitionEngine engineModules 
-engineStrategies gameLogic evaluationFunctions deb )
+engineStrategies gameLogic evaluationFunctions processingFunctions deb )
 ADD_LIBRARY(recognitionEngine SHARED  RecognitionEngine.h RecognitionEngine.cxx ImageProcessing.cxx
 engineModules/EngineModule.h ../gameLogic/Move.h ModulesPool.cxx)
 
@@ -53,7 +56,7 @@ ADD_DEPENDENCIES(recognitionEngine engineStrategies)
 #######################
 ADD_EXECUTABLE( reTest reTest.cxx)
 TARGET_LINK_LIBRARIES( reTest ${OpenCV_LIBS} recognitionEngine engineModules gameLogic 
-evaluationFunctions deb engineStrategies camLib)
+evaluationFunctions deb engineStrategies processingFunctions camLib)
 #######################
 
 #######################

@@ -1,32 +1,30 @@
 /*
  ******************************************************
  * NAME:
- * All.h
+ * ClosureEM.h
  ******************************************************
  * DESCRIPTION:
- * It simply regroup all developer modules of the current
- * directory
+ *
  ******************************************************
- *	Created on: Nov 22, 2010
+ *	Created on: Dec 24, 2010
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
-#ifndef ALL_H_
-#define ALL_H_
+#ifndef CLOSUREEM_H_
+#define CLOSUREEM_H_
 
 #include "EngineModule.h"
 
-#include "BlurEM.h"
-#include "CannyEM.h"
-#include "ContoursFinderEM.h"
-#include "FourierEM.h"
-#include "HistogramEM.h"
-#include "LaplacianEM.h"
-#include "SobelEM.h"
-#include "ClosureEM.h"
+class ClosureEM : public EngineModule {
+	int iterations;
+public:
+	ClosureEM();
+	ClosureEM(int iterations);
+	virtual ~ClosureEM();
+	int compute( const IplImage* src, IplImage* dst);
+};
 
-
-#endif /* ALL_H_ */
+#endif /* CLOSUREEM_H_ */

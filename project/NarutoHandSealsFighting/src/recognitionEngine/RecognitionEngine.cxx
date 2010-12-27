@@ -21,6 +21,8 @@ RecognitionEngine::RecognitionEngine(){
 	currentMove = NULL;
 	evaluator = NULL;
 	strategy = new DefaultStrategy(this);
+	processingFunction = new DifferentTempsAdder();
+//	processingFunction = new ChainAdder;
 }
 
 
@@ -35,20 +37,28 @@ int RecognitionEngine::process(const IplImage* src, IplImage* res){
 	// each time the process enters this function needs to recreate the
 	// temp image, otherwise we'll get a type check errror!
 //	if(temp == NULL)
-	temp = cvCreateImage(cvSize(src->width, src->height), RE_OUTPUT_IMAGE_DEPTH, src->nChannels);
 
-//	cout<<"modules applied:\n";
-	for(int i=0; i<modulesArray.size(); i++){
-		try{
-			modulesArray.at(i)->compute(src, temp);
-//			cout<<modulesArray.at(i)->getModuleName()<<"\n";
-		}catch(cv::Exception e){
-			cout<<"EXCEPTION in " << modulesArray.at(i)->getModuleName() << "\n";
-			cout<<e.err<<"\n";
-		}
-		cvAdd(res, temp, res);
-	}
-	cvReleaseImage(&temp);
+//	temp = cvCreateImage(cvSize(src->width, src->height), RE_OUTPUT_IMAGE_DEPTH, src->nChannels);
+//	IplImage * tempRes = cvCreateImage(cvSize(src->width, src->height),
+//			RE_OUTPUT_IMAGE_DEPTH, src->nChannels);
+//	cvConvertScale(src, tempRes);
+//
+////	cout<<"modules applied:\n";
+//	for(int i=0; i<modulesArray.size(); i++){
+//		try{
+//			modulesArray.at(i)->compute(tempRes, temp);
+////			cout<<modulesArray.at(i)->getModuleName()<<"\n";
+//		}catch(cv::Exception e){
+//			cout<<"EXCEPTION in " << modulesArray.at(i)->getModuleName() << "\n";
+//			cout<<e.err<<"\n";
+//		}
+//		cvAdd(tempRes, temp, tempRes);
+//	}
+//	cvConvertScale(tempRes, res);
+//	cvReleaseImage(&temp);
+//	cvReleaseImage(&tempRes);
+
+	processingFunction->processFunction(modulesArray, src, res);
 }
 
 int RecognitionEngine::findModuleByID(EngineModule* m){

@@ -25,9 +25,10 @@ void ContoursFinderEM::initContoursModule(){
 int ContoursFinderEM::compute(const IplImage* src, IplImage* dst){
 	IplImage* temp  = cvCreateImage(cvGetSize(src), src->depth, 1);
 	cvThreshold( src, temp, g_thresh, 255, CV_THRESH_BINARY );
-	cvFindContours( temp, g_storage, &contours );
-	//		cvZero( g_gray );
 	if( contours ){
+		//	cvFindContours( temp, g_storage, &contours, sizeof( contours), CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE );
+		cvFindContours( temp, g_storage, &contours);
+		//		cvZero( g_gray );
 		cvDrawContours( dst, contours, cvScalarAll(255), cvScalarAll(255), 100 );
 	}
 	cvReleaseImage(&temp);

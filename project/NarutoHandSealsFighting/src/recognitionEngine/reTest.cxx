@@ -44,6 +44,7 @@ int main(int argc, char* argv[]){
 	IplImage *temp, *img, *res;
 	bool done = false;
 	int sealIndex = 0;
+	double range = 20;
 	Move* move;
 	int appo;
 
@@ -61,10 +62,6 @@ int main(int argc, char* argv[]){
 
 //	recognitionEngine->initEngine();
 
-//	recognitionEngine->addModule(new HistogramEM());
-//	recognitionEngine->addModule(new SobelEM(CV_SCHARR, 1, 0));
-//	recognitionEngine->addModule(new BlurEM(CV_GAUSSIAN,3,3));
-//	recognitionEngine->addModule(new LaplacianEM(5));
 
 	for(int i=0; i<10; i++)
 		cam->capturing();
@@ -77,8 +74,20 @@ int main(int argc, char* argv[]){
 	debugPrint(">created temp\n");
 	appo = cvMean(img);
 	debugPrint("mean is :%d\n", appo);
-	recognitionEngine->addModule(new CannyEM(5, 100, appo));
-//	recognitionEngine->addModule(new ContoursFinderEM(appo));
+
+
+//	recognitionEngine->addModule(new HistogramEM());
+//	recognitionEngine->addModule(new BlurEM(CV_GAUSSIAN,33,33));
+	recognitionEngine->addModule(new BlurEM(CV_MEDIAN,15,15,0,0));
+//	recognitionEngine->addModule(new SobelEM(CV_SCHARR, 1, 0));
+
+//	recognitionEngine->addModule(new LaplacianEM(9));
+	recognitionEngine->addModule(new CannyEM(7, appo-range/2, appo+range/2));
+	recognitionEngine->addModule(new ContoursFinderEM(appo));
+
+	recognitionEngine->addModule(new ClosureEM(15));
+
+
 
 	cvNamedWindow(win, CV_WINDOW_AUTOSIZE);
 	cvNamedWindow(winOrig, CV_WINDOW_AUTOSIZE);
@@ -111,10 +120,10 @@ int main(int argc, char* argv[]){
 //			debugPrint(">processing\n");
 			res = cvCreateImage(cvSize(img->width, img->height),RE_OUTPUT_IMAGE_DEPTH, 1);
 			recognitionEngine->process(temp, res);
-//			cvShowImage(win, res);
+			cvShowImage(win, res);
 //			debugPrint(">evaluation\n");
 			recognitionEngine->evaluate(res, sealIndex);
-			cvShowImage(win, res);
+//			cvShowImage(win, res);
 
 
 			if( (cvWaitKey(10) & 255) == 27 ){
