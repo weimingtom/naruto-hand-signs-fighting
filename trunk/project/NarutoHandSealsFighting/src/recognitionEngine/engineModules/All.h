@@ -26,6 +26,7 @@
 #include "HistogramEM.h"
 #include "LaplacianEM.h"
 #include "SobelEM.h"
+#include "ClosureEM.h"
 
 
 #endif /* ALL_H_ */

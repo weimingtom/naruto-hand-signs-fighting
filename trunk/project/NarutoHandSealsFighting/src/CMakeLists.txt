@@ -62,7 +62,7 @@ ADD_LIBRARY(deb DebugPrint.cxx)
 
 TARGET_LINK_LIBRARIES( runNHSF ${OpenCV_LIBS}
 guichan guichan_sdl recognitionEngine engineStrategies engineModules 
-evaluationFunctions gameLogic gameStack menuLib controllerLib 
+evaluationFunctions processingFunctions gameLogic gameStack menuLib controllerLib 
 gui deb camLib timersNHSF)
 
 #######################################
