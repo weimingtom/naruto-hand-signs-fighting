@@ -279,11 +279,17 @@ void TrainingWindow::display(){
 		cout<<e.msg<<"\n";
 	}
 //	debugPrint("image conversion:...\n");
+//	cvDrawContours(
+//			cam->getFrame(),
+//			contours,
+//			cvScalarAll(180),
+//			cvScalarAll(180),
+//			100 );
 	cvDrawContours(
 			cam->getFrame(),
 			contours,
-			cvScalarAll(180),
-			cvScalarAll(180),
+			CV_RGB(255,0,0),
+			CV_RGB(255,0,0),
 			100 );
 	cameraImage = convertIplImageToGcnImage(cam->getFrame());
 	if(cameraIcon == NULL){
