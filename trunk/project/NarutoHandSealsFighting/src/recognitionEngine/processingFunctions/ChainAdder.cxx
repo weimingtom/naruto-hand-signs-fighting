@@ -15,6 +15,7 @@
 
 #include "ChainAdder.h"
 #include <iostream>
+#include "../ImageProcessing.h"
 #include "../RecognitionEngineDefaults.h"
 
 ChainAdder::ChainAdder() {
@@ -32,12 +33,12 @@ int ChainAdder::processFunction(std::vector<EngineModule*> modArray,
 	IplImage* temp = cvCreateImage(cvSize(src->width, src->height), RE_OUTPUT_IMAGE_DEPTH, src->nChannels);
 	IplImage * tempRes = cvCreateImage(cvSize(src->width, src->height),
 			RE_INPUT_IMAGE_DEPTH, src->nChannels);
-	cvConvertScale(src, res);
+	convertDepth_8U_to_32F(src, res);
 
 	//	cout<<"modules applied:\n";
 	for(int i=0; i<modArray.size(); i++){
 		try{
-			cvConvertScale(res, tempRes);
+			cvConvertScale(res, tempRes );
 			modArray.at(i)->compute(tempRes, temp);
 			cvAdd(res, temp, res);
 //			cout<<modArray.at(i)->getModuleName()<<"\n";

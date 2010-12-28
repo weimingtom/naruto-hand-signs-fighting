@@ -22,7 +22,7 @@ RecognitionEngine::RecognitionEngine(){
 	evaluator = NULL;
 	strategy = new DefaultStrategy(this);
 	processingFunction = new DifferentTempsAdder();
-//	processingFunction = new ChainAdder;
+//	processingFunction = new ChainAdder();
 }
 
 

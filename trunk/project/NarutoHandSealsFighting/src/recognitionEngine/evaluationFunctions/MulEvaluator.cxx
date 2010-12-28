@@ -69,7 +69,7 @@ int MulEvaluator::evaluate(IplImage* img, Move* m, int index){
 	wPixelsRes = cvCountNonZero(tempOut);
 
 	tempRes =  float(wPixelsRes)/float(wPixelsTemplate);
-	ret = tempRes * 100;
+	ret = tempRes * 1000;
 //	cout<<"wp-teplate: "<<wPixelsTemplate<<" wp-res: "<<wPixelsRes<<" div: "<<tempRes<<"\n";
 
 	cvConvertScale(tempOut, img);
