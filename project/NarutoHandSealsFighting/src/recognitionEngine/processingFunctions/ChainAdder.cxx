@@ -30,17 +30,18 @@ ChainAdder::~ChainAdder() {
 int ChainAdder::processFunction(std::vector<EngineModule*> modArray,
 		const IplImage* src, IplImage* res){
 
-	IplImage* temp = cvCreateImage(cvSize(src->width, src->height), RE_OUTPUT_IMAGE_DEPTH, src->nChannels);
-	IplImage * tempRes = cvCreateImage(cvSize(src->width, src->height),
-			RE_INPUT_IMAGE_DEPTH, src->nChannels);
-	convertDepth_8U_to_32F(src, res);
+	IplImage* temp = cvCreateImage(cvGetSize(src), RE_OUTPUT_IMAGE_DEPTH, src->nChannels);
+	IplImage * tempRes = cvCreateImage(cvGetSize(src), RE_INPUT_IMAGE_DEPTH, src->nChannels);
+//	convertDepth_8U_to_32F(src, res);
+	cvConvertScale(src, tempRes);
 
 	//	cout<<"modules applied:\n";
 	for(int i=0; i<modArray.size(); i++){
 		try{
-			cvConvertScale(res, tempRes );
 			modArray.at(i)->compute(tempRes, temp);
 			cvAdd(res, temp, res);
+			cvConvertScale(res, tempRes);
+//			cvMul(res,temp,res);
 //			cout<<modArray.at(i)->getModuleName()<<"\n";
 		}catch(cv::Exception e){
 			cout<<"EXCEPTION in " << modArray.at(i)->getModuleName() << "\n";

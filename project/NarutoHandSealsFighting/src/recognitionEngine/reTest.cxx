@@ -82,8 +82,8 @@ int main(int argc, char* argv[]){
 
 	recognitionEngine->setCurrentMove(move);
 
-//	recognitionEngine->setProcessFunction(new ChainAdder());
-	recognitionEngine->setProcessFunction(new DifferentTempsAdder());
+	recognitionEngine->setProcessFunction(new ChainAdder());
+//	recognitionEngine->setProcessFunction(new DifferentTempsAdder());
 
 //	recognitionEngine->setEvaluatorFunction(mulEvaluator);
 	ContoursChecker *cc = new ContoursChecker();
@@ -107,18 +107,20 @@ int main(int argc, char* argv[]){
 	debugPrint("mean is :%d\n", appo);
 
 	BackgroundRemovalEM *backgroundRemoval = new BackgroundRemovalEM();
-	recognitionEngine->addModule(backgroundRemoval); //<<<<<
+//	recognitionEngine->addModule(backgroundRemoval); //<<<<<
 	recognitionEngine->addModule(new HistogramEM());
 	recognitionEngine->addModule(new SobelEM(CV_SCHARR, 1, 0));
+//	recognitionEngine->addModule(new BlurEM(CV_MEDIAN,27,0,0,0));
 	recognitionEngine->addModule(new BlurEM(CV_GAUSSIAN,3,3));
 	recognitionEngine->addModule(new LaplacianEM(5));
-//	recognitionEngine->addModule(new BlurEM(CV_MEDIAN,27,0,0,0));
 
 //	recognitionEngine->addModule(new CannyEM(7, appo-range/2, appo+range/2));
 //	recognitionEngine->addModule(new CannyEM(5,1,3));
-//	recognitionEngine->addModule(new ContoursFinderEM(appo));
+	recognitionEngine->addModule(new ContoursFinderEM(appo));
 //
 	recognitionEngine->addModule(new ClosureEM(15));
+
+	backgroundRemoval->backGroundCapturing();
 
 	debugPrint("createTemplateContours...");
 	g_image = move->getMoveSeals().at(sealIndex)->getTemplateImage();
@@ -178,6 +180,8 @@ int main(int argc, char* argv[]){
 
 //		debugPrint(">convertScale\n");
 //		debugPrint(">processing\n");
+		backgroundRemoval->backGroundRemoval(temp);
+		cvAnd(temp, backgroundRemoval->getForegroundMask(), temp);
 		res = cvCreateImage(cvSize(img->width, img->height),RE_OUTPUT_IMAGE_DEPTH, 1);
 		recognitionEngine->process(temp, res);
 		cvShowImage(win, res);
