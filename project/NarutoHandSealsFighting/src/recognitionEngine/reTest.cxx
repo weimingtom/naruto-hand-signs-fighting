@@ -21,6 +21,7 @@
 #include "RecognitionEngine.h"
 #include "engineModules/EngineModule.h"
 #include "evaluationFunctions/MulEvaluator.h"
+#include "evaluationFunctions/ContoursChecker.h"
 #include "engineModules/All.h"
 #include "ImageProcessing.h"
 
@@ -39,10 +40,12 @@ void createTemplateContours();
 
 MovesSet myMoveSet;
 SealsMap smap;
-const char* winOrig = "originalCapture";
-const char* win = "reTestWin";
-const char* evaluated = "evaluatedImage";
-const char* m = "mask";
+const char *winOrig = "originalCapture";
+const char *win = "reTestWin";
+const char *evaluated = "evaluatedImage";
+const char *m = "mask";
+const char *winLeftCond = "left Cond";
+const char *winBg = "background";
 
 IplImage* g_image, *g_gray = NULL;
 CvMemStorage* g_storage = NULL;
@@ -57,6 +60,24 @@ int main(int argc, char* argv[]){
 	Move* move;
 	int appo;
 
+	/////////////////////////////////////////////
+	////// WINDOWS
+	cvNamedWindow(m, CV_WINDOW_AUTOSIZE);
+	cvNamedWindow(win, CV_WINDOW_AUTOSIZE);
+	cvNamedWindow(winOrig, CV_WINDOW_AUTOSIZE);
+	cvNamedWindow(evaluated, CV_WINDOW_NORMAL);
+	cvNamedWindow(winLeftCond, CV_WINDOW_NORMAL);
+	cvNamedWindow(winBg, CV_WINDOW_NORMAL);
+
+	cvMoveWindow(winOrig, 20, 20);
+	cvMoveWindow(win, 650, 20);
+	cvMoveWindow(evaluated, 700, 500);
+	cvMoveWindow(winLeftCond, 400, 500 );
+	cvMoveWindow(winBg, 10, 500);
+	/////////////////////////////////////////////
+
+
+
 	sealsFactory->buildSealsMap(&sealsMap);
 	movesFactory->buildMovesSet( movesSetGlobal, &sealsMap);
 	move = movesSetGlobal->getMove("Lightning Blade");
@@ -67,7 +88,9 @@ int main(int argc, char* argv[]){
 	debugPrint("%s\n", move->getMoveName().c_str());
 
 	recognitionEngine->setCurrentMove(move);
-	recognitionEngine->setEvaluatorFunction(mulEvaluator);
+//	recognitionEngine->setEvaluatorFunction(mulEvaluator);
+	ContoursChecker *cc = new ContoursChecker();
+	recognitionEngine->setEvaluatorFunction(cc);
 
 //	recognitionEngine->initEngine();
 
@@ -87,12 +110,12 @@ int main(int argc, char* argv[]){
 	appo = cvMean(img);
 	debugPrint("mean is :%d\n", appo);
 
-	cvNamedWindow(m, CV_WINDOW_AUTOSIZE);
-	debugPrint("tryingback ground training: ...");
+
+	debugPrint("trying back ground training: ...");
 	/////////////////////////////////////
 	//Let's try a background removal:
 	/////////////////////////////////////
-	const int BG_REMOVAL_TRAINING_FRAMES = 150; //default value of the total frames used in the "training"
+	const int BG_REMOVAL_TRAINING_FRAMES = 50; //default value of the total frames used in the "training"
 	int N = 0; //Number of total frames used in the "training"
 	IplImage *frame = cam->getFrame();
 	IplImage *acc, *sqacc, *M, *M2, *sqaccM, *sig2, *lambda_sig2;
@@ -147,29 +170,27 @@ int main(int argc, char* argv[]){
 
 
 //	cvReleaseImage(&leftCondition);
+	cvReleaseImage(&acc);
+	cvReleaseImage(&sqacc);
+	cvReleaseImage(&M2);
+	cvReleaseImage(&sqaccM);
+	cvReleaseImage(&sig2);
+	cvReleaseImage(&M);
 	///////////////////////////////////
 	debugPrint("it succeed!!\n");
 
 
-	recognitionEngine->addModule(new BlurEM(CV_GAUSSIAN,25,25));
-//	recognitionEngine->addModule(new BlurEM(CV_MEDIAN,27,0,0,0));
-//	recognitionEngine->addModule(new HistogramEM());
-//	recognitionEngine->addModule(new SobelEM(CV_SCHARR, 1, 0));
-
+	recognitionEngine->addModule(new HistogramEM());
+	recognitionEngine->addModule(new SobelEM(CV_SCHARR, 1, 0));
+	recognitionEngine->addModule(new BlurEM(CV_GAUSSIAN,3,3));
 	recognitionEngine->addModule(new LaplacianEM(5));
+//	recognitionEngine->addModule(new BlurEM(CV_MEDIAN,27,0,0,0));
+
 //	recognitionEngine->addModule(new CannyEM(7, appo-range/2, appo+range/2));
 //	recognitionEngine->addModule(new CannyEM(5,1,3));
 //	recognitionEngine->addModule(new ContoursFinderEM(appo));
 //
 	recognitionEngine->addModule(new ClosureEM(15));
-
-	cvNamedWindow(win, CV_WINDOW_AUTOSIZE);
-	cvNamedWindow(winOrig, CV_WINDOW_AUTOSIZE);
-	cvNamedWindow(evaluated, CV_WINDOW_NORMAL);
-
-	cvMoveWindow(winOrig, 20, 100);
-	cvMoveWindow(win, 700, 100);
-	cvMoveWindow(evaluated, 700, 500);
 
 	debugPrint("createTemplateContours...");
 	g_image = move->getMoveSeals().at(sealIndex)->getTemplateImage();
@@ -204,17 +225,21 @@ int main(int argc, char* argv[]){
 			cvSub(MEAN, img, leftCond, NULL);
 			cvPow(leftCond, leftCond2, 2);
 //			debugPrint("calculating foreground mask...");
+
 			convertToGrayScale(leftCond2, leftConditionGray);
 			convertToGrayScale(lambda_sig2, lambda_sig2Gray);
 			cvCmp(leftConditionGray, lambda_sig2Gray, myForeGroundMaskGray, CV_CMP_GE );
+			cvThreshold(myForeGroundMaskGray, myForeGroundMaskGray, 200, 255, CV_THRESH_BINARY);
 
 //			cvAnd(leftCond2, lambda_sig2, myForeGroundMask);
 //			convertToGrayScale(myForeGroundMask, myForeGroundMaskGray);
 //			debugPrint("done\n");
-			cvShowImage("mask", myForeGroundMaskGray);
-			convertToGrayScale(img, temp);
+//			cvShowImage(m, myForeGroundMaskGray);
+//			cvShowImage(winLeftCond, myForeGroundMaskGray);
+//			cvShowImage(winBg, lambda_sig2Gray);
 
 			///////////////////////////////
+			convertToGrayScale(img, temp);
 			cvDrawContours(img, contourTemplate, CV_RGB(255,0,0), CV_RGB(0,0,250),255, 1);
 			cvShowImage(winOrig, img);
 			///////////////////////////////
@@ -224,7 +249,12 @@ int main(int argc, char* argv[]){
 //			cvSmooth( hsv_mask, hsv_mask, CV_MEDIAN, 27, 0, 0, 0 );
 //			cvCanny(hsv_mask, hsv_edge, 1, 3, 5);
 
+//			cvOr(temp, myForeGroundMaskGray, temp);
+
+//			cvNot(myForeGroundMaskGray, myForeGroundMaskGray);
+//			cvSub(temp, myForeGroundMaskGray, temp);
 			cvAnd(temp, myForeGroundMaskGray, temp);
+//			cvConvertScale(myForeGroundMaskGray, temp);
 
 //			debugPrint(">convertScale\n");
 //			debugPrint(">processing\n");
@@ -251,13 +281,8 @@ int main(int argc, char* argv[]){
 
 	/////////////////////////
 	//used for background removal:
-	cvReleaseImage(&acc);
-	cvReleaseImage(&sqacc);
-	cvReleaseImage(&M2);
-	cvReleaseImage(&sqaccM);
-	cvReleaseImage(&sig2);
 
-	cvReleaseImage(&M);
+
 	cvReleaseImage(&lambda_sig2);
 	cvReleaseImage(&leftCond);
 	cvReleaseImage(&leftCond2);
@@ -271,8 +296,8 @@ int main(int argc, char* argv[]){
 	cvDestroyWindow(win);
 	cvDestroyWindow(winOrig);
 	cvDestroyWindow(evaluated);
-	cvDestroyWindow("mask");
-//	cvDestroyAllWindows();
+	cvDestroyWindow(m);
+	cvDestroyAllWindows();
 	/*
 	 * and so on...
 	 */

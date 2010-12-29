@@ -17,6 +17,7 @@
 #define EVALUATORFUNCTIONTEMPLATE_H_
 
 #include <opencv/cv.h>
+#include <opencv/cxcore.h>
 #include "../../gameLogic/Move.h"
 
 class EvaluatorFunctionTemplate{

@@ -17,8 +17,12 @@
 #define CONTOURSCHECKER_H_
 
 #include "EvaluatorFunctionTemplate.h"
+#include "../engineModules/ContoursFinderEM.h"
 
 class ContoursChecker: public EvaluatorFunctionTemplate {
+protected:
+	ContoursFinderEM *contourTemplate;
+	ContoursFinderEM *contourImage;
 public:
 	ContoursChecker();
 	virtual ~ContoursChecker();

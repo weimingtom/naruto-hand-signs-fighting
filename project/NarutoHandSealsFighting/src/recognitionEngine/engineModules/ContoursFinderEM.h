@@ -25,8 +25,13 @@ public:
 	ContoursFinderEM();
 
 	ContoursFinderEM(int threshold);
+	~ContoursFinderEM();
 
 	int compute( const IplImage* src, IplImage* dst);
+
+	CvSeq* getContours(){
+		return contours;
+	}
 };
 
 #endif /* CONTOURSFINDEREM_H_ */
