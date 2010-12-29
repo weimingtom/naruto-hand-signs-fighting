@@ -44,8 +44,6 @@ const char *winOrig = "originalCapture";
 const char *win = "reTestWin";
 const char *evaluated = "evaluatedImage";
 const char *m = "mask";
-const char *winLeftCond = "left Cond";
-const char *winBg = "background";
 
 IplImage* g_image, *g_gray = NULL;
 CvMemStorage* g_storage = NULL;
@@ -53,7 +51,7 @@ double g_thresh = 100;
 CvSeq * contourTemplate;
 
 int main(int argc, char* argv[]){
-	IplImage *temp, *img, *res, *img8u;
+	IplImage *temp, *img, *res, *imgShowing;
 	bool done = false;
 	int sealIndex = 0;
 	double range = 20;
@@ -66,16 +64,11 @@ int main(int argc, char* argv[]){
 	cvNamedWindow(win, CV_WINDOW_AUTOSIZE);
 	cvNamedWindow(winOrig, CV_WINDOW_AUTOSIZE);
 	cvNamedWindow(evaluated, CV_WINDOW_NORMAL);
-	cvNamedWindow(winLeftCond, CV_WINDOW_NORMAL);
-	cvNamedWindow(winBg, CV_WINDOW_NORMAL);
 
 	cvMoveWindow(winOrig, 20, 20);
 	cvMoveWindow(win, 650, 20);
 	cvMoveWindow(evaluated, 700, 500);
-	cvMoveWindow(winLeftCond, 400, 500 );
-	cvMoveWindow(winBg, 10, 500);
 	/////////////////////////////////////////////
-
 
 
 	sealsFactory->buildSealsMap(&sealsMap);
@@ -88,17 +81,20 @@ int main(int argc, char* argv[]){
 	debugPrint("%s\n", move->getMoveName().c_str());
 
 	recognitionEngine->setCurrentMove(move);
+
+//	recognitionEngine->setProcessFunction(new ChainAdder());
+	recognitionEngine->setProcessFunction(new DifferentTempsAdder());
+
 //	recognitionEngine->setEvaluatorFunction(mulEvaluator);
 	ContoursChecker *cc = new ContoursChecker();
 	recognitionEngine->setEvaluatorFunction(cc);
 
 //	recognitionEngine->initEngine();
 
+	//////////////////////////////////////////////
 
 	for(int i=0; i<10; i++)
 		cam->capturing();
-//	img = cvCreateImage(cvGetSize(cam->getFrame()), IPL_DEPTH_8U, 3);
-//	cvConvertScale(cam->getFrame(), img);
 
 	img=cam->getFrame();
 
@@ -110,76 +106,8 @@ int main(int argc, char* argv[]){
 	appo = cvMean(img);
 	debugPrint("mean is :%d\n", appo);
 
-
-	debugPrint("trying back ground training: ...");
-	/////////////////////////////////////
-	//Let's try a background removal:
-	/////////////////////////////////////
-	const int BG_REMOVAL_TRAINING_FRAMES = 50; //default value of the total frames used in the "training"
-	int N = 0; //Number of total frames used in the "training"
-	IplImage *frame = cam->getFrame();
-	IplImage *acc, *sqacc, *M, *M2, *sqaccM, *sig2, *lambda_sig2;
-	IplImage *leftCond, *leftCond2;//, *leftCondition;
-
-	IplImage* MEAN = cvCreateImage(cvGetSize(frame), frame->depth, frame->nChannels);
-	IplImage* myForeGroundMask = cvCreateImage(cvGetSize(frame),frame->depth , frame->nChannels);
-	IplImage* myForeGroundMaskGray = cvCreateImage(cvGetSize(frame), IPL_DEPTH_8U, 1);
-	IplImage *leftConditionGray = cvCreateImage(cvGetSize(frame),frame->depth , 1);
-	IplImage *lambda_sig2Gray = cvCreateImage(cvGetSize(frame),frame->depth , 1);
-
-	acc = cvCreateImage(cvGetSize(frame), IPL_DEPTH_32F, frame->nChannels);
-	sqacc = cvCreateImage(cvGetSize(frame), IPL_DEPTH_32F, frame->nChannels);
-	M = cvCreateImage(cvGetSize(frame),IPL_DEPTH_32F , frame->nChannels);
-	M2 = cvCreateImage(cvGetSize(frame),IPL_DEPTH_32F , frame->nChannels);
-	sqaccM = cvCreateImage(cvGetSize(frame),IPL_DEPTH_32F , frame->nChannels);
-	sig2 = cvCreateImage(cvGetSize(frame), IPL_DEPTH_32F, frame->nChannels);
-	lambda_sig2 = cvCreateImage(cvGetSize(frame),frame->depth, frame->nChannels);
-	leftCond = cvCreateImage(cvGetSize(frame),frame->depth , frame->nChannels);
-	leftCond2 = cvCreateImage(cvGetSize(frame),frame->depth , frame->nChannels);
-//	leftCondition = cvCreateImage(cvGetSize(frame), frame->depth, frame->nChannels);
-
-	for(int i=0, N=0; i<BG_REMOVAL_TRAINING_FRAMES; i++){
-		cvAcc(frame,acc,NULL);
-		cvSquareAcc(frame, sqacc, NULL);
-		N++;
-		cvConvertScale(acc, M, (double)(1.0/N), 0);
-		cvConvertScale(sqacc, sqaccM, (double)(1.0/N),0);
-		cvMul( M, M, M2, 1 );
-		cvSub( sqaccM, M2, sig2, NULL);//The sig is sig2
-		cam->capturing();
-		frame = cam->getFrame();
-	}
-	debugPrint(" out of the cycle ");
-
-	//For detect FG Condition
-	debugPrint("\nconvert scale ");
-	cvConvertScale(sig2, lambda_sig2, (double)9, 0);
-	cvConvertScale(M, MEAN);
-	debugPrint(" conversion operations: ");
-	cvSub(MEAN, frame, leftCond, NULL);
-	debugPrint(" sub-> ok ");
-	cvPow(leftCond, leftCond2, 2);
-	debugPrint(" mul-> ok ... ");
-
-//	cvShowImage(m, leftCond2);
-//	cvWaitKey(0);
-
-	//Compare
-	//  leftCondition & gt(:lambda_sig2)
-	//to detect foreground.
-
-
-//	cvReleaseImage(&leftCondition);
-	cvReleaseImage(&acc);
-	cvReleaseImage(&sqacc);
-	cvReleaseImage(&M2);
-	cvReleaseImage(&sqaccM);
-	cvReleaseImage(&sig2);
-	cvReleaseImage(&M);
-	///////////////////////////////////
-	debugPrint("it succeed!!\n");
-
-
+	BackgroundRemovalEM *backgroundRemoval = new BackgroundRemovalEM();
+	recognitionEngine->addModule(backgroundRemoval); //<<<<<
 	recognitionEngine->addModule(new HistogramEM());
 	recognitionEngine->addModule(new SobelEM(CV_SCHARR, 1, 0));
 	recognitionEngine->addModule(new BlurEM(CV_GAUSSIAN,3,3));
@@ -197,102 +125,81 @@ int main(int argc, char* argv[]){
 	createTemplateContours();
 	debugPrint("done\n");
 
-//	IplImage* src = cam->getFrame();
-//	CvScalar  hsv_min = cvScalar(0, 30, 80, 0);
-//	CvScalar  hsv_max = cvScalar(20, 150, 255, 0);
-//	IplImage* hsv_image = cvCreateImage( sz, 8, 3);
-//	IplImage* hsv_mask = cvCreateImage( sz, 8, 1);
-//	IplImage* hsv_edge = cvCreateImage( sz, 8, 1);
-//	img8u = cvCreateImage(cvGetSize(img), IPL_DEPTH_8U, 1);
-//			cvCvtColor(src, hsv_image, CV_BGR2HSV);
-
 	while(!done){
-			/*
-			 * The following are two equivalent alternatives.
-			 * Remember that you have to take care about the
-			 * refresh time and the way you are handling the
-			 * main loop, so depending on your purpose they
-			 * may result in different behaviors!
-			 */
-			///////////////////////////////
-			//1) using the capturing method of the Camera
-			//  this is the best result looking at the refresh time
-			if( cam->capturing() < 0){				//<- uncomment this line
-				cout<<"camera problem!\n";			//<- uncomment this line
-				break;								//<- uncomment this line
-			}										//<- uncomment this line
-			img = cam->getFrame();
-			cvSub(MEAN, img, leftCond, NULL);
-			cvPow(leftCond, leftCond2, 2);
-//			debugPrint("calculating foreground mask...");
+		/*
+		 * The following are two equivalent alternatives.
+		 * Remember that you have to take care about the
+		 * refresh time and the way you are handling the
+		 * main loop, so depending on your purpose they
+		 * may result in different behaviors!
+		 */
+		///////////////////////////////
+		//1) using the capturing method of the Camera
+		//  this is the best result looking at the refresh time
 
-			convertToGrayScale(leftCond2, leftConditionGray);
-			convertToGrayScale(lambda_sig2, lambda_sig2Gray);
-			cvCmp(leftConditionGray, lambda_sig2Gray, myForeGroundMaskGray, CV_CMP_GE );
-			cvThreshold(myForeGroundMaskGray, myForeGroundMaskGray, 200, 255, CV_THRESH_BINARY);
+		if( cam->capturing() < 0){				//<- uncomment this line
+			cout<<"camera problem!\n";			//<- uncomment this line
+			break;								//<- uncomment this line
+		}										//<- uncomment this line
+		img = cam->getFrame();
 
-//			cvAnd(leftCond2, lambda_sig2, myForeGroundMask);
-//			convertToGrayScale(myForeGroundMask, myForeGroundMaskGray);
-//			debugPrint("done\n");
-//			cvShowImage(m, myForeGroundMaskGray);
-//			cvShowImage(winLeftCond, myForeGroundMaskGray);
-//			cvShowImage(winBg, lambda_sig2Gray);
+//		cvSub(MEAN, img, leftCond, NULL);
+//		cvPow(leftCond, leftCond2, 2);
+		//			debugPrint("calculating foreground mask...");
 
-			///////////////////////////////
-			convertToGrayScale(img, temp);
-			cvDrawContours(img, contourTemplate, CV_RGB(255,0,0), CV_RGB(0,0,250),255, 1);
-			cvShowImage(winOrig, img);
-			///////////////////////////////
+//		convertToGrayScale(leftCond2, leftConditionGray);
+//		convertToGrayScale(lambda_sig2, lambda_sig2Gray);
+//		cvCmp(leftConditionGray, lambda_sig2Gray, myForeGroundMaskGray, CV_CMP_GE );
+//		cvThreshold(myForeGroundMaskGray, myForeGroundMaskGray, 200, 255, CV_THRESH_BINARY);
 
-//			cvCvtColor(src, hsv_image, CV_BGR2HSV);
-//			cvInRangeS (hsv_image, hsv_min, hsv_max, hsv_mask);
-//			cvSmooth( hsv_mask, hsv_mask, CV_MEDIAN, 27, 0, 0, 0 );
-//			cvCanny(hsv_mask, hsv_edge, 1, 3, 5);
+		//			cvAnd(leftCond2, lambda_sig2, myForeGroundMask);
+		//			convertToGrayScale(myForeGroundMask, myForeGroundMaskGray);
+		//			debugPrint("done\n");
+		//			cvShowImage(m, myForeGroundMaskGray);
+//		cvShowImage(winLeftCond, myForeGroundMaskGray);
+//		cvShowImage(winBg, lambda_sig2Gray);
 
-//			cvOr(temp, myForeGroundMaskGray, temp);
-
-//			cvNot(myForeGroundMaskGray, myForeGroundMaskGray);
-//			cvSub(temp, myForeGroundMaskGray, temp);
-			cvAnd(temp, myForeGroundMaskGray, temp);
-//			cvConvertScale(myForeGroundMaskGray, temp);
-
-//			debugPrint(">convertScale\n");
-//			debugPrint(">processing\n");
-			res = cvCreateImage(cvSize(img->width, img->height),RE_OUTPUT_IMAGE_DEPTH, 1);
-			recognitionEngine->process(temp, res);
-			cvShowImage(win, res);
-//			debugPrint(">evaluation\n");
-			cout<<"score: "<< recognitionEngine->evaluate(res, sealIndex)<<"\n";
-			cvShowImage(evaluated, res);
+		///////////////////////////////
+		convertToGrayScale(img, temp);
+		imgShowing = cvCreateImage(cvGetSize(img), img->depth, img->nChannels);
+		cvCopy(img, imgShowing);
+		cvDrawContours(imgShowing, contourTemplate, CV_RGB(255,0,0), CV_RGB(0,0,250),255, 1);
+		cvShowImage(winOrig, imgShowing);
+		cvReleaseImage(&imgShowing);
+		///////////////////////////////
 
 
-			if( (cvWaitKey(10) & 255) == 27 ){
-				done = true;
-			}
+//		cvOr(temp, myForeGroundMaskGray, temp);
+//		cvNot(myForeGroundMaskGray, myForeGroundMaskGray);
+//		cvSub(temp, myForeGroundMaskGray, temp);
 
-			if( (cvWaitKey(10) & 255) == 115 ){
-				sealIndex = ((sealIndex + 1) % move->getMoveSeals().size());
-				g_image = move->getMoveSeals().at(sealIndex)->getTemplateImage();
-				createTemplateContours();
-			}
-			cvReleaseImage(&res);
+//		cvAnd(temp, myForeGroundMaskGray, temp);
+//		cvConvertScale(myForeGroundMaskGray, temp);
+
+//		debugPrint(">convertScale\n");
+//		debugPrint(">processing\n");
+		res = cvCreateImage(cvSize(img->width, img->height),RE_OUTPUT_IMAGE_DEPTH, 1);
+		recognitionEngine->process(temp, res);
+		cvShowImage(win, res);
+//		debugPrint(">evaluation\n");
+		cout<<"score: "<< recognitionEngine->evaluate(res, sealIndex)<<"\n";
+		cvShowImage(evaluated, res);
+
+
+		if( (cvWaitKey(10) & 255) == 27 ){
+			done = true;
 		}
 
+		if( (cvWaitKey(10) & 255) == 115 ){
+			sealIndex = ((sealIndex + 1) % move->getMoveSeals().size());
+			g_image = move->getMoveSeals().at(sealIndex)->getTemplateImage();
+			createTemplateContours();
+		}
+		cvReleaseImage(&res);
+	}
 
-	/////////////////////////
-	//used for background removal:
-
-
-	cvReleaseImage(&lambda_sig2);
-	cvReleaseImage(&leftCond);
-	cvReleaseImage(&leftCond2);
-
-	cvReleaseImage(&MEAN);
-
-	/////////////////////////
 
 	cvReleaseImage(&temp);
-	cvReleaseImage(&img8u);
 	cvDestroyWindow(win);
 	cvDestroyWindow(winOrig);
 	cvDestroyWindow(evaluated);
