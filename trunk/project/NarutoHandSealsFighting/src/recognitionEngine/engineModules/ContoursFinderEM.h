@@ -19,6 +19,9 @@ class ContoursFinderEM : public EngineModule{
 
 	int g_thresh;
 
+	int contourRetrievalMode;
+	int contourMethod;
+
 	void initContoursModule();
 
 public:
@@ -31,6 +34,14 @@ public:
 
 	CvSeq* getContours(){
 		return contours;
+	}
+
+	void setContourMethod(int cvMethod){
+		contourMethod = cvMethod;
+	}
+
+	void setContourRetrievalMode(int retMode){
+		contourRetrievalMode = retMode;
 	}
 };
 

@@ -70,7 +70,7 @@ int ContoursChecker::evaluate(IplImage* img, Move* currMove, int sealIndex){
 //		cvShowImage(v, templateContourImg);
 //		cvWaitKey(1);
 
-		result = cvCountNonZero(resImg);
+		result = (int) appoRes*100;
 
 //		cvConvertScale(resImg, img);
 
