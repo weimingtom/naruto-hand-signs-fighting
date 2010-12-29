@@ -29,5 +29,4 @@
 #include "ClosureEM.h"
 #include "BackgroundRemovalEM.h"
 
-
 #endif /* ALL_H_ */

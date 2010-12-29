@@ -60,7 +60,6 @@ int ContoursChecker::evaluate(IplImage* img, Move* currMove, int sealIndex){
 //		debugPrint("contourImage: done\n");
 
 //		debugPrint("starting the match ...");
-//		cvMatchTemplate(img, templateContourImg, resImg, CV_TM_SQDIFF_NORMED);
 		appoRes = cvMatchShapes(contourTempl, contourImg, CV_CONTOURS_MATCH_I3);
 //		debugPrint("done\n");
 
@@ -70,9 +69,10 @@ int ContoursChecker::evaluate(IplImage* img, Move* currMove, int sealIndex){
 //		cvShowImage(v, templateContourImg);
 //		cvWaitKey(1);
 
-		result = (int) appoRes*100;
+		result = appoRes*100;
 
 //		cvConvertScale(resImg, img);
+		img->maskROI = resImg;
 
 		cvReleaseImage(&templateContourImg);
 		cvReleaseImage(&imageContourImg);

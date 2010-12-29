@@ -115,7 +115,12 @@ void BackgroundRemovalEM::backGroundCapturing(){
 void BackgroundRemovalEM::backGroundRemoval(const IplImage *localFrame){
 	//For detect FG Condition
 //	debugPrint(" foreground extraction operations: ");
+	IplImage *leftCondBis = cvCreateImage(cvGetSize(leftCond), leftCond->depth, leftCond->nChannels);
 	cvSub(MEAN, localFrame, leftCond, NULL);
+	cvSub(localFrame, MEAN, leftCondBis, NULL);
+//	cvNot(leftCondBis, leftCondBis);
+	cvXor(leftCond, leftCondBis, leftCond);
+	cvReleaseImage(&leftCondBis);
 //	debugPrint(" sub-> ok ");
 	cvPow(leftCond, leftCond2, 2);
 //	debugPrint(" mul-> ok ... \n");
@@ -129,6 +134,10 @@ void BackgroundRemovalEM::backGroundRemoval(const IplImage *localFrame){
 	//Compare
 	//  leftCondition & gt(:lambda_sig2)
 	//to detect foreground.
+#if SHOW_BG_REMOVAL == 1
+	cvShowImage(winLeftCond, leftCond2);
+	cvShowImage(winBg, lambda_sig2Gray);
+#endif
 }
 
 int BackgroundRemovalEM::compute( const IplImage* src, IplImage* dst){
@@ -138,8 +147,5 @@ int BackgroundRemovalEM::compute( const IplImage* src, IplImage* dst){
 	}
 	backGroundRemoval(src);
 	cvConvertScale(myForeGroundMaskGray, dst);
-#if SHOW_BG_REMOVAL == 1
-	cvShowImage(winLeftCond, leftCond2);
-	cvShowImage(winBg, lambda_sig2Gray);
-#endif
+
 }
