@@ -2,7 +2,7 @@
 # Evaluation Functions #
 #######################
 
-ADD_LIBRARY(evaluationFunctions SHARED MulEvaluator.cxx)
+ADD_LIBRARY(evaluationFunctions SHARED MulEvaluator.cxx ContoursChecker.cxx)
 
 ADD_DEPENDENCIES(evaluationFunctions EvaluatorFunctionTemplate.h)
 
