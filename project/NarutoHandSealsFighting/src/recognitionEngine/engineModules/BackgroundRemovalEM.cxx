@@ -141,11 +141,15 @@ void BackgroundRemovalEM::backGroundRemoval(const IplImage *localFrame){
 }
 
 int BackgroundRemovalEM::compute( const IplImage* src, IplImage* dst){
+	IplImage *tempDst = cvCreateImage(cvGetSize(dst), src->depth, src->nChannels);
+
 	if(firstTime){
 		backGroundCapturing();
 		firstTime = false;
 	}
 	backGroundRemoval(src);
-	cvConvertScale(myForeGroundMaskGray, dst);
+	cvAnd(src, myForeGroundMaskGray, tempDst);
+	convertDepth_8U_to_32F(tempDst, dst);
 
+	cvReleaseImage(&tempDst);
 }

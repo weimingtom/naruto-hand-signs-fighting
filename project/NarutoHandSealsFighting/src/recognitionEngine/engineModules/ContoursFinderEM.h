@@ -36,6 +36,10 @@ public:
 		return contours;
 	}
 
+	CvMemStorage* getMemStorage(){
+		return g_storage;
+	}
+
 	void setContourMethod(int cvMethod){
 		contourMethod = cvMethod;
 	}
@@ -43,6 +47,7 @@ public:
 	void setContourRetrievalMode(int retMode){
 		contourRetrievalMode = retMode;
 	}
+
 };
 
 #endif /* CONTOURSFINDEREM_H_ */

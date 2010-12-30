@@ -16,6 +16,7 @@
 #include <iostream>
 #include <opencv/highgui.h>
 #include "ContoursChecker.h"
+#include "../ImageProcessing.h"
 #include "../../DebugPrint.h"
 
 using namespace std;
@@ -38,41 +39,57 @@ int ContoursChecker::evaluate(IplImage* img, Move* currMove, int sealIndex){
 	int resultH = img->height - templateImg->height +1;
 	CvSeq *contourTempl, *contourImg;
 	IplImage *resImg = cvCreateImage(cvSize(resultW, resultH), IPL_DEPTH_32F, 1) ;
+	CvContourTree *imgTree, *templTree;
+	CvMemStorage *memImgTree = cvCreateMemStorage(0), *memTemplTree = cvCreateMemStorage(0);
 
-//	const char* u = "imageContour";
-//	const char* v = "templateContour";
-//	cvNamedWindow(u, CV_WINDOW_AUTOSIZE);
-//	cvNamedWindow(v, CV_WINDOW_AUTOSIZE);
+	const char* u = "imageContour";
+	const char* v = "templateContour";
+	cvNamedWindow(u, CV_WINDOW_NORMAL);
+	cvNamedWindow(v, CV_WINDOW_NORMAL);
 
 	try{
 		IplImage *templateContourImg = cvCreateImage(cvGetSize(templateImg), IPL_DEPTH_32F, 1);
+//		contourTemplate->setContourRetrievalMode(CV_RETR_TREE);
 		contourTemplate->compute(templateImg, templateContourImg);
 		contourTempl = contourTemplate->getContours();
-//		debugPrint("contourTemplate: done\n");
-		//		cvShowImage(u, templateContourImg);
-		//		cvWaitKey(1);
+//		templTree = cvCreateContourTree(contourTempl, memTemplTree, 0);
 
-		IplImage *imageContourImg = cvCreateImage(cvGetSize(img), IPL_DEPTH_32F, 1);
+//		debugPrint("contourTemplate: done\n");
+
 		IplImage *inputContImg = cvCreateImage(cvGetSize(img), IPL_DEPTH_8U, 1);
-		cvConvertScale(img, inputContImg);
+		IplImage *imageContourImg = cvCreateImage(cvGetSize(img), IPL_DEPTH_32F, 1);
+//		cvConvertScale(img, inputContImg);
+		convertDepth_8U_to_32F(img, inputContImg);
+//		contourImage->setContourRetrievalMode(CV_RETR_TREE);
 		contourImage->compute(inputContImg, imageContourImg);
 		contourImg = contourImage->getContours();
 //		debugPrint("contourImage: done\n");
 
-//		debugPrint("starting the match ...");
-		appoRes = cvMatchShapes(contourTempl, contourImg, CV_CONTOURS_MATCH_I3);
+//		debugPrint("creating contour tree:...");
+//		imgTree = cvCreateContourTree(contourImg, memImgTree, 0);
 //		debugPrint("done\n");
 
-		cout<<"appoRes: "<<appoRes<<"\n";
+		cvShowImage(v, templateContourImg);
+		cvShowImage(u, imageContourImg);
 
-//		cvShowImage(u, imageContourImg);
-//		cvShowImage(v, templateContourImg);
-//		cvWaitKey(1);
+		debugPrint("starting the match ...");
+		if(!contourImg || !contourTempl)
+			result = 0;
+		else{
+			appoRes = cvMatchShapes(contourTempl, contourImg, CV_CONTOURS_MATCH_I2);
+//			appoRes = cvMatchContourTrees(templTree, imgTree, CV_CONTOUR_TREES_MATCH_I1, 0);
+			//		debugPrint("done\n");
 
-		result = appoRes*100;
+			cout<<"appoRes: "<<appoRes<<"\n";
 
-//		cvConvertScale(resImg, img);
-		img->maskROI = resImg;
+
+			result = appoRes*100;
+
+			//		cvAdd(img, resImg, img);
+			//		cvConvertScale(resImg, img);
+		}
+		cvReleaseMemStorage(&memImgTree);
+		cvReleaseMemStorage(&memTemplTree);
 
 		cvReleaseImage(&templateContourImg);
 		cvReleaseImage(&imageContourImg);

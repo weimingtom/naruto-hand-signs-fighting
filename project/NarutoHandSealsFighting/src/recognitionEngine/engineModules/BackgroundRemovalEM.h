@@ -20,7 +20,7 @@
 #include "../../acquisitionSection/Camera.h"
 #include "../ImageProcessing.h"
 
-#define BG_REMOVAL_TRAINING_FRAMES 70 //default value of the total frames used in the "training"
+#define BG_REMOVAL_TRAINING_FRAMES 30 //default value of the total frames used in the "training"
 
 class BackgroundRemovalEM : public EngineModule {
 	Camera *camera;
