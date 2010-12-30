@@ -19,10 +19,10 @@
 
 #include "RecognitionEngine.h"
 #include "RecognitionEngine.h"
-#include "engineModules/EngineModule.h"
+#include "engineModules/All.h"
 #include "evaluationFunctions/MulEvaluator.h"
 #include "evaluationFunctions/ContoursChecker.h"
-#include "engineModules/All.h"
+#include "processingFunctions/AllProcessingFunctions.h"
 #include "ImageProcessing.h"
 
 #include "../gameLogic/SealsFactory.h"
@@ -51,7 +51,7 @@ double g_thresh = 100;
 CvSeq * contourTemplate;
 
 int main(int argc, char* argv[]){
-	IplImage *temp, *img, *res, *imgShowing;
+	IplImage *temp, *img, *res, *imgShowing, *myForeGroundMaskGray;
 	bool done = false;
 	int sealIndex = 0;
 	double range = 20;
@@ -61,7 +61,7 @@ int main(int argc, char* argv[]){
 	/////////////////////////////////////////////
 	////// WINDOWS
 	cvNamedWindow(m, CV_WINDOW_AUTOSIZE);
-	cvNamedWindow(win, CV_WINDOW_AUTOSIZE);
+	cvNamedWindow(win, CV_WINDOW_NORMAL);
 	cvNamedWindow(winOrig, CV_WINDOW_AUTOSIZE);
 	cvNamedWindow(evaluated, CV_WINDOW_NORMAL);
 
@@ -83,6 +83,7 @@ int main(int argc, char* argv[]){
 	recognitionEngine->setCurrentMove(move);
 
 	recognitionEngine->setProcessFunction(new ChainAdder());
+//	recognitionEngine->setProcessFunction(new SimpleChain());
 //	recognitionEngine->setProcessFunction(new DifferentTempsAdder());
 
 //	recognitionEngine->setEvaluatorFunction(mulEvaluator);
@@ -108,17 +109,25 @@ int main(int argc, char* argv[]){
 
 	BackgroundRemovalEM *backgroundRemoval = new BackgroundRemovalEM();
 //	recognitionEngine->addModule(backgroundRemoval); //<<<<<
-	recognitionEngine->addModule(new HistogramEM());
-	recognitionEngine->addModule(new SobelEM(CV_SCHARR, 1, 0));
 //	recognitionEngine->addModule(new BlurEM(CV_MEDIAN,27,0,0,0));
-	recognitionEngine->addModule(new BlurEM(CV_GAUSSIAN,3,3));
-	recognitionEngine->addModule(new LaplacianEM(5));
 
+//	recognitionEngine->addModule(new HistogramEM());
+//	recognitionEngine->addModule(new SobelEM(CV_SCHARR, 1, 0));
+//	recognitionEngine->addModule(new BlurEM(CV_GAUSSIAN,3,3));
+//	recognitionEngine->addModule(new LaplacianEM(7));
 //	recognitionEngine->addModule(new CannyEM(7, appo-range/2, appo+range/2));
-//	recognitionEngine->addModule(new CannyEM(5,1,3));
-	recognitionEngine->addModule(new ContoursFinderEM(appo));
-//
-	recognitionEngine->addModule(new ClosureEM(15));
+	recognitionEngine->addModule(new CannyEM(5,1,3));
+//	recognitionEngine->addModule(new ContoursFinderEM(appo));
+
+//	recognitionEngine->addModule(new ClosureEM(15));
+
+	//the template creation recipe is:
+	////////////////////////////////////////////////////////////
+//	recognitionEngine->addModule(new HistogramEM());
+//	recognitionEngine->addModule(new SobelEM(CV_SCHARR, 1, 0));
+//	recognitionEngine->addModule(new BlurEM(CV_GAUSSIAN,3,3));
+//	recognitionEngine->addModule(new LaplacianEM(7));
+	////////////////////////////////////////////////////////////
 
 	backgroundRemoval->backGroundCapturing();
 
@@ -169,22 +178,24 @@ int main(int argc, char* argv[]){
 		cvShowImage(winOrig, imgShowing);
 		cvReleaseImage(&imgShowing);
 		///////////////////////////////
-
-
-//		cvOr(temp, myForeGroundMaskGray, temp);
-//		cvNot(myForeGroundMaskGray, myForeGroundMaskGray);
-//		cvSub(temp, myForeGroundMaskGray, temp);
-
-//		cvAnd(temp, myForeGroundMaskGray, temp);
-//		cvConvertScale(myForeGroundMaskGray, temp);
+		backgroundRemoval->backGroundRemoval(temp);
+		myForeGroundMaskGray = backgroundRemoval->getForegroundMask();
+//		cvAnd(temp, myForeGroundMaskGray , temp);
 
 //		debugPrint(">convertScale\n");
 //		debugPrint(">processing\n");
-		backgroundRemoval->backGroundRemoval(temp);
-		cvAnd(temp, backgroundRemoval->getForegroundMask(), temp);
+
 		res = cvCreateImage(cvSize(img->width, img->height),RE_OUTPUT_IMAGE_DEPTH, 1);
 		recognitionEngine->process(temp, res);
+
+		IplImage *tempRes = cvCreateImage(cvGetSize(res), RE_INPUT_IMAGE_DEPTH, 1);
+		cvConvertScale(res, tempRes);
+		cvAnd(tempRes, myForeGroundMaskGray , tempRes);
+		convertDepth_8U_to_32F(tempRes, res);
+		cvReleaseImage(&tempRes);
+
 		cvShowImage(win, res);
+
 //		debugPrint(">evaluation\n");
 		cout<<"score: "<< recognitionEngine->evaluate(res, sealIndex)<<"\n";
 		cvShowImage(evaluated, res);

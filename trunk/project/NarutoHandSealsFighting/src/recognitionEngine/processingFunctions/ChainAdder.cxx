@@ -30,24 +30,24 @@ ChainAdder::~ChainAdder() {
 int ChainAdder::processFunction(std::vector<EngineModule*> modArray,
 		const IplImage* src, IplImage* res){
 
-	IplImage* temp = cvCreateImage(cvGetSize(src), RE_OUTPUT_IMAGE_DEPTH, src->nChannels);
-	IplImage * tempRes = cvCreateImage(cvGetSize(src), RE_INPUT_IMAGE_DEPTH, src->nChannels);
-//	convertDepth_8U_to_32F(src, res);
-	cvConvertScale(src, tempRes);
+	IplImage * tempSrc = cvCreateImage(cvGetSize(src), RE_INPUT_IMAGE_DEPTH, src->nChannels);
+	IplImage* tempRes = cvCreateImage(cvGetSize(res), RE_OUTPUT_IMAGE_DEPTH, res->nChannels);
+	cvConvertScale(src, tempSrc);
+	cvZero(res);
 
 	//	cout<<"modules applied:\n";
 	for(int i=0; i<modArray.size(); i++){
 		try{
-			modArray.at(i)->compute(tempRes, temp);
-			cvAdd(res, temp, res);
-			cvConvertScale(res, tempRes);
-//			cvMul(res,temp,res);
+			modArray.at(i)->compute(tempSrc, tempRes);
+			cvAdd(res, tempRes, res);
+			cvConvertScale(res, tempSrc);
 //			cout<<modArray.at(i)->getModuleName()<<"\n";
 		}catch(cv::Exception e){
 			cout<<"EXCEPTION in " << modArray.at(i)->getModuleName() << "\n";
 			cout<<e.err<<"\n";
 		}
 	}
-	cvReleaseImage(&temp);
+
 	cvReleaseImage(&tempRes);
+	cvReleaseImage(&tempSrc);
 }
