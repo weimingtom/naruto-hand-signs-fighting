@@ -18,6 +18,7 @@ class ContoursFinderEM : public EngineModule{
 	CvSeq* contours;
 
 	int g_thresh;
+	int lineThickness;
 
 	int contourRetrievalMode;
 	int contourMethod;
@@ -46,6 +47,10 @@ public:
 
 	void setContourRetrievalMode(int retMode){
 		contourRetrievalMode = retMode;
+	}
+
+	void setLineThickness(int lineThick){
+		lineThickness = lineThick;
 	}
 
 };
