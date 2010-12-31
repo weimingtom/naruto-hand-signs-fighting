@@ -60,8 +60,8 @@ int main(int argc, char* argv[]){
 
 	/////////////////////////////////////////////
 	////// WINDOWS
-	cvNamedWindow(m, CV_WINDOW_AUTOSIZE);
-	cvNamedWindow(win, CV_WINDOW_NORMAL);
+//	cvNamedWindow(m, CV_WINDOW_AUTOSIZE);
+	cvNamedWindow(win, CV_WINDOW_AUTOSIZE);
 	cvNamedWindow(winOrig, CV_WINDOW_AUTOSIZE);
 	cvNamedWindow(evaluated, CV_WINDOW_NORMAL);
 
@@ -82,8 +82,8 @@ int main(int argc, char* argv[]){
 
 	recognitionEngine->setCurrentMove(move);
 
-	recognitionEngine->setProcessFunction(new ChainAdder());
-//	recognitionEngine->setProcessFunction(new SimpleChain());
+//	recognitionEngine->setProcessFunction(new ChainAdder());
+	recognitionEngine->setProcessFunction(new SimpleChain());
 //	recognitionEngine->setProcessFunction(new DifferentTempsAdder());
 
 //	recognitionEngine->setEvaluatorFunction(mulEvaluator);
@@ -112,14 +112,14 @@ int main(int argc, char* argv[]){
 //	recognitionEngine->addModule(new BlurEM(CV_MEDIAN,27,0,0,0));
 
 //	recognitionEngine->addModule(new HistogramEM());
-//	recognitionEngine->addModule(new SobelEM(CV_SCHARR, 1, 0));
-//	recognitionEngine->addModule(new BlurEM(CV_GAUSSIAN,3,3));
-//	recognitionEngine->addModule(new LaplacianEM(7));
-//	recognitionEngine->addModule(new CannyEM(7, appo-range/2, appo+range/2));
-	recognitionEngine->addModule(new CannyEM(5,1,3));
-//	recognitionEngine->addModule(new ContoursFinderEM(appo));
+	recognitionEngine->addModule(new SobelEM(CV_SCHARR, 1, 0));
+	recognitionEngine->addModule(new BlurEM(CV_GAUSSIAN,3,3));
+	recognitionEngine->addModule(new LaplacianEM(7));
+	recognitionEngine->addModule(new CannyEM(7, appo-range/2, appo+range/2));
+//	recognitionEngine->addModule(new CannyEM(5,1,3));
+	recognitionEngine->addModule(new ContoursFinderEM(appo));
 
-//	recognitionEngine->addModule(new ClosureEM(15));
+	recognitionEngine->addModule(new ClosureEM(15));
 
 	//the template creation recipe is:
 	////////////////////////////////////////////////////////////
@@ -197,7 +197,8 @@ int main(int argc, char* argv[]){
 		cvShowImage(win, res);
 
 //		debugPrint(">evaluation\n");
-		cout<<"score: "<< recognitionEngine->evaluate(res, sealIndex)<<"\n";
+		cout<<"score: "<< recognitionEngine->evaluate(res, sealIndex)<<"  ";
+		cout<<"foreground mean: "<< cvMean(myForeGroundMaskGray)<<"\n";
 		cvShowImage(evaluated, res);
 
 
@@ -218,7 +219,7 @@ int main(int argc, char* argv[]){
 	cvDestroyWindow(win);
 	cvDestroyWindow(winOrig);
 	cvDestroyWindow(evaluated);
-	cvDestroyWindow(m);
+//	cvDestroyWindow(m);
 	cvDestroyAllWindows();
 	/*
 	 * and so on...
@@ -243,7 +244,7 @@ void createTemplateContours(){
 	else
 		cvCvtColor( g_image, g_gray, CV_BGR2GRAY );
 	cvThreshold( g_gray, g_gray, g_thresh, 255, CV_THRESH_BINARY );
-	cvFindContours( g_gray, g_storage, &contourTemplate );
+	cvFindContours( g_gray, g_storage, &contourTemplate);
 	cvZero( g_gray );
 //	cvReleaseImage(&g_image);
 }

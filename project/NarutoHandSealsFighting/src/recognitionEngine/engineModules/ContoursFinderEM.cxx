@@ -26,19 +26,21 @@ void ContoursFinderEM::initContoursModule(){
 	g_storage = cvCreateMemStorage(0);
 	contourRetrievalMode = CV_RETR_LIST;
 	contourMethod =  CV_CHAIN_APPROX_SIMPLE;
+	lineThickness = 1;
 }
 
 int ContoursFinderEM::compute(const IplImage* src, IplImage* dst){
-	IplImage* temp  = cvCreateImage(cvGetSize(src), src->depth, 1);
+	IplImage* temp  = cvCreateImage(cvGetSize(src), IPL_DEPTH_8U, 1);
 	cvClearMemStorage( g_storage ); //<- if not cleaned the memory will thrash soon...
 	cvThreshold( src, temp, g_thresh, 255, CV_THRESH_BINARY );
 	if( contours ){
 		cvFindContours( temp, g_storage, &contours, sizeof(CvContour),
-				contourRetrievalMode, contourMethod );
+				contourRetrievalMode, contourMethod);
 //		cvFindContours( temp, g_storage, &contours);
-		//		cvZero( g_gray );
-		cvDrawContours( dst, contours, cvScalarAll(255), cvScalarAll(255), 100 );
+//		cvZero( temp);
+		cvDrawContours( dst, contours, cvScalarAll(255), cvScalarAll(255), 1, lineThickness);
 	}
+//	cvConvertScale(temp, dst);
 	cvReleaseImage(&temp);
 }
 
