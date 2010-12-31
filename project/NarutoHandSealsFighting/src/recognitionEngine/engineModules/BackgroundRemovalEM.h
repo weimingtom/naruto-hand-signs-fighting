@@ -34,6 +34,7 @@ class BackgroundRemovalEM : public EngineModule {
 	IplImage *lambda_sig2Gray;
 
 	bool firstTime;
+	int trainingFrames;
 
 public:
 	BackgroundRemovalEM();

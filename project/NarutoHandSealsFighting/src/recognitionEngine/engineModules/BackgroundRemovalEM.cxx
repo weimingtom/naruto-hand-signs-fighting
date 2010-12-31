@@ -13,11 +13,14 @@
  *
  */
 
+#include <iostream>
 #include "BackgroundRemovalEM.h"
 #include "../../DebugPrint.h"
 #include "../RecognitionEngineDefaults.h"
 
 #define SHOW_BG_REMOVAL 1
+
+using namespace std;
 
 const char *winLeftCond = "FOREground";
 const char *winBg = "BACKground";
@@ -36,6 +39,7 @@ BackgroundRemovalEM::BackgroundRemovalEM() {
 	lambda_sig2Gray = cvCreateImage(cvGetSize(lambda_sig2),lambda_sig2->depth , 1);
 
 	firstTime = true;
+	trainingFrames = BG_REMOVAL_TRAINING_FRAMES;
 
 #if SHOW_BG_REMOVAL == 1
 	cvNamedWindow(winLeftCond, CV_WINDOW_NORMAL);
@@ -71,6 +75,7 @@ void BackgroundRemovalEM::backGroundCapturing(){
 	unsigned long int N = 0; //Number of total frames used in the "training"
 	IplImage *acc, *sqacc, *M, *M2, *sqaccM, *sig2;
 
+	cout<<"BACKGROUND CAPTURING.\n PLEASE DON'T MOVE ... ";
 //	debugPrint("trying back ground training: ...");
 
 	acc = cvCreateImage(cvGetSize(frame), IPL_DEPTH_32F, frame->nChannels);
@@ -81,7 +86,7 @@ void BackgroundRemovalEM::backGroundCapturing(){
 	sig2 = cvCreateImage(cvGetSize(frame), IPL_DEPTH_32F, frame->nChannels);
 
 //	debugPrint("starting cycle:... ");
-	for(int i=0, N=0; i < BG_REMOVAL_TRAINING_FRAMES; i++){
+	for(int i=0, N=0; i < trainingFrames; i++){
 		cvAcc(frame,acc,NULL);
 		cvSquareAcc(frame, sqacc, NULL);
 		N++;
@@ -109,12 +114,19 @@ void BackgroundRemovalEM::backGroundCapturing(){
 	cvReleaseImage(&M);
 	///////////////////////////////////
 
+	cout<<"done!\n";
 //	debugPrint("it succeed!!\n");
 }
 
 void BackgroundRemovalEM::backGroundRemoval(const IplImage *localFrame){
 	//For detect FG Condition
 //	debugPrint(" foreground extraction operations: ");
+	if(cvMean(myForeGroundMaskGray) > 240){
+		trainingFrames = 10;
+		backGroundCapturing();
+		while(cvMean(lambda_sig2) > 200)
+			backGroundCapturing();
+	}
 	IplImage *leftCondBis = cvCreateImage(cvGetSize(leftCond), leftCond->depth, leftCond->nChannels);
 	cvSub(MEAN, localFrame, leftCond, NULL);
 	cvSub(localFrame, MEAN, leftCondBis, NULL);
