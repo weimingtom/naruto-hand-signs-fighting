@@ -23,7 +23,7 @@ public:
 	SimpleChain();
 	virtual ~SimpleChain();
 
-	int processFunction(std::vector<EngineModule*> modArray,
+	int processFunction(std::vector<EngineModule*> *modArray,
 				const IplImage* src, IplImage* res);
 };
 

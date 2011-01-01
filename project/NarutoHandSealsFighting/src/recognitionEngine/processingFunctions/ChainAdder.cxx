@@ -19,15 +19,14 @@
 #include "../RecognitionEngineDefaults.h"
 
 ChainAdder::ChainAdder() {
-	// TODO Auto-generated constructor stub
-
+	processingFunctionName = "Chain Adder";
 }
 
 ChainAdder::~ChainAdder() {
 	// TODO Auto-generated destructor stub
 }
 
-int ChainAdder::processFunction(std::vector<EngineModule*> modArray,
+int ChainAdder::processFunction(std::vector<EngineModule*> *modArray,
 		const IplImage* src, IplImage* res){
 
 	IplImage * tempSrc = cvCreateImage(cvGetSize(src), RE_INPUT_IMAGE_DEPTH, src->nChannels);
@@ -36,14 +35,14 @@ int ChainAdder::processFunction(std::vector<EngineModule*> modArray,
 	cvZero(res);
 
 	//	cout<<"modules applied:\n";
-	for(int i=0; i<modArray.size(); i++){
+	for(int i=0; i<modArray->size(); i++){
 		try{
-			modArray.at(i)->compute(tempSrc, tempRes);
+			modArray->at(i)->compute(tempSrc, tempRes);
 			cvAdd(res, tempRes, res);
 			cvConvertScale(res, tempSrc);
 //			cout<<modArray.at(i)->getModuleName()<<"\n";
 		}catch(cv::Exception e){
-			cout<<"EXCEPTION in " << modArray.at(i)->getModuleName() << "\n";
+			cout<<"EXCEPTION in " << modArray->at(i)->getModuleName() << "\n";
 			cout<<e.err<<"\n";
 		}
 	}

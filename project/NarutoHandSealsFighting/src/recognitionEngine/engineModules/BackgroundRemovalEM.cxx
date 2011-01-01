@@ -28,6 +28,8 @@ const char *winBg = "BACKground";
 BackgroundRemovalEM::BackgroundRemovalEM() {
 	setName("Background Removal Module");
 	camera = cam;
+	for(int i=0; i<10; i++)
+		camera->capturing();
 	frame = camera->getFrame();
 
 	leftCond = cvCreateImage(cvGetSize(frame), RE_INPUT_IMAGE_DEPTH , 1);

@@ -1,24 +1,34 @@
 /*
  ******************************************************
  * NAME:
- * AbstractStrategy.cxx
+ * AGoodStrategy.h
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Dec 7, 2010
+ *	Created on: Jan 1, 2011
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
+#ifndef AGOODSTRATEGY_H_
+#define AGOODSTRATEGY_H_
+
 #include "AbstractStrategy.h"
 
-AbstractStrategy::AbstractStrategy(ModulesPool* p) {
-	rePool = p;
-}
+#define DEFAULT_RANGE 20;
 
-AbstractStrategy::~AbstractStrategy() {
-	// TODO Auto-generated destructor stub
-}
+class AGoodStrategy: public AbstractStrategy {
+	int meanImage;
+	double range;
+
+public:
+	AGoodStrategy(ModulesPool* p);
+	virtual ~AGoodStrategy();
+
+	void initModules();
+};
+
+#endif /* AGOODSTRATEGY_H_ */

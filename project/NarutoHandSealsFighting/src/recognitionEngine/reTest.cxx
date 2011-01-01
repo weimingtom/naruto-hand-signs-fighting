@@ -24,6 +24,8 @@
 #include "evaluationFunctions/ContoursChecker.h"
 #include "processingFunctions/AllProcessingFunctions.h"
 #include "ImageProcessing.h"
+#include "engineStrategies/AGoodStrategy.h"
+#include "processingFunctions/SChainBGRemoval.h"
 
 #include "../gameLogic/SealsFactory.h"
 #include "../gameLogic/SealsMap.h"
@@ -56,7 +58,7 @@ int main(int argc, char* argv[]){
 	int sealIndex = 0;
 	double range = 20;
 	Move* move;
-	int appo;
+	int meanImage;
 
 	/////////////////////////////////////////////
 	////// WINDOWS
@@ -83,15 +85,24 @@ int main(int argc, char* argv[]){
 	recognitionEngine->setCurrentMove(move);
 
 //	recognitionEngine->setProcessFunction(new ChainAdder());
-	recognitionEngine->setProcessFunction(new SimpleChain());
+//	recognitionEngine->setProcessFunction(new SimpleChain());
 //	recognitionEngine->setProcessFunction(new DifferentTempsAdder());
+	recognitionEngine->setProcessFunction(new SChainBGRemoval());
 
 //	recognitionEngine->setEvaluatorFunction(mulEvaluator);
 	ContoursChecker *cc = new ContoursChecker();
 	recognitionEngine->setEvaluatorFunction(cc);
 
-//	recognitionEngine->initEngine();
+	AGoodStrategy *aGoodStrat = new AGoodStrategy(recognitionEngine);
+//	recognitionEngine->changeEngineStrategy(aGoodStrat);
+	recognitionEngine->setStrategy(aGoodStrat);
+//	recognitionEngine->setStrategy(new DefaultStrategy(recognitionEngine));
+//	recognitionEngine->changeEngineStrategy(new AGoodStrategy(recognitionEngine));
 
+
+	if(recognitionEngine->initEngine()<0){
+		exit(0);
+	}
 	//////////////////////////////////////////////
 
 	for(int i=0; i<10; i++)
@@ -104,22 +115,24 @@ int main(int argc, char* argv[]){
 	debugPrint(">created res\n");
 	temp = cvCreateImage(cvSize(img->width, img->height),RE_INPUT_IMAGE_DEPTH, 1);
 	debugPrint(">created temp\n");
-	appo = cvMean(img);
-	debugPrint("mean is :%d\n", appo);
+	meanImage = cvMean(img);
+	debugPrint("mean is :%d\n", meanImage);
 
 	BackgroundRemovalEM *backgroundRemoval = new BackgroundRemovalEM();
+
 //	recognitionEngine->addModule(backgroundRemoval); //<<<<<
 //	recognitionEngine->addModule(new BlurEM(CV_MEDIAN,27,0,0,0));
 
 //	recognitionEngine->addModule(new HistogramEM());
-	recognitionEngine->addModule(new SobelEM(CV_SCHARR, 1, 0));
-	recognitionEngine->addModule(new BlurEM(CV_GAUSSIAN,3,3));
-	recognitionEngine->addModule(new LaplacianEM(7));
-	recognitionEngine->addModule(new CannyEM(7, appo-range/2, appo+range/2));
+//	recognitionEngine->addModule(new SobelEM(CV_SCHARR, 1, 0));
+//	recognitionEngine->addModule(new BlurEM(CV_GAUSSIAN,3,3));
+//	recognitionEngine->addModule(new LaplacianEM(7));
+//	recognitionEngine->addModule(new CannyEM(7, meanImage-range/2, meanImage+range/2));
 //	recognitionEngine->addModule(new CannyEM(5,1,3));
-	recognitionEngine->addModule(new ContoursFinderEM(appo));
+//	recognitionEngine->addModule(new ContoursFinderEM(meanImage));
+//
+//	recognitionEngine->addModule(new ClosureEM(15));
 
-	recognitionEngine->addModule(new ClosureEM(15));
 
 	//the template creation recipe is:
 	////////////////////////////////////////////////////////////
@@ -137,16 +150,6 @@ int main(int argc, char* argv[]){
 	debugPrint("done\n");
 
 	while(!done){
-		/*
-		 * The following are two equivalent alternatives.
-		 * Remember that you have to take care about the
-		 * refresh time and the way you are handling the
-		 * main loop, so depending on your purpose they
-		 * may result in different behaviors!
-		 */
-		///////////////////////////////
-		//1) using the capturing method of the Camera
-		//  this is the best result looking at the refresh time
 
 		if( cam->capturing() < 0){				//<- uncomment this line
 			cout<<"camera problem!\n";			//<- uncomment this line
@@ -178,8 +181,10 @@ int main(int argc, char* argv[]){
 		cvShowImage(winOrig, imgShowing);
 		cvReleaseImage(&imgShowing);
 		///////////////////////////////
+
 		backgroundRemoval->backGroundRemoval(temp);
 		myForeGroundMaskGray = backgroundRemoval->getForegroundMask();
+
 //		cvAnd(temp, myForeGroundMaskGray , temp);
 
 //		debugPrint(">convertScale\n");
@@ -188,17 +193,19 @@ int main(int argc, char* argv[]){
 		res = cvCreateImage(cvSize(img->width, img->height),RE_OUTPUT_IMAGE_DEPTH, 1);
 		recognitionEngine->process(temp, res);
 
-		IplImage *tempRes = cvCreateImage(cvGetSize(res), RE_INPUT_IMAGE_DEPTH, 1);
-		cvConvertScale(res, tempRes);
-		cvAnd(tempRes, myForeGroundMaskGray , tempRes);
-		convertDepth_8U_to_32F(tempRes, res);
-		cvReleaseImage(&tempRes);
+//		IplImage *tempRes = cvCreateImage(cvGetSize(res), RE_INPUT_IMAGE_DEPTH, 1);
+//		cvConvertScale(res, tempRes);
+//		cvAnd(tempRes, myForeGroundMaskGray , tempRes);
+//		convertDepth_8U_to_32F(tempRes, res);
+//		cvReleaseImage(&tempRes);
 
 		cvShowImage(win, res);
 
 //		debugPrint(">evaluation\n");
 		cout<<"score: "<< recognitionEngine->evaluate(res, sealIndex)<<"  ";
-		cout<<"foreground mean: "<< cvMean(myForeGroundMaskGray)<<"\n";
+
+//		cout<<"foreground mean: "<< cvMean(myForeGroundMaskGray)<<"\n";
+
 		cvShowImage(evaluated, res);
 
 

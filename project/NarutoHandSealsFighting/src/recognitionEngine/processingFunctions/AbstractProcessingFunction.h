@@ -23,9 +23,16 @@
 using namespace std;
 
 class AbstractProcessingFunction {
+protected:
+	const char* processingFunctionName;
 public:
-	virtual int processFunction(std::vector<EngineModule*> modArray,
+	virtual int processFunction(std::vector<EngineModule*> *modArray,
 			const IplImage* src, IplImage* res) = 0;
+    const char *getProcessingFunctionName() const
+    {
+        return processingFunctionName;
+    }
+
 };
 
 #endif /* ABSTRACTPROCESSINGFUNCTION_H_ */
