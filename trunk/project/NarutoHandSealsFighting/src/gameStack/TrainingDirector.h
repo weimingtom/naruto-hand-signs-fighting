@@ -22,6 +22,8 @@
 #include "../acquisitionSection/Camera.h"
 #include "timers/CountdownTimer.h"
 
+#define SHOOTING_FRAMES 50
+
 using namespace std;
 
 class TrainingDirector {
@@ -82,6 +84,8 @@ public:
     {
         this->targetMove = targetMove;
     }
+
+    int calculateActualScore();
 
 };
 

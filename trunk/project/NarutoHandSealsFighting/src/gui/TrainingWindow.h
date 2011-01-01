@@ -75,8 +75,11 @@ class TrainingWindow: public MenuWindow {
     //Scores box
     gcn::TextBox* scoresBox;
     gcn::ScrollArea* scoresBoxScroll;
+    gcn::Label *actualScoreTitle;
+    gcn::Label *actualScoreLabel;
     double scores;
     double totalScore;
+    double actualScore;
 
     //Camera
     int cameraWindowWidth;
@@ -168,6 +171,10 @@ public:
 
     void setSeconds(int sec){
     	seconds = sec;
+    }
+
+    void setActualScore(double actScore){
+    	actualScore = actScore;
     }
 
 };

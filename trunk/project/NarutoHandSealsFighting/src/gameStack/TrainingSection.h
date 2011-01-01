@@ -36,6 +36,7 @@ class TrainingSection: public GameElement {
 	AbstractController* trainingSectionController;
 	Move* move;
 	TrainingWindow* graphicWindow;
+	TrainingDirector *director;
 
 public:
 	TrainingSection(Move* m, AbstractController* ctrl);

@@ -34,6 +34,7 @@ TrainingDirector::TrainingDirector(TrainingWindow* tw, RecognitionEngine* re, Ca
 	totalScore = 0;
 	recognitionEngine->setCurrentMove(m);
 	timer = new CountdownTimer(trainingWindow);
+	cout<<"current move is: "<<targetMove->getMoveName()<<"\n";
 }
 
 TrainingDirector::~TrainingDirector() {
@@ -49,26 +50,22 @@ void TrainingDirector::handleShot(int seconds, int sealIndex){
 }
 
 void TrainingDirector::elapsedTimer(){
-	IplImage* photo;
-	IplImage* grayImage;
-	IplImage* res;
-	int score;
-	try{
-//		debugPrint("photo shot\n");
-		cam->shotAPhoto();
-		photo = cam->getPhotoShot();
-		res = cvCreateImage(cvSize(photo->width, photo->height),
-				IPL_DEPTH_32F, 1);
-		grayImage = cvCreateImage(cvSize(photo->width, photo->height),
-						DEFAULT_INPUT_DEPTH, 1);
-		cvCvtColor(photo, grayImage, CV_BGR2GRAY);
+	int score, maxScore = 0;
 
-//		debugPrint("processing\n");
-		recognitionEngine->process(grayImage, res);
-//		debugPrint("evaluation\n");
-		score = recognitionEngine->evaluate(res, trainingWindow->getCurrentSealIndex());
-		totalScore += score;
-		cout<<"your score is: "<<score<<"\n";
+	try{
+		for(int i=0; i<SHOOTING_FRAMES; i++){
+			score = calculateActualScore();
+			if(score > maxScore)
+				maxScore = score;
+		}
+
+		if(maxScore > 100)
+			maxScore = 100;
+		totalScore += maxScore;
+
+		cout<<"your score for "<<targetMove->getMoveSeals().at(trainingWindow->getCurrentSealIndex())->getName()
+				<<" is: "<<score<<"\n";
+
 		trainingWindow->updateScore(score);
 		trainingWindow->incrementCurrentSealIndex();
 		if(lastSealInMove()){
@@ -77,27 +74,54 @@ void TrainingDirector::elapsedTimer(){
 			debugPrint("this is the last seal...\n"
 					"total score is: %g\n",totalScore);
 		}
-		cvReleaseImage(&grayImage);
-		cvReleaseImage(&res); //<- should we use res for an output to the user?
-
-#if SHOW_SUPPL_WIN == 1
-		cvNamedWindow("mu",CV_WINDOW_AUTOSIZE);
-		cvShowImage("mu", res);
-#endif
 
 	}catch(cv::Exception e){
 		cout<<e.msg<<"\n";
 	}catch(std::exception e){
 		cout<<e.what()<<"\n";
 	}
-#if SHOW_SUPPL_WIN == 1
-	cvWaitKey(3000);
-	cvDestroyWindow("mu");
-#endif
-
 }
 
 bool TrainingDirector::lastSealInMove(){
 	//we want to show the total score only after the last seal
 	return trainingWindow->getCurrentSealIndex() == targetMove->getMoveSeals().size();
+}
+
+int TrainingDirector::calculateActualScore(){
+	IplImage* photo;
+	IplImage* grayImage;
+	IplImage* res;
+	int localScore;
+
+//	debugPrint("photo shot\n");
+//	cam->shotAPhoto();
+//	photo = cam->getPhotoShot();
+
+	if(trainingWindow->getCurrentSealIndex() < targetMove->getMoveSeals().size()){
+
+		cam->capturing();
+		photo = cam->getFrame();
+		res = cvCreateImage(cvGetSize(photo), IPL_DEPTH_32F, 1);
+		grayImage = cvCreateImage(cvGetSize(photo), DEFAULT_INPUT_DEPTH, 1);
+		cvCvtColor(photo, grayImage, CV_BGR2GRAY);
+
+		//		debugPrint("processing\n");
+		recognitionEngine->process(grayImage, res);
+		//		debugPrint("evaluation\n");
+		localScore = recognitionEngine->evaluate(res, trainingWindow->getCurrentSealIndex());
+
+		cvReleaseImage(&grayImage);
+		cvReleaseImage(&res); //<- should we use res for an output to the user?
+	}else{
+		localScore = 0;
+	}
+
+#if SHOW_SUPPL_WIN == 1
+		cvNamedWindow("mu",CV_WINDOW_AUTOSIZE);
+		cvShowImage("mu", res);
+		cvWaitKey(3000);
+		cvDestroyWindow("mu");
+#endif
+
+	return localScore;
 }
