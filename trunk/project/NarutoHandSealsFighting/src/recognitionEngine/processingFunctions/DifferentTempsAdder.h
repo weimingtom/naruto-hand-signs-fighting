@@ -23,7 +23,7 @@ public:
 	DifferentTempsAdder();
 	virtual ~DifferentTempsAdder();
 
-	int processFunction(std::vector<EngineModule*> modArray, const IplImage* src, IplImage* res);
+	int processFunction(std::vector<EngineModule*> *modArray, const IplImage* src, IplImage* res);
 };
 
 #endif /* DIFFERENTTEMPSADDER_H_ */

@@ -30,13 +30,20 @@
 
 class AbstractStrategy {
 protected:
-	ModulesPool* pool;
+	ModulesPool* rePool;
+	const char* strategyName;
 
 public:
 	AbstractStrategy(ModulesPool* p);
 	virtual ~AbstractStrategy();
 
 	virtual void initModules() = 0;
+
+	const char *getStrategyName() const
+    {
+        return strategyName;
+    }
+
 };
 
 #endif /* ABSTRACTSTRATEGY_H_ */

@@ -18,6 +18,7 @@
 #include <opencv/cv.h>
 #include <opencv/highgui.h>
 #include "TrainingDirector.h"
+#include "../recognitionEngine/RecognitionEngineDefaults.h"
 
 #include "../DebugPrint.h"
 
@@ -63,7 +64,8 @@ void TrainingDirector::elapsedTimer(){
 			maxScore = 100;
 		totalScore += maxScore;
 
-		cout<<"your score for "<<targetMove->getMoveSeals().at(trainingWindow->getCurrentSealIndex())->getName()
+		cout<<"your score for "<<targetMove->getMoveSeals().at(
+				trainingWindow->getCurrentSealIndex())->getName()
 				<<" is: "<<score<<"\n";
 
 		trainingWindow->updateScore(score);
@@ -88,7 +90,7 @@ bool TrainingDirector::lastSealInMove(){
 }
 
 int TrainingDirector::calculateActualScore(){
-	IplImage* photo;
+	IplImage* frame;
 	IplImage* grayImage;
 	IplImage* res;
 	int localScore;
@@ -100,10 +102,10 @@ int TrainingDirector::calculateActualScore(){
 	if(trainingWindow->getCurrentSealIndex() < targetMove->getMoveSeals().size()){
 
 		cam->capturing();
-		photo = cam->getFrame();
-		res = cvCreateImage(cvGetSize(photo), IPL_DEPTH_32F, 1);
-		grayImage = cvCreateImage(cvGetSize(photo), DEFAULT_INPUT_DEPTH, 1);
-		cvCvtColor(photo, grayImage, CV_BGR2GRAY);
+		frame = cam->getFrame();
+		grayImage = cvCreateImage(cvGetSize(frame), RE_INPUT_IMAGE_DEPTH, 1);
+		res = cvCreateImage(cvGetSize(frame), RE_OUTPUT_IMAGE_DEPTH, 1);
+		cvCvtColor(frame, grayImage, CV_BGR2GRAY);
 
 		//		debugPrint("processing\n");
 		recognitionEngine->process(grayImage, res);

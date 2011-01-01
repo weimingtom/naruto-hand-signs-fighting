@@ -23,7 +23,7 @@ public:
 	ChainAdder();
 	virtual ~ChainAdder();
 
-	int processFunction(std::vector<EngineModule*> modArray, const IplImage* src, IplImage* res);
+	int processFunction(std::vector<EngineModule*> *modArray, const IplImage* src, IplImage* res);
 };
 
 #endif /* CHAINADDER_H_ */

@@ -58,7 +58,7 @@ int RecognitionEngine::process(const IplImage* src, IplImage* res){
 //	cvReleaseImage(&temp);
 //	cvReleaseImage(&tempRes);
 
-	processingFunction->processFunction(modulesArray, src, res);
+	processingFunction->processFunction(&modulesArray, src, res);
 }
 
 int RecognitionEngine::findModuleByID(EngineModule* m){
@@ -93,24 +93,38 @@ int RecognitionEngine::evaluate(IplImage* img, int sealIndex){
 
 int RecognitionEngine::initEngine(){
 	int ret =0;
-	if(strategy != NULL){
+
+	if(strategy){
 		strategy->initModules();
+		cout<<"using strategy: "<<strategy->getStrategyName()<<"\n";
 		ret = 1;
 	}else{
 		ret = -1;
 		cout<<"strategy module not initialized\n";
 	}
+
 	if(evaluator == NULL){
 		evaluator = mulEvaluator;
 		cout<<"using default evaluator "<<evaluator->getEvaluatorName()<<"\n";
 	}else{
-		cout<<"evaluator: "<<evaluator->getEvaluatorName()<<"\n";
+		cout<<"using evaluator: "<<evaluator->getEvaluatorName()<<"\n";
 	}
+
+	if(processingFunction == NULL){
+		cout<<"processing function has not been set!\n";
+		ret = -1;
+	}else{
+		cout<<"using processing function: "<<processingFunction->getProcessingFunctionName()<<"\n";
+	}
+
 	return ret;
 }
 
 void RecognitionEngine::changeEngineStrategy(AbstractStrategy* newStrategy){
 	if(newStrategy != NULL){
+		if(strategy != NULL){
+			delete strategy;
+		}
 		modulesArray.clear();
 		strategy= newStrategy;
 		initEngine();

@@ -165,6 +165,12 @@ public:
     	return processingFunction;
     }
 
+    AbstractStrategy* setStrategy(AbstractStrategy* strat){
+    	if(strategy != NULL)
+    		delete strategy;
+    	strategy = strat;
+    }
+
 };
 
 extern RecognitionEngine* recognitionEngine;

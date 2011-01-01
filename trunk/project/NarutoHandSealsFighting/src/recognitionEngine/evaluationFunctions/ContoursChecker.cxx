@@ -20,11 +20,14 @@
 #include "../ImageProcessing.h"
 #include "../../DebugPrint.h"
 
+#define SHOW_WINDOWS 0
+
 using namespace std;
 
 ContoursChecker::ContoursChecker() {
 	contourTemplate = new ContoursFinderEM();
 	contourImage = new ContoursFinderEM();
+	evaluatorName = "ContoursChecker";
 }
 
 ContoursChecker::~ContoursChecker() {
@@ -46,12 +49,14 @@ int ContoursChecker::evaluate(IplImage* img, Move* currMove, int sealIndex){
 	CvContourTree *imgTree, *templTree;
 	CvMemStorage *memImgTree = cvCreateMemStorage(0), *memTemplTree = cvCreateMemStorage(0);
 
+#if SHOW_WINDOWS ==1
 	const char* winImageContour = "imageContour";
 	const char* winTemplateContour = "templateContour";
 	cvNamedWindow(winImageContour, CV_WINDOW_NORMAL);
 	cvNamedWindow(winTemplateContour, CV_WINDOW_NORMAL);
 	cvMoveWindow(winImageContour, 800, 800);
 	cvMoveWindow(winTemplateContour, 1200,800);
+#endif
 
 
 	try{
@@ -90,8 +95,10 @@ int ContoursChecker::evaluate(IplImage* img, Move* currMove, int sealIndex){
 //		debugPrint("done\n");
 //		debugPrint("contourImage: done\n");
 
+#if SHOW_WINDOWS ==1
 		cvShowImage(winTemplateContour, templateContourImg);
 		cvShowImage(winImageContour, imageContourImg);
+#endif
 
 //		debugPrint("starting the match ...");
 		if(!contourImg || !contourTempl){
@@ -104,9 +111,9 @@ int ContoursChecker::evaluate(IplImage* img, Move* currMove, int sealIndex){
 		}else{
 			appoRes = cvMatchShapes(contourTempl, contourImg, CV_CONTOURS_MATCH_I3);
 //			appoRes = cvMatchContourTrees(templTree, imgTree, CV_CONTOUR_TREES_MATCH_I1, 0);
-			debugPrint("done\n");
+//			debugPrint("done\n");
 
-			cout<<"appoRes: "<<appoRes<<"\n";
+//			cout<<"appoRes: "<<appoRes<<"\n";
 
 
 			result = appoRes*100;

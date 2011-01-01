@@ -13,6 +13,9 @@
 #include "gameStack/GameStack.h"
 #include "recognitionEngine/RecognitionEngine.h"
 #include "recognitionEngine/engineModules/All.h"
+#include "recognitionEngine/evaluationFunctions/ContoursChecker.h"
+#include "recognitionEngine/engineStrategies/AGoodStrategy.h"
+#include "recognitionEngine/processingFunctions/SChainBGRemoval.h"
 
 #include "DebugPrint.h"
 
@@ -27,6 +30,9 @@ int main(int argc, char* argv[]){
 
 	initialization();
 
+	recognitionEngine->setEvaluator(new ContoursChecker());
+	recognitionEngine->setStrategy(new AGoodStrategy(recognitionEngine));
+	recognitionEngine->setProcessFunction(new SChainBGRemoval());
 	recognitionEngine->initEngine();
 
 	cout<<"**********\n";

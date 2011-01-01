@@ -16,7 +16,7 @@
 #include "AbstractStrategy.h"
 
 AbstractStrategy::AbstractStrategy(ModulesPool* p) {
-	pool = p;
+	rePool = p;
 }
 
 AbstractStrategy::~AbstractStrategy() {
