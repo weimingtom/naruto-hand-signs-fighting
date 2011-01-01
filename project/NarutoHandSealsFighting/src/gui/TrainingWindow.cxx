@@ -70,6 +70,8 @@ TrainingWindow::~TrainingWindow() {
 	delete cameraImage;
 	delete secondsTitle;
 	delete scoresBox;
+	delete actualScoreTitle;
+	delete actualScoreLabel;
 	for(int i=0; i< icoVector.size(); i++)
 		delete icoVector.at(i);
 	icoVector.clear();
@@ -199,7 +201,7 @@ void TrainingWindow::buildShotButton(){
 	//we position the back button away
 	shotButton = new gcn::Button("[S]HOT!");
 	shotButton->setSize(bigImageIcon->getWidth() + 20, buttonHeight + 40);
-	shotButton->setPosition(bigImageIcon->getX() + bigImageIcon->getWidth()/2,
+	shotButton->setPosition(bigImageIcon->getX() + 30,
 			bigImageIcon->getY() + bigImageIcon->getHeight() + 25);
 	shotButton->setFrameSize(3);
 	shotButton->setActionEventId("shot");
@@ -285,12 +287,7 @@ void TrainingWindow::display(){
 //			cvScalarAll(180),
 //			cvScalarAll(180),
 //			100 );
-	cvDrawContours(
-			cam->getFrame(),
-			contours,
-			CV_RGB(255,0,0),
-			CV_RGB(255,0,0),
-			100 );
+	cvDrawContours(cam->getFrame(), contours, CV_RGB(255,0,0), CV_RGB(255,0,0), 100);
 	cameraImage = convertIplImageToGcnImage(cam->getFrame());
 	if(cameraIcon == NULL){
 		cameraIcon = new gcn::Icon(cameraImage);
@@ -313,6 +310,12 @@ void TrainingWindow::display(){
 		temp = TIMER_STR_DEC + streamtemp.str();
 	temp += TIMER_STR_SEC;
 	secondsLabel->setCaption(temp.c_str());
+
+	/////////////////////////
+	//Showing actual score
+	std::stringstream streamtmp;
+	streamtmp << actualScore;
+	actualScoreLabel->setCaption(streamtmp.str());
 
 	AbstractFactory::display();
 }
@@ -358,6 +361,16 @@ void TrainingWindow::buildScoresBox(){
 	scoresBoxScroll->setPosition( cameraWindow->getX() - scoresBox->getWidth() - 40 ,
 				bigImageIcon->getY());
 	panel->add(scoresBoxScroll);
+
+	actualScoreTitle = new gcn::Label("ActualScore");
+	actualScoreLabel = new gcn::Label("    ");
+	actualScoreTitle->setPosition(shotButton->getX() + shotButton->getWidth() + 20,
+			scoresBoxScroll->getY() + scoresBoxScroll->getHeight() + 20);
+	actualScoreLabel->setPosition(actualScoreTitle->getX() + actualScoreTitle->getWidth()/2 - actualScoreLabel->getWidth()/2,
+			actualScoreTitle->getY() + actualScoreTitle->getHeight() + 10);
+
+	panel->add(actualScoreTitle);
+	panel->add(actualScoreLabel);
 }
 
 void TrainingWindow::updateScore(double newScore){

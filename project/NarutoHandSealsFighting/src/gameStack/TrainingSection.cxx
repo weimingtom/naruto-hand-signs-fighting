@@ -39,7 +39,8 @@ TrainingSection::TrainingSection(Move* m, AbstractController* ctrl){
 	TrainingWindow* trwin = (TrainingWindow*) graphicWindow;
 	TrainingSectionController* trainingSectionCtrl = (TrainingSectionController*) ctrl;
 	trainingSectionCtrl->setTrainingWindow(trwin);
-	trainingSectionCtrl->setDirector(new TrainingDirector(trwin,recognitionEngine, cam, m));
+	director = new TrainingDirector(trwin,recognitionEngine, cam, m);
+	trainingSectionCtrl->setDirector(director);
 	nstep = 0;
 }
 
@@ -82,6 +83,7 @@ void TrainingSection::loopFunction(){
 	}
 
 	if (doneSomething){
+		graphicWindow->setActualScore( (double) director->calculateActualScore());
 		graphicWindow->display();
 		fpsNow++;
 	}else {
