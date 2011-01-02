@@ -18,7 +18,7 @@
 #include "../../DebugPrint.h"
 #include "../RecognitionEngineDefaults.h"
 
-#define SHOW_BG_REMOVAL 1
+#define SHOW_BG_REMOVAL 0
 
 using namespace std;
 

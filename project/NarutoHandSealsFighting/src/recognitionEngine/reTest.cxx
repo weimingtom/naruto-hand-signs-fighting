@@ -202,7 +202,7 @@ int main(int argc, char* argv[]){
 		cvShowImage(win, res);
 
 //		debugPrint(">evaluation\n");
-		cout<<"score: "<< recognitionEngine->evaluate(res, sealIndex)<<"  ";
+		cout<<"score: "<< recognitionEngine->evaluate(res, sealIndex)<<"\n";
 
 //		cout<<"foreground mean: "<< cvMean(myForeGroundMaskGray)<<"\n";
 

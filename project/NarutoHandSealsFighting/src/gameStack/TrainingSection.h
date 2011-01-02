@@ -38,6 +38,10 @@ class TrainingSection: public GameElement {
 	TrainingWindow* graphicWindow;
 	TrainingDirector *director;
 
+	int pidt;
+
+	void actualScoreFunction();
+
 public:
 	TrainingSection(Move* m, AbstractController* ctrl);
 	virtual ~TrainingSection();

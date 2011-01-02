@@ -85,7 +85,7 @@ public:
         this->targetMove = targetMove;
     }
 
-    int calculateActualScore();
+    int processActualScore();
 
 };
 
