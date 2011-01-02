@@ -1,25 +1,24 @@
 /*
  ******************************************************
  * NAME:
- * AbstractStrategy.cxx
+ * AllStrategies.h
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Dec 7, 2010
+ *	Created on: Jan 2, 2011
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
+#ifndef ALLSTRATEGIES_H_
+#define ALLSTRATEGIES_H_
+
 #include "AbstractStrategy.h"
+#include "AGoodStrategy.h"
+#include "DefaultStrategy.h"
+#include "XperienceStrategy.h"
 
-AbstractStrategy::AbstractStrategy(ModulesPool* p) {
-	rePool = p;
-	strategyName = "";
-}
-
-AbstractStrategy::~AbstractStrategy() {
-	// TODO Auto-generated destructor stub
-}
+#endif /* ALLSTRATEGIES_H_ */

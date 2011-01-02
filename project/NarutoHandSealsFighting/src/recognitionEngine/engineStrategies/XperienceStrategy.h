@@ -1,25 +1,28 @@
 /*
  ******************************************************
  * NAME:
- * AbstractStrategy.cxx
+ * XperienceStrategy.h
  ******************************************************
  * DESCRIPTION:
  *
  ******************************************************
- *	Created on: Dec 7, 2010
+ *	Created on: Jan 2, 2011
  ******************************************************
  *  Author: Michele Tamburini
  *******************************************************
  *
  */
 
+#ifndef XPERIENCESTRATEGY_H_
+#define XPERIENCESTRATEGY_H_
+
 #include "AbstractStrategy.h"
 
-AbstractStrategy::AbstractStrategy(ModulesPool* p) {
-	rePool = p;
-	strategyName = "";
-}
+class XperienceStrategy: public AbstractStrategy {
+public:
+	XperienceStrategy(ModulesPool* p);
+	virtual ~XperienceStrategy();
+	void initModules();
+};
 
-AbstractStrategy::~AbstractStrategy() {
-	// TODO Auto-generated destructor stub
-}
+#endif /* XPERIENCESTRATEGY_H_ */

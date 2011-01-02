@@ -19,5 +19,6 @@
 #include "ChainAdder.h"
 #include "SimpleChain.h"
 #include "DifferentTempsAdder.h"
+#include "SChainBGRemoval.h"
 
 #endif /* ALLPROCESSINGFUNCTIONS_H_ */

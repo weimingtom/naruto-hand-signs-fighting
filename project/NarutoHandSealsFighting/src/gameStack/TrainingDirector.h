@@ -22,7 +22,7 @@
 #include "../acquisitionSection/Camera.h"
 #include "timers/CountdownTimer.h"
 
-#define SHOOTING_FRAMES 50
+#define SHOOTING_FRAMES 20
 
 using namespace std;
 
