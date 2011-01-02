@@ -51,24 +51,24 @@ void TrainingDirector::handleShot(int seconds, int sealIndex){
 }
 
 void TrainingDirector::elapsedTimer(){
-	int score, maxScore = 0;
+	int score, accumScore = 0;
 
 	try{
 		for(int i=0; i<SHOOTING_FRAMES; i++){
 			score = processActualScore();
-			if(score > maxScore)
-				maxScore = score;
+//			if(score > accumScore)
+				accumScore += score;
 		}
-
-		if(maxScore > 100)
-			maxScore = 100;
-		totalScore += maxScore;
+		accumScore = accumScore/SHOOTING_FRAMES;
+		if(accumScore > 100)
+			accumScore = 100;
+		totalScore += accumScore;
 
 		cout<<"your score for "<<targetMove->getMoveSeals().at(
 				trainingWindow->getCurrentSealIndex())->getName()
-				<<" is: "<<score<<"\n";
+				<<" is: "<<accumScore<<"\n";
 
-		trainingWindow->updateScore(score);
+		trainingWindow->updateScore(accumScore);
 		trainingWindow->incrementCurrentSealIndex();
 		if(lastSealInMove()){
 			totalScore = totalScore / targetMove->getMoveSeals().size();

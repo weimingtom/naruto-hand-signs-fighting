@@ -17,6 +17,7 @@
 
 AbstractStrategy::AbstractStrategy(ModulesPool* p) {
 	rePool = p;
+	strategyName = "";
 }
 
 AbstractStrategy::~AbstractStrategy() {

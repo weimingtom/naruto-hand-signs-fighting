@@ -28,7 +28,7 @@ unsigned int nstep=0; //physics steps
 bool beginning;
 
 // Frames Per Seconds
-const int FPS_SAMPLING = 15000; // fps length
+const int FPS_SAMPLING = 35000; // fps length
 float fpsPrec=0; // precedent fps value
 int fpsNow=0; // actual fps value
 Uint32 timeLastInterval=0;
@@ -115,6 +115,6 @@ void TrainingSection::loopFunction(){
 
 void TrainingSection::actualScoreFunction(){
 	actualScore = director->processActualScore();
-	cout<<"actualScore:"<<actualScore<<"\n";
+//	cout<<"actualScore:"<<actualScore<<"\n";
 
 }

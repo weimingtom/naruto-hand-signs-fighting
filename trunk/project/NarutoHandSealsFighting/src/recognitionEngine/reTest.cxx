@@ -22,10 +22,11 @@
 #include "engineModules/All.h"
 #include "evaluationFunctions/MulEvaluator.h"
 #include "evaluationFunctions/ContoursChecker.h"
+
 #include "processingFunctions/AllProcessingFunctions.h"
+#include "engineStrategies/AllStrategies.h"
+
 #include "ImageProcessing.h"
-#include "engineStrategies/AGoodStrategy.h"
-#include "processingFunctions/SChainBGRemoval.h"
 
 #include "../gameLogic/SealsFactory.h"
 #include "../gameLogic/SealsMap.h"
@@ -75,7 +76,8 @@ int main(int argc, char* argv[]){
 
 	sealsFactory->buildSealsMap(&sealsMap);
 	movesFactory->buildMovesSet( movesSetGlobal, &sealsMap);
-	move = movesSetGlobal->getMove("Lightning Blade");
+//	move = movesSetGlobal->getMove("Lightning Blade");
+	move = movesSetGlobal->getMove("Water Dragon");
 	if(move == NULL){
 		cout<<"DON'T FOUND move!!\n";
 	}
@@ -84,26 +86,6 @@ int main(int argc, char* argv[]){
 
 	recognitionEngine->setCurrentMove(move);
 
-//	recognitionEngine->setProcessFunction(new ChainAdder());
-//	recognitionEngine->setProcessFunction(new SimpleChain());
-//	recognitionEngine->setProcessFunction(new DifferentTempsAdder());
-	recognitionEngine->setProcessFunction(new SChainBGRemoval());
-
-//	recognitionEngine->setEvaluatorFunction(mulEvaluator);
-	ContoursChecker *cc = new ContoursChecker();
-	recognitionEngine->setEvaluatorFunction(cc);
-
-	AGoodStrategy *aGoodStrat = new AGoodStrategy(recognitionEngine);
-//	recognitionEngine->changeEngineStrategy(aGoodStrat);
-	recognitionEngine->setStrategy(aGoodStrat);
-//	recognitionEngine->setStrategy(new DefaultStrategy(recognitionEngine));
-//	recognitionEngine->changeEngineStrategy(new AGoodStrategy(recognitionEngine));
-
-
-	if(recognitionEngine->initEngine()<0){
-		exit(0);
-	}
-	//////////////////////////////////////////////
 
 	for(int i=0; i<10; i++)
 		cam->capturing();
@@ -121,16 +103,16 @@ int main(int argc, char* argv[]){
 	BackgroundRemovalEM *backgroundRemoval = new BackgroundRemovalEM();
 
 //	recognitionEngine->addModule(backgroundRemoval); //<<<<<
-//	recognitionEngine->addModule(new BlurEM(CV_MEDIAN,27,0,0,0));
 
 //	recognitionEngine->addModule(new HistogramEM());
+//	recognitionEngine->addModule(new BlurEM(CV_MEDIAN,27,0,0,0));
 //	recognitionEngine->addModule(new SobelEM(CV_SCHARR, 1, 0));
 //	recognitionEngine->addModule(new BlurEM(CV_GAUSSIAN,3,3));
-//	recognitionEngine->addModule(new LaplacianEM(7));
 //	recognitionEngine->addModule(new CannyEM(7, meanImage-range/2, meanImage+range/2));
-//	recognitionEngine->addModule(new CannyEM(5,1,3));
 //	recognitionEngine->addModule(new ContoursFinderEM(meanImage));
-//
+//	recognitionEngine->addModule(new LaplacianEM(7));
+//	recognitionEngine->addModule(new CannyEM(5,1,3));
+
 //	recognitionEngine->addModule(new ClosureEM(15));
 
 
@@ -141,6 +123,30 @@ int main(int argc, char* argv[]){
 //	recognitionEngine->addModule(new BlurEM(CV_GAUSSIAN,3,3));
 //	recognitionEngine->addModule(new LaplacianEM(7));
 	////////////////////////////////////////////////////////////
+
+
+//	recognitionEngine->setProcessFunction(new ChainAdder());
+//	recognitionEngine->setProcessFunction(new SimpleChain());
+//	recognitionEngine->setProcessFunction(new DifferentTempsAdder());
+	recognitionEngine->setProcessFunction(new SChainBGRemoval());
+
+//	recognitionEngine->setEvaluatorFunction(mulEvaluator);
+	ContoursChecker *cc = new ContoursChecker();
+	recognitionEngine->setEvaluatorFunction(cc);
+
+//	AGoodStrategy *aGoodStrat = new AGoodStrategy(recognitionEngine);
+//	recognitionEngine->changeEngineStrategy(aGoodStrat);
+	XperienceStrategy *xp = new XperienceStrategy(recognitionEngine);
+	recognitionEngine->changeEngineStrategy(xp);
+//	recognitionEngine->setStrategy(aGoodStrat);
+//	recognitionEngine->setStrategy(new DefaultStrategy(recognitionEngine));
+//	recognitionEngine->changeEngineStrategy(new AGoodStrategy(recognitionEngine));
+
+
+//	if(recognitionEngine->initEngine()<0){
+//		exit(0);
+//	}
+	//////////////////////////////////////////////
 
 	backgroundRemoval->backGroundCapturing();
 

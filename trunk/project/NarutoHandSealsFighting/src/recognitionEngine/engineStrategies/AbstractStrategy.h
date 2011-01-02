@@ -31,7 +31,7 @@
 class AbstractStrategy {
 protected:
 	ModulesPool* rePool;
-	const char* strategyName;
+	const char* strategyName; //<- remeber to set the name!!!
 
 public:
 	AbstractStrategy(ModulesPool* p);
