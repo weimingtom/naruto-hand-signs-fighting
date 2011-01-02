@@ -138,11 +138,3 @@ organization = {O'Really},
 year = {2008},
 issn = {978-0-596-51613-0}
 }
-
-@Manual{slide,
- title = {Slide e appunti di lezione del corso di Sistemi ed Applicazioni Multimediali},
-author = {Marco Roccetti Paola Salomoni Stefano Ferretti},
-month = {Feb-May},
-year = {2009-10},
-note = {\url{http://www.cs.unibo.it/~roccetti/multimedia-09-10.html}}
-}
