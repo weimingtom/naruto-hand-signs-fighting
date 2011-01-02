@@ -55,7 +55,7 @@ void TrainingDirector::elapsedTimer(){
 
 	try{
 		for(int i=0; i<SHOOTING_FRAMES; i++){
-			score = calculateActualScore();
+			score = processActualScore();
 			if(score > maxScore)
 				maxScore = score;
 		}
@@ -89,7 +89,7 @@ bool TrainingDirector::lastSealInMove(){
 	return trainingWindow->getCurrentSealIndex() == targetMove->getMoveSeals().size();
 }
 
-int TrainingDirector::calculateActualScore(){
+int TrainingDirector::processActualScore(){
 	IplImage* frame;
 	IplImage* grayImage;
 	IplImage* res;

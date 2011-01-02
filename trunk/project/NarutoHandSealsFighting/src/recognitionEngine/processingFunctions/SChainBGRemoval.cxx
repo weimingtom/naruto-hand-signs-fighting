@@ -54,9 +54,6 @@ int SChainBGRemoval::processFunction(std::vector<EngineModule*> *modArray,
 		simpleChain->processFunction(modArray, src, res);
 //		debugPrint("done\n");
 
-		cvNamedWindow("uff", CV_WINDOW_AUTOSIZE);
-		cvShowImage("uff", res);
-
 		IplImage *tempRes = cvCreateImage(cvGetSize(res), RE_INPUT_IMAGE_DEPTH, 1);
 		cvConvertScale(res, tempRes);
 //		debugPrint("before And\n");
