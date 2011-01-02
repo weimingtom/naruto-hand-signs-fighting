@@ -4,8 +4,10 @@
 \usepackage{amssymb,amsmath}
 \usepackage{graphicx}
 \usepackage[italian]{babel}
+\usepackage{hyperref}
 
-\title{Relazione al progetto del corso di\\Sistemi ed Applicazioni Multimediali}
+\title{Relazione al progetto: \\ Naruto Hand Seals Fighting\\ del corso di\\Sistemi e Applicazioni
+Multimediali}
 \author{Michele Tamburini \\ mtamburi@cs.unibo.it}
 \makeindex
 
@@ -14,21 +16,105 @@
 \maketitle
 
 \section{Abstract}
-  \subsection{Stato dell'arte}
+Il progetto nasce con lo scopo di esplorare uno dei campi della \emph{Augmented Reality}, che
+prevede l'uso delle mani nell'interazione uomo-macchina.
+La realizzazione ultima consiste di un gioco di combattimento in modalità "picchiaduro"
+che prende ambientazione e scenografia dall'ormai noto anime giapponese "Naruto".
+Le mosse per così dire speciali, dovranno essere attivate non con semplici
+combinazioni di tasti, ma attraverso le posizioni ed i gesti delle mani dell'utente,
+acquisiti attraverso una webcam, che saranno poi analizzati da un motore di
+riconoscimento per verificarne l'accuratezza.
+L'implementazione del presente prevede il 
+motore di riconoscimento e una semplice sezione di addestramento
+per l'utente, che lo coinvolga nell'apprendimento di alcune mosse.\\
+Vengono utilizzate librerie \emph{OpenCV} per l'analisi delle immagini, 
+\emph{Guichan} per l'interfaccia grafica, \emph{SDL} ed il linguaggio C++.
+
+\section{Stato dell'arte}
+La ricerca di tecniche che favoriscano metodologie di utilizzo dei calcolatori
+attraverso forme di interazione sempre pi\'{u} innovative, quali ad esempio
+l'uso del proprio corpo, ha aperto la strada gi\'{a} da qualche tempo
+a nuove sfide per il mondo informatico.\\
+Il campo di ricerca dell'\emph{``hand tracking''} vuole dare all'utilizzatore
+del calcolatore la possibilit\'{a} di un controllo, completo o parziale, di questo,
+attraverso i complicati movimenti o stimoli che la mano umana \'{e} in grado di fornire.
+L'acquisione di questi, sia essa agevolata dall'ausiglio di sensori particolari,
+guanti o addirittura con la mano nuda, risulta essere la prima problematica da affrontare,
+comune a tutte le proposte fino ad ora osservate (\cite{handTrackHCI} \cite{handTrackNoMarkers}
+ \cite{handNavigator} \cite{hugeSurvey} \cite{mitGlove}. 
+ Gli spunti proposti nella bibliografia, lontano
+dall'essere esaustiva sull'argomento, vogliono semplicemente offrire una panoramica ad ampio
+spettro di alcune soluzioni a tale problema.
+
+\section{Progetto: introduzione}
+  \subsection{Ambientazione}
+  L'ormai celeberrimo anime ``Naruto'' ha portato anche in Italia una storia di fanstasia
+  dalle forti connotazioni orientali. Tra gli ingredienti maggiormente apprezzati dal
+  grande pubblico risiede il fatto che i personaggi utilizzano movimenti 
+  delle mani estremamente complicati per lanciare mosse di arti marziali speciali.
+  Ognuna di queste \`{e} composta da un numero variabile di ``sigilli'' (posizioni degli arti
+  superiori) che corrispondo ai 12 segni zodiacali cinesi.\\
+  Nel seguente progetto ho inserito tutti e soli tali gesti, ovvero non si tengono in considerazione
+  movimenti diversi (come il battito delle mani) che pur compaiono nell'anime.
+  Lo scopo del giocatore sar\`{a} quello di riprodurre
+  alcune posisioni che vedr\`{a} raffigurate sottoforma di immagini. Ciascuna
+  di queste \`{e} denominata segno, o sigillo (signs, seals). Una mossa (Move) \`{e} dunque
+  costituita da un numero variabile di segni presi tra i 12 sopra descritti.
+  
+  \subsection{Il nostro problema nel dettaglio}
+  In questo lavoro non ho certo la pretesa di affrontare un tema cos\'{i} imponente come 
+  quello dell'hand tracking. Il problema si riduce infatti ad una analisi di immagini
+  seppur non priva di compromessi e difficolt\`{a}. A differenza di alcuni lavori
+  di spicco che usano un database e oggetti esterni
+  per l'inferenza della reale posizione della mano \cite{mitGlove}, in questo caso non
+  \`{e} necessario avere una precisa cognizione del punto di partenza e di 
+  fine dell'arto.
+  Il giocatore \`{e} libero di eseguire qualunque movimento e, una volta pronto,
+  aziona l'acquisione del gesto, che si traduce per il calcolatore con: l'acquisizione 
+  di acluni frame di immagine, trasformazione di questi con tecniche di processazione
+  dell'immagine e confronto con un template precedentemente preparato.\\
+  Un punto che abbatte notevolmente la dimensione del problema, ed evita quindi l'uso 
+  di un database, si basa proprio su una carattestica derivata dall'ambientazione:
+  sebbene le combinazioni che possono avere luogo siano infinite (permutazioni di 12 
+  elementi di lunghezza arbitraria) i diversi gesti da riconoscere rimangono comunque 12.
+  
+  \subsection{Pensando in grande}
+  Fondamentalmente questo gioco risiede nella categoria ``picchiaduro''.
+  L'ingrediente della \emph{Augmented Reality} emerge nel
+  momento in cui l'utente abbandona la tastiera per interagire con le proprie mani 
+  attraverso la webcam ed eseguire dal vivo i gesti necessari per la mossa selezionata.\\
+  Per ciascuno gli verr\`{a} notificato il livello di accuratezza 
+  calcolato in una scala da 0 a 100.
+  Al termine dell'ultimo viene poi restituito il voto medio.
+  
+%  \subsection{Goal Oriented Design}
+%  In questa sezione introduco in maniera assolutamente superficiale ed approssimata 
+%  alcune linee guida per il personaggio principale e quello secondario pi\`{u} rilevante.\\
+%  Tale citazione ha solo lo scopo di fornire una migliore rappresentazione di uno scenario 
+%  di utilizzo dell'applicazione.
+%  \begin{itemize}
+%   \item[Principale] Lela, donna sulla quarantina, sposata e madre di Gioacchino. 
+%   Ha un impiego presso un'impresa 
+%  \end{itemize}
+
+
+  
   
 \section{Descrizione del progetto}
   \subsection{Sezione di Acquisizione}
   \subsection{Logica di Gioco}
   \subsection{Stack di Gioco}
+  \subsection{L'interfaccia Grafica}
   \subsection{La macchina per il Riconoscimento}
   
 \section{Riconoscimento}
   \subsection{``The Recognition Engine''}
   \subsection{I moduli}
   \subsection{Le strategie}
-  \
+ 
+\section{Alcuni Test}
 
-\section{}
+\section{Osservazioni}
 
 \section{Coclusioni}
 
