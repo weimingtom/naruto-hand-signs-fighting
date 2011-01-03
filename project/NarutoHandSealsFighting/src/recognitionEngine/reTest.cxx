@@ -77,7 +77,12 @@ int main(int argc, char* argv[]){
 	sealsFactory->buildSealsMap(&sealsMap);
 	movesFactory->buildMovesSet( movesSetGlobal, &sealsMap);
 //	move = movesSetGlobal->getMove("Lightning Blade");
-	move = movesSetGlobal->getMove("Water Dragon");
+//	move = movesSetGlobal->getMove("Water Dragon");
+
+	//@BUG???
+	//Why the Dragon seal is always score: 0 ???????
+	move = movesSetGlobal->getMove("Impure World Resurrection");
+
 	if(move == NULL){
 		cout<<"DON'T FOUND move!!\n";
 	}
