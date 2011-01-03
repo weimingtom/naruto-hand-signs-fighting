@@ -5,6 +5,8 @@
 \usepackage{graphicx}
 \usepackage[italian]{babel}
 \usepackage{hyperref}
+% \usepackage{mathtools}
+\usepackage{amssymb,amsmath}
 
 \title{Relazione al progetto: \\ Naruto Hand Seals Fighting\\ del corso di\\Sistemi e Applicazioni
 Multimediali}
@@ -71,7 +73,7 @@ spettro di alcune soluzioni a tale problema.
   fine dell'arto.
   Il giocatore \`{e} libero di eseguire qualunque movimento e, una volta pronto,
   aziona l'acquisione del gesto, che si traduce per il calcolatore con: l'acquisizione 
-  di acluni frame di immagine, trasformazione di questi con tecniche di processazione
+  di alcuni frame di immagine, trasformazione di questi con tecniche di processazione
   dell'immagine e confronto con un template precedentemente preparato.\\
   Un punto che abbatte notevolmente la dimensione del problema, ed evita quindi l'uso 
   di un database, si basa proprio su una carattestica derivata dall'ambientazione:
@@ -176,58 +178,240 @@ Questa sezione contiene la descrizione della parte centrale del lavoro svolto.
   massimo riuso di codice, ma allo stesso tempo sufficientemente versatili in termini
   di espandibilit\`{a}.\\
   Il risultato di tali ragionamenti \`{e} sintetizzato dal diagramma \ref{gameStackDiagram}.
-  La macchina di gioco (GameMachine) altro non \`{e} che un semplice contenitore di
-  elementi, come ad esempio i menu o la sezione di addestramento (TrainingSection), 
+  La macchina di gioco (\textit{GameMachine}) altro non \`{e} che un semplice contenitore di
+  elementi, come ad esempio i menu o la sezione di addestramento (\textit{TrainingSection}), 
   ciascuno dei quali deve provvedere la funzione che ricoprir\`{a} il ruolo di 
   ciclo principale. Infatti la GameMachine dispone tutti i moduli contenuti in una 
   struttura a stack ed eseguir\`{a} sempre la funzione di quello in cima.\\
   A ciascuno di questi, sia esso un menu, o un modulo differente, viene 
   affidato un controller, che deve essere in grado di gestire eventi 
   conformi all'interfaccia SDL.
-  
-  
+    
   \subsection{L'interfaccia Grafica}
-  \subsection{La macchina per il Riconoscimento}
-
-\clearpage
-\begin{figure}[t]
-  \centering
-    \includegraphics[scale=0.45]{UmlDiagrams/gameLogic.pdf}
-    \caption{Uml diagram of the gameLogic section.}
-  \label{gameLogicDiagram}     
-  
-  \end{figure}
+  Ciascun elemento di gioco (\textit{GameElement}) ha la necessit\`{a} di mostrastri all'utente
+  attraverso un'interfaccia grafica. La libreria Guichan \cite{guichan} mi \`{e}
+  sembrato il compromesso migliore tra quelle che erano
+  le potenzialit\`{a} utili a ricoprire le richieste grafiche, tutt'altro che esigenti,
+  e compatibilit\`{a} con le librerie nativamente previste per il progetto.
+  Questa si trova perfettamente compatibilie con SDL. Il punto di contatto tra 
+  OpenCV, per l'acquisizione delle immagini dalla webcam, e l'integrazione con 
+  la sezione grafica \`{e} reso possibile grazie alla convesione dall'immagine 
+  IplImage di OpenCV alla superficie SDL (SDL\_Surface) e quindi alla visualizzazione
+  tramite l'opportuno oggetto Guichan. Il risultato del procedimento \`{e}
+  quanto mostrato dal punto 2 di figura \ref{screenshot}.
   
   \begin{figure}
+  %\centering
+    \includegraphics[scale=0.25]{screenShot}
+    \caption{Screenshot dell'applicazione durante una esecuzione}
+  \label{screenshot}       
+  \end{figure}
+  
+  Di seguito elenco le sezioni della finestra, mostrata in \ref{screenshot},
+  descrivendole brevemente:
+  \begin{enumerate}
+   \item descrizione della mossa: oltre al nome vengono visualizzate anche il tipo,
+	 il grado di difficolt\`{a} (non di esecuzione) ed il nome reale giapponese;
+   \item schermo che mostra l'immagine acquisita istantaneamente attraverso la webcam;
+   \item sono la traccia della corretta posizione delle mani e delle dita: pi\`{u} il
+	 giocatore riuscir\`{a} ad esservi fedele e migliore sar\`{a} il punteggio ottenuto;
+   \item timer: appena premuto il pulsante ``Shot!'' (o usata la relativa abbreviazione),
+	 viene attivato un cronometro di 3 secondi per dare modo al giocatore di 
+	 riposizionarsi correttamente;
+   \item mostra la posizione delle mani per eseguire il sigillo attuale;
+   \item contiene la lista dei punteggi ottenuti per ciacun sigillo fino al momento attuale;
+   \item \`{e} il pulsante che attiva il cronometro e quindi la fase di acquisizione;
+   \item mostra in tempo reale il punteggio che si otterrebbe nel caso scattasse l'acquisione;
+   \item pulsante che retrocede al menu della lista delle mosse per la selezione di una nuova;
+   \item sigilli necessari al compimento della mossa attuale.
+  \end{enumerate}
+
+\begin{figure*}[tp]
+  \centering
+    \includegraphics[scale=0.45]{UmlDiagrams/gameLogic.pdf}
+    \caption{Uml diagram of the GameLogic section.}
+  \label{gameLogicDiagram}       
+  \end{figure*}
+  
+  \begin{figure*}[bp]
   \centering
     \includegraphics[scale=0.4]{UmlDiagrams/gameStack.pdf}
-    \caption{Uml diagram of the gameLogic section.}
-  \label{gameStackDiagram}     
-  
-  \end{figure}
+    \caption{Uml diagram of the GameStack section.}
+  \label{gameStackDiagram}       
+  \end{figure*}
 
 \section{Riconoscimento}
-\clearpage
-  \begin{figure}     
+Il cuore del progetto \`{e} costituito dalla macchina di riconoscimento del gesto effettuato.
+Come gi\`{a} accennato la qui presente soluzione applica combinazioni di 
+semplici tecniche di analisi delle immagini.\\
+Per quanto riguarda la realizzazione della sezione di riconoscimento, 
+fin dalla primordiale idea, ho voluto mantenere un approccio il pi\`{u} possibile modulare
+e versatile ai cambiamenti, in modo da poter poi provare agevolmente diverse metodologie
+di elaborazione. La macchina corrisponde ad un contenitore di moduli, ciascuno 
+dei quali esegue una ben precisa operazione sull'immagine.\\
+Il settaggio completo completo di questa prevede: la scelta dei moduli
+da inserirvi ovvero la strategia, una funzione per il processing ed una per la 
+valutazione.
+Una volta applicato questo, se si volesse scendere
+%Tutto il procedimento, dall'avvio fino alla valutazione, si pu\`{o} suddividere in
+%3 frasi: caricamento dei moduli, processazione (\textit{Processing Phase}), valutazione
+%(\textit{Evaluation Phase}).\\
+nel dettaglio di ogni singolo passo per 
+ogni frame il si osserverebbe un procedimento che consiste nel:
+\begin{itemize}
+ \item acquisire il frame attraverso la webcam, 
+ \item richiamare la funzione di \textbf{processing} della macchina di riconoscimento,
+ \item sfruttare poi la funzione di \textbf{valutazione} fornendo come parametri
+ il risultato della fase precedente ed il template di riferimento
+ per il sigillo corrente,
+ \item raccogliere il risultato ottenuto.
+\end{itemize}
+I \textbf{template}, di cui si \`{e} parlato anche in precedenza,
+corrispondo alle immagini dei sigilli prive di sfondo o
+forme di rumore, processate attraverso una particolare strategia e sfruttate
+quindi dalla funzione di valutazione. Nella sezione \textit{Template Creation} 
+si trova infatti l'occorrente a questo scopo: lanciando lo
+script che vi si trova vengono convertite le immagini orginali ``grezze'' 
+in template e poste nella directory di destinazione dalla quale si lancer\`{a}
+l'eseguibile. \\
+\`{E} bene tenere a fianco il diagramma di figura \ref{recognitionEngineDiagram} 
+per avere chiare le diverse parti di questa sezione.
+ 
+  \begin{figure*}[tp]
      \centering
-    \includegraphics[angle=90, scale=0.4]{UmlDiagrams/recognitionEngine.pdf}
-    \caption{Uml diagram}
+    %\includegraphics[angle=90, scale=0.328]{UmlDiagrams/recognitionEngine.pdf}
+    \includegraphics[angle=90, scale=0.5]{UmlDiagrams/recognitionEngine.pdf}
+    \caption{Uml diagram of the Recognition Engine Section.}
     \label{recognitionEngineDiagram}
+  \end{figure*}
+
+  \subsection{Moduli e Strategie}
+  %alcuni moduli più importanti
+  %l'ordine dei moduli è rilevante
+  Indicher\`{o}
+  con il termine \textbf{Modulo} una classe ereditata da \textit{EngineModule} 
+  che implementa la funzione
+  
+  \begin{center}
+    \begin{verbatim}
+    int compute(const IplImage* src, 
+		      IplImage* dst)
+    \end{verbatim}
+  \end{center}
+   e pu\`{o} quindi essere aggiunta nell'insieme dei moduli (\textit{ModulesPool})
+  della macchina di riconoscimento.
+  L'implementazione di questa dovr\`{a} prevedere dunque l'azione di processing, 
+  per la quale il modulo stesso 
+  \`{e} pensato, sull'immagine in ingresso src, e la restituzione del risultato in dst.
+  Bisogna tener presente che \`{e} rilevante la posizione di ciascun modulo.
+  %l'ordine di inserimento dei moduli. 
+  Dal momento che l'unit\`{a} di dialogo tra questi sono le immagini, dunque matrici
+  di pixel, l'applicazione in ordine diverso di filtri o altre operazioni quali l'estrazione
+  dei contorni, pu\`{o} condurre a risultati estremamente diversi. Un esempio canonico
+  riguarda il filtro di smoothing posto in genere sempre prima di un operatore Laplaciano.\\
+  Un \textbf{strategia} invece definisce quali moduli inserire nel bacino della macchina,
+  in che ordine, e con quali carattestiche. Ciascuna classe appartenente alla gerarchia
+  che si estende dalla classe \textit{AbstractStrategy}, adempie a questo compito. 
+  
+  \subsection{Rimozione dello sfondo}
+  Un modulo di estrema importanza \`{e} quello della rimozione dello sfondo.
+  La capacit\`{a} di individuazione delle forme viene fortemente condizionata
+  dalla situazione luminosa della stanza e dalla complessit\`{a} 
+  e dal numero di oggetti presenti alle spalle del giocatore.
+  Con complessit\`{a} si intendono sia la forma stessa che le caratteristiche 
+  riflessive (superfici lucide o opache).\\
+  Per fare un esempio che aiuti alla comprensione ritorniamo per un istante
+  allo scenario mostrato dalla camera in figura \ref{screenshot}.
+  Le fonti luminose di forte intensit\`{a} sono tra le peggiori 
+  cause di rumore. Nel lampadario posto alle spalle del giocatore sono poste
+  due lampadine a basso consumo a luce bianca: esso rappresenta un ottimo esempio
+  di disturbo dell'acquisizione se testato di sera e con luci accese.
+  Un ulteoriore esempio, che porta facilmente a falsi positivi,
+  \`{e} rappresentato dai due quadri posti sul muro: essi spiccano senza alcuna
+  difficolt\`{a} nell'analisi di rilevazione dei contorni, in particolare 
+  se vi si aggiunge il fatto che tendono a riflettere buona parte dei
+  raggi di luce che li colpiscono (vedi angolo inferiore del quadro 
+  a destra).\\
+  La rimozione dello sfondo adottata sfrutta un principio di facile intuizione: 
+  prevede cio\`{e} l'acquisizione di alcuni frame,
+  utili a catturare le parti fisse della scena,
+  prima della fase di gioco, momento in cui il giocatore
+  posiziona e muove le mani. Il modello di sfondo proposto fa poi uso 
+  della statistica e si individuano la media e la correlazione 
+  delle immagini catturate.\\
+  Sia $p(x,y)$ un'immagine, si calcolano: 
+  \begin{equation}
+  S(x,y) = \sum_{f=1}^{N} p(x,y) 
+  \end{equation} 
+  
+  \begin{equation}
+  Sq(x,y) = \sum_{f=1}^{N} p(x,y)^2 
+  \end{equation}   
+  dove $f=frame$ e $N=$ \textit{numero totale di frame}.
+  
+  Dunque la media sar\`{a}:  
+  \begin{equation}
+   M(x,y) = \dfrac{S(x,y)}{N}
+  \end{equation}
+  
+  e la deviazione standard:
+  \begin{equation}
+   \sigma(x,y) = \sqrt{ \dfrac{Sq(x,y)}{N} - M(x,y)^2}
+  \end{equation}
+  
+  Questo definisce il nostro modello per la rilevazione degli 
+  oggetti fissi nella scena. Data una immagine acquisita in un secondo 
+  momento si pu\`{o} sfruttare la quantit\`{a} appena ricavata per dividere
+  gli elementi in primo piano da quelli sullo sfondo con 
+  la seguente procedura.\\
+  Sia $P(x,y)$ la nuova immagine acquisita, allora:
+  
+  \begin{equation}
+   | M(x,y) - P(x,y) | \leq \lambda \sigma(x,y)
+  \end{equation}
+  
+  dunque:
+  \begin{center}
+  $  
+   | M(x,y) - P(x,y) |^2 \leq (\lambda \sigma(x,y))^2
+    \newline
+    \newline
+   | M(x,y) - P(x,y) |^2 \leq \lambda^2 \sigma(x,y)^2   
+  $ 
+  \newline
+  
+  \end{center}
+  dove $\sigma(x,y)^2$ \`{e}:  
+  \begin{equation}
+  \sigma(x,y)^2 = \dfrac{Sq(x,y)}{N} - M(x,y)^2 
+  \end{equation}
+  E $\lambda$ \`{e} una costante che pu\`{o} essere settata a 3,
+  in accordo con quanto ricavato da \cite{backgroundRemovalDamiles}.
+ 
+ 
+ \subsection{Processazione e valutazione}
+  \begin{figure}[t]
+    \centering
+    \includegraphics[scale=0.3]{recognitionEngineScheme.pdf}
+    \caption{Schema del procedimento di processazione e valutazione dell'immagine in input}
+    \label{reScheme}
   \end{figure}
+  
+  \subsubsection{L'algoritmo scelto}
 
-
-  \subsection{``The Recognition Engine''}
-  \subsection{I moduli}
-  \subsection{Le strategie}
+  
  
 \section{Alcuni Test}
 
-\section{Osservazioni}
+\section{Osservazioni e sviluppi futuri}
 
 \section{Coclusioni}
 
 
 \clearpage
+
+% \appendix A quick look to GOD
+
 
 \nocite{*}
 
