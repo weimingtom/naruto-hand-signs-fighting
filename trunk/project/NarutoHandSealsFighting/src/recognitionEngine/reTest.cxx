@@ -130,6 +130,14 @@ int main(int argc, char* argv[]){
 	////////////////////////////////////////////////////////////
 
 
+	/**
+	 * FOR THE DEMO:
+	 * try:
+	 *  process function: DifferentTempsAdder
+	 *  evaluation function: Multiplier evaluator
+	 *  strategy function: AGoodStrategy
+	 */
+
 //	recognitionEngine->setProcessFunction(new ChainAdder());
 //	recognitionEngine->setProcessFunction(new SimpleChain());
 //	recognitionEngine->setProcessFunction(new DifferentTempsAdder());
