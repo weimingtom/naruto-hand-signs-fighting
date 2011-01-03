@@ -98,16 +98,124 @@ spettro di alcune soluzioni a tale problema.
 %  \end{itemize}
 
 
+\section{Introduzione alla Libreria OpenCV}
+OpenCV \`{e} una libreria per l'analisi delle immagini estremamente versatile e completa.
+Nonostante la mia completa ignoranza a riguardo, mi sono convito a sfruttarla fin 
+dalle fasi di studio di fattibilit\`{a} del progetto, 
+spinto sia dal suggerimento avuto dalle lezioni del corso di 
+Sistemi e Applicazioni Multimediali \cite{slide} che dall'innumerevole ammontare di 
+commenti positivi reperibili dalla rete.\\
+Sono necessarie solo poche nozioni per prendere dimestichezza con questa. 
+Prima fra tutte la gerarchia delle strutture dati (CvArr, CvMat), ed 
+in particolare quella usata per la memorizzazione dell'immagine:
+IplImage. Quindi l'uso delle principali funzioni di analisi delle 
+immagini: cominciando con l'applicazione dei filtri basilari (Laplaciano,
+Sobel, di Smoothing...) per arrivare al dominio delle frequenze, 
+rilevazione dei contorni, utilizzo della webcam (o addirittura multi-cam). 
+Estremamente apprezzabile \`{e} la possibilit\`{a} di un
+approccio ``lazy'', per usare un termine informatico. In un certo senso \`{e} possibile
+iniziare la fase di programmazione senza preoccuparsi dell'uso preciso di una 
+determinata funzione, utilizzandola dapprima con impostazioni di default,
+per poi scendere nei dettagli solo in un secondo momento.\\
+Altro pregio della libreria \`{e} la facilit\`{a} della visualizzazione del risultato
+grafico a schermo (attraverso le funzioni cvNamedWindow(), cvShowImage()) che
+consentono una veloce analisi del risultato delle operazione all'interno di
+ogni singola parte del progetto.\\
+Bisogna osservare tuttavia che, sebbene i primi capitoli del manuale ``Learning
+OpenCV'' \cite{opencvOReally},
+collocato probabilmente tra i pi\`{u} consigliati nella rete, siano davvero utili 
+per approcciarsi alla libreria, lo stesso non si possa dire delle sezioni pi\`{u}
+specifiche, che non sostituiscono un libro di testo per l'analisi delle immagini.
+Durante tutto il periodo di sviluppo risulta per\`{o} necessario armarsi del 
+manuale ufficiale \cite{opencvReference}, disponibile anche online.\\
+Un secondo punto a favore di tale libreria \`{e} la reperibilit\`{a} di numerosi 
+frammenti di codice ed esempi che si possono trovare in rete, ma che chiaramente
+vanno affrontati con la giusta ponderazione prima di essere utilizzati nel
+proprio lavoro.
   
   
 \section{Descrizione del progetto}
-  \subsection{Sezione di Acquisizione}
+Questa sezione contiene la descrizione della parte centrale del lavoro svolto.
+
+  \subsection{Sezione di Acquisizione} 
+  Con il termine acquisione ho inteso la cattura di frames attraverso la webcam.
+  Webcam pensata integrata all'interno del pc portatile, anche se nulla esclude 
+  l'utilizzo di un dispositivo diverso, purch\`{e} riconosciuto dal sistema, e
+  impostato per essere quello di default.\\
+  L'oggetto Camera si compone semplicemente di una
+  classe in grado di inizializzare una struttura di tipo Capture (della libreria OpenCV),
+  e sfruttarla per reperire un immagine di tipo IplImage*. Su questa avranno quindi
+  luogo la fase di processazione e valutazione della macchina di riconoscimento
+  (vedi di seguito).	
+  
   \subsection{Logica di Gioco}
+  Per consentire lo sviluppo di un'applicazione che mostri i connotati per una stesura 
+  pressoch\'{e}  completa, 
+  \`{e} necessario immergerla nello scenario dell'ambientazione almeno dal punto 
+  di vista logico. Ho volutamente evitato tediosi dettagli, come ad esempio l'occorrenza nella
+  storia
+  di una particolare mossa o il personaggio che l'ha effettuata per la prima volta,
+  che rendono magari
+  l'anime estremamente interessante, 
+  %in particolare per un personaggio secondario  tremendamente esigente, 
+  ma che ai fini dell'attuale
+  lavoro non sono poi cos\`{i} rilevanti.\\
+  Tuttavia ciascuna mossa viene catalogata in base al proprio tipo, rango di difficolt\`{a} e 
+  livello, in maniera il pi\`{u} possibile fedele all'anime. Per un compito cos\`{i}
+  strutturato mi sono affidato alla versalitit\`{a} del linguaggio XML, e l'uso della libreria
+  ``TinyXML'' \cite{tinyXml} per la sua manipolazione. Grazie a questi accorgimenti 
+  risulter\`{a} forse pi\`{u} agevole l'espansione del codice in futuro.\\
+  A questo si \`{e} poi aggiunto un forte apporto ingegneristico per rendere fin dal 
+  principio tale sezione manutenibile senza troppi sforzi.
+  In figura \ref{gameLogicDiagram} \`{e} riportato il diagramma UML della logica di gioco.
+   
   \subsection{Stack di Gioco}
+  Non \`{e} difficile osservare come questa sezione, 
+  cos\`{i} come pure l'interfaccia grafica, non sono state l'oggetto di cure maniacali.
+  In particolare ho voluto create strutture architetturalmente valide che dessero il
+  massimo riuso di codice, ma allo stesso tempo sufficientemente versatili in termini
+  di espandibilit\`{a}.\\
+  Il risultato di tali ragionamenti \`{e} sintetizzato dal diagramma \ref{gameStackDiagram}.
+  La macchina di gioco (GameMachine) altro non \`{e} che un semplice contenitore di
+  elementi, come ad esempio i menu o la sezione di addestramento (TrainingSection), 
+  ciascuno dei quali deve provvedere la funzione che ricoprir\`{a} il ruolo di 
+  ciclo principale. Infatti la GameMachine dispone tutti i moduli contenuti in una 
+  struttura a stack ed eseguir\`{a} sempre la funzione di quello in cima.\\
+  A ciascuno di questi, sia esso un menu, o un modulo differente, viene 
+  affidato un controller, che deve essere in grado di gestire eventi 
+  conformi all'interfaccia SDL.
+  
+  
   \subsection{L'interfaccia Grafica}
   \subsection{La macchina per il Riconoscimento}
+
+\clearpage
+\begin{figure}[t]
+  \centering
+    \includegraphics[scale=0.45]{UmlDiagrams/gameLogic.pdf}
+    \caption{Uml diagram of the gameLogic section.}
+  \label{gameLogicDiagram}     
   
+  \end{figure}
+  
+  \begin{figure}
+  \centering
+    \includegraphics[scale=0.4]{UmlDiagrams/gameStack.pdf}
+    \caption{Uml diagram of the gameLogic section.}
+  \label{gameStackDiagram}     
+  
+  \end{figure}
+
 \section{Riconoscimento}
+\clearpage
+  \begin{figure}     
+     \centering
+    \includegraphics[angle=90, scale=0.4]{UmlDiagrams/recognitionEngine.pdf}
+    \caption{Uml diagram}
+    \label{recognitionEngineDiagram}
+  \end{figure}
+
+
   \subsection{``The Recognition Engine''}
   \subsection{I moduli}
   \subsection{Le strategie}

@@ -4,16 +4,17 @@
 \BOOKMARK [2][-]{subsection.3.1}{Ambientazione}{section.3}
 \BOOKMARK [2][-]{subsection.3.2}{Il nostro problema nel dettaglio}{section.3}
 \BOOKMARK [2][-]{subsection.3.3}{Pensando in grande}{section.3}
-\BOOKMARK [1][-]{section.4}{Descrizione del progetto}{}
-\BOOKMARK [2][-]{subsection.4.1}{Sezione di Acquisizione}{section.4}
-\BOOKMARK [2][-]{subsection.4.2}{Logica di Gioco}{section.4}
-\BOOKMARK [2][-]{subsection.4.3}{Stack di Gioco}{section.4}
-\BOOKMARK [2][-]{subsection.4.4}{L'interfaccia Grafica}{section.4}
-\BOOKMARK [2][-]{subsection.4.5}{La macchina per il Riconoscimento}{section.4}
-\BOOKMARK [1][-]{section.5}{Riconoscimento}{}
-\BOOKMARK [2][-]{subsection.5.1}{``The Recognition Engine''}{section.5}
-\BOOKMARK [2][-]{subsection.5.2}{I moduli}{section.5}
-\BOOKMARK [2][-]{subsection.5.3}{Le strategie}{section.5}
-\BOOKMARK [1][-]{section.6}{Alcuni Test}{}
-\BOOKMARK [1][-]{section.7}{Osservazioni}{}
-\BOOKMARK [1][-]{section.8}{Coclusioni}{}
+\BOOKMARK [1][-]{section.4}{Introduzione alla Libreria OpenCV}{}
+\BOOKMARK [1][-]{section.5}{Descrizione del progetto}{}
+\BOOKMARK [2][-]{subsection.5.1}{Sezione di Acquisizione}{section.5}
+\BOOKMARK [2][-]{subsection.5.2}{Logica di Gioco}{section.5}
+\BOOKMARK [2][-]{subsection.5.3}{Stack di Gioco}{section.5}
+\BOOKMARK [2][-]{subsection.5.4}{L'interfaccia Grafica}{section.5}
+\BOOKMARK [2][-]{subsection.5.5}{La macchina per il Riconoscimento}{section.5}
+\BOOKMARK [1][-]{section.6}{Riconoscimento}{}
+\BOOKMARK [2][-]{subsection.6.1}{``The Recognition Engine''}{section.6}
+\BOOKMARK [2][-]{subsection.6.2}{I moduli}{section.6}
+\BOOKMARK [2][-]{subsection.6.3}{Le strategie}{section.6}
+\BOOKMARK [1][-]{section.7}{Alcuni Test}{}
+\BOOKMARK [1][-]{section.8}{Osservazioni}{}
+\BOOKMARK [1][-]{section.9}{Coclusioni}{}
