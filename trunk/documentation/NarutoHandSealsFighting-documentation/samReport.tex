@@ -41,7 +41,7 @@ a nuove sfide per il mondo informatico.\\
 Il campo di ricerca dell'\emph{``hand tracking''} vuole dare all'utilizzatore
 la possibilit\`{a} di un controllo, completo o parziale,
 attraverso i complicati movimenti o stimoli che la mano umana \`{e} in grado di fornire.
-L'acquisione di questi, sia essa agevolata dall'ausiglio di sensori particolari,
+L'acquisizione di questi, sia essa agevolata dall'ausiglio di sensori particolari,
 guanti o addirittura con la mano nuda, risulta essere la prima problematica da affrontare,
 comune a tutte le proposte fino ad ora osservate (\cite{handTrackHCI} \cite{handTrackNoMarkers}
  \cite{handNavigator} \cite{hugeSurvey} \cite{mitGlove}). 
@@ -140,7 +140,7 @@ proprio lavoro.
 Questa sezione contiene la descrizione della parte centrale del lavoro svolto.
 
   \subsection{Sezione di Acquisizione} 
-  Con il termine acquisione ho inteso la cattura di frames attraverso la webcam.
+  Con il termine acquisizione ho inteso la cattura di frames attraverso la webcam.
   Webcam pensata integrata nel portatile, anche se nulla esclude 
   l'utilizzo di un dispositivo diverso, purch\`{e} riconosciuto dal sistema, ed
   impostato come default.\\
@@ -188,7 +188,7 @@ Questa sezione contiene la descrizione della parte centrale del lavoro svolto.
   conformi all'interfaccia SDL.
     
   \subsection{L'interfaccia Grafica}
-  Ciascun elemento di gioco (\textit{GameElement}) ha la necessit\`{a} di mostrastri all'utente
+  Ciascun elemento di gioco (\textit{GameElement}) ha la necessit\`{a} di mostrarsi all'utente
   attraverso un'interfaccia grafica. La libreria Guichan \cite{guichan} mi \`{e}
   sembrato il compromesso migliore tra quelle che erano
   le potenzialit\`{a} utili a ricoprire le richieste grafiche, tutt'altro che esigenti,
@@ -304,11 +304,13 @@ per avere chiare le diverse parti di questa sezione.
   della macchina di riconoscimento.
   L'implementazione di questa dovr\`{a} prevedere dunque l'azione di processing, 
   per la quale il modulo stesso 
-  \`{e} pensato, sull'immagine in ingresso src, e la restituzione del risultato in dst.
-  Bisogna tener presente che \`{e} rilevante la posizione di ciascun modulo.
+  \`{e} pensato, sull'immagine in ingresso \texttt{src}, e la restituzione del risultato in
+  \texttt{dst}.
+  Bisogna tener presente che \`{e} rilevante l'ordine di ciascun modulo.
   %l'ordine di inserimento dei moduli. 
   Dal momento che l'unit\`{a} di dialogo tra questi sono le immagini, dunque matrici
-  di pixel, l'applicazione in ordine diverso di filtri o altre operazioni quali l'estrazione
+  di pixel, l'applicazione antecedente o successiva di diversi filtri o altre operazioni quali
+  l'estrazione
   dei contorni, pu\`{o} condurre a risultati estremamente diversi. Un esempio canonico
   riguarda il filtro di smoothing posto in genere sempre prima di un operatore Laplaciano.\\
   Una \textbf{strategia} invece definisce quali moduli inserire nel bacino della macchina,
@@ -335,7 +337,7 @@ per avere chiare le diverse parti di questa sezione.
   \`{e} rappresentato dai due quadri posti sul muro: essi spiccano senza alcuna
   difficolt\`{a} nell'analisi di rilevazione dei contorni, in particolare 
   se vi si aggiunge il fatto che tendono a riflettere buona parte dei
-  raggi di luce che li colpiscono (vedi angolo inferiore del quadro 
+  raggi di luce che li colpiscono (vedi angolo inferiore destro del quadro 
   a destra).\\
   La rimozione dello sfondo adottata sfrutta un principio di facile intuizione: 
   prevede cio\`{e} l'acquisizione di alcuni frame,
@@ -421,7 +423,7 @@ per avere chiare le diverse parti di questa sezione.
   quanti sono i moduli inseriti. L'output \`{e} dato dalla somma tra tutti i risultati
   parziali;
   \item \textit{SChainBGRemoval}: approccio identico al SimpleChain ma con la rimozione 
-  del dello sfondo attraverso il metodo visto nel paragrafo \ref{bgremoval}:
+  dello sfondo attraverso il metodo visto nel paragrafo \ref{bgremoval}:
   l'acquisizione avviene prima dell'applicazione del primo modulo, mentre la rimozione
   solo al termine dell'ultimo.
  \end{itemize}
@@ -528,7 +530,7 @@ catturata
    nemmeno dedurre dalle culture orientali, essendo questa un'idea dell'autore.
   \end{enumerate}
 
-\section{Coclusioni e Sviluppi futuri}
+\section{Coclusione e Sviluppi futuri}
   %skin detection
   Il qui presente lavoro non ha certo la pretesa di aprire la strada verso nuovi 
   spunti di progettazione nel campo dell'augmented reality,
@@ -539,7 +541,7 @@ catturata
   applicazioni semplici che, se dotate dei giusti supporti
   scientifici e tecnologici, possono coinvolgere attraverso nuovi metodi
   gli utilizzatori dei calcolatori.\\
-  Da qui avere poi a disposizione un prototipo funzione dell'applicazione
+  Da qui avere poi a disposizione un prototipo funzionante dell'applicazione
   sul quale eseguire test e poter approfondire l'argomento.\\
   
   Tra gli sviluppi futuri si potrebbero pensare nuove 
