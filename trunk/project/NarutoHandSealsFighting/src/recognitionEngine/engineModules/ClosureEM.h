@@ -4,6 +4,12 @@
  * ClosureEM.h
  ******************************************************
  * DESCRIPTION:
+ * Recognition Engine Module
+ * The call of the compute function will applies the
+ * closure of the input image.
+ * You can specify the number of iteration by inputing it
+ * in the contructor of the class or by calling the
+ * related function in a second moment.
  *
  ******************************************************
  *	Created on: Dec 24, 2010
@@ -25,6 +31,10 @@ public:
 	ClosureEM(int iterations);
 	virtual ~ClosureEM();
 	int compute( const IplImage* src, IplImage* dst);
+
+	void setNumerOfIterations(int ite){
+		iterations = ite;
+	}
 };
 
 #endif /* CLOSUREEM_H_ */
