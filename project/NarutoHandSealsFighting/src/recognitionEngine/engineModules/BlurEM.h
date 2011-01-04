@@ -1,8 +1,22 @@
 /*
+ ******************************************************
+ * NAME:
  * BlurEM.h
+ ******************************************************
+ * DESCRIPTION:
+ * Recognition Engine Module
+ * that applies a blur filter.
+ * The default settings are a GAUSSIAN with a 3x3 kernel
+ * smoothing filter. You can change these settings
+ * by providing them by the constructor or use the
+ * different methods in a second moment.
  *
- *  Created on: Nov 15, 2010
- *      Author: michele
+ ******************************************************
+ *	Created on: Nov 15, 2010
+ ******************************************************
+ *  Author: Michele Tamburini
+ *******************************************************
+ *
  */
 
 #ifndef BLUREM_H_

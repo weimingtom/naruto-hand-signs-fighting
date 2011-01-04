@@ -1,10 +1,22 @@
 /*
+ ******************************************************
+ * NAME:
  * SobelEM.h
+ ******************************************************
+ * DESCRIPTION:
+ * Recognition Engine Module
+ * This is the implementation of the Sobel filter.
+ * You can specify the size of the kernel
+ * and the grade of derivation in the Sobel function by
+ * setting sobelDX, sobelDY.
  *
- *  Created on: Nov 13, 2010
- *      Author: michele
+ ******************************************************
+ *	Created on: Nov 13, 2010
+ ******************************************************
+ *  Author: Michele Tamburini
+ *******************************************************
+ *
  */
-
 #ifndef SOBELEM_H_
 #define SOBELEM_H_
 

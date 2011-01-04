@@ -18,7 +18,14 @@
 #include "../../DebugPrint.h"
 #include "../RecognitionEngineDefaults.h"
 
-#define SHOW_BG_REMOVAL 0
+//////////////////////////////
+//////////////////////////////
+/*in order to show the background and foreground in two
+ * windows put the SHOW_BG_REMOVAL to 1
+ * or to 0 to hide them.
+*/
+#define SHOW_BG_REMOVAL 0  //<- switch from 0 to 1
+//////////////////////////////
 
 using namespace std;
 

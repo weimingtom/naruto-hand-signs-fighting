@@ -4,6 +4,22 @@
  * BackgroundRemovalEM.h
  ******************************************************
  * DESCRIPTION:
+ * Recognition Engine Module
+ * Using the compute function it removes the background
+ * from the input image and filter it by the created mask
+ * keep only the fore ground areas.
+ * It's up to you to call the background capturing
+ * function, then you can use the compute one or
+ * directly the backgroundRemoval function.
+ *
+ * Modifying the cxx file you can show in two windows
+ * the results of the
+ * background and foreground (please look the file
+ * BackgroundRemovalEM.cxx).
+ *
+ * You can visit the site:
+ * http://blog.damiles.com/?p=127
+ * for the theoretical base and the source of the idea
  *
  ******************************************************
  *	Created on: Dec 29, 2010

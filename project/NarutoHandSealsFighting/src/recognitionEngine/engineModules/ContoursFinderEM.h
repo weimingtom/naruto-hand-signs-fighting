@@ -1,10 +1,30 @@
 /*
+ ******************************************************
+ * NAME:
  * ContoursFinderEM.h
+ ******************************************************
+ * DESCRIPTION:
+ * Recognition Engine Module
+ * It uses the cvFindContour function by collecting the
+ * contours of the input image.
+ * The contours are then painted on the image given in
+ * output.
+ * You can set the threshold at which value the cotour
+ * finder should operates, the lineThickness and also
+ * the retrieval mode of the contours and the
+ * contour algorithm.
+ * So the compute function will execute:
+ *   cvThreshold(..., g_thresh,...);
+ *   cvFindContours(..., contourRetrievalMode,
+ *   					 contourMethod);
  *
- *  Created on: Nov 15, 2010
- *      Author: michele
+ ******************************************************
+ *	Created on: Nov 15, 2010
+ ******************************************************
+ *  Author: Michele Tamburini
+ *******************************************************
+ *
  */
-
 #ifndef CONTOURSFINDEREM_H_
 #define CONTOURSFINDEREM_H_
 
