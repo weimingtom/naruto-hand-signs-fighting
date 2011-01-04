@@ -4,6 +4,15 @@
  * SChainBGRemoval.h
  ******************************************************
  * DESCRIPTION:
+ * Like the SimpleChain processing function but it
+ * removes the background from the input image.
+ * The background is captured before the application
+ * of the first module and subtracted only after the end
+ * of the last.
+ *
+ * !!!Warning!!!
+ * It's up to you to determine the best instant i which
+ * call the background capture!
  *
  ******************************************************
  *	Created on: Jan 1, 2011

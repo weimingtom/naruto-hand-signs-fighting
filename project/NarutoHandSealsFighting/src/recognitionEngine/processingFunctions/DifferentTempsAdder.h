@@ -4,6 +4,11 @@
  * DifferentTempsAdder.h
  ******************************************************
  * DESCRIPTION:
+ * It generates a different temporal image for every module
+ * inserted, then all the partial results are
+ * added in order to produce the final output.
+ * This processing function is optimized, so it isn't
+ * memory consuming.
  *
  ******************************************************
  *	Created on: Dec 27, 2010

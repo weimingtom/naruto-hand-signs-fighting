@@ -4,6 +4,10 @@
  * MulEvaluator.h
  ******************************************************
  * DESCRIPTION:
+ * It uses the template image as a mask by multiplying
+ * each pixel of the input image by the template.
+ * Only the very identical pixel (set to 1) are
+ * kept by this comparison.
  *
  ******************************************************
  *	Created on: Nov 23, 2010
