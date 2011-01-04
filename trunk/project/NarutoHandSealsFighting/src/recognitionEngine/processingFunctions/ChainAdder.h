@@ -4,6 +4,10 @@
  * ChainAdder.h
  ******************************************************
  * DESCRIPTION:
+ * It structures the modules as a chain.
+ * The pixels resulting from the process will be
+ * added to the incoming image, and then this is
+ * the output for the next module.
  *
  ******************************************************
  *	Created on: Dec 27, 2010

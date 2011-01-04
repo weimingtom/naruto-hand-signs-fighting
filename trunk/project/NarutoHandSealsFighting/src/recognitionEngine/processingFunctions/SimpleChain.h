@@ -4,6 +4,9 @@
  * SimpleChain.h
  ******************************************************
  * DESCRIPTION:
+ * It structures the modules as a chain.
+ * Then the output of a module will become the input
+ * of the next one.
  *
  ******************************************************
  *	Created on: Dec 30, 2010

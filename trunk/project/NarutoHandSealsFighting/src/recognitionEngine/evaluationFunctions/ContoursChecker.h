@@ -4,6 +4,15 @@
  * ContoursChecker.h
  ******************************************************
  * DESCRIPTION:
+ * It extracts the contour of the input image and the
+ * template image by using cvFindContours.
+ * Then it applies a match with the function:
+ * cvMatchShapes
+ * with the CV_CONTOURS_MATCH_I3 algorithm.
+ *
+ * You can visualize the result by setting the
+ * SHOW_WINDOWS define in the file
+ * ContoursChecker.cxx
  *
  ******************************************************
  *	Created on: Dec 27, 2010

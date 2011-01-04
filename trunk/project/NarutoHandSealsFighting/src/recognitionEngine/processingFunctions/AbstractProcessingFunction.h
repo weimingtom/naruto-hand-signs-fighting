@@ -4,6 +4,16 @@
  * AbstractProcessingFunction.h
  ******************************************************
  * DESCRIPTION:
+ * A processing function defines in what way the modules
+ * are combined in order to produce a good result
+ * (eg if the output of
+ * a module have to interact with the next one).
+ *
+ * All classes that are supposed to be a
+ * ProcessingFunction need to implement the function:
+ *
+ * int processFunction(std::vector<EngineModule*> *modArray,
+			const IplImage* src, IplImage* res)
  *
  ******************************************************
  *	Created on: Dec 27, 2010

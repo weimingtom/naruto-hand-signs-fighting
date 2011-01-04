@@ -4,6 +4,8 @@
  * ImageProcessing.h
  ******************************************************
  * DESCRIPTION:
+ * It groups the most common used and basic image
+ * processing functions
  *
  ******************************************************
  *	Created on: Nov 24, 2010
