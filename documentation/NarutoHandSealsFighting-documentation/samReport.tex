@@ -5,12 +5,13 @@
 \usepackage{graphicx}
 \usepackage[italian]{babel}
 \usepackage{hyperref}
+% \hypersetup{raiselinks=false}
 % \usepackage{mathtools}
 \usepackage{amssymb,amsmath}
 
 \title{Relazione al progetto: \\ Naruto Hand Seals Fighting\\ del corso di\\Sistemi e Applicazioni
 Multimediali}
-\author{Michele Tamburini \\ mtamburi@cs.unibo.it}
+\author{Michele Tamburini \\ miketambu@gmail.com}
 \makeindex
 
 \begin{document}
@@ -29,21 +30,21 @@ riconoscimento per verificarne l'accuratezza.
 L'implementazione del presente prevede il 
 motore di riconoscimento e una semplice sezione di addestramento
 per l'utente, che lo coinvolga nell'apprendimento di alcune mosse.\\
-Vengono utilizzate librerie \emph{OpenCV} per l'analisi delle immagini, 
+Vengono utilizzati: le librerie \emph{OpenCV} per l'analisi delle immagini, e
 \emph{Guichan} per l'interfaccia grafica, \emph{SDL} ed il linguaggio C++.
 
 \section{Stato dell'arte}
 La ricerca di tecniche che favoriscano metodologie di utilizzo dei calcolatori
-attraverso forme di interazione sempre pi\'{u} innovative, quali ad esempio
-l'uso del proprio corpo, ha aperto la strada gi\'{a} da qualche tempo
+attraverso forme di interazione sempre pi\`{u} innovative, quali ad esempio
+l'uso del proprio corpo, ha aperto la strada gi\`{a} da qualche tempo
 a nuove sfide per il mondo informatico.\\
 Il campo di ricerca dell'\emph{``hand tracking''} vuole dare all'utilizzatore
-del calcolatore la possibilit\'{a} di un controllo, completo o parziale, di questo,
-attraverso i complicati movimenti o stimoli che la mano umana \'{e} in grado di fornire.
+la possibilit\`{a} di un controllo, completo o parziale,
+attraverso i complicati movimenti o stimoli che la mano umana \`{e} in grado di fornire.
 L'acquisione di questi, sia essa agevolata dall'ausiglio di sensori particolari,
 guanti o addirittura con la mano nuda, risulta essere la prima problematica da affrontare,
 comune a tutte le proposte fino ad ora osservate (\cite{handTrackHCI} \cite{handTrackNoMarkers}
- \cite{handNavigator} \cite{hugeSurvey} \cite{mitGlove}. 
+ \cite{handNavigator} \cite{hugeSurvey} \cite{mitGlove}). 
  Gli spunti proposti nella bibliografia, lontano
 dall'essere esaustiva sull'argomento, vogliono semplicemente offrire una panoramica ad ampio
 spettro di alcune soluzioni a tale problema.
@@ -52,28 +53,28 @@ spettro di alcune soluzioni a tale problema.
   \subsection{Ambientazione}
   L'ormai celeberrimo anime ``Naruto'' ha portato anche in Italia una storia di fanstasia
   dalle forti connotazioni orientali. Tra gli ingredienti maggiormente apprezzati dal
-  grande pubblico risiede il fatto che i personaggi utilizzano movimenti 
-  delle mani estremamente complicati per lanciare mosse di arti marziali speciali.
+  grande pubblico risiede il fatto che i personaggi utilizzino movimenti 
+  delle mani estremamente complicati per eseguire speciali mosse di arti marziali.
   Ognuna di queste \`{e} composta da un numero variabile di ``sigilli'' (posizioni degli arti
   superiori) che corrispondo ai 12 segni zodiacali cinesi.\\
   Nel seguente progetto ho inserito tutti e soli tali gesti, ovvero non si tengono in considerazione
   movimenti diversi (come il battito delle mani) che pur compaiono nell'anime.
   Lo scopo del giocatore sar\`{a} quello di riprodurre
-  alcune posisioni che vedr\`{a} raffigurate sottoforma di immagini. Ciascuna
-  di queste \`{e} denominata segno, o sigillo (signs, seals). Una mossa (Move) \`{e} dunque
+  alcune posizioni che vedr\`{a} raffigurate sottoforma di immagini. Ciascuna
+  di queste \`{e} denominata segno, o sigillo (signs, seals). Una mossa (\textit{Move}) \`{e} dunque
   costituita da un numero variabile di segni presi tra i 12 sopra descritti.
   
   \subsection{Il nostro problema nel dettaglio}
-  In questo lavoro non ho certo la pretesa di affrontare un tema cos\'{i} imponente come 
-  quello dell'hand tracking. Il problema si riduce infatti ad una analisi di immagini
+  In questo lavoro non ho certo la pretesa di affrontare un tema cos\`{i} imponente come 
+  quello dell'hand tracking. Il problema si riduce infatti ad una analisi dell'immagine
   seppur non priva di compromessi e difficolt\`{a}. A differenza di alcuni lavori
   di spicco che usano un database e oggetti esterni
   per l'inferenza della reale posizione della mano \cite{mitGlove}, in questo caso non
   \`{e} necessario avere una precisa cognizione del punto di partenza e di 
   fine dell'arto.
   Il giocatore \`{e} libero di eseguire qualunque movimento e, una volta pronto,
-  aziona l'acquisione del gesto, che si traduce per il calcolatore con: l'acquisizione 
-  di alcuni frame di immagine, trasformazione di questi con tecniche di processazione
+  aziona la ``cattura del gesto'', che si traduce per il calcolatore in: acquisizione 
+  di alcuni frame attraverso la webcam, trasformazione di questi con tecniche di processazione
   dell'immagine e confronto con un template precedentemente preparato.\\
   Un punto che abbatte notevolmente la dimensione del problema, ed evita quindi l'uso 
   di un database, si basa proprio su una carattestica derivata dall'ambientazione:
@@ -85,9 +86,8 @@ spettro di alcune soluzioni a tale problema.
   L'ingrediente della \emph{Augmented Reality} emerge nel
   momento in cui l'utente abbandona la tastiera per interagire con le proprie mani 
   attraverso la webcam ed eseguire dal vivo i gesti necessari per la mossa selezionata.\\
-  Per ciascuno gli verr\`{a} notificato il livello di accuratezza 
-  calcolato in una scala da 0 a 100.
-  Al termine dell'ultimo viene poi restituito il voto medio.
+  Per ciascuno di questi gli verr\`{a} notificato il livello di accuratezza, 
+  calcolato in una scala da 0 a 100, ed al termine della mossa comunicato il voto medio.
   
 %  \subsection{Goal Oriented Design}
 %  In questa sezione introduco in maniera assolutamente superficiale ed approssimata 
@@ -102,7 +102,7 @@ spettro di alcune soluzioni a tale problema.
 
 \section{Introduzione alla Libreria OpenCV}
 OpenCV \`{e} una libreria per l'analisi delle immagini estremamente versatile e completa.
-Nonostante la mia completa ignoranza a riguardo, mi sono convito a sfruttarla fin 
+Nonostante la mia completa mancanza a riguardo, mi sono convito a sfruttarla fin 
 dalle fasi di studio di fattibilit\`{a} del progetto, 
 spinto sia dal suggerimento avuto dalle lezioni del corso di 
 Sistemi e Applicazioni Multimediali \cite{slide} che dall'innumerevole ammontare di 
@@ -123,11 +123,11 @@ Altro pregio della libreria \`{e} la facilit\`{a} della visualizzazione del risu
 grafico a schermo (attraverso le funzioni cvNamedWindow(), cvShowImage()) che
 consentono una veloce analisi del risultato delle operazione all'interno di
 ogni singola parte del progetto.\\
-Bisogna osservare tuttavia che, sebbene i primi capitoli del manuale ``Learning
-OpenCV'' \cite{opencvOReally},
-collocato probabilmente tra i pi\`{u} consigliati nella rete, siano davvero utili 
-per approcciarsi alla libreria, lo stesso non si possa dire delle sezioni pi\`{u}
-specifiche, che non sostituiscono un libro di testo per l'analisi delle immagini.
+% Bisogna osservare tuttavia che, sebbene i primi capitoli del manuale ``Learning
+% OpenCV'' \cite{opencvOReally},
+% collocato probabilmente tra i pi\`{u} consigliati nella rete, siano davvero utili 
+% per approcciarsi alla libreria, lo stesso non si possa dire delle sezioni pi\`{u}
+% specifiche, che non sostituiscono un libro di testo per l'analisi delle immagini.
 Durante tutto il periodo di sviluppo risulta per\`{o} necessario armarsi del 
 manuale ufficiale \cite{opencvReference}, disponibile anche online.\\
 Un secondo punto a favore di tale libreria \`{e} la reperibilit\`{a} di numerosi 
@@ -141,14 +141,14 @@ Questa sezione contiene la descrizione della parte centrale del lavoro svolto.
 
   \subsection{Sezione di Acquisizione} 
   Con il termine acquisione ho inteso la cattura di frames attraverso la webcam.
-  Webcam pensata integrata all'interno del pc portatile, anche se nulla esclude 
-  l'utilizzo di un dispositivo diverso, purch\`{e} riconosciuto dal sistema, e
-  impostato per essere quello di default.\\
+  Webcam pensata integrata nel portatile, anche se nulla esclude 
+  l'utilizzo di un dispositivo diverso, purch\`{e} riconosciuto dal sistema, ed
+  impostato come default.\\
   L'oggetto Camera si compone semplicemente di una
   classe in grado di inizializzare una struttura di tipo Capture (della libreria OpenCV),
   e sfruttarla per reperire un immagine di tipo IplImage*. Su questa avranno quindi
   luogo la fase di processazione e valutazione della macchina di riconoscimento
-  (vedi di seguito).	
+  (vedi di seguito sezione \ref{recogntionEngineSection}).
   
   \subsection{Logica di Gioco}
   Per consentire lo sviluppo di un'applicazione che mostri i connotati per una stesura 
@@ -175,7 +175,7 @@ Questa sezione contiene la descrizione della parte centrale del lavoro svolto.
   Non \`{e} difficile osservare come questa sezione, 
   cos\`{i} come pure l'interfaccia grafica, non sono state l'oggetto di cure maniacali.
   In particolare ho voluto create strutture architetturalmente valide che dessero il
-  massimo riuso di codice, ma allo stesso tempo sufficientemente versatili in termini
+  massimo riuso di codice, ma allo stesso tempo fossero sufficientemente versatili in termini
   di espandibilit\`{a}.\\
   Il risultato di tali ragionamenti \`{e} sintetizzato dal diagramma \ref{gameStackDiagram}.
   La macchina di gioco (\textit{GameMachine}) altro non \`{e} che un semplice contenitore di
@@ -183,7 +183,7 @@ Questa sezione contiene la descrizione della parte centrale del lavoro svolto.
   ciascuno dei quali deve provvedere la funzione che ricoprir\`{a} il ruolo di 
   ciclo principale. Infatti la GameMachine dispone tutti i moduli contenuti in una 
   struttura a stack ed eseguir\`{a} sempre la funzione di quello in cima.\\
-  A ciascuno di questi, sia esso un menu, o un modulo differente, viene 
+  A ciascuno di questi, viene 
   affidato un controller, che deve essere in grado di gestire eventi 
   conformi all'interfaccia SDL.
     
@@ -192,8 +192,8 @@ Questa sezione contiene la descrizione della parte centrale del lavoro svolto.
   attraverso un'interfaccia grafica. La libreria Guichan \cite{guichan} mi \`{e}
   sembrato il compromesso migliore tra quelle che erano
   le potenzialit\`{a} utili a ricoprire le richieste grafiche, tutt'altro che esigenti,
-  e compatibilit\`{a} con le librerie nativamente previste per il progetto.
-  Questa si trova perfettamente compatibilie con SDL. Il punto di contatto tra 
+  e la compatibilit\`{a} con le librerie nativamente previste per il progetto.
+  Questa si trova perfettamente in accordo con SDL. Il punto di contatto tra 
   OpenCV, per l'acquisizione delle immagini dalla webcam, e l'integrazione con 
   la sezione grafica \`{e} reso possibile grazie alla convesione dall'immagine 
   IplImage di OpenCV alla superficie SDL (SDL\_Surface) e quindi alla visualizzazione
@@ -201,10 +201,10 @@ Questa sezione contiene la descrizione della parte centrale del lavoro svolto.
   quanto mostrato dal punto 2 di figura \ref{screenshot}.
   
   \begin{figure}
-  %\centering
-    \includegraphics[scale=0.25]{screenShot}
+    %\centering
     \caption{Screenshot dell'applicazione durante una esecuzione}
-  \label{screenshot}       
+    \label{screenshot}       
+    \includegraphics[scale=0.25]{screenShot}
   \end{figure}
   
   Di seguito elenco le sezioni della finestra, mostrata in \ref{screenshot},
@@ -213,34 +213,36 @@ Questa sezione contiene la descrizione della parte centrale del lavoro svolto.
    \item descrizione della mossa: oltre al nome vengono visualizzate anche il tipo,
 	 il grado di difficolt\`{a} (non di esecuzione) ed il nome reale giapponese;
    \item schermo che mostra l'immagine acquisita istantaneamente attraverso la webcam;
-   \item sono la traccia della corretta posizione delle mani e delle dita: pi\`{u} il
+   \item linee che rappresentano la traccia della corretta posizione delle mani e delle dita:
+	 pi\`{u} il
 	 giocatore riuscir\`{a} ad esservi fedele e migliore sar\`{a} il punteggio ottenuto;
    \item timer: appena premuto il pulsante ``Shot!'' (o usata la relativa abbreviazione),
 	 viene attivato un cronometro di 3 secondi per dare modo al giocatore di 
 	 riposizionarsi correttamente;
    \item mostra la posizione delle mani per eseguire il sigillo attuale;
    \item contiene la lista dei punteggi ottenuti per ciacun sigillo fino al momento attuale;
-   \item \`{e} il pulsante che attiva il cronometro e quindi la fase di acquisizione;
-   \item mostra in tempo reale il punteggio che si otterrebbe nel caso scattasse l'acquisione;
-   \item pulsante che retrocede al menu della lista delle mosse per la selezione di una nuova;
+   \item ``Shot!'': \`{e} il pulsante che attiva il cronometro e quindi la fase di acquisizione;
+   \item mostra in tempo reale il punteggio che si otterrebbe nel caso scattasse l'acquisizione;
+   \item ``Back'': pulsante che retrocede al menu della lista delle mosse per la selezione di una
+	 nuova;
    \item sigilli necessari al compimento della mossa attuale.
   \end{enumerate}
 
 \begin{figure*}[tp]
-  \centering
-    \includegraphics[scale=0.45]{UmlDiagrams/gameLogic.pdf}
+    \centering    
     \caption{Uml diagram of the GameLogic section.}
-  \label{gameLogicDiagram}       
+    \label{gameLogicDiagram}       
+    \includegraphics[scale=0.45]{UmlDiagrams/gameLogic.pdf}
   \end{figure*}
   
   \begin{figure*}[bp]
-  \centering
-    \includegraphics[scale=0.4]{UmlDiagrams/gameStack.pdf}
+    \centering    
     \caption{Uml diagram of the GameStack section.}
-  \label{gameStackDiagram}       
+    \label{gameStackDiagram}       
+    \includegraphics[scale=0.4]{UmlDiagrams/gameStack.pdf}
   \end{figure*}
 
-\section{Riconoscimento}
+\section{Riconoscimento}\label{recogntionEngineSection}
 Il cuore del progetto \`{e} costituito dalla macchina di riconoscimento del gesto effettuato.
 Come gi\`{a} accennato la qui presente soluzione applica combinazioni di 
 semplici tecniche di analisi delle immagini.\\
@@ -249,15 +251,15 @@ fin dalla primordiale idea, ho voluto mantenere un approccio il pi\`{u} possibil
 e versatile ai cambiamenti, in modo da poter poi provare agevolmente diverse metodologie
 di elaborazione. La macchina corrisponde ad un contenitore di moduli, ciascuno 
 dei quali esegue una ben precisa operazione sull'immagine.\\
-Il settaggio completo completo di questa prevede: la scelta dei moduli
+Il settaggio completo di questa prevede: la scelta dei moduli
 da inserirvi ovvero la strategia, una funzione per il processing ed una per la 
 valutazione.
-Una volta applicato questo, se si volesse scendere
+Una volta applicato, se si volesse scendere
 %Tutto il procedimento, dall'avvio fino alla valutazione, si pu\`{o} suddividere in
 %3 frasi: caricamento dei moduli, processazione (\textit{Processing Phase}), valutazione
 %(\textit{Evaluation Phase}).\\
 nel dettaglio di ogni singolo passo per 
-ogni frame il si osserverebbe un procedimento che consiste nel:
+ogni frame si osserverebbe un procedimento che consiste nel:
 \begin{itemize}
  \item acquisire il frame attraverso la webcam, 
  \item richiamare la funzione di \textbf{processing} della macchina di riconoscimento,
@@ -271,18 +273,18 @@ corrispondo alle immagini dei sigilli prive di sfondo o
 forme di rumore, processate attraverso una particolare strategia e sfruttate
 quindi dalla funzione di valutazione. Nella sezione \textit{Template Creation} 
 si trova infatti l'occorrente a questo scopo: lanciando lo
-script che vi si trova vengono convertite le immagini orginali ``grezze'' 
+script che vi si trova vengono convertite le immagini orginali da ``grezze'' 
 in template e poste nella directory di destinazione dalla quale si lancer\`{a}
 l'eseguibile. \\
 \`{E} bene tenere a fianco il diagramma di figura \ref{recognitionEngineDiagram} 
 per avere chiare le diverse parti di questa sezione.
  
-  \begin{figure*}[tp]
+  \begin{figure*}[p]
      \centering
-    %\includegraphics[angle=90, scale=0.328]{UmlDiagrams/recognitionEngine.pdf}
-    \includegraphics[angle=90, scale=0.5]{UmlDiagrams/recognitionEngine.pdf}
+    %\includegraphics[angle=90, scale=0.328]{UmlDiagrams/recognitionEngine.pdf}    
     \caption{Uml diagram of the Recognition Engine Section.}
     \label{recognitionEngineDiagram}
+    \includegraphics[angle=90, scale=0.5]{UmlDiagrams/recognitionEngine.pdf}
   \end{figure*}
 
   \subsection{Moduli e Strategie}
@@ -309,11 +311,14 @@ per avere chiare le diverse parti di questa sezione.
   di pixel, l'applicazione in ordine diverso di filtri o altre operazioni quali l'estrazione
   dei contorni, pu\`{o} condurre a risultati estremamente diversi. Un esempio canonico
   riguarda il filtro di smoothing posto in genere sempre prima di un operatore Laplaciano.\\
-  Un \textbf{strategia} invece definisce quali moduli inserire nel bacino della macchina,
+  Una \textbf{strategia} invece definisce quali moduli inserire nel bacino della macchina,
   in che ordine, e con quali carattestiche. Ciascuna classe appartenente alla gerarchia
-  che si estende dalla classe \textit{AbstractStrategy}, adempie a questo compito. 
+  che si estende da \textit{AbstractStrategy} adempie a questo compito. Tramite la 
+  \textit{DefaultStrategy} si sono create tutte le immagini di template.
+  Le restanti sono il frutto di numerose prove con variazione delle condizioni 
+  della scena: luci, posizione seduta o in piedi.  
   
-  \subsection{Rimozione dello sfondo}
+  \subsection{Rimozione dello sfondo}\label{bgremoval}
   Un modulo di estrema importanza \`{e} quello della rimozione dello sfondo.
   La capacit\`{a} di individuazione delle forme viene fortemente condizionata
   dalla situazione luminosa della stanza e dalla complessit\`{a} 
@@ -326,7 +331,7 @@ per avere chiare le diverse parti di questa sezione.
   cause di rumore. Nel lampadario posto alle spalle del giocatore sono poste
   due lampadine a basso consumo a luce bianca: esso rappresenta un ottimo esempio
   di disturbo dell'acquisizione se testato di sera e con luci accese.
-  Un ulteoriore esempio, che porta facilmente a falsi positivi,
+  Un ulteriore esempio, che porta facilmente a falsi positivi,
   \`{e} rappresentato dai due quadri posti sul muro: essi spiccano senza alcuna
   difficolt\`{a} nell'analisi di rilevazione dei contorni, in particolare 
   se vi si aggiunge il fatto che tendono a riflettere buona parte dei
@@ -386,27 +391,174 @@ per avere chiare le diverse parti di questa sezione.
   \sigma(x,y)^2 = \dfrac{Sq(x,y)}{N} - M(x,y)^2 
   \end{equation}
   E $\lambda$ \`{e} una costante che pu\`{o} essere settata a 3,
-  in accordo con quanto ricavato da \cite{backgroundRemovalDamiles}.
+  in accordo con quanto ricavato da \cite{backgroundRemovalDamiles}, \cite{opencvOReally}.\\
+  L'algoritmo presentato risulta essere estremamente fedele
+  alle nozioni teoriche, con l'aggiunta di un certo livello 
+  di dinamicit\`{a}. Lo sfondo viene ricalcolato 
+  ogniqualvolta la media dell'immagine in primo piano 
+  supera il valore di 245 (dove 255 \`{e} il valore massimo,
+  ovvero un'immagine interamente bianca). In questo caso
+  lo sfondo precedentemente ricavato non \`{e} pi\`{u}
+  adeguato alla situazione in quanto quasi tutti i pixel vengono considerati 
+  ``freschi'', quindi in primo piano.
  
  
  \subsection{Processazione e valutazione}
+ Sebbene gi\`{a} menzionate, rimangono ora da discutere le fasi di processazione e valutazione.
+ La figura \ref{reScheme} mostra uno semplice schema che riassume questi passi.\\
+ Una volta inseriti i moduli nella macchina \`{e} possibile avviare la funzione di 
+ \textbf{process}: essa ha lo scopo di applicare ad uno ad uno i moduli secondo un algoritmo 
+ che deve essere scelto a priori (vedi classi che ereditano da
+  \textit{AbstractProcessingFunction}). 
+  In questa versione sono presentati i seguenti:
+ \begin{itemize}
+  \item \textit{SimpleChain}: si pu\`{o} pensare come ad una catena, dove l'output 
+  di un modulo \`{e} l'input del successivo;
+  \item \textit{ChainAdder}: similmente al precedente algoritmo i moduli vengono gestiti
+  serialmente ma in questo caso il risultato dell'elaborazione viene aggiunto all'immagine
+  di partenza (addizione pixel per pixel);
+  \item \textit{DifferentTempsAdder}: questo algoritmo genera tante immagini temporanee 
+  quanti sono i moduli inseriti. L'output \`{e} dato dalla somma tra tutti i risultati
+  parziali;
+  \item \textit{SChainBGRemoval}: approccio identico al SimpleChain ma con la rimozione 
+  del dello sfondo attraverso il metodo visto nel paragrafo \ref{bgremoval}:
+  l'acquisizione avviene prima dell'applicazione del primo modulo, mentre la rimozione
+  solo al termine dell'ultimo.
+ \end{itemize}
+
   \begin{figure}[t]
-    \centering
-    \includegraphics[scale=0.3]{recognitionEngineScheme.pdf}
+    \centering    
     \caption{Schema del procedimento di processazione e valutazione dell'immagine in input}
     \label{reScheme}
+    \includegraphics[scale=0.20]{recognitionEngineScheme}
   \end{figure}
   
+  Il compito della fase di \textbf{valutazione} \`{e} quello invece di confrontare l'immagine
+  risultante dalla fase di processing con il template del relativo sigillo precedentemente
+  preparato. Attualmente sono implementati due diversi metodi: il moltiplicatore
+  (\textit{MulEvaluator}) ed il confrontatore dei contorni (\textit{ContourChecker}).
+  Il primo sfrutta il template esattamente come una maschera: la moltiplicazione 
+  pixel per pixer lascia inalterate solo le zone conformi a questa ed annulla 
+  tutte le altre (il template assume il valore 0 in ogni parte che non sia
+  la mano o il braccio).\\
+  Nel secondo caso invece \`{e} stata necessaria un'elaborazione alquanto 
+  pi\`{u} strutturata. Vengono estratti i contorni di entrambe le immagini
+  di template e del risultato della fase precedente. 
+  Sfruttando quindi la primitiva di OpenCV cvMatchShapes() \`{e} 
+  possibile ottenere una stima sul livello di similitudine delle strutture
+  dati estratte, che quindi ci porta alla valutazione del gesto acquisito.
+  
+  
   \subsubsection{L'algoritmo scelto}
-
+  Dopo diverse prove \`{e} stato necessario scendere ad un compromesso tra robustezza
+  del metodo al rumore e precisione. Ci\`{o} che in questo documento viene identificato
+  come rumore non ha nulla a che vedere con quelli noti in letteratura (come Gaussiano,
+  sale e pepe...). Questo viene creato dalle variazioni di intensit\`{a} di luce e dalla 
+  complessit\`{a} della scena di fondo. Dunque veri e 
+  propri oggetti vengono catalogati come parte del rumore perch\`{e}
+  presenti sullo sfondo e non utili ai fini della valutazione.
+  Un algoritmo robusto risente solo in minima parte dell'influenza 
+  di tali variabili. 
+  Al contrario uno preciso \`{e} in grado di individuare
+  abbastanza fedelmente l'accuratezza del gesto, arrivando persino a considerare le sole
+  aree valide di una posizione parzialmente corretta.\\
+  L'algoritmo giudicato migliore al momento risulta essere piuttosto fedele per quanto
+  riguarda la rilevazione,
+  e prevede una strategia
+  piuttosto semplice contenente i moduli:
+  \begin{enumerate}
+   \item filtro di smooth gaussiano con kernel 3x3;
+   \item filtro Laplaciano con kernel 7x7;
+   \item chiusura applicata per 15 iterazioni.
+  \end{enumerate}
+  Sfrutta SChainBGRemoval come funzione per il processing, ed applica il metodo
+  di confronto dei contorni per quanto riguarda la valutazione.
   
  
-\section{Alcuni Test}
+\section{Alcuni Test ed Osservazioni}
+Fino a questo momento l'applicazione non ha visto approfondite sessioni
+di testing se non da parte dello sviluppatore stesso.
+Tuttavia alcuni fattori m'inducono a pensare che, nonostante i 
+compromessi e le imperfezioni, la strada scelta vada nella direzione giusta.\\
+\`{E} stata infatti
+proposta ad un paio di ragazzi di 17 anni, reclutati senza alcuna 
+introduzione sull'argomento. 
+Come previsto sono stati 
+attratti dal progetto proprio grazie alla
+popolarit\`a dell'argomento cardine dell'ambientazione. 
+Il primo approccio li ha visti entusiasti non tanto delle meticolosit\`{a}
+dei dettagli delle mosse, che sono stati quasi ignorati, 
+ma proprio del valore aggiunto che la 
+virtual reality offre: spingere cio\`{e} ad immedesimarsi nel personaggio
+dell'anime interpretato.
+  
+  \subsection*{Osservazioni}
+  Sono gi\`{a} stati accennati alcuni punti deboli del progetto, ma ci tengo 
+  a sottolinearlo nuovamente: ``non \`{e} tutto oro ci\`{o} che luccica!''.
+  \begin{enumerate}
+   \item[\textbf{Contro}] \textsl{Condizioni luminose della scena}: una volta che \`{e} stato
+catturata
+   l'immagine di sfondo ogni modifica delle condizioni luminose della sala
+   introduce rumore che pu\`{o} contaminare la rilevazione delle mani.
+   \item[\textbf{Contro}] \textsl{Vestiario del giocatore}: parlando di rumore
+   bisogna poi ricordare che gli stessi vestiti possono introdurne. 
+   Per chiarezza basti pensare che un maglione in tinta unita scuro introduce
+   un livello di rumore pressoch\'{e} nullo, mentre uno dai colori estremamente variegati
+   contribuisce notevolmente all'entropia della sala. Sebbene le maniche
+   non creino particolari problemi, si ottengono risultati migliori se vengono 
+   arrotolate, dando modo al colore della pelle di emergere.
+   \item[\textbf{Pro}] \textsl{Nessun oggetto addizionale}: per non intaccare
+   il livello di giocabilit\`{a} non vengono usati sensori o oggetti particolari
+   (magari sarebbe stato pi\`{u} facile rilevare un paio di guanti
+   in stile ninja, per essere in accordo al contesto,
+   con placchette metalliche riflettenti...).
+   \item[\textbf{Oss}] \textsl{Perch\'{e} non acquisire un intero video?}
+   Osservazione rivoltomi gi\`{a} in alcuni casi alla quale provo di rispondere
+   sollevando alcuni punti. Tralasciando ora il fatto che si renderebbe il 
+   gioco estremamente difficile, bisogna pensare che un video avvicinerebbe
+   il problema verso l'handtracking
+   pi\`{u} di quanto non si pensi. Emergono poi le problematiche hardware: 
+   bisognerebbe preoccuparsi accuratamente del refresh della camera e 
+   della correzzione del rumore della scena ad ogni frame, pur mantenendo
+   il tutto ``real time''. Per ultimo il fatto che non esistano vere e proprie 
+   sequenze visive (o vignette nel manga)
+   che mostrino accuratamente i movimenti delle mani, almeno da 
+   ci\`{o} che \`{e} la mia attuale conoscenza,
+   i quali non si possono
+   nemmeno dedurre dalle culture orientali, essendo questa un'idea dell'autore.
+  \end{enumerate}
 
-\section{Osservazioni e sviluppi futuri}
-
-\section{Coclusioni}
-
+\section{Coclusioni e Sviluppi futuri}
+  %skin detection
+  Il qui presente lavoro non ha certo la pretesa di aprire la strada verso nuovi 
+  spunti di progettazione nel campo dell'augmented reality,
+  n\'{e} tantomeno di fornire anche solo una
+  risposta parziale all'handtracking.
+  Le motivazioni a monte sono mosse semplicemente dalla curiosit\`{a} di
+  esplorare alcune soluzioni offerte da
+  applicazioni semplici che, se dotate dei giusti supporti
+  scientifici e tecnologici, possono coinvolgere attraverso nuovi metodi
+  gli utilizzatori dei calcolatori.\\
+  Da qui avere poi a disposizione un prototipo funzione dell'applicazione
+  sul quale eseguire test e poter approfondire l'argomento.\\
+  
+  Tra gli sviluppi futuri si potrebbero pensare nuove 
+  tecniche per la valutazione ed il riconoscimento delle mani.
+  Ad esempio grazie a tecniche di ``skin detection'' in grado di
+  tracciarne il colore. Oppure, volendo rimanere sull'idea dei 
+  contorni, algoritmi pi\`{u} accurati. 
+  Si potrebbero inoltre inserire una gamma di difficolt\`{a} crescenti
+  a partire dalla pi\`{u} semplice che prevede il via da parte del giocatore
+  per ogni sigillo,
+  fino ad una dove il passaggio tra un gesto e l'altro \`{e} determinato 
+  solo da un cronometro.\\
+  Senza poi dimenticare l'interfaccia grafica che,
+  per soddisfare i giocatori pi\`{u} esigenti,
+  dovr\`{a} essere 
+  estremamente accattivante, animata e magari arricchita di qualche
+  spunto che faccia riferimento all'anime 
+  (ad esempio mostrare per ciascuna mossa l'immagine 
+  pi\`{u} ecclatante di un momento in cui compare nella storia).  
 
 \clearpage
 
