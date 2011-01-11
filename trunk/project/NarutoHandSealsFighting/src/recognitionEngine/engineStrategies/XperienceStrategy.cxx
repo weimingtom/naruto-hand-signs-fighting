@@ -34,6 +34,8 @@ void XperienceStrategy::initModules(){
 
 	meanImage = cvMean(img);
 
+//	if(meanImage < 50)
+//		rePool->addModule(new HistogramEM());
 //	rePool->addModule(new ContoursFinderEM(meanImage));
 	rePool->addModule(new BlurEM(CV_GAUSSIAN,3,3));
 	rePool->addModule(new LaplacianEM(7));

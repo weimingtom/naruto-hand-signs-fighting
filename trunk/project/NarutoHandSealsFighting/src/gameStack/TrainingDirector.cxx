@@ -52,14 +52,22 @@ void TrainingDirector::handleShot(int seconds, int sealIndex){
 
 void TrainingDirector::elapsedTimer(){
 	int score, accumScore = 0;
+	int divisor = 0;
 
 	try{
 		for(int i=0; i<SHOOTING_FRAMES; i++){
 			score = processActualScore();
 //			if(score > accumScore)
+			if(score > 0){
 				accumScore += score;
+				divisor++;
+			}
 		}
-		accumScore = accumScore/SHOOTING_FRAMES;
+//		accumScore = accumScore/SHOOTING_FRAMES;
+		if(divisor!=0)
+			accumScore = accumScore/divisor;
+		else
+			accumScore = 0;
 		if(accumScore > 100)
 			accumScore = 100;
 		totalScore += accumScore;
