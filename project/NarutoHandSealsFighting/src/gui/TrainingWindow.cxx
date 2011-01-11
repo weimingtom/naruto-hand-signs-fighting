@@ -351,7 +351,7 @@ void ResizingListener::action(const gcn::ActionEvent & actionEvent){
 }
 
 void TrainingWindow::buildScoresBox(){
-	scoresBox = new gcn::TextBox("scores:  \n");
+	scoresBox = new gcn::TextBox("scores:  \n[0 - 100]\n");
 //	scoresBox->setPosition( cameraWindow->getX() - scoresBox->getWidth() - 40 ,
 //			secondsLabel->getY() + secondsLabel->getHeight() + 40);
 	scoresBox->setSize(130, 150);

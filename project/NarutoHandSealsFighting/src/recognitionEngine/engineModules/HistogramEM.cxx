@@ -119,6 +119,9 @@ int HistogramEM::compute(const IplImage* src, IplImage* dst){
 	because all the values need to be mapped in the range
 	from [0, 255] to [0, 1]
 	*/
+	if(dst->nChannels != 1 && dst->depth != IPL_DEPTH_8U){
+		cout<<"HistogramEM ERROR: the dst image must have same IPL_DEPTH_8U and 1 channel\n";
+	}
 	cvConvertScale(temp, dst, 0.0039215, 0);
 	cvReleaseImage(&temp);
 }
