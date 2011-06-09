@@ -140,17 +140,17 @@ int main(int argc, char* argv[]){
 
 //	recognitionEngine->setProcessFunction(new ChainAdder());
 //	recognitionEngine->setProcessFunction(new SimpleChain());
-//	recognitionEngine->setProcessFunction(new DifferentTempsAdder());
-	recognitionEngine->setProcessFunction(new SChainBGRemoval());
+	recognitionEngine->setProcessFunction(new DifferentTempsAdder());
+//	recognitionEngine->setProcessFunction(new SChainBGRemoval());
 
-//	recognitionEngine->setEvaluatorFunction(mulEvaluator);
+	recognitionEngine->setEvaluatorFunction(mulEvaluator);
 	ContoursChecker *cc = new ContoursChecker();
-	recognitionEngine->setEvaluatorFunction(cc);
+//	recognitionEngine->setEvaluatorFunction(cc);
 
 //	AGoodStrategy *aGoodStrat = new AGoodStrategy(recognitionEngine);
-//	recognitionEngine->changeEngineStrategy(aGoodStrat);
+	recognitionEngine->changeEngineStrategy(new AGoodStrategy(recognitionEngine));
 	XperienceStrategy *xp = new XperienceStrategy(recognitionEngine);
-	recognitionEngine->changeEngineStrategy(xp);
+//	recognitionEngine->changeEngineStrategy(xp);
 //	recognitionEngine->setStrategy(aGoodStrat);
 //	recognitionEngine->setStrategy(new DefaultStrategy(recognitionEngine));
 //	recognitionEngine->changeEngineStrategy(new AGoodStrategy(recognitionEngine));
