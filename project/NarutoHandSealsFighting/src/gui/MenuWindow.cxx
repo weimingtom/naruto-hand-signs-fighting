@@ -20,11 +20,11 @@
 
 
 const char* menuChar[MENU_ELEMENT] ={
-		"[P]lay",
-		"[T]raining Section",
-		"[I]nstructions",
-		"[O]ptions",
-		"[Q]uit"
+		"******************",
+		"[T] Addestramento",
+		"[I] Istruzioni",
+		"[O] Opzioni",
+		"[Q] Esci"
 };
 
 const char* menuEventID[MENU_ELEMENT] = {
@@ -36,7 +36,7 @@ const char* menuEventID[MENU_ELEMENT] = {
 };
 
 MenuWindow::MenuWindow() {
-	title = "MAIN MENU";
+	title = "MENU PRINCIPALE";
 
 	buttonWidth = 250;
 	buttonHeight = 30;
@@ -59,7 +59,7 @@ void MenuWindow::buildTitle(){
 
 void MenuWindow::buildBackButton(){
 	int backButtonWidth = buttonWidth/2, backButonHeight = buttonHeight/2;
-	backButton = new gcn::Button("[B]ack");
+	backButton = new gcn::Button("[B] Indietro");
 	backButton->setDimension(gcn::Rectangle(0,0,backButtonWidth, backButonHeight));
 	backButton->setPosition(screenWidth-backButtonWidth - 2, screenHeight - backButonHeight - 2 );
 	backButton->setActionEventId("back");

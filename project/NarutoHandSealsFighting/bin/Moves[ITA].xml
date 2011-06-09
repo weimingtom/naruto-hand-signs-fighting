@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<!DOCTYPE movesSeals SYSTEM "Moves.dtd" >
+<!-- General Template for a move -->
+<!-- ********** -->
+<!-- 
+In order to add a new move
+copy the following lines and complete the elements description
+following the correct syntax
+look a the example
+<move>
+	<name> </name>
+	<jutsutype>  <Ninjutsu/> </jutsutype>
+	<element> </element>
+	<difficultyrank> </difficultyrank>
+	<seallist> </seallist>
+</move>
+-->
+<!-- ********** -->
+<movelist>
+	<!-- EXAMPLE: Lighting Blade -->
+	<move>
+		<name>"Taglio del Fulmine"</name>
+		<jutsutype> <Ninjutsu/> </jutsutype>
+		<element> <FULMINE/> </element>
+		<difficultyrank> <A/> </difficultyrank>
+		<seallist> <cow/> <hare/> <monkey/> </seallist>
+	</move>
+
+	
+	<!-- ********** -->
+	<!-- Add new moves here -->
+	<move>
+		<name>"Palla di Fuoco"</name>
+		<jutsutype> <Ninjutsu/>  </jutsutype>
+		<element> <FUOCO/> </element>
+		<difficultyrank> <B/> </difficultyrank>
+		<seallist> <snake/> <ram/> <monkey/> <boar/> <horse/> <tiger/> </seallist>
+	</move>
+	
+	<move>
+		<name>"Sigillo del Diavolo"</name>
+		<jutsutype> <Fuinjutsu/> </jutsutype>
+		<element> <SIGILLO/> </element>
+		<difficultyrank> <S/> </difficultyrank>
+		<seallist> <snake/> <boar/> <ram/> <hare/> <dog/> <rat/> <bird/> <horse/> <snake/> </seallist>
+	</move>
+	
+	<move>
+	<name>"Tecnica della Pioggia di Fuoco"</name>
+	<jutsutype> <Ninjutsu/> </jutsutype>
+	<element> <FUOCO/> </element>
+	<difficultyrank> <C/> </difficultyrank>
+	<seallist> <rat/> <tiger/> <dog/> <cow/> <hare/> <tiger/> </seallist>
+	</move>	
+
+	<move>
+	<name>"Proiettile Fiammeggiante"</name>
+	<jutsutype> <Ninjutsu/> </jutsutype>
+	<element> <FUOCO/> </element>
+	<difficultyrank> <B/> </difficultyrank>
+	<seallist> <ram/> <horse/> <snake/> <dragon/> <rat/> 
+	<cow/> <tiger/>
+	</seallist>
+	</move>
+	
+	<move>
+	<name>"Soffio del Drago"</name>
+	<jutsutype> <Ninjutsu/> </jutsutype>
+	<element> <FUOCO/> </element>
+	<difficultyrank> <A/> </difficultyrank>
+	<seallist>  <snake/> <dragon/> <hare/> <tiger/>  </seallist>
+	</move>
+	
+	<move>
+	<name>"Tecnica della Prigione Acquatica"</name>
+	<jutsutype> <Ninjutsu/></jutsutype>
+	<element> <ACQUA/> </element>
+	<difficultyrank> <C/> </difficultyrank>
+	<seallist> <snake/> <ram/> <horse/> <hare/> <ram/> <horse/> <hare/> 
+	</seallist>
+	</move>
+	
+	<move>
+	<name>"Tecnica del Vortice"</name>
+	<jutsutype><Ninjutsu/> </jutsutype>
+	<element> <ACQUA/></element>
+	<difficultyrank> <A/> </difficultyrank>
+	<seallist>
+	<tiger/> <cow/> <monkey/> <hare/> <ram/> <boar/> <cow/> <horse/> 
+	<monkey/> <tiger/> <dog/> <tiger/> <snake/> <tiger/> <cow/>  
+	<monkey/> <hare/> <bird/>
+	</seallist>
+	</move>
+	
+	<move>
+	<name>"Tecnica del Drago Acquatico" </name>
+	<jutsutype> <Ninjutsu/> </jutsutype>
+	<element> <ACQUA/> </element>
+	<difficultyrank> <B/> </difficultyrank>
+	<seallist> 
+	<cow/> <monkey/> <hare/> <rat/> <boar/> <bird/> <cow/> <horse/>
+	<bird/> <rat/> <tiger/> <dog/> <tiger/> <snake/> <cow/> <ram/>
+	<snake/> <boar/> <ram/> <rat/> <monkey/> <bird/> <dragon/> <bird/>
+	<cow/> <horse/> <ram/> <tiger/> <snake/> <rat/> <monkey/> <hare/> 
+	<boar/> <dragon/> <ram/> <rat/> <cow/> <monkey/> <bird/> <rat/>
+	<boar/> <bird/>
+	</seallist>
+	</move>
+	
+	<move>
+	<name>"Tecnica del Richiamo"</name>
+	<jutsutype> <Ninjutsu/></jutsutype>
+	<element> <RICHIAMO/> </element>
+	<difficultyrank> <C/> </difficultyrank>
+	<seallist> 
+	<boar/> <dog/> <bird/> <monkey/> <ram/>
+	</seallist>
+	</move>
+	
+	<move>
+	<name>"Forbici di Chakra" </name>
+	<jutsutype> <Ninjutsu/> </jutsutype>
+	<element> <FULMINE/> </element>
+	<difficultyrank> <C/> </difficultyrank>
+	<seallist> 
+	<tiger/> <horse/> <hare/> <rat/> <dog/>
+	</seallist>
+	</move>
+		
+	<move>
+	<name>"Tecnica degli Artigli Inseguitori Sotterranei"</name>
+	<jutsutype> <Ninjutsu/> </jutsutype>
+	<element> <TERRA/> </element>
+	<difficultyrank> <B/> </difficultyrank>
+	<seallist> 
+	<tiger/> <snake/> <dragon/> <dog/>
+	</seallist>
+	</move>
+	
+	<move>
+	<name>"Resurrezione Impura"</name>
+	<jutsutype>  <Ninjutsu/> </jutsutype>
+	<element> <RICHIAMO/> </element>
+	<difficultyrank> <S/> </difficultyrank>
+	<seallist> 
+	<tiger/> <snake/> <dog/> <dragon/>
+	</seallist>
+	</move>
+	
+	<move>
+	<name>"Tecnica dello Strangolamento dell'Ombra"</name>
+	<jutsutype> <Ninjutsu/> </jutsutype>
+	<element> <FULMINE/> </element>
+	<difficultyrank> <B/> </difficultyrank>
+	<seallist>
+	<tiger/> <boar/> <cow/> <dog/>
+	 </seallist>
+	</move>
+	
+	<move>
+	<name>"Tecnica del Constrollo dell'Ombra " </name>
+	<jutsutype>  <Ninjutsu/> </jutsutype>
+	<element> <TERRA/> </element>
+	<difficultyrank> <U/> </difficultyrank>
+	<seallist> <rat/> <ram/> </seallist>
+	</move>
+	
+	<!-- Don't write below that line -->
+	<!-- ********** -->
+</movelist>

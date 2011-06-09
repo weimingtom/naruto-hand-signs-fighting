@@ -19,7 +19,7 @@
 #include "MovesListBoxListener.h"
 
 MovesListWindow::MovesListWindow(MovesSet* ms) : MenuWindow() {
-	title = "MOVES LIST WINDOW";
+	title = "*** LISTA DELLE MOSSE ***";
 	movesList = new MovesListModel(ms);
 	buildTitle();
 	buildBackButton();
@@ -37,6 +37,7 @@ void MovesListWindow::buildWindow(){
 //	buildTitle();
 //	buildBackButton();
 
+	gcn::Color* bgColor = new gcn::Color(0,0,200,0);
 	listBox = new gcn::ListBox(movesList);
 	listBox->setSize(listBoxWidth, listBoxHeight);
 	listBox->adjustSize();
@@ -44,8 +45,10 @@ void MovesListWindow::buildWindow(){
 	listBox->addFocusListener(new MovesListBoxListener());
 	listBox->addSelectionListener(new MovesListBoxListener() );
 	listBox->addActionListener(new MovesListBoxListener());
+	listBox->setBackgroundColor(*bgColor);
 	listBoxScrollArea = new gcn::ScrollArea(listBox);
 	listBoxScrollArea->setFrameSize(5);
+	listBoxScrollArea->setBackgroundColor(*bgColor);
 	listBoxScrollArea->setSize(listBoxWidth, listBoxHeight);
 	listBoxScrollArea->setPosition( 10 ,titleLabel->getHeight() + 10);
 //	listBoxScrollArea->setFocusable(true);

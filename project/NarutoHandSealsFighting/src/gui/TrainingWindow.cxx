@@ -26,7 +26,7 @@ using namespace std;
 TrainingWindow::TrainingWindow(string targetMove) : MenuWindow() {
 	cam = Camera::getCameraInstance();
 //	debugPrint("TrainingWindow constructor\ncamera? %s\n", cam->getPiggyBackCamera());
-	title = "TRAINING SECTION";
+	title = "SEZIONE D'ALLENAMENTO";
 	move = movesSetGlobal->getMove(targetMove);
 	oldScreenWidth = screenWidth;
 	oldScreenHeight = screenHeight;
@@ -91,12 +91,12 @@ void TrainingWindow::buildMoveDescription(int x, int y){
 	int distanceMoveDescription = 20;
 
 	//Title
-	moveTitle = new gcn::Label("MOVE DESCRIPTION");
+	moveTitle = new gcn::Label("DESCRIZIONE MOSSA");
 	moveTitle->setPosition(x, y);
 	panel->add(moveTitle);
 
 	//Move Name:
-	labelName = new gcn::Label("NAME: ");
+	labelName = new gcn::Label("NOME: ");
 //	y = titleLabel->getY() + titleLabel->getHeight() + 10;
 	y = moveTitle->getY() + labelName->getHeight() + distanceMoveDescription;
 	labelName->setPosition(x, y);
@@ -107,7 +107,7 @@ void TrainingWindow::buildMoveDescription(int x, int y){
 
 
 	//Move Element:
-	labelElement = new gcn::Label("ELEMENT: ");
+	labelElement = new gcn::Label("ELEMENTO: ");
 	y = labelName->getY() + distanceMoveDescription;
 	labelElement->setPosition(x, y);
 	panel->add(labelElement);
@@ -116,7 +116,7 @@ void TrainingWindow::buildMoveDescription(int x, int y){
 	panel->add(moveElement);
 
 	//Move Rank:
-	labelRank = new gcn::Label("RANK: ");
+	labelRank = new gcn::Label("RANGO: ");
 	y = labelElement->getY() + distanceMoveDescription;
 	labelRank->setPosition(x, y);
 	panel->add(labelRank);
@@ -125,7 +125,7 @@ void TrainingWindow::buildMoveDescription(int x, int y){
 	panel->add(moveRank);
 
 	//Move type
-	labelType = new gcn::Label("TYPE: ");
+	labelType = new gcn::Label("TIPO: ");
 	y = labelRank->getY() + distanceMoveDescription;
 	labelType->setPosition(x, y);
 	panel->add(labelType);
@@ -160,7 +160,7 @@ void TrainingWindow::buildBottomRow(int x, int y){
 	gcn::Image* image;
 	//Small Seals Thumbnails:
 	gcn::Icon* ico;
-	bottomRow = new gcn::Window("SEALS:");
+	bottomRow = new gcn::Window("SIGILLI:");
 	bottomRow->setPosition(10,screenHeight - 400);
 	int bottomRowScrollWidth = screenWidth - 20;
 	int bottomRowScrollHeight = 160;
@@ -199,7 +199,7 @@ void TrainingWindow::translateTitleLabel(){
 
 void TrainingWindow::buildShotButton(){
 	//we position the back button away
-	shotButton = new gcn::Button("[S]HOT!");
+	shotButton = new gcn::Button("[S]  VAI!");
 	shotButton->setSize(bigImageIcon->getWidth() + 20, buttonHeight + 40);
 	shotButton->setPosition(bigImageIcon->getX() + 30,
 			bigImageIcon->getY() + bigImageIcon->getHeight() + 25);
@@ -249,7 +249,7 @@ void TrainingWindow::buildWindow(){
 //	bigImageIcon->setPosition(10,labelType->getY() + 60);
 	bigImageIcon->setPosition(10, (cameraWindow->getHeight()/2) - 30);
 	panel->add(bigImageIcon);
-	bigImageLabel = new gcn::Label("CURRENT SEAL");
+	bigImageLabel = new gcn::Label("SIGILLO CORRENTE");
 	bigImageLabel->setPosition(bigImageIcon->getX() + (bigImageIcon->getWidth()/2) -
 			(bigImageLabel->getWidth()/2),
 			bigImageIcon->getY() - 20);
@@ -351,7 +351,7 @@ void ResizingListener::action(const gcn::ActionEvent & actionEvent){
 }
 
 void TrainingWindow::buildScoresBox(){
-	scoresBox = new gcn::TextBox("scores:  \n[0 - 100]\n");
+	scoresBox = new gcn::TextBox("punteggio:  \n[0 - 100]\n");
 //	scoresBox->setPosition( cameraWindow->getX() - scoresBox->getWidth() - 40 ,
 //			secondsLabel->getY() + secondsLabel->getHeight() + 40);
 	scoresBox->setSize(130, 150);

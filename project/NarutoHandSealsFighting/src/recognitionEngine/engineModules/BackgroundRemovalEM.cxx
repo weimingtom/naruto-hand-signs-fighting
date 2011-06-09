@@ -24,7 +24,7 @@
  * windows put the SHOW_BG_REMOVAL to 1
  * or to 0 to hide them.
 */
-#define SHOW_BG_REMOVAL 0  //<- switch from 0 to 1
+#define SHOW_BG_REMOVAL 1  //<- switch from 0 to 1
 //////////////////////////////
 
 using namespace std;
